@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "next",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "next": {
+      "rootDir": "src"
+    }
+  }
+}
