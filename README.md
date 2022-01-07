@@ -1,4 +1,4 @@
-# nos1000jours-epds-widget
+# nos1000jours-blues.epds-widget
 
 ## Getting Started
 
@@ -26,3 +26,13 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Comment intégrer le widget
+
+L’équipe de 1000jours Blues vous propose d’intégrer son question EPDS sur votre site grâce à un module (widget).
+
+
+Avec l’iframe, il suffit d’ajouter le code suivant à l’endroit où vous souhaitez voir apparaître le module :
+```
+<iframe src="todo" width="100%" height="300px" title="Questionnaire EPDS"></iframe>
+```
