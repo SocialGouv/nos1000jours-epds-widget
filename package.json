@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@socialgouv/eslint-config-react": "^1.101.0",
-    "eslint": "8.6.0",
+    "eslint": "^8.6.0",
     "eslint-config-next": "12.0.7",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1"
