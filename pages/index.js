@@ -1,13 +1,10 @@
-import type { NextPage } from 'next'
-import { Col } from 'react-bootstrap'
 import styles from '../styles/Home.module.css'
+import { Col } from "react-bootstrap"
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <div className={styles.container}>
       <Col>Hello world</Col>
     </div>
   )
 }
-
-export default Home
