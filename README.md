@@ -1,4 +1,4 @@
-# nos1000jours-blues.epds-widget
+# nos1000jours-blues-epds-widget
 
 ## Getting Started
 

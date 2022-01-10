@@ -9,7 +9,7 @@ const exec = util.promisify(child_process.exec);
 const GH_DEFAULTS = {
   GITHUB_JOB: "5678",
   GITHUB_REF: "refs/heads/mybranch",
-  GITHUB_REPOSITORY: `socialgouv/nos1000jours-blues.epds-widget`,
+  GITHUB_REPOSITORY: `socialgouv/nos1000jours-blues-epds-widget`,
   GITHUB_RUN_ID: "1234",
   GITHUB_SHA: "0123456789abcdefghijklmnopqrstuvwxyz0123",
   SOCIALGOUV_BASE_DOMAIN: "dev2.fabrique.social.gouv.fr",
