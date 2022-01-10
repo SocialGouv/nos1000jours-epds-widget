@@ -1,0 +1,6 @@
+{
+  "name": "nos1000jours-blues-epds-widget",
+  "type": "app",
+  "registry": "ghcr",
+  "project": "nos1000jours"
+}
