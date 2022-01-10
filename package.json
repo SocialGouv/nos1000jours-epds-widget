@@ -31,5 +31,6 @@
     "extends": [
       "@socialgouv/eslint-config-react"
     ]
-  }
+  },
+  "version": "1.0.0"
 }
