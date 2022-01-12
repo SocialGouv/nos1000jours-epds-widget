@@ -3,6 +3,8 @@ import { Col } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import Head from "next/head"
 import { useEffect, useState } from "react"
+import { STORAGE_SOURCE } from "../src/constants/constants"
+import { trackerClick } from "../src/utils/tracker.utils"
 
 export default function Home() {
   const [source, setSource] = useState()
@@ -14,11 +16,10 @@ export default function Home() {
   }, [])
 
   const startSurvey = () => {
-    console.log("START")
-    /**
-     * -> event matoto
-     * -> nom du canal (ex : SiteWebPro, Appli1000j ... ou utilisateur du widget, mettre le nom du canal dans les paramètre du widget)
-     */
+    localStorage.setItem(STORAGE_SOURCE, source)
+    trackerClick("Home", "Click", "Commencer le test")
+
+    // TODO: démarrer le questionnaire
   }
 
   return (
