@@ -37,7 +37,9 @@ export default function Home() {
           style={{ margin: 15 }}
           alt="Logo 1000 premiers jours"
         />
-        <Col>Se tester c&#39;est déjà se soigner</Col>
+        <Col style={{ fontWeight: "bolder" }}>
+          Se tester c&#39;est déjà se soigner
+        </Col>
         <br />
         <button
           className="fr-btn fr-btn--lg"
@@ -47,6 +49,6 @@ export default function Home() {
           COMMENCER LE TEST
         </button>
       </div>
-    </div>
+    </div >
   )
 }
