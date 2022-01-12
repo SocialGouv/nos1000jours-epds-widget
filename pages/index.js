@@ -2,8 +2,16 @@ import styles from "../styles/Home.module.css"
 import { Col } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import Head from "next/head"
+import { useEffect, useState } from "react"
 
 export default function Home() {
+  const [source, setSource] = useState()
+
+  useEffect(() => {
+    const urlSearchParams = new URLSearchParams(window.location.search)
+    const params = Object.fromEntries(urlSearchParams.entries())
+    setSource(params.source)
+  }, [])
 
   const startSurvey = () => {
     console.log("START")
@@ -30,7 +38,11 @@ export default function Home() {
         />
         <Col>Se tester c&#39;est déjà se soigner</Col>
         <br />
-        <button className="fr-btn fr-btn--lg" onClick={startSurvey}>
+        <button
+          className="fr-btn fr-btn--lg"
+          onClick={startSurvey}
+          disabled={!source}
+        >
           COMMENCER LE TEST
         </button>
       </div>
