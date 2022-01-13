@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.0.0...v1.1.0) (2022-01-13)
+
+
+### Features
+
+* **demarrage:** ajour de la source ([5f96f91](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5f96f91ee4b69f2fd82458d366106a50583db53c))
+* **demarrage:** ajout du tracker sur le bouton ([33f6ce9](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/33f6ce93b37362a7965579240cd5ea0b68652cee))
+* **demarrage:** écran de démarrage ([101c7a4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/101c7a46ca1409137348290fe010eb198bd0b131))
+* **demarrage:** style ([e654908](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e654908c49fba67ff1932debb131c39762bec06d))
+
 # 1.0.0 (2022-01-10)
 
 
