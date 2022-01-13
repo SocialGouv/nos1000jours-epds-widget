@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { client, QUESTIONNAIRE_EPDS_TRADUCTION } from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
 import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
+import { } from "@dataesr/react-dsfr"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -49,8 +50,13 @@ export default function EpdsSurvey() {
   }, [])
 
   useEffect(() => {
-    setResultsBoard(questionsEpds?.length)
+    setResultsBoard(new Array(questionsEpds?.length))
   }, [questionsEpds])
+
+  useEffect(() => {
+    if (resultsBoard != undefined)
+      setEnabledNextButton(resultsBoard[actualIndex - 1] != null)
+  }, [actualIndex])
 
   const onPreviousQuestion = () => {
     ref.current.prev()
@@ -91,7 +97,7 @@ export default function EpdsSurvey() {
 
 const PreviousAndNextButton = (props) => (
   <div
-    className="questionnaire-buttons"
+    className="survey-buttons"
     style={{
       justifyContent: props.showPrevious ? "space-between" : "flex-end",
     }}

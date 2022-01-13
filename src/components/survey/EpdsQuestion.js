@@ -28,15 +28,16 @@ export function EpdsQuestion({ question, resultsBoard, setEnabledNextButton }) {
   }
 
   return (
-    <div style={{ marginTop: 50 }}>
+    <div style={{ marginTop: 20, justifyContent: "center", display: "flex" }}>
       <form className="fr-form-group">
         <fieldset className="fr-fieldset">
           <legend className="epds-question" id="radio-legend">
-            {question.ordre}. {question.libelle}
+            <div className="question-number">{question.ordre}</div>
+            <div className="question">{question.libelle}</div>
           </legend>
           <div
-            className="fr-fieldset__content"
-            style={{ marginTop: "10px" }}
+            className="fr-fieldset__content epds-response"
+            style={{ marginTop: 10, paddingLeft: 25 }}
             onChange={handleChange}
           >
             <div className="fr-radio-group">

@@ -19,4 +19,30 @@ a {
   color: var(--bleu-france);
   font-size: 16px;
   line-height: 24px;
+  display: flex;
+  flex-direction: row;
+
+  .question-number {
+    color: var(--primaryBlueLight);
+    font-size: 46px;
+    padding-bottom: 4px;
+  }
+
+  .question {
+    color: var(--primaryBlueDark);
+    font-weight: bold;
+    padding-bottom: 4px;
+  }
+}
+
+.epds-response {
+  label {
+    font-size: 14px !important;
+  }
+}
+
+.survey-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
 }
