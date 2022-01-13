@@ -5,8 +5,10 @@ import Head from "next/head"
 import { useEffect, useState } from "react"
 import { STORAGE_SOURCE } from "../src/constants/constants"
 import { trackerClick } from "../src/utils/tracker.utils"
+import { useRouter } from "next/router"
 
 export default function Home() {
+  const router = useRouter()
   const [source, setSource] = useState()
 
   useEffect(() => {
@@ -19,7 +21,13 @@ export default function Home() {
     localStorage.setItem(STORAGE_SOURCE, source)
     trackerClick("Home", "Click", "Commencer le test")
 
-    // TODO: démarrer le questionnaire
+    goToEpdSurvey()
+  }
+
+  const goToEpdSurvey = async (event) => {
+    router.push({
+      pathname: "/epds-survey",
+    })
   }
 
   return (
@@ -49,6 +57,6 @@ export default function Home() {
           COMMENCER LE TEST
         </button>
       </div>
-    </div >
+    </div>
   )
 }

@@ -1,6 +1,9 @@
+import "bootstrap/dist/css/bootstrap.css"
+import "../styles/globals.scss"
+import "../styles/colors.scss"
+
 import { init } from "@socialgouv/matomo-next"
 import App from "next/app"
-import "../styles/globals.css"
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID
