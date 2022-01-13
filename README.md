@@ -1,14 +1,26 @@
 # nos1000jours-blues-epds-widget
 
-## Getting Started
+## Lancer le projet
 
-First, run the development server:
+Cloner le repo, puis :
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
+
+## Comment intégrer le widget
+
+L’équipe de 1000jours Blues vous propose d’intégrer son questionnaire EPDS sur votre site grâce à un module (widget).
+
+Il est important de rensigner les informations suivantes dans l'url :
+- source (obligatoire) : qui sera généralement le nom de votre site web. Si la source n'est pas renseigner, le bouton "Commencer le test" ne sera pas actif.
+
+Avec l’iframe, il suffit d’ajouter le code suivant à l’endroit où vous souhaitez voir apparaître le module :
+```
+<iframe src="https://nos1000jours-blues-epds-widget.fabrique.social.gouv.fr?source=monsiteweb" width="100%" height="300px"></iframe>
+```
+
+## Autre
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -17,22 +29,3 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Comment intégrer le widget
-
-L’équipe de 1000jours Blues vous propose d’intégrer son question EPDS sur votre site grâce à un module (widget).
-
-
-Avec l’iframe, il suffit d’ajouter le code suivant à l’endroit où vous souhaitez voir apparaître le module :
-```
-<iframe src="todo" width="100%" height="300px" title="Questionnaire EPDS"></iframe>
-```

@@ -129,7 +129,7 @@ metadata:
   namespace: nos1000jours-blues.epds-widget-mybranch
 data:
   NODE_ENV: production
-  MATOMO_SITE_ID: '47'
+  MATOMO_SITE_ID: '60'
   MATOMO_URL: https://matomo.fabrique.social.gouv.fr/
 ---
 apiVersion: v1
@@ -326,7 +326,7 @@ metadata:
   namespace: nos1000jours-blues.epds-widget-preprod
 data:
   NODE_ENV: production
-  MATOMO_SITE_ID: '47'
+  MATOMO_SITE_ID: '60'
   MATOMO_URL: https://matomo.fabrique.social.gouv.fr/
 ---
 apiVersion: v1
@@ -519,7 +519,7 @@ metadata:
   namespace: nos1000jours-blues.epds-widget
 data:
   NODE_ENV: production
-  MATOMO_SITE_ID: '47'
+  MATOMO_SITE_ID: '60'
   MATOMO_URL: https://matomo.fabrique.social.gouv.fr/
 ---
 apiVersion: v1
