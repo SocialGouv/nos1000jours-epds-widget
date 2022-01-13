@@ -5,6 +5,7 @@ import { client, QUESTIONNAIRE_EPDS_TRADUCTION } from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
 import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
 import { } from "@dataesr/react-dsfr"
+import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -72,24 +73,31 @@ export default function EpdsSurvey() {
     <ContentLayout>
       <div style={{ alignItems: "center" }}>
         {questionsEpds ? (
-          <SurveyCarousel
-            questions={questionsEpds}
-            refForOnClick={ref}
-            resultsBoard={resultsBoard}
-            setEnabledNextButton={setEnabledNextButton}
-          />
-        ) : null}
+          <>
+            <SurveyCarousel
+              questions={questionsEpds}
+              refForOnClick={ref}
+              resultsBoard={resultsBoard}
+              setEnabledNextButton={setEnabledNextButton}
+            />
 
-        <PreviousAndNextButton
-          onPrevious={onPreviousQuestion}
-          onNext={onNextQuestion}
-          showPrevious={actualIndex > 1}
-          isEnabledNext={isEnabledNextButton}
-          showNext={actualIndex < questionsEpds?.length}
-          nextPage={goToResults}
-          sendScore={setSendScore}
-          isIdReturned={isIdReturned}
-        />
+            <SurveyProgressBar
+              indexNow={actualIndex}
+              size={questionsEpds.length}
+            />
+
+            <PreviousAndNextButton
+              onPrevious={onPreviousQuestion}
+              onNext={onNextQuestion}
+              showPrevious={actualIndex > 1}
+              isEnabledNext={isEnabledNextButton}
+              showNext={actualIndex < questionsEpds?.length}
+              nextPage={goToResults}
+              sendScore={setSendScore}
+              isIdReturned={isIdReturned}
+            />
+          </>
+        ) : null}
       </div>
     </ContentLayout>
   )

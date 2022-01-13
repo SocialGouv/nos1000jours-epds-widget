@@ -17,7 +17,7 @@ Il est important de rensigner les informations suivantes dans l'url :
 
 Avec l’iframe, il suffit d’ajouter le code suivant à l’endroit où vous souhaitez voir apparaître le module :
 ```
-<iframe src="https://nos1000jours-blues-epds-widget.fabrique.social.gouv.fr?source=monsiteweb" width="100%" height="350px"></iframe>
+<iframe src="https://nos1000jours-blues-epds-widget.fabrique.social.gouv.fr?source=monsiteweb" width="100%" height="430px"></iframe>
 ```
 
 ## Autre

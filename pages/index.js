@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css"
-import { Col } from "react-bootstrap"
+import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import Head from "next/head"
 import { useEffect, useState } from "react"
@@ -45,9 +45,9 @@ export default function Home() {
           style={{ margin: 15 }}
           alt="Logo 1000 premiers jours"
         />
-        <Col style={{ fontWeight: "bolder" }}>
+        <Row style={{ fontWeight: "bolder" }}>
           Se tester c&#39;est déjà se soigner
-        </Col>
+        </Row>
         <br />
         <button
           className="fr-btn fr-btn--lg"
