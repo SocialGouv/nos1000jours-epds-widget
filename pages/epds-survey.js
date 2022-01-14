@@ -25,7 +25,6 @@ export default function EpdsSurvey() {
       const dataSorted = checkQuestionsOrder([
         ...data.questionnaireEpdsTraductions,
       ])
-      //TODO:
       setQuestionsEpds(dataSorted)
     },
     onError: (err) => {
@@ -34,9 +33,7 @@ export default function EpdsSurvey() {
   })
 
   const goToResults = async (event) => {
-    // router.push({
-    //   pathname: "/",
-    // })
+    // TODO: Aller vers la page résultats
   }
 
   useEffect(() => {
@@ -154,7 +151,7 @@ const PreviousAndNextButton = (props) => (
 
 export const checkQuestionsOrder = (questionsEpds) => {
   for (const [index, value] of questionsEpds.entries()) {
-    if (value.ordre != index + 1) {
+    if (value.ordre !== index + 1) {
       return questionsEpds.sort((a, b) => a.ordre - b.ordre)
     }
   }
