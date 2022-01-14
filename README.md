@@ -5,7 +5,16 @@
 Cloner le repo, puis :
 
 ```bash
+yarn
 yarn dev
+```
+
+## Lancer les test
+
+Cloner le repo, puis :
+
+```bash
+yarn test
 ```
 
 ## Comment intégrer le widget
