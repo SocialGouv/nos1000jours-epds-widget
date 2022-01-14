@@ -138,6 +138,17 @@ const PreviousAndNextButton = (props) => (
       />
       Suivant
     </button>
+
+    <button
+      className="fr-btn"
+      onClick={() => {
+        //TODO:
+      }}
+      style={{ display: props.showNext ? "none" : "block" }}
+      disabled={!props.isEnabledNext}
+    >
+      Terminer
+    </button>
   </div>
 )
 
