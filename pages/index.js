@@ -1,12 +1,14 @@
 import styles from "../styles/Home.module.css"
-import { Col } from "react-bootstrap"
+import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import { STORAGE_SOURCE } from "../src/constants/constants"
 import { trackerClick } from "../src/utils/tracker.utils"
+import { useRouter } from "next/router"
 
 export default function Home() {
+  const router = useRouter()
   const [source, setSource] = useState()
 
   useEffect(() => {
@@ -19,7 +21,13 @@ export default function Home() {
     localStorage.setItem(STORAGE_SOURCE, source)
     trackerClick("Home", "Click", "Commencer le test")
 
-    // TODO: démarrer le questionnaire
+    goToEpdSurvey()
+  }
+
+  const goToEpdSurvey = async (event) => {
+    router.push({
+      pathname: "/epds-survey",
+    })
   }
 
   return (
@@ -37,9 +45,9 @@ export default function Home() {
           style={{ margin: 15 }}
           alt="Logo 1000 premiers jours"
         />
-        <Col style={{ fontWeight: "bolder" }}>
+        <Row style={{ fontWeight: "bolder" }}>
           Se tester c&#39;est déjà se soigner
-        </Col>
+        </Row>
         <br />
         <button
           className="fr-btn fr-btn--lg"
@@ -49,6 +57,6 @@ export default function Home() {
           COMMENCER LE TEST
         </button>
       </div>
-    </div >
+    </div>
   )
 }
