@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.1.0...v1.2.0) (2022-01-14)
+
+
+### Bug Fixes
+
+* **questionnaire:** Fix PR ([9ed20db](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/9ed20db114f0ce9f5a40473c9f0342bfc43bb9fe))
+
+
+### Features
+
+* **quesitonnaire:** progress bar ([62e1631](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/62e16314c02bab38754774b0af36e55ed91d52e6))
+* **questionnaire:** bouton terminer ([d27f08a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d27f08a67aa5ab9d2d1628cb01668c523866797f))
+* **questionnaire:** style et bouton suivant ([6b938e7](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/6b938e748dfd19603ae37c77b90416ff09b7f028))
+
 # [1.1.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.0.0...v1.1.0) (2022-01-13)
 
 
