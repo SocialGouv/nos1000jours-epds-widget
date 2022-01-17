@@ -11,20 +11,14 @@ jobs:
   ## TEST APPLICATION
   ##############################################################################
   test:
-    name: Test application
+    name: Test Application
     runs-on: ubuntu-latest
     steps:
 
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        submodules: recursive
-
-    - name: Yarn cache setup
-      uses: c-hive/gha-yarn-cache@v2
-
-    - name: Install dependencies
-      run: yarn --frozen-lockfile --prefer-offline
 
     - name: Run tests
-      run: yarn test --coverage
+       run: |
+          yarn install
+          yarn test

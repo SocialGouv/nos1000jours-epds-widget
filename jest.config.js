@@ -22,7 +22,11 @@ module.exports = {
   // jest.setup.js permets d'utiliser des matchers personnalisés 
   // https://github.com/testing-library/jest-dom#custom-matchers
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
-  testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/.next/",
+    ".socialgouv/",
+  ],
   testEnvironment: "jsdom",
   transform: {
     // Use babel-jest to transpile tests with the next/babel preset
