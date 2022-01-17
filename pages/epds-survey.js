@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import {
   client,
   EPDS_SAVE_RESPONSE,
+  GET_LOCALES,
   QUESTIONNAIRE_EPDS_TRADUCTION,
 } from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
@@ -18,8 +19,7 @@ export default function EpdsSurvey() {
   const router = useRouter()
   const ref = useRef(null)
 
-  // TODO: la locale sera a modifier lorsque l'on ajoutera la traduction
-  const TEMPORARY_LOCAL = "FR"
+  const DEFAULT_LOCAL = "FR"
 
   const [questionsEpds, setQuestionsEpds] = useState()
   const [resultsBoard, setResultsBoard] = useState()
@@ -28,6 +28,7 @@ export default function EpdsSurvey() {
   const [isEnabledNextButton, setEnabledNextButton] = useState(false)
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
+  const [localeSelected, setLocaleSelected] = useState()
 
   const [getEpdsSurveyQuery] = useLazyQuery(QUESTIONNAIRE_EPDS_TRADUCTION, {
     client: client,
@@ -53,6 +54,19 @@ export default function EpdsSurvey() {
     },
   })
 
+  const [getLocalesInDatabase] = useLazyQuery(GET_LOCALES, {
+    client: client,
+    onCompleted: (data) => {
+      const locale = data.locales.find(
+        (element) => element.identifiant === DEFAULT_LOCAL
+      )
+      setLocaleSelected(locale)
+    },
+    onError: (err) => {
+      console.warn(err)
+    },
+  })
+
   const goToResults = async (event) => {
     // TODO: Aller vers la page résultats & enregistrer les résultats
     router.push({
@@ -63,11 +77,16 @@ export default function EpdsSurvey() {
   useEffect(() => {
     const epdsSurveyQuery = async () => {
       await getEpdsSurveyQuery({
-        variables: { locale: TEMPORARY_LOCAL },
+        variables: { locale: DEFAULT_LOCAL },
       })
     }
 
+    const localesQuery = async () => {
+      await getLocalesInDatabase()
+    }
+
     epdsSurveyQuery()
+    localesQuery()
   }, [])
 
   useEffect(() => {
@@ -103,8 +122,8 @@ export default function EpdsSurvey() {
             reponseNum8: resultsBoard[7].points,
             reponseNum9: resultsBoard[8].points,
             score: score,
+            langue: localeSelected.id,
             //TODO: rajouter "source: source," lorsque l'on aura trouver une solution
-            langue: null, // TODO: ajouter l'id de la langue qd on ajoutera la traduction
           },
         })
       }
