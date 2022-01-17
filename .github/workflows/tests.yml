@@ -18,8 +18,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Install dependencies
+      run: yarn --frozen-lockfile --prefer-offline
+
     - name: Run tests
       run: |
-          yarn install
           yarn test
           
