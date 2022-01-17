@@ -19,7 +19,7 @@ module.exports = {
     // Handle module aliases
     "^@/components/(.*)$": "<rootDir>/components/$1",
   },
-  // jest.setup.js permets d'utiliser des matchers personnalisés 
+  // jest.setup.js permets d'utiliser des matchers personnalisés
   // https://github.com/testing-library/jest-dom#custom-matchers
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testPathIgnorePatterns: [
