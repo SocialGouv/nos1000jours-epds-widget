@@ -1,7 +1,6 @@
 FROM node:16-alpine
 
 WORKDIR /app
-
 COPY . .
 
 ARG NEXT_PUBLIC_API_URL
