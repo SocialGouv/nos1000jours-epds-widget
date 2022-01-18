@@ -1,4 +1,14 @@
 node_modules
 .next
-.env
+
+# IDE
 .vscode
+
+# Stapi
+.env
+
+# Logs
+*.log
+
+# Tests
+coverage

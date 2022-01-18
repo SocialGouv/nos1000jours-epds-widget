@@ -11,7 +11,12 @@ import { ContentLayout } from "../src/components/Layout"
 import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
 import { } from "@dataesr/react-dsfr"
 import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
-import { EpdsGender, STORAGE_SOURCE } from "../src/constants/constants"
+import {
+  EpdsGender,
+  EPDS_SOURCE,
+  STORAGE_SOURCE,
+  STORAGE_TOTAL_SCORE,
+} from "../src/constants/constants"
 import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { Spinner } from "react-bootstrap"
 
@@ -23,12 +28,12 @@ export default function EpdsSurvey() {
 
   const [questionsEpds, setQuestionsEpds] = useState()
   const [resultsBoard, setResultsBoard] = useState()
+  const [localeSelected, setLocaleSelected] = useState()
 
   const [actualIndex, setActualIndex] = useState(1)
   const [isEnabledNextButton, setEnabledNextButton] = useState(false)
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
-  const [localeSelected, setLocaleSelected] = useState()
 
   const [getEpdsSurveyQuery] = useLazyQuery(QUESTIONNAIRE_EPDS_TRADUCTION, {
     client: client,
@@ -50,6 +55,10 @@ export default function EpdsSurvey() {
       setLoading(false)
     },
     onCompleted: (data) => {
+      localStorage.setItem(
+        STORAGE_TOTAL_SCORE,
+        totalScoreFromResults(resultsBoard)
+      )
       goToResults()
     },
   })
@@ -123,7 +132,8 @@ export default function EpdsSurvey() {
             reponseNum9: resultsBoard[8].points,
             score: score,
             langue: localeSelected.id,
-            //TODO: rajouter "source: source," lorsque l'on aura trouver une solution
+            source: EPDS_SOURCE,
+            sourceWidgetNom: source,
           },
         })
       }
@@ -239,3 +249,6 @@ export const checkQuestionsOrder = (questionsEpds) => {
 
   return questionsEpds
 }
+
+export const totalScoreFromResults = (resultsBoard) =>
+  resultsBoard.map((data) => data.points).reduce((a, b) => a + b, 0)

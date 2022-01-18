@@ -43,7 +43,6 @@ export const GET_LOCALES = gql`
   }
 `
 
-// TODO: rajouter le champs "$source: ENUM_REPONSESEPDS_SOURCE!" lorsqu'on aura trouver une solution
 export const EPDS_SAVE_RESPONSE = gql`
   mutation (
     $genre: ENUM_REPONSESEPDS_GENRE!
@@ -60,31 +59,27 @@ export const EPDS_SAVE_RESPONSE = gql`
     $reponseNum9: Int!
     $reponseNum10: Int!
     $langue: ID
+    $sourceWidgetNom: String!
   ) {
-    createReponsesEpd(
-      input: {
-        data: {
-          genre: $genre
-          compteur: $compteur
-          score: $score
-          reponse_1: $reponseNum1
-          reponse_2: $reponseNum2
-          reponse_3: $reponseNum3
-          reponse_4: $reponseNum4
-          reponse_5: $reponseNum5
-          reponse_6: $reponseNum6
-          reponse_7: $reponseNum7
-          reponse_8: $reponseNum8
-          reponse_9: $reponseNum9
-          reponse_10: $reponseNum10
-          langue: $langue
-        }
-      }
+    createReponsesEpdsWidget(
+      genre: $genre
+      compteur: $compteur
+      score: $score
+      reponse_1: $reponseNum1
+      reponse_2: $reponseNum2
+      reponse_3: $reponseNum3
+      reponse_4: $reponseNum4
+      reponse_5: $reponseNum5
+      reponse_6: $reponseNum6
+      reponse_7: $reponseNum7
+      reponse_8: $reponseNum8
+      reponse_9: $reponseNum9
+      reponse_10: $reponseNum10
+      langue: $langue
+      source_widget_nom: $sourceWidgetNom
     ) {
-      reponsesEpd {
-        id
-        created_at
-      }
+      id
+      created_at
     }
   }
 `

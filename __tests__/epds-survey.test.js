@@ -1,4 +1,7 @@
-import { checkQuestionsOrder } from "../pages/epds-survey"
+import {
+  checkQuestionsOrder,
+  totalScoreFromResults,
+} from "../pages/epds-survey"
 
 describe("Questionnaire", () => {
   describe("Vérification de l'ordre des questions", () => {
@@ -47,6 +50,25 @@ describe("Questionnaire", () => {
       ]
 
       expect(checkQuestionsOrder(questionsEpds)).toEqual(questionsEpdsValid)
+    })
+  })
+
+  describe("Vérification du score total", () => {
+    test("Somme des réponses", () => {
+      const questionsEpds = [
+        { points: 3 },
+        { points: 3 },
+        { points: 0 },
+        { points: 3 },
+        { points: 0 },
+        { points: 0 },
+        { points: 0 },
+        { points: 0 },
+        { points: 0 },
+        { points: 0 },
+      ]
+
+      expect(totalScoreFromResults(questionsEpds)).toEqual(9)
     })
   })
 })
