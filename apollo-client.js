@@ -59,6 +59,7 @@ export const EPDS_SAVE_RESPONSE = gql`
     $reponseNum9: Int!
     $reponseNum10: Int!
     $langue: ID
+    $source: ENUM_REPONSESEPDS_SOURCE!
     $sourceWidgetNom: String!
   ) {
     createReponsesEpdsWidget(
@@ -76,6 +77,7 @@ export const EPDS_SAVE_RESPONSE = gql`
       reponse_9: $reponseNum9
       reponse_10: $reponseNum10
       langue: $langue
+      source: $source
       source_widget_nom: $sourceWidgetNom
     ) {
       id
