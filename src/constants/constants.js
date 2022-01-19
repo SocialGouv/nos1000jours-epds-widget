@@ -1,5 +1,5 @@
 export const STORAGE_SOURCE = "source"
-export const STORAGE_TOTAL_SCORE = "totalScore"
+export const STORAGE_SCORE_LEVEL = "scoreLevel"
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const EPDS_SOURCE = "SitePartenaire"

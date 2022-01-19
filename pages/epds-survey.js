@@ -14,11 +14,13 @@ import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
+  STORAGE_SCORE_LEVEL,
   STORAGE_SOURCE,
-  STORAGE_TOTAL_SCORE,
 } from "../src/constants/constants"
 import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { Spinner } from "react-bootstrap"
+import { scoreLevel } from "../src/utils/utils"
+import { Labels } from "../src/constants/specificLabels"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -55,9 +57,10 @@ export default function EpdsSurvey() {
       setLoading(false)
     },
     onCompleted: (data) => {
+      // Le niveau du score est mis en mémoire ici afin de ne pas faire transiter les résultats
       localStorage.setItem(
-        STORAGE_TOTAL_SCORE,
-        totalScoreFromResults(resultsBoard)
+        STORAGE_SCORE_LEVEL,
+        scoreLevel(totalScoreFromResults(resultsBoard), resultsBoard[9].points)
       )
       goToResults()
     },
@@ -77,26 +80,28 @@ export default function EpdsSurvey() {
   })
 
   const goToResults = async (event) => {
-    // TODO: Aller vers la page résultats & enregistrer les résultats
     router.push({
       pathname: "/results",
     })
   }
 
   useEffect(() => {
-    const epdsSurveyQuery = async () => {
-      await getEpdsSurveyQuery({
-        variables: { locale: DEFAULT_LOCAL },
-      })
-    }
-
     const localesQuery = async () => {
       await getLocalesInDatabase()
     }
 
-    epdsSurveyQuery()
     localesQuery()
   }, [])
+
+  useEffect(() => {
+    const epdsSurveyQuery = async () => {
+      await getEpdsSurveyQuery({
+        variables: { locale: localeSelected.identifiant },
+      })
+    }
+
+    if (localeSelected) epdsSurveyQuery()
+  }, [localeSelected])
 
   useEffect(() => {
     setResultsBoard(new Array(questionsEpds?.length))
@@ -214,6 +219,8 @@ export default function EpdsSurvey() {
 
   return (
     <ContentLayout>
+      <h5 className="title-ddp">{Labels.titleDPP}</h5>
+      <div>{Labels.surveyExplanations}</div>
       <div style={{ alignItems: "center" }}>
         {questionsEpds ? (
           <>
