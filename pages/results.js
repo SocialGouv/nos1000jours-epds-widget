@@ -2,9 +2,10 @@ import { Row } from "react-bootstrap"
 import { ContentLayout } from "../src/components/Layout"
 import { STORAGE_SCORE_LEVEL } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
+import { getInLocalStorage } from "../src/utils/utils"
 
 export default function Results() {
-  const scoreLevel = parseInt(localStorage.getItem(STORAGE_SCORE_LEVEL))
+  const scoreLevel = parseInt(getInLocalStorage(STORAGE_SCORE_LEVEL))
 
   return (
     <ContentLayout>

@@ -10,3 +10,7 @@ export const scoreLevel = (score, scoreQ10) => {
 
   return 0
 }
+
+export function getInLocalStorage(key) {
+  if (typeof window !== "undefined") return localStorage.getItem(key)
+}
