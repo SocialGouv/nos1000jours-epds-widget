@@ -4,7 +4,7 @@ import { } from "@dataesr/react-dsfr"
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import { STORAGE_SOURCE } from "../src/constants/constants"
-import { trackerClick } from "../src/utils/tracker.utils"
+import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
 
   const startSurvey = () => {
     localStorage.setItem(STORAGE_SOURCE, source)
-    trackerClick("Home", "Click", "Commencer le test")
+    trackerClick("Home", EVENT_CLICK, "Commencer le test")
 
     goToEpdSurvey()
   }

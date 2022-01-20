@@ -1,23 +1,39 @@
-import { useLazyQuery } from "@apollo/client"
+import { useLazyQuery, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import { client, QUESTIONNAIRE_EPDS_TRADUCTION } from "../apollo-client"
+import {
+  client,
+  EPDS_SAVE_RESPONSE,
+  GET_LOCALES,
+  QUESTIONNAIRE_EPDS_TRADUCTION,
+} from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
 import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
 import { } from "@dataesr/react-dsfr"
 import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
+import {
+  EpdsGender,
+  EPDS_SOURCE,
+  STORAGE_SOURCE,
+  STORAGE_TOTAL_SCORE,
+} from "../src/constants/constants"
+import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
+import { Spinner } from "react-bootstrap"
 
 export default function EpdsSurvey() {
   const router = useRouter()
   const ref = useRef(null)
 
+  const DEFAULT_LOCAL = "FR"
+
   const [questionsEpds, setQuestionsEpds] = useState()
   const [resultsBoard, setResultsBoard] = useState()
+  const [localeSelected, setLocaleSelected] = useState()
 
   const [actualIndex, setActualIndex] = useState(1)
   const [isEnabledNextButton, setEnabledNextButton] = useState(false)
   const [sendScore, setSendScore] = useState(false)
-  const [isIdReturned, setIdReturned] = useState(false)
+  const [isLoading, setLoading] = useState(false)
 
   const [getEpdsSurveyQuery] = useLazyQuery(QUESTIONNAIRE_EPDS_TRADUCTION, {
     client: client,
@@ -32,19 +48,54 @@ export default function EpdsSurvey() {
     },
   })
 
+  const [saveResponseQuery] = useMutation(EPDS_SAVE_RESPONSE, {
+    client: client,
+    onError: (err) => {
+      console.warn(err)
+      setLoading(false)
+    },
+    onCompleted: (data) => {
+      localStorage.setItem(
+        STORAGE_TOTAL_SCORE,
+        totalScoreFromResults(resultsBoard)
+      )
+      goToResults()
+    },
+  })
+
+  const [getLocalesInDatabase] = useLazyQuery(GET_LOCALES, {
+    client: client,
+    onCompleted: (data) => {
+      const locale = data.locales.find(
+        (element) => element.identifiant === DEFAULT_LOCAL
+      )
+      setLocaleSelected(locale)
+    },
+    onError: (err) => {
+      console.warn(err)
+    },
+  })
+
   const goToResults = async (event) => {
-    // TODO: Aller vers la page résultats
+    // TODO: Aller vers la page résultats & enregistrer les résultats
+    router.push({
+      pathname: "/results",
+    })
   }
 
   useEffect(() => {
-    // TODO: la locale sera a modifier lorsque l'on ajoutera la traduction
     const epdsSurveyQuery = async () => {
       await getEpdsSurveyQuery({
-        variables: { locale: "FR" },
+        variables: { locale: DEFAULT_LOCAL },
       })
     }
 
+    const localesQuery = async () => {
+      await getLocalesInDatabase()
+    }
+
     epdsSurveyQuery()
+    localesQuery()
   }, [])
 
   useEffect(() => {
@@ -56,6 +107,41 @@ export default function EpdsSurvey() {
       setEnabledNextButton(resultsBoard[actualIndex - 1] != null)
   }, [actualIndex])
 
+  useEffect(() => {
+    const saveEpdsResults = async () => {
+      if (sendScore) {
+        const score = resultsBoard
+          .map((data) => data.points)
+          .reduce((a, b) => a + b, 0)
+
+        const source = localStorage.getItem(STORAGE_SOURCE)
+
+        await saveResponseQuery({
+          variables: {
+            compteur: 1,
+            genre: EpdsGender.inconnu.strapiLibelle,
+            reponseNum1: resultsBoard[0].points,
+            reponseNum10: resultsBoard[9].points,
+            reponseNum2: resultsBoard[1].points,
+            reponseNum3: resultsBoard[2].points,
+            reponseNum4: resultsBoard[3].points,
+            reponseNum5: resultsBoard[4].points,
+            reponseNum6: resultsBoard[5].points,
+            reponseNum7: resultsBoard[6].points,
+            reponseNum8: resultsBoard[7].points,
+            reponseNum9: resultsBoard[8].points,
+            score: score,
+            langue: localeSelected.id,
+            source: EPDS_SOURCE,
+            sourceWidgetNom: source,
+          },
+        })
+      }
+    }
+
+    saveEpdsResults()
+  }, [sendScore])
+
   const onPreviousQuestion = () => {
     ref.current.prev()
     setActualIndex(actualIndex - 1)
@@ -64,6 +150,66 @@ export default function EpdsSurvey() {
   const onNextQuestion = () => {
     ref.current.next()
     setActualIndex(actualIndex + 1)
+  }
+
+  const PreviousAndNextButton = ({ showPrevious, showNext }) => {
+    return (
+      <div
+        className="survey-buttons"
+        style={{
+          justifyContent: showPrevious ? "space-between" : "flex-end",
+        }}
+      >
+        <button
+          className="fr-btn fr-btn--secondary"
+          onClick={onPreviousQuestion}
+          style={{ display: showPrevious ? "block" : "none" }}
+          disabled={isLoading}
+        >
+          <img
+            alt=""
+            src="/img/icone-precedent.svg"
+            height={10}
+            style={{ marginRight: 10 }}
+          />
+          Précédent
+        </button>
+
+        <button
+          className="fr-btn fr-btn--secondary"
+          onClick={onNextQuestion}
+          disabled={!isEnabledNextButton}
+          style={{ display: showNext ? "block" : "none" }}
+        >
+          <img
+            alt=""
+            src="/img/icone-suivant.svg"
+            height={10}
+            style={{ marginRight: 10 }}
+          />
+          Suivant
+        </button>
+
+        <div style={{ display: showNext ? "none" : "flex" }}>
+          <button
+            className="fr-btn"
+            onClick={() => {
+              setSendScore(true)
+              setLoading(true)
+              trackerClick("Questionnaire", EVENT_CLICK, "Terminer")
+            }}
+            disabled={!isEnabledNextButton || isLoading}
+          >
+            Terminer
+          </button>
+          <Spinner
+            animation="border"
+            hidden={!isLoading}
+            style={{ margin: 3 }}
+          />
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -84,14 +230,8 @@ export default function EpdsSurvey() {
             />
 
             <PreviousAndNextButton
-              onPrevious={onPreviousQuestion}
-              onNext={onNextQuestion}
               showPrevious={actualIndex > 1}
-              isEnabledNext={isEnabledNextButton}
               showNext={actualIndex < questionsEpds?.length}
-              nextPage={goToResults}
-              sendScore={setSendScore}
-              isIdReturned={isIdReturned}
             />
           </>
         ) : null}
@@ -99,55 +239,6 @@ export default function EpdsSurvey() {
     </ContentLayout>
   )
 }
-
-const PreviousAndNextButton = (props) => (
-  <div
-    className="survey-buttons"
-    style={{
-      justifyContent: props.showPrevious ? "space-between" : "flex-end",
-    }}
-  >
-    <button
-      className="fr-btn fr-btn--secondary"
-      onClick={props.onPrevious}
-      style={{ display: props.showPrevious ? "block" : "none" }}
-    >
-      <img
-        alt=""
-        src="/img/icone-precedent.svg"
-        height={10}
-        style={{ marginRight: 10 }}
-      />
-      Précédent
-    </button>
-
-    <button
-      className="fr-btn fr-btn--secondary"
-      onClick={props.onNext}
-      disabled={!props.isEnabledNext}
-      style={{ display: props.showNext ? "block" : "none" }}
-    >
-      <img
-        alt=""
-        src="/img/icone-suivant.svg"
-        height={10}
-        style={{ marginRight: 10 }}
-      />
-      Suivant
-    </button>
-
-    <button
-      className="fr-btn"
-      onClick={() => {
-        //TODO:
-      }}
-      style={{ display: props.showNext ? "none" : "block" }}
-      disabled={!props.isEnabledNext}
-    >
-      Terminer
-    </button>
-  </div>
-)
 
 export const checkQuestionsOrder = (questionsEpds) => {
   for (const [index, value] of questionsEpds.entries()) {
@@ -158,3 +249,6 @@ export const checkQuestionsOrder = (questionsEpds) => {
 
   return questionsEpds
 }
+
+export const totalScoreFromResults = (resultsBoard) =>
+  resultsBoard.map((data) => data.points).reduce((a, b) => a + b, 0)
