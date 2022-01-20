@@ -14,12 +14,13 @@ import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
-  STORAGE_SCORE_LEVEL,
+  STORAGE_SCORE_LEVEL_MOOD,
+  STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
 } from "../src/constants/constants"
 import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { Spinner } from "react-bootstrap"
-import { scoreLevel } from "../src/utils/utils"
+import { scoreLevelForMood, scoreLevelForTexts } from "../src/utils/utils"
 import { Labels } from "../src/constants/specificLabels"
 
 export default function EpdsSurvey() {
@@ -58,10 +59,16 @@ export default function EpdsSurvey() {
     },
     onCompleted: (data) => {
       // Le niveau du score est mis en mémoire ici afin de ne pas faire transiter les résultats
+      const totalScore = totalScoreFromResults(resultsBoard)
       localStorage.setItem(
-        STORAGE_SCORE_LEVEL,
-        scoreLevel(totalScoreFromResults(resultsBoard), resultsBoard[9].points)
+        STORAGE_SCORE_LEVEL_MOOD,
+        scoreLevelForMood(totalScore, resultsBoard[9].points)
       )
+      localStorage.setItem(
+        STORAGE_SCORE_LEVEL_TEXTS,
+        scoreLevelForTexts(totalScore, resultsBoard[9].points)
+      )
+
       goToResults()
     },
   })

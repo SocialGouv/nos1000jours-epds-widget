@@ -1,11 +1,19 @@
 import { Row } from "react-bootstrap"
 import { ContentLayout } from "../src/components/Layout"
-import { STORAGE_SCORE_LEVEL } from "../src/constants/constants"
+import {
+  STORAGE_SCORE_LEVEL_MOOD,
+  STORAGE_SCORE_LEVEL_TEXTS,
+} from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import { getInLocalStorage } from "../src/utils/utils"
 
 export default function Results() {
-  const scoreLevel = parseInt(getInLocalStorage(STORAGE_SCORE_LEVEL))
+  const scoreLevelForMood = parseInt(
+    getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
+  )
+  const scoreLevelForTexts = parseInt(
+    getInLocalStorage(STORAGE_SCORE_LEVEL_TEXTS)
+  )
 
   return (
     <ContentLayout>
@@ -14,9 +22,9 @@ export default function Results() {
       <Row>
         <b>Oser en parler, c’est déjà prendre soin de soi et de son enfant !</b>
         <br />
-        <span>{descriptionByScoreLevel(scoreLevel)}</span>
+        <span>{descriptionByScoreLevel(scoreLevelForTexts)}</span>
         <br />
-        <b>{conclusionByScoreLevel(scoreLevel)}</b>
+        <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
       </Row>
     </ContentLayout>
   )
