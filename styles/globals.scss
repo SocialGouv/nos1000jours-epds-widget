@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "Marianne";
+  src: url("/fonts/Marianne/Marianne-Regular.ttf");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Marianne";
+  src: url("/fonts/Marianne/Marianne-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Marianne";
+  src: url("/fonts/Marianne/Marianne-RegularItalic.ttf");
+  font-style: italic;
+}
+@font-face {
+  font-family: "Marianne";
+  src: url("/fonts/Marianne/Marianne-BoldItalic.ttf");
+  font-weight: bold;
+  font-style: italic;
+}
+
 html,
 body {
   padding: 0;
@@ -53,4 +77,22 @@ a {
   .progress-bar {
     background-color: var(--primaryBlueDark);
   }
+}
+
+.title-ddp {
+  color: var(--primaryBlueDark);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.good-mood {
+  color: var(--primaryBlue);
+}
+
+.moderatelygood-mood{
+  color: var(--primaryYellowDark);
+}
+
+.bad-mood {
+  color: var(--primaryRedLight);
 }
