@@ -53,7 +53,7 @@ describe("Utils", () => {
     })
   })
 
-  describe("Retourner les bonen information en fonction du mood", () => {
+  describe("Retourner les bonnes informations en fonction du mood", () => {
     test("Mood level = 1 donc il va bien", () => {
       const result = {
         moodIcon: "icone-resultats-bien.svg",

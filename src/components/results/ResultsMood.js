@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react"
 import { getColorIconAndTextByMood } from "../../utils/utils"
 
 export function ResultsMood({ scoreLevel }) {
-  const [moodInfos, setQuestionsEpds] = useState()
+  const [moodInfos, setMoodInfos] = useState()
 
   useEffect(() => {
     if (moodInfos == undefined)
-      setQuestionsEpds(getColorIconAndTextByMood(scoreLevel))
+      setMoodInfos(getColorIconAndTextByMood(scoreLevel))
   }, [])
 
   return (
