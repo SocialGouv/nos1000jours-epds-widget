@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.3.0...v1.4.0) (2022-01-21)
+
+
+### Features
+
+* **resultats:** affichge de la description ([3cb5701](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3cb5701f52e875479f0c4d853b2ab095c4e4ae99))
+* **resultats:** ajout de la font Marianne ([848f0a0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/848f0a011879ea01d73d2e3c10b4f7bd1546d4e2))
+* **resultats:** ajout de la font Marianne ([06102b1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/06102b10b71276c1843d9cbc6ea3e4fb204808a1))
+* **resultats:** ajout du mood ([d7ccde7](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d7ccde7926f16e9e3cddf9a0e2ba208ed38b4f8e))
+* **resultats:** fix localstorage ([86d9196](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/86d91965023b42a001f00c239a7d73b2cfb6140e))
+* **resultats:** fix PR ([317424a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/317424abc2d37d459df9b5015b811608dc3063ab))
+* **resultats:** réglage du score ([a094c5d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a094c5d6a9301a7c115d1b4928143d4e7916d137))
+
 # [1.3.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.2.0...v1.3.0) (2022-01-20)
 
 
