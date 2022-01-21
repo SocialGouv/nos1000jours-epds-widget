@@ -94,5 +94,52 @@ a {
 }
 
 .bad-mood {
-  color: var(--primaryRedLight);
+  color: var(--primaryRedDark);
+}
+
+.contact-mamanblues {
+  margin-block: 16px;
+
+  .contact-content {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    margin-bottom: 16px;
+    border-radius: 50%;
+    height: 100px;
+    width: auto;
+    padding: 0;
+  }
+
+  button {
+    min-width: 40%;
+    width: auto;
+    border-color: transparent;
+    border-radius: 25px;
+    text-transform: uppercase;
+    justify-content: center;
+  }
+
+  .moderatelygood-mood{
+    background-color: var(--primaryYellowLight);
+    img {
+      border: 3px solid var(--primaryYellowDark);
+    }
+    button {
+      background-color: var(--primaryYellowDark);
+    }
+  }
+
+  .bad-mood {
+    background-color: var(--primaryRedLight);
+    img {
+      border: 3px solid var(--primaryRedDark);
+    }
+    button {
+      background-color: var(--primaryRedDark);
+    }
+  }
 }

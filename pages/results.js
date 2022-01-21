@@ -1,5 +1,6 @@
 import { Row } from "react-bootstrap"
 import { ContentLayout } from "../src/components/Layout"
+import { ContactMamanBlues } from "../src/components/results/ContactMamanBlues"
 import { ResultsMood } from "../src/components/results/ResultsMood"
 import {
   STORAGE_SCORE_LEVEL_MOOD,
@@ -27,6 +28,7 @@ export default function Results() {
         <br />
         <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
       </Row>
+      <ContactMamanBlues scoreLevel={scoreLevelForMood} />
     </ContentLayout>
   )
 }
