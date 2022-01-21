@@ -84,3 +84,15 @@ a {
   text-transform: uppercase;
   text-align: center;
 }
+
+.good-mood {
+  color: var(--primaryBlue);
+}
+
+.moderatelygood-mood{
+  color: var(--primaryYellowDark);
+}
+
+.bad-mood {
+  color: var(--primaryRedLight);
+}

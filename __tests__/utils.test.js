@@ -1,4 +1,8 @@
-import { scoreLevelForMood, scoreLevelForTexts } from "../src/utils/utils"
+import {
+  getColorIconAndTextByMood,
+  scoreLevelForMood,
+  scoreLevelForTexts,
+} from "../src/utils/utils"
 
 describe("Utils", () => {
   describe("Niveau en fonction du score total pour la jauge", () => {
@@ -46,6 +50,33 @@ describe("Utils", () => {
     })
     test("Le score = 11 et la question 10 = 3 donc le niveau doit être 3", () => {
       expect(scoreLevelForTexts(13, 3)).toEqual(3)
+    })
+  })
+
+  describe("Retourner les bonen information en fonction du mood", () => {
+    test("Mood level = 1 donc il va bien", () => {
+      const result = {
+        moodIcon: "icone-resultats-bien.svg",
+        moodText: "Je vais bien",
+        moodColor: "good-mood",
+      }
+      expect(getColorIconAndTextByMood(1)).toEqual(result)
+    })
+    test("Mood level = 2 donc il va moyennement bien", () => {
+      const result = {
+        moodIcon: "icone-resultats-moyen.svg",
+        moodText: "Je vais moins bien",
+        moodColor: "moderatelygood-mood",
+      }
+      expect(getColorIconAndTextByMood(2)).toEqual(result)
+    })
+    test("Mood level = 3 donc il ne va pas bien", () => {
+      const result = {
+        moodIcon: "icone-resultats-pasbien.svg",
+        moodText: "Je ne vais pas bien",
+        moodColor: "bad-mood",
+      }
+      expect(getColorIconAndTextByMood(3)).toEqual(result)
     })
   })
 })

@@ -1,5 +1,6 @@
 import { Row } from "react-bootstrap"
 import { ContentLayout } from "../src/components/Layout"
+import { ResultsMood } from "../src/components/results/ResultsMood"
 import {
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
@@ -18,7 +19,7 @@ export default function Results() {
   return (
     <ContentLayout>
       <h5 className="title-ddp">{Labels.titleDPP}</h5>
-
+      <ResultsMood scoreLevel={scoreLevelForMood} />
       <Row>
         <b>Oser en parler, c’est déjà prendre soin de soi et de son enfant !</b>
         <br />
