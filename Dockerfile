@@ -18,7 +18,7 @@ ENV NEXT_PUBLIC_MATOMO_ENABLED=$NEXT_PUBLIC_MATOMO_ENABLED
 RUN yarn --production --frozen-lockfile --prefer-offline && yarn cache clean
 RUN yarn build
 
-USER node
+USER 1000
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
