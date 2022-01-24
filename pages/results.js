@@ -3,6 +3,7 @@ import { ContentLayout } from "../src/components/Layout"
 import { ContactMamanBlues } from "../src/components/results/ContactMamanBlues"
 import { ResultsMood } from "../src/components/results/ResultsMood"
 import {
+  STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
 } from "../src/constants/constants"
@@ -16,6 +17,10 @@ export default function Results() {
   const scoreLevelForTexts = parseInt(
     getInLocalStorage(STORAGE_SCORE_LEVEL_TEXTS)
   )
+  const scoreLevelForMacaron = parseInt(
+    getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
+  )
+
 
   return (
     <ContentLayout>
@@ -28,7 +33,7 @@ export default function Results() {
         <br />
         <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
       </Row>
-      <ContactMamanBlues scoreLevel={scoreLevelForMood} />
+      <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
     </ContentLayout>
   )
 }
