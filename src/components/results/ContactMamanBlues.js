@@ -1,8 +1,10 @@
 import React from "react"
 import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
+import { useRouter } from "next/router"
 
 export function ContactMamanBlues({ scoreLevel }) {
+  const router = useRouter()
   let colorsByLevel
 
   switch (scoreLevel) {
@@ -16,8 +18,14 @@ export function ContactMamanBlues({ scoreLevel }) {
       break;
   }
 
+  const goToBeContacted = async (event) => {
+    router.push({
+      pathname: "/to-be-contacted",
+    })
+  }
+
   return (
-    <div className="contact-mamanblues" style={{}}>
+    <div className="contact-mamanblues">
       {scoreLevel > 1 ?
         <Row className={`contact-content ${colorsByLevel}`}>
           <div style={{ display: "inline-flex" }}>
@@ -31,7 +39,7 @@ export function ContactMamanBlues({ scoreLevel }) {
               Vous pouvez être contacté(e) par Élise, notre partenaire (association composée par des volontaires ayant connu la difficulté maternelle), afin de <b>trouver une aide adaptée autour de vous.</b>
             </div>
           </div>
-          <button className="fr-btn">
+          <button className="fr-btn" onClick={goToBeContacted}>
             être contacté(e)
           </button>
         </Row> : null}

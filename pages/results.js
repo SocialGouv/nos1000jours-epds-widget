@@ -21,7 +21,6 @@ export default function Results() {
     getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
 
-
   return (
     <ContentLayout>
       <h5 className="title-ddp">{Labels.titleDPP}</h5>
