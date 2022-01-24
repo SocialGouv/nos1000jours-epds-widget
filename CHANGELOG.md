@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.4.0...v1.5.0) (2022-01-24)
+
+
+### Features
+
+* **resultats:** ajout macaron Elise ([d29ae4a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d29ae4ae477b600cb607a828ac55988a96d1e2a5))
+* **resultats:** maj niveau macaron ([561c09b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/561c09b4fb17fa507e9b5226c8cac87aba4b6819))
+
 # [1.4.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.3.0...v1.4.0) (2022-01-21)
 
 
