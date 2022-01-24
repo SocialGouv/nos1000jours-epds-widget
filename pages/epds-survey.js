@@ -14,13 +14,18 @@ import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
+  STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
 } from "../src/constants/constants"
 import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { Spinner } from "react-bootstrap"
-import { scoreLevelForMood, scoreLevelForTexts } from "../src/utils/utils"
+import {
+  scoreLevelForMacaron,
+  scoreLevelForMood,
+  scoreLevelForTexts,
+} from "../src/utils/utils"
 import { Labels } from "../src/constants/specificLabels"
 
 export default function EpdsSurvey() {
@@ -67,6 +72,10 @@ export default function EpdsSurvey() {
       localStorage.setItem(
         STORAGE_SCORE_LEVEL_TEXTS,
         scoreLevelForTexts(totalScore, resultsBoard[9].points)
+      )
+      localStorage.setItem(
+        STORAGE_SCORE_LEVEL_MACARON,
+        scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
 
       goToResults()

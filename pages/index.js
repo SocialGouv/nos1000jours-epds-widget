@@ -21,10 +21,10 @@ export default function Home() {
     localStorage.setItem(STORAGE_SOURCE, source)
     trackerClick("Home", EVENT_CLICK, "Commencer le test")
 
-    goToEpdSurvey()
+    goToEpdsSurvey()
   }
 
-  const goToEpdSurvey = async (event) => {
+  const goToEpdsSurvey = async (event) => {
     router.push({
       pathname: "/epds-survey",
     })
