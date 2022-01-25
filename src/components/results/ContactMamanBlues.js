@@ -20,7 +20,7 @@ export function ContactMamanBlues({ scoreLevel }) {
 
   const goToBeContacted = async (event) => {
     router.push({
-      pathname: "/to-be-contacted",
+      pathname: "/contact/to-be-contacted",
     })
   }
 

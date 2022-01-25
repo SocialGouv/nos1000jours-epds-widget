@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { ContentLayout } from "../src/components/Layout"
+import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import { ButtonGroup, Col, Row, ToggleButton } from "react-bootstrap"
+import { useRouter } from "next/router"
 
 const SMS = "sms"
 const EMAIL = "email"
@@ -11,6 +12,8 @@ const NOON = "midi"
 const AFTERNOON = "soir"
 
 export default function ToBeContacted() {
+  const router = useRouter()
+
   const [contactType, setContactType] = useState(defaultContactTypes)
   const [contactHours, setContactHours] = useState(defaultContactHours)
 
@@ -18,7 +21,8 @@ export default function ToBeContacted() {
   const [itemValueHours, setItemValueHours] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
-  const isValidButtonEnabled = () => (itemValueType == EMAIL || (itemValueType == SMS && itemValueHours))
+  const isValidButtonEnabled = () =>
+    itemValueType == EMAIL || (itemValueType == SMS && itemValueHours)
 
   useEffect(() => {
     setSmsSelected(itemValueType == SMS)
@@ -29,45 +33,63 @@ export default function ToBeContacted() {
     // retour à l'écran démarrer ?
   }
 
-  const ButtonGroupType = () => <ButtonGroup className="be-contacted-button-group">
-    {contactType.map((type, idx) =>
-      <ToggleButton
-        className="contact-card"
-        key={idx}
-        id={`radio-type-${idx}`}
-        type="radio"
-        name="radio-type"
-        value={type.id}
-        checked={itemValueType === type.id}
-        onChange={(e) => setItemValueType(e.currentTarget.value)}
-      >
-        <Row style={{ justifyContent: "center" }}>
-          <img alt="" src={itemValueType === type.id ? type.iconSelected : type.icon} height={50} />
-          {type.text}
-        </Row>
-      </ToggleButton>
-    )}
-  </ButtonGroup>
+  const goToContactForm = async (event) => {
+    router.push({
+      pathname: "/contact/contact-form",
+    })
+  }
 
-  const ButtonGroupHours = () => <ButtonGroup className="be-contacted-button-group">
-    {contactHours.map((type, idx) =>
-      <ToggleButton
-        className="contact-card"
-        key={idx}
-        id={`radio-hours-${idx}`}
-        type="radio"
-        name="radio-hours"
-        value={type.id}
-        checked={itemValueHours === type.id}
-        onChange={(e) => setItemValueHours(e.currentTarget.value)}
-      >
-        <Row style={{ justifyContent: "center" }}>
-          <img alt="" src={itemValueHours === type.id ? type.iconSelected : type.icon} height={50} />
-          {type.text}
-        </Row>
-      </ToggleButton>
-    )}
-  </ButtonGroup>
+  const ButtonGroupType = () => (
+    <ButtonGroup className="be-contacted-button-group">
+      {contactType.map((type, idx) => (
+        <ToggleButton
+          className="contact-card"
+          key={idx}
+          id={`radio-type-${idx}`}
+          type="radio"
+          name="radio-type"
+          value={type.id}
+          checked={itemValueType === type.id}
+          onChange={(e) => setItemValueType(e.currentTarget.value)}
+        >
+          <Row style={{ justifyContent: "center" }}>
+            <img
+              alt=""
+              src={itemValueType === type.id ? type.iconSelected : type.icon}
+              height={50}
+            />
+            {type.text}
+          </Row>
+        </ToggleButton>
+      ))}
+    </ButtonGroup>
+  )
+
+  const ButtonGroupHours = () => (
+    <ButtonGroup className="be-contacted-button-group">
+      {contactHours.map((type, idx) => (
+        <ToggleButton
+          className="contact-card"
+          key={idx}
+          id={`radio-hours-${idx}`}
+          type="radio"
+          name="radio-hours"
+          value={type.id}
+          checked={itemValueHours === type.id}
+          onChange={(e) => setItemValueHours(e.currentTarget.value)}
+        >
+          <Row style={{ justifyContent: "center" }}>
+            <img
+              alt=""
+              src={itemValueHours === type.id ? type.iconSelected : type.icon}
+              height={50}
+            />
+            {type.text}
+          </Row>
+        </ToggleButton>
+      ))}
+    </ButtonGroup>
+  )
 
   return (
     <ContentLayout>
@@ -77,23 +99,29 @@ export default function ToBeContacted() {
         vous proposons de choisir le créneau et le type de prise de contact qui
         vous conviennent.
       </p>
-      <p>
-        Par quel moyen préférez-vous être contacté(e) ?
-      </p>
+      <p>Par quel moyen préférez-vous être contacté(e) ?</p>
       <ButtonGroupType />
 
-      {isSmsSelected ?
+      {isSmsSelected ? (
         <>
           <p>
             Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au vendredi)
           </p>
           <ButtonGroupHours />
         </>
-        : null}
+      ) : null}
 
       <Col className="be-contacted-bottom-buttons">
-        <button className="fr-btn fr-btn--secondary" onClick={cancel()}>Annuler</button>
-        <button className="fr-btn" disabled={!isValidButtonEnabled()}>Valider</button>
+        <button className="fr-btn fr-btn--secondary" onClick={cancel}>
+          Annuler
+        </button>
+        <button
+          className="fr-btn"
+          disabled={!isValidButtonEnabled()}
+          onClick={goToContactForm}
+        >
+          Valider
+        </button>
       </Col>
     </ContentLayout>
   )
@@ -114,7 +142,7 @@ const defaultContactTypes = [
     isChecked: false,
     text: "Par email",
   },
-];
+]
 
 const defaultContactHours = [
   {
@@ -141,4 +169,4 @@ const defaultContactHours = [
     isChecked: false,
     text: "L'après-midi",
   },
-];
+]
