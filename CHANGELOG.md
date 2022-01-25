@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.5.0...v1.5.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* **secu:** use numeric UID for docker user ([492fef4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/492fef458e5ef6fc6dc7400595cddc402d433d14))
+
 # [1.5.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.4.0...v1.5.0) (2022-01-24)
 
 
