@@ -2,6 +2,10 @@ import "bootstrap/dist/css/bootstrap.css"
 import "../styles/globals.scss"
 import "../styles/colors.scss"
 
+import "../styles/survey.scss"
+import "../styles/results.scss"
+import "../styles/beContacted.scss"
+
 import { init } from "@socialgouv/matomo-next"
 import App from "next/app"
 import React from "react"

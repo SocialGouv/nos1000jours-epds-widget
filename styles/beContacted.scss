@@ -1,0 +1,32 @@
+.be-contacted-button-group {
+  margin-bottom: 20px;
+}
+
+.be-contacted-bottom-buttons {
+  text-align: center;
+
+  button {
+    border-radius: 25px;
+  }
+}
+
+.contact-card {
+  display: flex;
+  background-color: transparent;
+  color: var(--primaryBlueDark);
+  border-color: var(--primaryBlueDark);
+  justify-content: center;
+  border-radius: 10px !important;
+  margin: 10px;
+}
+
+.btn-check:checked + .btn-primary {
+  background-color: var(--primaryBlueDark);
+}
+.contact-card:focus {
+  background-color: var(--primaryBlueDark) !important;
+  box-shadow: none;
+}
+.contact-card:hover {
+  background-color: var(--primaryBlueDark) !important;
+}
