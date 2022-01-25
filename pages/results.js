@@ -26,11 +26,15 @@ export default function Results() {
       <h5 className="title-ddp">{Labels.titleDPP}</h5>
       <ResultsMood scoreLevel={scoreLevelForMood} />
       <Row>
-        <b>Oser en parler, c’est déjà prendre soin de soi et de son enfant !</b>
-        <br />
-        <span>{descriptionByScoreLevel(scoreLevelForTexts)}</span>
-        <br />
-        <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
+        <p>
+          <b>
+            Oser en parler, c’est déjà prendre soin de soi et de son enfant !
+          </b>
+        </p>
+        <p>{descriptionByScoreLevel(scoreLevelForTexts)}</p>
+        <p>
+          <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
+        </p>
       </Row>
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
     </ContentLayout>

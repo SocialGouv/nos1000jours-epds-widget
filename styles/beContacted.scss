@@ -7,6 +7,8 @@
 
   button {
     border-radius: 25px;
+    padding-inline: 50px;
+    margin: 5px;
   }
 }
 
@@ -24,9 +26,9 @@
   background-color: var(--primaryBlueDark);
 }
 .contact-card:focus {
-  background-color: var(--primaryBlueDark) !important;
+  background-color: var(--primaryBlueDark);
   box-shadow: none;
 }
 .contact-card:hover {
-  background-color: var(--primaryBlueDark) !important;
+  background-color: var(--primaryBlueDark);
 }

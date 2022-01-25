@@ -6,6 +6,10 @@ import { ButtonGroup, Col, Row, ToggleButton } from "react-bootstrap"
 const SMS = "sms"
 const EMAIL = "email"
 
+const MORNING = "matin"
+const NOON = "midi"
+const AFTERNOON = "soir"
+
 export default function ToBeContacted() {
   const [contactType, setContactType] = useState(defaultContactTypes)
   const [contactHours, setContactHours] = useState(defaultContactHours)
@@ -25,6 +29,46 @@ export default function ToBeContacted() {
     // retour à l'écran démarrer ?
   }
 
+  const ButtonGroupType = () => <ButtonGroup className="be-contacted-button-group">
+    {contactType.map((type, idx) =>
+      <ToggleButton
+        className="contact-card"
+        key={idx}
+        id={`radio-type-${idx}`}
+        type="radio"
+        name="radio-type"
+        value={type.id}
+        checked={itemValueType === type.id}
+        onChange={(e) => setItemValueType(e.currentTarget.value)}
+      >
+        <Row style={{ justifyContent: "center" }}>
+          <img alt="" src={itemValueType === type.id ? type.iconSelected : type.icon} height={50} />
+          {type.text}
+        </Row>
+      </ToggleButton>
+    )}
+  </ButtonGroup>
+
+  const ButtonGroupHours = () => <ButtonGroup className="be-contacted-button-group">
+    {contactHours.map((type, idx) =>
+      <ToggleButton
+        className="contact-card"
+        key={idx}
+        id={`radio-hours-${idx}`}
+        type="radio"
+        name="radio-hours"
+        value={type.id}
+        checked={itemValueHours === type.id}
+        onChange={(e) => setItemValueHours(e.currentTarget.value)}
+      >
+        <Row style={{ justifyContent: "center" }}>
+          <img alt="" src={itemValueHours === type.id ? type.iconSelected : type.icon} height={50} />
+          {type.text}
+        </Row>
+      </ToggleButton>
+    )}
+  </ButtonGroup>
+
   return (
     <ContentLayout>
       <h5 className="title-ddp">être contacté(e)</h5>
@@ -36,50 +80,14 @@ export default function ToBeContacted() {
       <p>
         Par quel moyen préférez-vous être contacté(e) ?
       </p>
-      <ButtonGroup>
-        {contactType.map((type, idx) =>
-          <ToggleButton
-            className="contact-card"
-            key={idx}
-            id={`radio-type-${idx}`}
-            type="radio"
-            name="radio"
-            value={type.id}
-            checked={itemValueType === type.id}
-            onChange={(e) => setItemValueType(e.currentTarget.value)}
-          >
-            <Row style={{ justifyContent: "center" }}>
-              <img alt="" src={itemValueType === type.id ? type.iconSelected : type.icon} height={50} />
-              {type.text}
-            </Row>
-          </ToggleButton>
-        )}
-      </ButtonGroup>
+      <ButtonGroupType />
 
       {isSmsSelected ?
         <>
           <p>
             Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au vendredi)
           </p>
-          <ButtonGroup>
-            {contactHours.map((type, idx) =>
-              <ToggleButton
-                className="contact-card"
-                key={idx}
-                id={`radio-hours-${idx}`}
-                type="radio"
-                name="radio"
-                value={type.id}
-                checked={itemValueHours === type.id}
-                onChange={(e) => setItemValueHours(e.currentTarget.value)}
-              >
-                <Row style={{ justifyContent: "center" }}>
-                  <img alt="" src={itemValueHours === type.id ? type.iconSelected : type.icon} height={50} />
-                  {type.text}
-                </Row>
-              </ToggleButton>
-            )}
-          </ButtonGroup>
+          <ButtonGroupHours />
         </>
         : null}
 
@@ -113,7 +121,7 @@ const defaultContactHours = [
     hours: "9h - 12h",
     icon: "../img/contact/soleil-matin.svg",
     iconSelected: "../img/contact/soleil-matin-selected.svg",
-    id: "matin",
+    id: MORNING,
     isChecked: false,
     text: "En matinée",
   },
@@ -121,7 +129,7 @@ const defaultContactHours = [
     hours: "12h - 14h",
     icon: "../img/contact/soleil-midi.svg",
     iconSelected: "../img/contact/soleil-midi-selected.svg",
-    id: "midi",
+    id: NOON,
     isChecked: false,
     text: "Le midi",
   },
@@ -129,7 +137,7 @@ const defaultContactHours = [
     hours: "14h - 17h30",
     icon: "../img/contact/soleil-soir.svg",
     iconSelected: "../img/contact/soleil-soir-selected.svg",
-    id: "soir",
+    id: AFTERNOON,
     isChecked: false,
     text: "L'après-midi",
   },

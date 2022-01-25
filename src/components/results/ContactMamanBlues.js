@@ -26,7 +26,7 @@ export function ContactMamanBlues({ scoreLevel }) {
 
   return (
     <div className="contact-mamanblues">
-      {scoreLevel > 1 ?
+      {scoreLevel > 1 ? (
         <Row className={`contact-content ${colorsByLevel}`}>
           <div style={{ display: "inline-flex" }}>
             <img
@@ -42,7 +42,8 @@ export function ContactMamanBlues({ scoreLevel }) {
           <button className="fr-btn" onClick={goToBeContacted}>
             être contacté(e)
           </button>
-        </Row> : null}
+        </Row>
+      ) : null}
     </div>
   )
 }
