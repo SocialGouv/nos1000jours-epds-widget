@@ -107,6 +107,30 @@ export default function ContactForm() {
     return null
   }
 
+  const ChildCounter = () => {
+    return (
+      <div className="form-group fr-input-group counter">
+        <label>Nombre d'enfant(s) :</label>
+        <div style={{ marginInlineStart: 10 }}>
+          <button
+            className="counter-sign"
+            onClick={() => setNumberOfChildren(numberOfChildren - 1)}
+            disabled={numberOfChildren == 0}
+          >
+            -
+          </button>
+          {numberOfChildren}
+          <button
+            className="counter-sign"
+            onClick={() => setNumberOfChildren(numberOfChildren + 1)}
+          >
+            +
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <ContentLayout>
       <h5 className="title-ddp">être contacté(e)</h5>
@@ -125,6 +149,7 @@ export default function ContactForm() {
         </div>
 
         {setOrderPhoneAndEmailInputs()}
+        <ChildCounter />
 
         <Col className="be-contacted-bottom-buttons">
           <button className="fr-btn fr-btn--secondary">

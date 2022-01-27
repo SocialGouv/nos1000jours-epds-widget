@@ -62,4 +62,19 @@
   label {
     margin-bottom: 10px;
   }
+
+  .counter {
+    display: flex;
+    align-items: baseline;
+
+    .counter-sign {
+      color: var(--primaryBlue);
+      font-size: 24px;
+      padding-inline: 15px;
+    }
+
+    button:disabled {
+      color: var(--primaryGrey);
+    }
+  }
 }
