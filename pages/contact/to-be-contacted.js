@@ -3,13 +3,11 @@ import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import { ButtonGroup, Col, Row, ToggleButton } from "react-bootstrap"
 import { useRouter } from "next/router"
-
-const SMS = "sms"
-const EMAIL = "email"
-
-const MORNING = "matin"
-const NOON = "midi"
-const AFTERNOON = "soir"
+import {
+  RequestContact,
+  STORAGE_CONTACT_HOURS,
+  STORAGE_CONTACT_TYPE,
+} from "../../src/constants/constants"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -22,18 +20,22 @@ export default function ToBeContacted() {
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   const isValidButtonEnabled = () =>
-    itemValueType == EMAIL || (itemValueType == SMS && itemValueHours)
+    itemValueType == RequestContact.type.email ||
+    (itemValueType == RequestContact.type.sms && itemValueHours)
 
   useEffect(() => {
-    setSmsSelected(itemValueType == SMS)
+    setSmsSelected(itemValueType == RequestContact.type.sms)
   }, [itemValueType])
 
   const cancel = () => {
     // TODO: bouton annuler
-    // retour à l'écran démarrer ?
+    // retour au macaron d'Elise
   }
 
   const goToContactForm = async (event) => {
+    localStorage.setItem(STORAGE_CONTACT_TYPE, itemValueType)
+    localStorage.setItem(STORAGE_CONTACT_HOURS, itemValueHours)
+
     router.push({
       pathname: "/contact/contact-form",
     })
@@ -131,14 +133,14 @@ const defaultContactTypes = [
   {
     icon: "../img/contact/sms.svg",
     iconSelected: "../img/contact/sms-selected.svg",
-    id: SMS,
+    id: RequestContact.type.sms,
     isChecked: false,
     text: "Par SMS",
   },
   {
     icon: "../img/contact/email-contact.svg",
     iconSelected: "../img/contact/email-contact-selected.svg",
-    id: EMAIL,
+    id: RequestContact.type.email,
     isChecked: false,
     text: "Par email",
   },
@@ -149,7 +151,7 @@ const defaultContactHours = [
     hours: "9h - 12h",
     icon: "../img/contact/soleil-matin.svg",
     iconSelected: "../img/contact/soleil-matin-selected.svg",
-    id: MORNING,
+    id: RequestContact.hours.morning,
     isChecked: false,
     text: "En matinée",
   },
@@ -157,7 +159,7 @@ const defaultContactHours = [
     hours: "12h - 14h",
     icon: "../img/contact/soleil-midi.svg",
     iconSelected: "../img/contact/soleil-midi-selected.svg",
-    id: NOON,
+    id: RequestContact.hours.noon,
     isChecked: false,
     text: "Le midi",
   },
@@ -165,7 +167,7 @@ const defaultContactHours = [
     hours: "14h - 17h30",
     icon: "../img/contact/soleil-soir.svg",
     iconSelected: "../img/contact/soleil-soir-selected.svg",
-    id: AFTERNOON,
+    id: RequestContact.hours.afternoon,
     isChecked: false,
     text: "L'après-midi",
   },
