@@ -1,3 +1,12 @@
+# [1.6.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.5.1...v1.6.0) (2022-01-27)
+
+
+### Features
+
+* **contact:** amélioration des choix & refacto ([48035f8](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/48035f8a934ee7408cceba2c0deb869b2a46f9a5))
+* **contact:** choix type de contact ([1dfba24](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1dfba243c485af65c131cb9c4940580d479ef15d))
+* **contact:** refacto et accès formulaire ([d6b8fd2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d6b8fd25c938cd28ae63438cbf37cf60af90788c))
+
 ## [1.5.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.5.0...v1.5.1) (2022-01-25)
 
 
