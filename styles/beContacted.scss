@@ -86,3 +86,11 @@
     width: auto;
   }
 }
+
+.contact-confirmed {
+  text-align: center;
+
+  .contact-confirmed-title {
+    color: var(--primaryBlue);
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Col } from "react-bootstrap"
+import { Col, Spinner } from "react-bootstrap"
 import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import {
@@ -28,20 +28,26 @@ export default function ContactForm() {
   const [isPhoneValid, setPhoneValid] = useState(false)
   const [childBirthDate, setChildBirthDate] = useState("")
   const [numberOfChildren, setNumberOfChildren] = useState(0)
+  const [isLoading, setLoading] = useState(false)
 
   const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
   const contactHours = getInLocalStorage(STORAGE_CONTACT_HOURS)
   const websiteSource = getInLocalStorage(STORAGE_SOURCE)
 
   const requiredField = <p className="required-field">*Champs obligatoire</p>
+  const loader = (
+    <Spinner animation="border" size="sm" style={{ marginInlineStart: 10 }} />
+  )
 
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
     client: client,
     onCompleted: () => {
-      // TODO:
+      setLoading(false)
+      goToConfirmation()
     },
     onError: (err) => {
       console.error(err)
+      setLoading(false)
     },
   })
 
@@ -68,6 +74,7 @@ export default function ContactForm() {
         dateAsString = Moment(date).locale("fr").format("L").replace(/\//g, "-")
       }
 
+      setLoading(true)
       await sendEmailContactQuery({
         variables: {
           prenom: name,
@@ -88,8 +95,15 @@ export default function ContactForm() {
   }
 
   const cancel = () => {
-    // TODO: Retour macarons ??
-    router.back()
+    router.push({
+      pathname: "/results",
+    })
+  }
+
+  const goToConfirmation = () => {
+    router.push({
+      pathname: "/contact/contact-confirmed",
+    })
   }
 
   const emailInput = ({ isRequired }) => (
@@ -201,9 +215,15 @@ export default function ContactForm() {
 
         <Col className="be-contacted-bottom-buttons">
           <button className="fr-btn fr-btn--secondary" onClick={cancel}>
-            Annuler</button>
-          <button className="fr-btn" type="submit" disabled={!canSend}>
+            Annuler
+          </button>
+          <button
+            className="fr-btn"
+            type="submit"
+            disabled={!canSend || isLoading}
+          >
             Valider
+            {isLoading ? loader : null}
           </button>
         </Col>
       </form>
