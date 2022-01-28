@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Col, Row } from "react-bootstrap"
+import { Col } from "react-bootstrap"
 import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import {
@@ -9,6 +9,7 @@ import {
   STORAGE_CONTACT_TYPE,
 } from "../../src/constants/constants"
 import { getInLocalStorage } from "../../src/utils/utils"
+import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 
 export default function ContactForm() {
   const [canSend, setCanSend] = useState(false)
@@ -23,12 +24,16 @@ export default function ContactForm() {
   const requiredField = <p className="required-field">*Champs obligatoire</p>
 
   useEffect(() => {
-    if (contactType == RequestContact.type.email) {
-      setCanSend(isEmailValid)
-    } else if (contactType == RequestContact.type.sms) {
-      setCanSend(isPhoneValid)
-    }
-  }, [isEmailValid, isPhoneValid])
+    setCanSend(
+      isValidForm(
+        contactType,
+        isEmailValid,
+        isPhoneValid,
+        numberOfChildren,
+        childBirthDate
+      )
+    )
+  }, [isEmailValid, isPhoneValid, numberOfChildren, childBirthDate])
 
   const sendForm = async (event) => {
     event.preventDefault()
@@ -107,29 +112,29 @@ export default function ContactForm() {
     return null
   }
 
-  const ChildCounter = () => {
-    return (
-      <div className="form-group fr-input-group counter">
-        <label>Nombre d'enfant(s) :</label>
-        <div style={{ marginInlineStart: 10 }}>
-          <button
-            className="counter-sign"
-            onClick={() => setNumberOfChildren(numberOfChildren - 1)}
-            disabled={numberOfChildren == 0}
-          >
-            -
-          </button>
-          {numberOfChildren}
-          <button
-            className="counter-sign"
-            onClick={() => setNumberOfChildren(numberOfChildren + 1)}
-          >
-            +
-          </button>
-        </div>
+  const ChildCounter = () => (
+    <div className="form-group fr-input-group counter">
+      <label>Nombre d'enfant(s) :</label>
+      <div style={{ marginInlineStart: 10 }}>
+        <button
+          className="counter-sign"
+          onClick={() => {
+            setNumberOfChildren(numberOfChildren - 1)
+          }}
+          disabled={numberOfChildren == 0}
+        >
+          -
+        </button>
+        {numberOfChildren}
+        <button
+          className="counter-sign"
+          onClick={() => setNumberOfChildren(numberOfChildren + 1)}
+        >
+          +
+        </button>
       </div>
-    )
-  }
+    </div>
+  )
 
   return (
     <ContentLayout>
@@ -150,6 +155,9 @@ export default function ContactForm() {
 
         {setOrderPhoneAndEmailInputs()}
         <ChildCounter />
+        {numberOfChildren > 0 ? (
+          <DatePickerLastChild onChange={(date) => setChildBirthDate(date)} />
+        ) : null}
 
         <Col className="be-contacted-bottom-buttons">
           <button className="fr-btn fr-btn--secondary">
@@ -161,4 +169,32 @@ export default function ContactForm() {
       </form>
     </ContentLayout>
   )
+}
+
+/**
+ * Vérifie la validité du formulaire en fonction des informations complétées
+ * @param {RequestContact.type} contactType Le type de contact
+ * @param {boolean} isEmailValid La validité de l'email saisi
+ * @param {boolean} isPhoneValid La validité du numéro de téléphone saisi
+ * @param {number} numberOfChildren Le nombre d'enfant
+ * @param {String} childBirthDate La date de naissance du plus jeune enfant (yyyy-mm-dd)
+ * @returns boolean
+ */
+export const isValidForm = (
+  contactType,
+  isEmailValid,
+  isPhoneValid,
+  numberOfChildren,
+  childBirthDate
+) => {
+  const birth =
+    (numberOfChildren > 0 && childBirthDate !== "") || numberOfChildren == 0
+
+  if (contactType == RequestContact.type.email) {
+    return isEmailValid && birth
+  } else if (contactType == RequestContact.type.sms) {
+    return isPhoneValid && birth
+  }
+
+  return false
 }
