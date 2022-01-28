@@ -7,11 +7,22 @@ import {
   RequestContact,
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
+  STORAGE_SOURCE,
 } from "../../src/constants/constants"
-import { getInLocalStorage } from "../../src/utils/utils"
+import {
+  getInLocalStorage,
+  stringIsNotNullNorEmpty,
+} from "../../src/utils/utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
+import { useMutation } from "@apollo/client"
+import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"
+import { useRouter } from "next/router"
+import Moment from "moment"
+import "moment/locale/fr"
 
 export default function ContactForm() {
+  const router = useRouter()
+
   const [canSend, setCanSend] = useState(false)
   const [isEmailValid, setEmailValid] = useState(false)
   const [isPhoneValid, setPhoneValid] = useState(false)
@@ -20,10 +31,22 @@ export default function ContactForm() {
 
   const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
   const contactHours = getInLocalStorage(STORAGE_CONTACT_HOURS)
+  const websiteSource = getInLocalStorage(STORAGE_SOURCE)
 
   const requiredField = <p className="required-field">*Champs obligatoire</p>
 
+  const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
+    client: client,
+    onCompleted: () => {
+      // TODO:
+    },
+    onError: (err) => {
+      console.error(err)
+    },
+  })
+
   useEffect(() => {
+    if (numberOfChildren == 0) setChildBirthDate("")
     setCanSend(
       isValidForm(
         contactType,
@@ -35,23 +58,41 @@ export default function ContactForm() {
     )
   }, [isEmailValid, isPhoneValid, numberOfChildren, childBirthDate])
 
-  const sendForm = async (event) => {
-    event.preventDefault()
-    console.log(event.target)
-  }
+  const sendContactRequest = async (inputs) => {
+    if (canSend) {
+      const name = `${inputs.inputName.value} [${websiteSource}]`
 
-  function handleChange(e) {
-    switch (e.target.id) {
-      case "input-email":
-        setEmailValid(e.target.validity.valid)
-        break
-      case "input-phone":
-        setPhoneValid(e.target.validity.valid)
-        break
+      let dateAsString = null
+      if (stringIsNotNullNorEmpty(childBirthDate)) {
+        const date = new Date(childBirthDate)
+        dateAsString = Moment(date).locale("fr").format("L").replace(/\//g, "-")
+      }
+
+      await sendEmailContactQuery({
+        variables: {
+          prenom: name,
+          email: inputs.inputEmail.value,
+          telephone: inputs.inputPhone.value,
+          nombreEnfants: numberOfChildren,
+          naissanceDernierEnfant: dateAsString,
+          moyen: contactType,
+          horaires: contactHours,
+        },
+      })
     }
   }
 
-  const EmailInput = ({ isRequired }) => (
+  const sendForm = async (event) => {
+    event.preventDefault()
+    sendContactRequest(event.target)
+  }
+
+  const cancel = () => {
+    // TODO: Retour macarons ??
+    router.back()
+  }
+
+  const emailInput = ({ isRequired }) => (
     <div
       className={`form-group fr-input-group ${isEmailValid ? "fr-input-group--valid" : ""
         }`}
@@ -61,18 +102,17 @@ export default function ContactForm() {
         type="email"
         className={`form-control fr-input ${isEmailValid ? "custom-input-valid" : ""
           }`}
-        id="input-email"
-        name="input-email"
+        id="inputEmail"
+        name="inputEmail"
         pattern={PATTERN_EMAIL}
-        onChange={handleChange}
+        onChange={(e) => setEmailValid(e.target.validity.valid)}
         placeholder="Écrivez ici l’adresse mail"
       />
-
       {isRequired ? requiredField : null}
     </div>
   )
 
-  const PhoneInput = ({ isRequired }) => (
+  const phoneInput = ({ isRequired }) => (
     <div
       className={`form-group fr-input-group ${isPhoneValid ? "fr-input-group--valid" : ""
         }`}
@@ -82,10 +122,10 @@ export default function ContactForm() {
         type="tel"
         className={`form-control fr-input ${isPhoneValid ? "custom-input-valid" : ""
           }`}
-        id="input-phone"
-        name="input-phone"
+        id="inputPhone"
+        name="inputPhone"
         pattern="[0-9]{10}"
-        onChange={handleChange}
+        onChange={(e) => setPhoneValid(e.target.validity.valid)}
         placeholder="Écrivez ici le numéro pour vous contacter"
       />
 
@@ -97,18 +137,19 @@ export default function ContactForm() {
     if (contactType == RequestContact.type.email) {
       return (
         <>
-          <EmailInput isRequired={true} />
-          <PhoneInput isRequired={false} />
+          {emailInput(true)}
+          {phoneInput(false)}
         </>
       )
     } else if (contactType == RequestContact.type.sms) {
       return (
         <>
-          <PhoneInput isRequired={true} />
-          <EmailInput isRequired={false} />
+          {phoneInput(true)}
+          {emailInput(false)}
         </>
       )
     }
+
     return null
   }
 
@@ -146,9 +187,8 @@ export default function ContactForm() {
           <input
             type="text"
             className={`form-control fr-input`}
-            id="input-name"
-            name="input-name"
-            onChange={handleChange}
+            id="inputName"
+            name="inputName"
             placeholder="Écrivez ici votre prénom"
           />
         </div>
@@ -160,9 +200,9 @@ export default function ContactForm() {
         ) : null}
 
         <Col className="be-contacted-bottom-buttons">
-          <button className="fr-btn fr-btn--secondary">
+          <button className="fr-btn fr-btn--secondary" onClick={cancel}>
             Annuler</button>
-          <button className="fr-btn" disabled={!canSend}>
+          <button className="fr-btn" type="submit" disabled={!canSend}>
             Valider
           </button>
         </Col>

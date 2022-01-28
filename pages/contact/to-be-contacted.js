@@ -28,8 +28,7 @@ export default function ToBeContacted() {
   }, [itemValueType])
 
   const cancel = () => {
-    // TODO: bouton annuler
-    // retour au macaron d'Elise
+    router.back()
   }
 
   const goToContactForm = async (event) => {
