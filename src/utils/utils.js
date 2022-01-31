@@ -39,10 +39,6 @@ export const scoreLevelForMacaron = (score, scoreQ10) => {
   return 0
 }
 
-export function getInLocalStorage(key) {
-  if (typeof window !== "undefined") return localStorage.getItem(key)
-}
-
 /**
  * Permet de récupérer en une seule fois : couleur, texts et icone pour un mood
  * @param {*} scoreLevel Niveau obtenu avec la fonction scoreLevelForMood
@@ -79,3 +75,10 @@ export const getColorIconAndTextByMood = (scoreLevel) => {
     moodColor: color,
   }
 }
+
+export function getInLocalStorage(key) {
+  if (typeof window !== "undefined") return localStorage.getItem(key)
+}
+
+export const stringIsNotNullNorEmpty = (str) =>
+  str !== null && str !== undefined && str.length > 0
