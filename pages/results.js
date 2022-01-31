@@ -47,7 +47,11 @@ export default function Results() {
       </Row>
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
 
-      <button className="fr-btn" onClick={goToSurvey} style={{ width: "auto" }}>
+      <button
+        className="fr-btn"
+        onClick={goToSurvey}
+        style={{ width: "auto", marginBottom: 10 }}
+      >
         Retour au questionnaire
       </button>
     </ContentLayout>
