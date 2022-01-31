@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import { Row } from "react-bootstrap"
 import { ContentLayout } from "../src/components/Layout"
 import { ContactMamanBlues } from "../src/components/results/ContactMamanBlues"
@@ -11,6 +12,8 @@ import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import { getInLocalStorage } from "../src/utils/utils"
 
 export default function Results() {
+  const router = useRouter()
+
   const scoreLevelForMood = parseInt(
     getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
   )
@@ -20,6 +23,12 @@ export default function Results() {
   const scoreLevelForMacaron = parseInt(
     getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
+
+  const goToSurvey = () => {
+    router.push({
+      pathname: "/epds-survey",
+    })
+  }
 
   return (
     <ContentLayout>
@@ -37,6 +46,10 @@ export default function Results() {
         </p>
       </Row>
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+
+      <button className="fr-btn" onClick={goToSurvey} style={{ width: "auto" }}>
+        Retour au questionnaire
+      </button>
     </ContentLayout>
   )
 }
