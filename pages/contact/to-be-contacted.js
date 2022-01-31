@@ -18,14 +18,15 @@ import {
 export default function ToBeContacted() {
   const router = useRouter()
 
-  const [contactType, setContactType] = useState(defaultContactTypes)
   const [contactHours, setContactHours] = useState(defaultContactHours)
-
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
+
+    if (itemValueType == RequestContact.type.email)
+      setContactHours(defaultContactHours)
   }, [itemValueType])
 
   const cancel = () => {
@@ -46,7 +47,7 @@ export default function ToBeContacted() {
 
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
-      {contactType.map((type, idx) => (
+      {defaultContactTypes.map((type, idx) => (
         <ToggleButton
           className="contact-card"
           key={idx}
@@ -81,7 +82,10 @@ export default function ToBeContacted() {
   }
 
   const buttonGroupHours = () => (
-    <ToggleButtonGroup type="checkbox" className="be-contacted-button-group">
+    <ToggleButtonGroup
+      type="checkbox"
+      className="be-contacted-button-group-checkbox"
+    >
       {contactHours.map((type, idx) => {
         return (
           <ToggleButton

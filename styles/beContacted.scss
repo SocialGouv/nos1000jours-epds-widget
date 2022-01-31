@@ -1,5 +1,20 @@
-.be-contacted-button-group {
+.be-contacted-button-group,
+.be-contacted-button-group-checkbox {
   margin-bottom: 20px;
+
+  .btn-check:checked + .btn-primary {
+    background-color: var(--primaryBlueDark) !important;
+  }
+}
+
+.be-contacted-button-group-checkbox {
+  .btn-check:focus + .btn-primary {
+    background-color: transparent;
+    color: var(--primaryBlueDark);
+  }
+  .btn-check:checked + .btn-primary {
+    color: white
+  }
 }
 
 .be-contacted-bottom-buttons {
@@ -27,9 +42,6 @@
   margin: 10px;
 }
 
-.btn-check:checked + .btn-primary {
-  background-color: var(--primaryBlueDark);
-}
 .contact-card:focus {
   background-color: var(--primaryBlueDark);
   box-shadow: none;
