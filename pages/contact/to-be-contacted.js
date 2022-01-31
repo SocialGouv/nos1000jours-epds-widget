@@ -71,45 +71,41 @@ export default function ToBeContacted() {
     </ButtonGroup>
   )
 
-  const updateItemSelected = (list, itemSelected) => {
-    return list.map((item) => {
-      if (item.id === itemSelected.id) {
+  const updateItemSelected = (list, itemSelected) =>
+    list.map((item) => {
+      if (item.id === itemSelected.id)
         return { ...item, isChecked: !itemSelected.isChecked }
-      } else {
-        return item
-      }
+
+      return item
     })
-  }
 
   const buttonGroupHours = () => (
     <ToggleButtonGroup
       type="checkbox"
       className="be-contacted-button-group-checkbox"
     >
-      {contactHours.map((type, idx) => {
-        return (
-          <ToggleButton
-            className="contact-card"
-            key={idx}
-            id={`checkbox-hours-${idx}`}
-            type="checkbox"
-            name="checkbox-hours"
-            value={type.id}
-            onChange={(e) =>
-              setContactHours(updateItemSelected(contactHours, type))
-            }
-          >
-            <Row style={{ justifyContent: "center" }}>
-              <img
-                alt=""
-                src={type.isChecked ? type.iconSelected : type.icon}
-                height={50}
-              />
-              {type.text}
-            </Row>
-          </ToggleButton>
-        )
-      })}
+      {contactHours.map((type, idx) => (
+        <ToggleButton
+          className="contact-card"
+          key={idx}
+          id={`checkbox-hours-${idx}`}
+          type="checkbox"
+          name="checkbox-hours"
+          value={type.id}
+          onChange={(e) =>
+            setContactHours(updateItemSelected(contactHours, type))
+          }
+        >
+          <Row style={{ justifyContent: "center" }}>
+            <img
+              alt=""
+              src={type.isChecked ? type.iconSelected : type.icon}
+              height={50}
+            />
+            {type.text}
+          </Row>
+        </ToggleButton>
+      ))}
     </ToggleButtonGroup>
   )
 
@@ -197,14 +193,12 @@ const defaultContactHours = [
  * @param {Array} hours Tableau des heures
  * @returns La liste des heures au format String
  */
-export const convertHoursListInString = (hours) => {
-  let hoursString = ""
-  hours.forEach((item) => {
-    if (item.isChecked) hoursString = `${hoursString} ${item.id}`
-  })
-
-  return hoursString
-}
+export const convertHoursListInString = (hours) =>
+  hours.reduce(
+    (hoursString, hour) =>
+      hour.isChecked ? `${hoursString} ${hour.id}` : hoursString,
+    ""
+  )
 
 /**
  * @param {RequestContact.type} itemValueType Type du mode de contact sélectionné (Email/ SMS)

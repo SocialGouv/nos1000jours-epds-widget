@@ -65,28 +65,28 @@ export default function ContactForm() {
   }, [isEmailValid, isPhoneValid, numberOfChildren, childBirthDate])
 
   const sendContactRequest = async (inputs) => {
-    if (canSend) {
-      const name = `${inputs.inputName.value} [${websiteSource}]`
+    if (!canSend) return
 
-      let dateAsString = null
-      if (stringIsNotNullNorEmpty(childBirthDate)) {
-        const date = new Date(childBirthDate)
-        dateAsString = Moment(date).locale("fr").format("L").replace(/\//g, "-")
-      }
+    const name = `${inputs.inputName.value} [${websiteSource}]`
 
-      setLoading(true)
-      await sendEmailContactQuery({
-        variables: {
-          prenom: name,
-          email: inputs.inputEmail.value,
-          telephone: inputs.inputPhone.value,
-          nombreEnfants: numberOfChildren,
-          naissanceDernierEnfant: dateAsString,
-          moyen: contactType,
-          horaires: contactHours,
-        },
-      })
+    let dateAsString = null
+    if (stringIsNotNullNorEmpty(childBirthDate)) {
+      const date = new Date(childBirthDate)
+      dateAsString = Moment(date).locale("fr").format("L").replace(/\//g, "-")
     }
+
+    setLoading(true)
+    await sendEmailContactQuery({
+      variables: {
+        prenom: name,
+        email: inputs.inputEmail.value,
+        telephone: inputs.inputPhone.value,
+        nombreEnfants: numberOfChildren,
+        naissanceDernierEnfant: dateAsString,
+        moyen: contactType,
+        horaires: contactHours,
+      },
+    })
   }
 
   const sendForm = async (event) => {
@@ -155,7 +155,8 @@ export default function ContactForm() {
           {phoneInput(false)}
         </>
       )
-    } else if (contactType == RequestContact.type.sms) {
+    }
+    if (contactType == RequestContact.type.sms) {
       return (
         <>
           {phoneInput(true)}
@@ -252,7 +253,8 @@ export const isValidForm = (
 
   if (contactType == RequestContact.type.email) {
     return isEmailValid && birth
-  } else if (contactType == RequestContact.type.sms) {
+  }
+  if (contactType == RequestContact.type.sms) {
     return isPhoneValid && birth
   }
 

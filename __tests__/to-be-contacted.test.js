@@ -6,17 +6,17 @@ import { RequestContact } from "../src/constants/constants"
 
 describe("Demande de contact", () => {
   describe("Validité des choix seléctionnés", () => {
-    test("Séléction du type Email => choix valide", () => {
+    test("Sélection du type Email => choix valide", () => {
       const result = isValidButtonEnabled(RequestContact.type.email, undefined)
       expect(result).toEqual(true)
     })
 
-    test("Séléction du type SMS sans horaire => choix invalide", () => {
+    test("Sélection du type SMS sans horaire => choix invalide", () => {
       const result = isValidButtonEnabled(RequestContact.type.sms, undefined)
       expect(result).toEqual(false)
     })
 
-    test("Séléction du type SMS avec horaires => choix valide", () => {
+    test("Sélection du type SMS avec horaires => choix valide", () => {
       const contactHours = [
         {
           hours: "9h - 12h",
@@ -48,7 +48,7 @@ describe("Demande de contact", () => {
       expect(result).toEqual(true)
     })
 
-    test("Séléction du type SMS avec tous les horaires décochés => choix invalide", () => {
+    test("Sélection du type SMS avec tous les horaires décochés => choix invalide", () => {
       const contactHours = [
         {
           hours: "9h - 12h",
