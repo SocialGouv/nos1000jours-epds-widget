@@ -19,6 +19,7 @@ import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"
 import { useRouter } from "next/router"
 import Moment from "moment"
 import "moment/locale/fr"
+import { WidgetHeader } from "../../src/components/WidgetHeader"
 
 export default function ContactForm() {
   const router = useRouter()
@@ -194,7 +195,7 @@ export default function ContactForm() {
 
   return (
     <ContentLayout>
-      <h5 className="title-ddp">être contacté(e)</h5>
+      <WidgetHeader title="être contacté(e)" />
 
       <form className="contact-form" onSubmit={sendForm}>
         <div className={`form-group fr-input-group`}>

@@ -27,6 +27,7 @@ import {
   scoreLevelForTexts,
 } from "../src/utils/utils"
 import { Labels } from "../src/constants/specificLabels"
+import { WidgetHeader } from "../src/components/WidgetHeader"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -235,7 +236,7 @@ export default function EpdsSurvey() {
 
   return (
     <ContentLayout>
-      <h5 className="title-ddp">{Labels.titleDPP}</h5>
+      <WidgetHeader title={Labels.titleDPP} />
       <div>{Labels.surveyExplanations}</div>
       <div style={{ alignItems: "center" }}>
         {questionsEpds ? (

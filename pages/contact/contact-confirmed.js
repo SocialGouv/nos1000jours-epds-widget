@@ -7,6 +7,7 @@ import {
 } from "../../src/constants/constants"
 import { getInLocalStorage } from "../../src/utils/utils"
 import { } from "@dataesr/react-dsfr"
+import { WidgetHeader } from "../../src/components/WidgetHeader"
 
 export default function ContactConfirmed() {
   const router = useRouter()
@@ -33,7 +34,7 @@ export default function ContactConfirmed() {
 
   return (
     <ContentLayout>
-      <h5 className="title-ddp">être contacté(e)</h5>
+      <WidgetHeader title="être contacté(e)" />
       <div className="contact-confirmed">
         {confirmedImage(contactType)}
         <p className="contact-confirmed-title">Demande envoyée</p>

@@ -14,6 +14,7 @@ import {
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
 } from "../../src/constants/constants"
+import { WidgetHeader } from "../../src/components/WidgetHeader"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -111,7 +112,7 @@ export default function ToBeContacted() {
 
   return (
     <ContentLayout>
-      <h5 className="title-ddp">être contacté(e)</h5>
+      <WidgetHeader title="être contacté(e)" />
       <p>
         Se rendre disponible en tant que parent n'est pas toujours simple. Nous
         vous proposons de choisir le créneau et le type de prise de contact qui

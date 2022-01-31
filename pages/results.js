@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import { Row } from "react-bootstrap"
+import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"
 import { ContactMamanBlues } from "../src/components/results/ContactMamanBlues"
 import { ResultsMood } from "../src/components/results/ResultsMood"
@@ -32,7 +33,7 @@ export default function Results() {
 
   return (
     <ContentLayout>
-      <h5 className="title-ddp">{Labels.titleDPP}</h5>
+      <WidgetHeader title={Labels.titleDPP} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
       <Row>
         <p>
