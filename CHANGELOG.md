@@ -1,3 +1,22 @@
+# [1.7.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.6.1...v1.7.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **contact:** checkbox sur les horaires ([4f81b33](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4f81b33e821fe219bd734845a98f7c7c007127e9))
+
+
+### Features
+
+* **contact:** ajout champs de saisie ([523238e](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/523238e9d60a58f441cd6cfa212fd9bf60377ed0))
+* **contact:** ajout d'un datepicker simple & tests ([e244491](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e244491de0ac6d9987cc88893bc701e7c6ec66c5))
+* **contact:** amélioration choix du contact ([4776d90](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4776d90ec514af07c4fe4991eaf2c99c570b483d))
+* **contact:** conformation d'envoi ([09cc9fb](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/09cc9fb78dd2a03d9022a6c756fd52297cfba8a2))
+* **contact:** fix input & envoi du mail ([19201e0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/19201e0f6dcdccaecd445f5ccd435e8ed1ebce8d))
+* **contact:** fix PR ([eae03ea](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/eae03eac2a5e2ed6d2a32bc637eceb1ffc21d105))
+* **contact:** nombre d'enfants ([ddc539a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ddc539aa2ca6a016a2c9175fdf96aa85fd2c39eb))
+* **contact:** type en constantes ([f75cc5b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f75cc5b85c02039d10a6a1facff08bf5e092403b))
+
 ## [1.6.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.6.0...v1.6.1) (2022-01-29)
 
 
