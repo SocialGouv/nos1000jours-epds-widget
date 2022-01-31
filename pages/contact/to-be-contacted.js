@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
-import { ButtonGroup, Col, Row, ToggleButton } from "react-bootstrap"
+import {
+  ButtonGroup,
+  Col,
+  Row,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "react-bootstrap"
 import { useRouter } from "next/router"
 import {
   RequestContact,
@@ -16,12 +22,7 @@ export default function ToBeContacted() {
   const [contactHours, setContactHours] = useState(defaultContactHours)
 
   const [itemValueType, setItemValueType] = useState()
-  const [itemValueHours, setItemValueHours] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
-
-  const isValidButtonEnabled = () =>
-    itemValueType == RequestContact.type.email ||
-    (itemValueType == RequestContact.type.sms && itemValueHours)
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
@@ -33,7 +34,10 @@ export default function ToBeContacted() {
 
   const goToContactForm = async (event) => {
     localStorage.setItem(STORAGE_CONTACT_TYPE, itemValueType)
-    localStorage.setItem(STORAGE_CONTACT_HOURS, itemValueHours)
+    localStorage.setItem(
+      STORAGE_CONTACT_HOURS,
+      convertHoursListInString(contactHours)
+    )
 
     router.push({
       pathname: "/contact/contact-form",
@@ -66,30 +70,43 @@ export default function ToBeContacted() {
     </ButtonGroup>
   )
 
-  const ButtonGroupHours = () => (
-    <ButtonGroup className="be-contacted-button-group">
-      {contactHours.map((type, idx) => (
-        <ToggleButton
-          className="contact-card"
-          key={idx}
-          id={`radio-hours-${idx}`}
-          type="radio"
-          name="radio-hours"
-          value={type.id}
-          checked={itemValueHours === type.id}
-          onChange={(e) => setItemValueHours(e.currentTarget.value)}
-        >
-          <Row style={{ justifyContent: "center" }}>
-            <img
-              alt=""
-              src={itemValueHours === type.id ? type.iconSelected : type.icon}
-              height={50}
-            />
-            {type.text}
-          </Row>
-        </ToggleButton>
-      ))}
-    </ButtonGroup>
+  const updateItemSelected = (list, itemSelected) => {
+    return list.map((item) => {
+      if (item.id === itemSelected.id) {
+        return { ...item, isChecked: !itemSelected.isChecked }
+      } else {
+        return item
+      }
+    })
+  }
+
+  const buttonGroupHours = () => (
+    <ToggleButtonGroup type="checkbox" className="be-contacted-button-group">
+      {contactHours.map((type, idx) => {
+        return (
+          <ToggleButton
+            className="contact-card"
+            key={idx}
+            id={`checkbox-hours-${idx}`}
+            type="checkbox"
+            name="checkbox-hours"
+            value={type.id}
+            onChange={(e) =>
+              setContactHours(updateItemSelected(contactHours, type))
+            }
+          >
+            <Row style={{ justifyContent: "center" }}>
+              <img
+                alt=""
+                src={type.isChecked ? type.iconSelected : type.icon}
+                height={50}
+              />
+              {type.text}
+            </Row>
+          </ToggleButton>
+        )
+      })}
+    </ToggleButtonGroup>
   )
 
   return (
@@ -108,7 +125,7 @@ export default function ToBeContacted() {
           <p>
             Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au vendredi)
           </p>
-          <ButtonGroupHours />
+          {buttonGroupHours()}
         </>
       ) : null}
 
@@ -118,7 +135,7 @@ export default function ToBeContacted() {
         </button>
         <button
           className="fr-btn"
-          disabled={!isValidButtonEnabled()}
+          disabled={!isValidButtonEnabled(itemValueType, contactHours)}
           onClick={goToContactForm}
         >
           Valider
@@ -171,3 +188,29 @@ const defaultContactHours = [
     text: "L'après-midi",
   },
 ]
+
+/**
+ * @param {Array} hours Tableau des heures
+ * @returns La liste des heures au format String
+ */
+export const convertHoursListInString = (hours) => {
+  let hoursString = ""
+  hours.forEach((item) => {
+    if (item.isChecked) hoursString = `${hoursString} ${item.id}`
+  })
+
+  return hoursString
+}
+
+/**
+ * @param {RequestContact.type} itemValueType Type du mode de contact sélectionné (Email/ SMS)
+ * @param {Array} contactHours Tableau des heures
+ * @returns boolean de la validité des choix seléctionnés
+ */
+export const isValidButtonEnabled = (itemValueType, contactHours) => {
+  const isHoursSelected =
+    contactHours?.find((item) => item.isChecked) != undefined
+
+  return itemValueType == RequestContact.type.email ||
+    (itemValueType == RequestContact.type.sms && isHoursSelected)
+}
