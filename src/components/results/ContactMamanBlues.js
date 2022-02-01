@@ -10,12 +10,12 @@ export function ContactMamanBlues({ scoreLevel }) {
   switch (scoreLevel) {
     case 2:
       colorsByLevel = "moderatelygood-mood"
-      break;
+      break
     case 3:
       colorsByLevel = "bad-mood"
-      break;
+      break
     default:
-      break;
+      break
   }
 
   const goToBeContacted = async (event) => {
@@ -28,15 +28,17 @@ export function ContactMamanBlues({ scoreLevel }) {
     <div className="contact-mamanblues">
       {scoreLevel > 1 ? (
         <Row className={`contact-content ${colorsByLevel}`}>
-          <div style={{ display: "inline-flex" }}>
+          <div style={{ display: "inline-flex", marginBlock: 10 }}>
             <img
               alt="Portrait d'Elise"
               src="../img/portrait-elise.jpg"
               height={50}
-              style={{ marginRight: 10 }}
+              style={{ marginRight: 25 }}
             />
             <div style={{ alignSelf: "center", color: "black" }}>
-              Vous pouvez être contacté(e) par Élise, notre partenaire (association composée par des volontaires ayant connu la difficulté maternelle), afin de <b>trouver une aide adaptée autour de vous.</b>
+              Vous pouvez être contacté(e) par Élise, notre partenaire
+              (association composée par des volontaires ayant connu la
+              difficulté maternelle), afin de <b>trouver une aide adaptée autour de vous.</b>
             </div>
           </div>
           <button className="fr-btn" onClick={goToBeContacted}>
