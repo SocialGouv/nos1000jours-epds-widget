@@ -2,7 +2,7 @@ import {
   scoreLevelForMacaron,
   scoreLevelForMood,
   scoreLevelForTexts,
-} from "../src/utils/scorelevel.utils"
+} from "../src/utils/score-level.utils"
 
 describe("Utils", () => {
   describe("Niveau en fonction du score total pour la jauge", () => {
