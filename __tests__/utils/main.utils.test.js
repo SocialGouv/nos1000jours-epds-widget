@@ -1,4 +1,4 @@
-import { getColorIconAndTextByMood } from "../src/utils/main.utils"
+import { getColorIconAndTextByMood } from "../../src/utils/main.utils"
 
 describe("Utils", () => {
   describe("Retourner les bonnes informations en fonction du mood", () => {
