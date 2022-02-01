@@ -1,3 +1,19 @@
+# [1.8.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.7.0...v1.8.0) (2022-02-01)
+
+
+### Bug Fixes
+
+* **UI:** accueil ([389b96a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/389b96a2108873912ee084f7a0c6b6ac51d2134b))
+* **UI:** couleurs et marges ([8117529](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8117529325f01c88637ebba66d57dfd421c3c758))
+* **UI:** espacements ([f5a7788](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f5a77885aad6762db7725739a694f0a7de54cced))
+* **UI:** titre des pages ([a36a981](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a36a9817a9284fbf4861bdaec14c4ebfbb612f98))
+
+
+### Features
+
+* **boutons:** ajours de boutons retours ([28af3ac](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/28af3acf4f9deec6c379c881557a73c973193c63))
+* **boutons:** fix marging ([b49ce26](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b49ce2619be51bf5cf83c93e24e5ba7d0789b537))
+
 # [1.7.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.6.1...v1.7.0) (2022-01-31)
 
 
