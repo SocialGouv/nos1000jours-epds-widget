@@ -28,7 +28,7 @@ export function EpdsQuestion({ question, resultsBoard, setEnabledNextButton }) {
   }
 
   return (
-    <div style={{ marginTop: 20, justifyContent: "center", display: "flex" }}>
+    <div style={{ justifyContent: "center", display: "flex" }}>
       <form className="fr-form-group">
         <fieldset className="fr-fieldset">
           <legend className="epds-question" id="radio-legend">

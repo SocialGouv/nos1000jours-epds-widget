@@ -20,7 +20,6 @@
   }
 
   img {
-    margin-bottom: 16px;
     border-radius: 50%;
     height: 100px;
     width: auto;
@@ -36,6 +35,9 @@
     justify-content: center;
     margin-top: 15px;
   }
+  button:hover {
+    --a: 0 !important;
+  }
 
   .moderatelygood-mood{
     background-color: var(--primaryYellowLight);
@@ -50,10 +52,10 @@
   .bad-mood {
     background-color: var(--primaryRedLight);
     img {
-      border: 3px solid var(--primaryRedDark);
+      border: 3px solid var(--primaryOrange);
     }
     button {
-      background-color: var(--primaryRedDark);
+      background-color: var(--primaryOrange);
     }
   }
 }

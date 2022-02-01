@@ -15,6 +15,7 @@ export function SurveyCarousel({
       indicators={false}
       ref={refForOnClick}
       touch={false}
+      style={{ marginTop: 37 }}
     >
       {questions?.map((question) => (
         <Carousel.Item key={question.ordre}>

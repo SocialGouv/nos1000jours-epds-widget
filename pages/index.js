@@ -41,13 +41,11 @@ export default function Home() {
       <div className={styles.main}>
         <img
           src="/img/logo-1000j.svg"
-          height={75}
+          height={130}
           style={{ margin: 15 }}
           alt="Logo 1000 premiers jours"
         />
-        <Row style={{ fontWeight: "bolder" }}>
-          Se tester c&#39;est déjà se soigner
-        </Row>
+        <Row className="slogan">Se tester c&#39;est déjà se soigner</Row>
         <br />
         <button
           className="fr-btn fr-btn--lg"

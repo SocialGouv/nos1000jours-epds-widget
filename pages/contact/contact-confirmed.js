@@ -7,6 +7,7 @@ import {
 } from "../../src/constants/constants"
 import { getInLocalStorage } from "../../src/utils/utils"
 import { } from "@dataesr/react-dsfr"
+import { WidgetHeader } from "../../src/components/WidgetHeader"
 
 export default function ContactConfirmed() {
   const router = useRouter()
@@ -25,9 +26,15 @@ export default function ContactConfirmed() {
     />
   )
 
+  const goToResults = () => {
+    router.push({
+      pathname: "/results",
+    })
+  }
+
   return (
     <ContentLayout>
-      <h5 className="title-ddp">être contacté(e)</h5>
+      <WidgetHeader title="être contacté(e)" />
       <div className="contact-confirmed">
         {confirmedImage(contactType)}
         <p className="contact-confirmed-title">Demande envoyée</p>
@@ -39,6 +46,10 @@ export default function ContactConfirmed() {
             ? "Vous devriez recevoir un email d’Elise dans les 48h. Pensez bien à vérifier dans vos spams."
             : "Vous devriez recevoir un SMS d’Elise dans les 48h en fonction des disponibilités sélectionnées."}
         </p>
+
+        <button className="fr-btn" onClick={goToResults}>
+          Retour à mon résultat
+        </button>
       </div>
     </ContentLayout>
   )
