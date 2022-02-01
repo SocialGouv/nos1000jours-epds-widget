@@ -59,7 +59,7 @@ export default function ToBeContacted() {
           checked={itemValueType === type.id}
           onChange={(e) => setItemValueType(e.currentTarget.value)}
         >
-          <Row style={{ justifyContent: "center" }}>
+          <Row className="card-center-img">
             <img
               alt=""
               src={itemValueType === type.id ? type.iconSelected : type.icon}
@@ -97,7 +97,7 @@ export default function ToBeContacted() {
             setContactHours(updateItemSelected(contactHours, type))
           }
         >
-          <Row style={{ justifyContent: "center" }}>
+          <Row className="card-center-img">
             <img
               alt=""
               src={type.isChecked ? type.iconSelected : type.icon}

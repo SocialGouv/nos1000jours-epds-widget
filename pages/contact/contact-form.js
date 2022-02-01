@@ -37,7 +37,7 @@ export default function ContactForm() {
 
   const requiredField = <p className="required-field">*Champs obligatoire</p>
   const loader = (
-    <Spinner animation="border" size="sm" style={{ marginInlineStart: 10 }} />
+    <Spinner animation="border" size="sm" className="margin-start-10" />
   )
 
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
@@ -172,7 +172,7 @@ export default function ContactForm() {
   const ChildCounter = () => (
     <div className="form-group fr-input-group counter">
       <label>Nombre d'enfant(s) :</label>
-      <div style={{ marginInlineStart: 10 }}>
+      <div className="margin-start-10">
         <button
           className="counter-sign"
           onClick={() => {

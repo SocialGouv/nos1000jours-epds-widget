@@ -1,9 +1,18 @@
+.epds-survey {
+  align-items: center;
+}
+
 .epds-question {
-  color: var(--bleu-france);
-  font-size: 16px;
-  line-height: 24px;
+  justify-content: center; 
   display: flex;
-  flex-direction: row;
+
+  legend {
+    color: var(--bleu-france);
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    flex-direction: row;
+  }
 
   .question-number {
     color: var(--primaryBlueLight);
@@ -19,6 +28,9 @@
 }
 
 .epds-response {
+  margin-top: 10px;
+  padding-left: 25px;
+
   label {
     font-size: 14px !important;
   }
@@ -28,12 +40,35 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+
+  img {
+    margin-inline-end: 10px;
+    height: 10px;
+  }
+
+  .spinner-border {
+    margin: 3px;
+  }
+}
+
+.carousel {
+  margin-top: 37px;
 }
 
 .survey-progressbar {
-  background-color: var(--primaryBlueLight);
+  margin: 20px 0px 30px 0px;
+  
+  .progress {
+    background-color: var(--primaryBlueLight);
+    margin-top: 10px;
+  }
 
   .progress-bar {
     background-color: var(--primaryBlueDark);
+  }
+
+  .progress-number {
+    display: flex;
+    justify-content: space-between;
   }
 }

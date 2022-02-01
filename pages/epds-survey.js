@@ -191,8 +191,6 @@ export default function EpdsSurvey() {
           <img
             alt=""
             src="/img/icone-precedent.svg"
-            height={10}
-            style={{ marginRight: 10 }}
           />
           Précédent
         </button>
@@ -206,8 +204,6 @@ export default function EpdsSurvey() {
           <img
             alt=""
             src="/img/icone-suivant.svg"
-            height={10}
-            style={{ marginRight: 10 }}
           />
           Suivant
         </button>
@@ -227,7 +223,6 @@ export default function EpdsSurvey() {
           <Spinner
             animation="border"
             hidden={!isLoading}
-            style={{ margin: 3 }}
           />
         </div>
       </div>
@@ -238,7 +233,7 @@ export default function EpdsSurvey() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} />
       <div>{Labels.surveyExplanations}</div>
-      <div style={{ alignItems: "center" }}>
+      <div className="epds-survey">
         {questionsEpds ? (
           <>
             <SurveyCarousel

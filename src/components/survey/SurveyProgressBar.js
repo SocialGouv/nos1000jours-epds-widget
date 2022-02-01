@@ -3,15 +3,10 @@ import React from "react"
 
 export function SurveyProgressBar({ indexNow, size }) {
   return (
-    <div style={{ margin: "20px 0px 30px 0px" }}>
+    <div className="survey-progressbar">
       Question {indexNow} sur {size}
-      <ProgressBar
-        max={size}
-        now={indexNow}
-        className="survey-progressbar"
-        style={{ marginTop: 10 }}
-      />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <ProgressBar max={size} now={indexNow} />
+      <div className="progress-number">
         <span>1</span>
         <span>{size}</span>
       </div>

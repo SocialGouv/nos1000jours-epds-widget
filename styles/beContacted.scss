@@ -93,6 +93,11 @@
 }
 
 .date-picker {
+  .input-date-picker-block {
+    display: flex; 
+    justify-content: center;
+  }
+
   .input-date-picker {
     text-align: center;
     width: auto;
@@ -105,4 +110,12 @@
   .contact-confirmed-title {
     color: var(--primaryBlue);
   }
+}
+
+.card-center-img {
+  justify-content: center;
+}
+
+.margin-start-10 {
+  margin-inline-start: 10px; 
 }

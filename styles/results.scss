@@ -19,11 +19,17 @@
     justify-content: center;
   }
 
+  .content-img-descr {
+    display: inline-flex;
+    margin-block: 10px;
+  }
+
   img {
     border-radius: 50%;
     height: 100px;
     width: auto;
     padding: 0;
+    margin-right: 25px;
   }
 
   button {
@@ -58,4 +64,28 @@
       background-color: var(--primaryOrange);
     }
   }
+
+  .mamanblues-description {
+    align-self: center; 
+    color: black;
+  }
+}
+
+.results-mood {
+  display: flex;
+  margin-block: 20px;
+
+  img {
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  div {
+    align-self: center;
+  }
+}
+
+.result-return-bt {
+  width: auto;
+  margin-bottom: 10px; 
 }

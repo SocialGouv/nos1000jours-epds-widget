@@ -28,14 +28,9 @@ export function ContactMamanBlues({ scoreLevel }) {
     <div className="contact-mamanblues">
       {scoreLevel > 1 ? (
         <Row className={`contact-content ${colorsByLevel}`}>
-          <div style={{ display: "inline-flex", marginBlock: 10 }}>
-            <img
-              alt="Portrait d'Elise"
-              src="../img/portrait-elise.jpg"
-              height={50}
-              style={{ marginRight: 25 }}
-            />
-            <div style={{ alignSelf: "center", color: "black" }}>
+          <div className="content-img-descr">
+            <img alt="Portrait d'Elise" src="../img/portrait-elise.jpg" />
+            <div className="mamanblues-description">
               Vous pouvez être contacté(e) par Élise, notre partenaire
               (association composée par des volontaires ayant connu la
               difficulté maternelle), afin de <b>trouver une aide adaptée autour de vous.</b>
