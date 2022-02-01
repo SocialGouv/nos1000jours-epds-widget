@@ -12,7 +12,7 @@ import {
 import {
   getInLocalStorage,
   stringIsNotNullNorEmpty,
-} from "../../src/utils/utils"
+} from "../../src/utils/main.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
 import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"

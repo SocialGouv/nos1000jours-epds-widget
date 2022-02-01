@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getColorIconAndTextByMood } from "../../utils/utils"
+import { getColorIconAndTextByMood } from "../../utils/main.utils"
 
 export function ResultsMood({ scoreLevel }) {
   const [moodInfos, setMoodInfos] = useState()

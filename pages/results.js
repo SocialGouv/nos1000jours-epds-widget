@@ -10,7 +10,7 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
-import { getInLocalStorage } from "../src/utils/utils"
+import { getInLocalStorage } from "../src/utils/main.utils"
 
 export default function Results() {
   const router = useRouter()

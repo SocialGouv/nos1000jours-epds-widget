@@ -25,7 +25,7 @@ import {
   scoreLevelForMacaron,
   scoreLevelForMood,
   scoreLevelForTexts,
-} from "../src/utils/utils"
+} from "../src/utils/scorelevel.utils"
 import { Labels } from "../src/constants/specificLabels"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 

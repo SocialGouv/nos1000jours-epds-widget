@@ -1,9 +1,9 @@
+import { getColorIconAndTextByMood } from "../src/utils/main.utils"
 import {
-  getColorIconAndTextByMood,
   scoreLevelForMacaron,
   scoreLevelForMood,
   scoreLevelForTexts,
-} from "../src/utils/utils"
+} from "../src/utils/scorelevel.utils"
 
 describe("Utils", () => {
   describe("Niveau en fonction du score total pour la jauge", () => {
