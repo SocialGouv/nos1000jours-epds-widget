@@ -1,3 +1,5 @@
+@import "sizes.scss";
+
 .good-mood {
   color: var(--primaryBlue);
 }
@@ -11,17 +13,17 @@
 }
 
 .contact-mamanblues {
-  margin-block: 16px;
+  margin-block: $sm;
 
   .contact-content {
-    padding: 16px;
+    padding: $sm;
     display: flex;
     justify-content: center;
   }
 
   .content-img-descr {
     display: inline-flex;
-    margin-block: 10px;
+    margin-block: $xxxs;
   }
 
   img {
@@ -29,17 +31,17 @@
     height: 100px;
     width: auto;
     padding: 0;
-    margin-right: 25px;
+    margin-right: $xl;
   }
 
   button {
     min-width: 40%;
     width: auto;
     border-color: transparent;
-    border-radius: 25px;
+    border-radius: $xl;
     text-transform: uppercase;
     justify-content: center;
-    margin-top: 15px;
+    margin-top: $sm;
   }
   button:hover {
     --a: 0 !important;
@@ -73,11 +75,11 @@
 
 .results-mood {
   display: flex;
-  margin-block: 20px;
+  margin-block: $mmd;
 
   img {
     height: 50px;
-    margin-right: 10px;
+    margin-right: $xxxs;
   }
 
   div {
@@ -87,5 +89,5 @@
 
 .result-return-bt {
   width: auto;
-  margin-bottom: 10px; 
+  margin-bottom: $xxxs; 
 }

@@ -1,3 +1,5 @@
+@import "sizes.scss";
+
 @font-face {
   font-family: "Marianne";
   src: url("/fonts/Marianne/Marianne-Regular.ttf");
@@ -42,17 +44,17 @@ a {
 .slogan {
   font-weight: bolder;
   font-size: x-large;
-  margin-block: 30px;
+  margin-block: $xxl;
   text-align: center;
 }
 
 .widget-header{
   display: flex;
   align-items: center;
-  margin-block: 25px;
+  margin-block: $xl;
 
   img {
-    margin-inline: 20px;
+    margin-inline: $mmd;
     height: 40px;
   }
   h5 {

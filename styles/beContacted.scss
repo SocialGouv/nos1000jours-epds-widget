@@ -1,6 +1,8 @@
+@import "sizes.scss";
+
 .be-contacted-button-group,
 .be-contacted-button-group-checkbox {
-  margin-bottom: 20px;
+  margin-bottom: $mmd;
 
   .btn-check:checked + .btn-primary {
     background-color: var(--primaryBlueDark) !important;
@@ -19,12 +21,12 @@
 
 .be-contacted-bottom-buttons {
   text-align: center;
-  margin-block: 20px;
+  margin-block: $mmd;
 
   button {
-    border-radius: 25px;
+    border-radius: $xl;
     padding-inline: 50px;
-    margin: 5px;
+    margin: $xxxxxs;
   }
 
   .btn-primary:active {
@@ -38,8 +40,8 @@
   color: var(--primaryBlueDark);
   border-color: var(--primaryBlueDark);
   justify-content: center;
-  border-radius: 10px !important;
-  margin: 10px;
+  border-radius: $xxxs !important;
+  margin: $xxxs;
 }
 
 .contact-card:focus {
@@ -73,7 +75,7 @@
   }
 
   label {
-    margin-bottom: 10px;
+    margin-bottom: $xxxs;
   }
 
   .counter {
@@ -83,7 +85,7 @@
     .counter-sign {
       color: var(--primaryBlue);
       font-size: x-large;
-      padding-inline: 15px;
+      padding-inline: $sm;
     }
 
     button:disabled {
@@ -117,5 +119,5 @@
 }
 
 .margin-start-10 {
-  margin-inline-start: 10px; 
+  margin-inline-start: $xxxs; 
 }

@@ -1,3 +1,5 @@
+@import "sizes.scss";
+
 .epds-survey {
   align-items: center;
 }
@@ -9,41 +11,41 @@
   legend {
     color: var(--bleu-france);
     font-size: medium;
-    line-height: 24px;
+    line-height: $xl;
     display: flex;
     flex-direction: row;
   }
 
   .question-number {
     color: var(--primaryBlueLight);
-    font-size: 46px;
-    padding-bottom: 4px;
+    font-size: $xxxxl;
+    padding-bottom: $xxxxxxs;
   }
 
   .question {
     color: var(--primaryBlueDark);
     font-weight: bold;
-    padding-bottom: 4px;
+    padding-bottom: $xxxxxxs;
   }
 }
 
 .epds-response {
-  margin-top: 10px;
-  padding-left: 25px;
+  margin-top: $xxxs;
+  padding-left: $xl;
 
   label {
-    font-size: 14px !important;
+    font-size: $xs !important;
   }
 }
 
 .survey-buttons {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: $xxxs;
 
   img {
-    margin-inline-end: 10px;
-    height: 10px;
+    margin-inline-end: $xxxs;
+    height: $xxxs;
   }
 
   .spinner-border {
@@ -52,15 +54,15 @@
 }
 
 .carousel {
-  margin-top: 37px;
+  margin-top: $xxxl;
 }
 
 .survey-progressbar {
-  margin: 20px 0px 30px 0px;
+  margin: $mmd 0px $xxl 0px;
   
   .progress {
     background-color: var(--primaryBlueLight);
-    margin-top: 10px;
+    margin-top: $xxxs;
   }
 
   .progress-bar {
