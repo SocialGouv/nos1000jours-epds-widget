@@ -1,39 +1,76 @@
+@import "sizes.scss";
+
+.epds-survey {
+  align-items: center;
+}
+
 .epds-question {
-  color: var(--bleu-france);
-  font-size: 16px;
-  line-height: 24px;
+  justify-content: center; 
   display: flex;
-  flex-direction: row;
+
+  legend {
+    color: var(--bleu-france);
+    font-size: medium;
+    line-height: $xl;
+    display: flex;
+    flex-direction: row;
+  }
 
   .question-number {
     color: var(--primaryBlueLight);
-    font-size: 46px;
-    padding-bottom: 4px;
+    font-size: $xxxxl;
+    padding-bottom: $xxxxxxs;
   }
 
   .question {
     color: var(--primaryBlueDark);
     font-weight: bold;
-    padding-bottom: 4px;
+    padding-bottom: $xxxxxxs;
   }
 }
 
 .epds-response {
+  margin-top: $xxxs;
+  padding-left: $xl;
+
   label {
-    font-size: 14px !important;
+    font-size: $xs !important;
   }
 }
 
 .survey-buttons {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: $xxxs;
+
+  img {
+    margin-inline-end: $xxxs;
+    height: $xxxs;
+  }
+
+  .spinner-border {
+    margin: 3px;
+  }
+}
+
+.carousel {
+  margin-top: $xxxl;
 }
 
 .survey-progressbar {
-  background-color: var(--primaryBlueLight);
+  margin: $mmd 0px $xxl 0px;
+  
+  .progress {
+    background-color: var(--primaryBlueLight);
+    margin-top: $xxxs;
+  }
 
   .progress-bar {
     background-color: var(--primaryBlueDark);
+  }
+
+  .progress-number {
+    display: flex;
+    justify-content: space-between;
   }
 }

@@ -1,5 +1,5 @@
-import { isValidForm } from "../pages/contact/contact-form"
-import { RequestContact } from "../src/constants/constants"
+import { isValidForm } from "../../pages/contact/contact-form"
+import { RequestContact } from "../../src/constants/constants"
 
 describe("Formulaire de contact", () => {
   describe("Validité du formulaire", () => {

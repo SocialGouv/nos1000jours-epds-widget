@@ -1,3 +1,5 @@
+@import "sizes.scss";
+
 @font-face {
   font-family: "Marianne";
   src: url("/fonts/Marianne/Marianne-Regular.ttf");
@@ -39,16 +41,27 @@ a {
   box-sizing: border-box;
 }
 
-.title-ddp {
-  color: var(--primaryBlueDark);
-  text-transform: uppercase;
-  text-align: center;
-  margin-block: 0;
-}
-
 .slogan {
   font-weight: bolder;
-  font-size: 22px;
-  margin-block: 30px;
+  font-size: x-large;
+  margin-block: $xxl;
   text-align: center;
+}
+
+.widget-header{
+  display: flex;
+  align-items: center;
+  margin-block: $xl;
+
+  img {
+    margin-inline: $mmd;
+    height: 40px;
+  }
+  h5 {
+    color: var(--primaryBlueDark);
+    text-transform: uppercase;
+    text-align: center;
+    margin-block: 0;
+    flex-grow: 1;
+  }
 }

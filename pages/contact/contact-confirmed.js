@@ -5,9 +5,9 @@ import {
   RequestContact,
   STORAGE_CONTACT_TYPE,
 } from "../../src/constants/constants"
-import { getInLocalStorage } from "../../src/utils/utils"
 import { } from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
+import { getInLocalStorage } from "../../src/utils/main.utils"
 
 export default function ContactConfirmed() {
   const router = useRouter()

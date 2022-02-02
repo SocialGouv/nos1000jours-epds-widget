@@ -10,7 +10,7 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
-import { getInLocalStorage } from "../src/utils/utils"
+import { getInLocalStorage } from "../src/utils/main.utils"
 
 export default function Results() {
   const router = useRouter()
@@ -48,11 +48,7 @@ export default function Results() {
       </Row>
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
 
-      <button
-        className="fr-btn"
-        onClick={goToSurvey}
-        style={{ width: "auto", marginBottom: 10 }}
-      >
+      <button className="fr-btn result-return-bt" onClick={goToSurvey}>
         Retour au questionnaire
       </button>
     </ContentLayout>

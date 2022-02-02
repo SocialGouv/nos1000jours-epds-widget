@@ -1,6 +1,8 @@
+@import "sizes.scss";
+
 .be-contacted-button-group,
 .be-contacted-button-group-checkbox {
-  margin-bottom: 20px;
+  margin-bottom: $mmd;
 
   .btn-check:checked + .btn-primary {
     background-color: var(--primaryBlueDark) !important;
@@ -19,12 +21,12 @@
 
 .be-contacted-bottom-buttons {
   text-align: center;
-  margin-block: 20px;
+  margin-block: $mmd;
 
   button {
-    border-radius: 25px;
+    border-radius: $xl;
     padding-inline: 50px;
-    margin: 5px;
+    margin: $xxxxxs;
   }
 
   .btn-primary:active {
@@ -38,8 +40,8 @@
   color: var(--primaryBlueDark);
   border-color: var(--primaryBlueDark);
   justify-content: center;
-  border-radius: 10px !important;
-  margin: 10px;
+  border-radius: $xxxs !important;
+  margin: $xxxs;
 }
 
 .contact-card:focus {
@@ -56,7 +58,7 @@
     background-color: white;
     box-shadow: none;
     border-radius: 0.25rem;
-    font-size: 12px;
+    font-size: small;
   }
 
   .custom-input-valid {
@@ -64,7 +66,7 @@
   }
 
   .required-field{
-    font-size: 12px;
+    font-size: small;
     color: grey;
   }
 
@@ -73,7 +75,7 @@
   }
 
   label {
-    margin-bottom: 10px;
+    margin-bottom: $xxxs;
   }
 
   .counter {
@@ -82,8 +84,8 @@
 
     .counter-sign {
       color: var(--primaryBlue);
-      font-size: 24px;
-      padding-inline: 15px;
+      font-size: x-large;
+      padding-inline: $sm;
     }
 
     button:disabled {
@@ -93,6 +95,11 @@
 }
 
 .date-picker {
+  .input-date-picker-block {
+    display: flex; 
+    justify-content: center;
+  }
+
   .input-date-picker {
     text-align: center;
     width: auto;
@@ -105,4 +112,12 @@
   .contact-confirmed-title {
     color: var(--primaryBlue);
   }
+}
+
+.card-center-img {
+  justify-content: center;
+}
+
+.margin-start-10 {
+  margin-inline-start: $xxxs; 
 }
