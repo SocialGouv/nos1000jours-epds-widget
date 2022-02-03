@@ -51,6 +51,7 @@ export default function Home() {
           className="fr-btn fr-btn--lg"
           onClick={startSurvey}
           disabled={!source}
+          style={{ marginBottom: "5%" }}
         >
           COMMENCER LE TEST
         </button>

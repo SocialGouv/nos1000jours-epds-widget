@@ -49,7 +49,7 @@ export default function Results() {
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
 
       <button className="fr-btn result-return-bt" onClick={goToSurvey}>
-        Retour au questionnaire
+        Recommencer le questionnaire
       </button>
     </ContentLayout>
   )

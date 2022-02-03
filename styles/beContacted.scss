@@ -7,6 +7,13 @@
   .btn-check:checked + .btn-primary {
     background-color: var(--primaryBlueDark) !important;
   }
+
+  label:hover {
+    background-color: transparent;
+    color: var(--primaryBlueDark);
+    border-width: 2px;
+    border-color: var(--primaryBlueDark);
+  }
 }
 
 .be-contacted-button-group-checkbox {
@@ -24,9 +31,7 @@
   margin-block: $mmd;
 
   button {
-    border-radius: $xl;
-    padding-inline: 50px;
-    margin: $xxxxxs;
+    margin-inline: $xxxs;
   }
 
   .btn-primary:active {
@@ -116,8 +121,4 @@
 
 .card-center-img {
   justify-content: center;
-}
-
-.margin-start-10 {
-  margin-inline-start: $xxxs; 
 }
