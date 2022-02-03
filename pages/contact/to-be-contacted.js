@@ -118,14 +118,14 @@ export default function ToBeContacted() {
         vous proposons de choisir le créneau et le type de prise de contact qui
         vous conviennent.
       </p>
-      <p>Par quel moyen préférez-vous être contacté(e) ?</p>
+      <div className="margin-bottom-8">Par quel moyen préférez-vous être contacté(e) ?</div>
       <ButtonGroupType />
 
       {isSmsSelected ? (
         <>
-          <p>
+          <div className="margin-bottom-8">
             Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au vendredi)
-          </p>
+          </div>
           {buttonGroupHours()}
         </>
       ) : null}
