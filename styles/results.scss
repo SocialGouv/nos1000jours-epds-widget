@@ -41,7 +41,8 @@
     border-radius: $xl;
     text-transform: uppercase;
     justify-content: center;
-    margin-top: $sm;
+    margin-top: $xxxxxxs;
+    margin-bottom: $xxxxxs;
   }
   button:hover {
     --a: 0 !important;
@@ -75,7 +76,7 @@
 
 .results-mood {
   display: flex;
-  margin-block: $mmd;
+  margin-bottom: $xxxxs;
 
   img {
     height: 50px;
