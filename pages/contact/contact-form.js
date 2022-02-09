@@ -107,7 +107,7 @@ export default function ContactForm() {
     })
   }
 
-  const emailInput = ({ isRequired }) => (
+  const emailInput = (isRequired) => (
     <div
       className={`form-group fr-input-group ${isEmailValid ? "fr-input-group--valid" : ""
         }`}
@@ -127,7 +127,7 @@ export default function ContactForm() {
     </div>
   )
 
-  const phoneInput = ({ isRequired }) => (
+  const phoneInput = (isRequired) => (
     <div
       className={`form-group fr-input-group ${isPhoneValid ? "fr-input-group--valid" : ""
         }`}
