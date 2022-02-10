@@ -36,9 +36,6 @@ export default function ContactForm() {
   const websiteSource = getInLocalStorage(STORAGE_SOURCE)
 
   const requiredField = <p className="required-field">*Champs obligatoire</p>
-  const loader = (
-    <Spinner animation="border" size="sm" className="margin-start-10" />
-  )
 
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
     client: client,
@@ -107,7 +104,7 @@ export default function ContactForm() {
     })
   }
 
-  const emailInput = ({ isRequired }) => (
+  const emailInput = (isRequired) => (
     <div
       className={`form-group fr-input-group ${isEmailValid ? "fr-input-group--valid" : ""
         }`}
@@ -123,11 +120,15 @@ export default function ContactForm() {
         onChange={(e) => setEmailValid(e.target.validity.valid)}
         placeholder="Écrivez ici l’adresse mail"
       />
+
+      {!isEmailValid ? (
+        <InputError error="L'adresse mail n'est pas au bon format" />
+      ) : null}
       {isRequired ? requiredField : null}
     </div>
   )
 
-  const phoneInput = ({ isRequired }) => (
+  const phoneInput = (isRequired) => (
     <div
       className={`form-group fr-input-group ${isPhoneValid ? "fr-input-group--valid" : ""
         }`}
@@ -144,6 +145,9 @@ export default function ContactForm() {
         placeholder="Écrivez ici le numéro pour vous contacter"
       />
 
+      {!isPhoneValid ? (
+        <InputError error="Le numéro de téléphone n'est pas au bon format" />
+      ) : null}
       {isRequired ? requiredField : null}
     </div>
   )
@@ -225,13 +229,23 @@ export default function ContactForm() {
             disabled={!canSend || isLoading}
           >
             Valider
-            {isLoading ? loader : null}
+            {isLoading ? <Loader /> : null}
           </button>
         </Col>
       </form>
     </ContentLayout>
   )
 }
+
+const Loader = () => (
+  <Spinner animation="border" size="sm" className="margin-start-10" />
+)
+
+const InputError = ({ error }) => (
+  <p id="text-input-error-desc-error" className="fr-error-text">
+    {error}
+  </p>
+)
 
 /**
  * Vérifie la validité du formulaire en fonction des informations complétées
