@@ -24,9 +24,6 @@ export const EpdsResultsComments = {
   level3: {
     description:
       "Les changements importants liés à l’arrivée d’un bébé sont des facteurs de stress dont certains signes peuvent évoqués ceux de la dépression post partum. Vous exprimez des signes évocateurs de la dépression post partum, il est donc nécessaire de consulter le professionnel de santé qui vous suit pour échanger.",
-    conclusion:
-      "Vous pouvez être contacté(e) par Élise, notre partenaire (association composée par des volontaires ayant connu la difficulté maternelle), afin de trouver une aide adaptée autour de vous.",
+    conclusion: "",
   },
 }
-
-
