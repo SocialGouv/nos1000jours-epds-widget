@@ -33,9 +33,7 @@ describe("Résultats", () => {
       expect(conclusionByScoreLevel(2)).toEqual("")
     })
     test("Conclusion level 3", () => {
-      expect(conclusionByScoreLevel(3)).toEqual(
-        "Vous pouvez être contacté(e) par Élise, notre partenaire (association composée par des volontaires ayant connu la difficulté maternelle), afin de trouver une aide adaptée autour de vous."
-      )
+      expect(conclusionByScoreLevel(3)).toEqual("")
     })
   })
 })

@@ -25,8 +25,8 @@ export default function ContactForm() {
   const router = useRouter()
 
   const [canSend, setCanSend] = useState(false)
-  const [isEmailValid, setEmailValid] = useState(false)
-  const [isPhoneValid, setPhoneValid] = useState(false)
+  const [isEmailValid, setEmailValid] = useState()
+  const [isPhoneValid, setPhoneValid] = useState()
   const [childBirthDate, setChildBirthDate] = useState("")
   const [numberOfChildren, setNumberOfChildren] = useState(0)
   const [isLoading, setLoading] = useState(false)
@@ -119,9 +119,10 @@ export default function ContactForm() {
         pattern={PATTERN_EMAIL}
         onChange={(e) => setEmailValid(e.target.validity.valid)}
         placeholder="Écrivez ici l’adresse mail"
+        required={isRequired}
       />
 
-      {!isEmailValid ? (
+      {isEmailValid === undefined ? null : !isEmailValid ? (
         <InputError error="L'adresse mail n'est pas au bon format" />
       ) : null}
       {isRequired ? requiredField : null}
@@ -143,9 +144,10 @@ export default function ContactForm() {
         pattern="[0-9]{10}"
         onChange={(e) => setPhoneValid(e.target.validity.valid)}
         placeholder="Écrivez ici le numéro pour vous contacter"
+        required={isRequired}
       />
 
-      {!isPhoneValid ? (
+      {isPhoneValid === undefined ? null : !isPhoneValid ? (
         <InputError error="Le numéro de téléphone n'est pas au bon format" />
       ) : null}
       {isRequired ? requiredField : null}

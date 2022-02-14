@@ -47,7 +47,7 @@ export default function Home() {
         />
         <Row className="slogan">
           Futurs parents, parents, évaluez votre bien être émotionnel en
-          quelques minutes.
+          quelques minutes
         </Row>
         <br />
         <button
