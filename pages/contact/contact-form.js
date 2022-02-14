@@ -122,7 +122,7 @@ export default function ContactForm() {
         required={isRequired}
       />
 
-      {!isEmailValid && isEmailValid != undefined ? (
+      {isEmailValid === undefined ? null : !isEmailValid ? (
         <InputError error="L'adresse mail n'est pas au bon format" />
       ) : null}
       {isRequired ? requiredField : null}
@@ -147,7 +147,7 @@ export default function ContactForm() {
         required={isRequired}
       />
 
-      {!isPhoneValid && isPhoneValid != undefined ? (
+      {isPhoneValid === undefined ? null : !isPhoneValid ? (
         <InputError error="Le numéro de téléphone n'est pas au bon format" />
       ) : null}
       {isRequired ? requiredField : null}
