@@ -55,6 +55,7 @@ a {
   margin-block: $xl;
   width: 100%;
   justify-content: flex-end;
+  flex: initial;
 
   img {
     margin-inline: $mmd;

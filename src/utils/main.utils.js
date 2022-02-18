@@ -43,3 +43,9 @@ export function getInLocalStorage(key) {
 
 export const stringIsNotNullNorEmpty = (str) =>
   str !== null && str !== undefined && str.length > 0
+
+export function convertArrayLabelsToObject(data) {
+  const labels = {}
+  data?.forEach((item) => (labels[item.label.toLowerCase()] = item.texte))
+  return labels
+}

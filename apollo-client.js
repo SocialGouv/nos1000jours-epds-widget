@@ -43,6 +43,20 @@ export const GET_LOCALES = gql`
   }
 `
 
+export const LABELS_EPDS_TRADUCTION = gql`
+  query LabelsEpdsTraductions($locale: String) {
+    labelsEpdsTraductions(where: { langue: { identifiant: $locale } }) {
+      langue {
+        identifiant
+      }
+      labels {
+        label
+        texte
+      }
+    }
+  }
+`
+
 export const EPDS_SAVE_RESPONSE = gql`
   mutation (
     $genre: ENUM_REPONSESEPDS_GENRE!

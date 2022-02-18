@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import {
   client,
   EPDS_SAVE_RESPONSE,
-  GET_LOCALES,
   QUESTIONNAIRE_EPDS_TRADUCTION,
 } from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
@@ -14,6 +13,7 @@ import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
+  STORAGE_LOCALE,
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
@@ -28,12 +28,11 @@ import {
 } from "../src/utils/score-level.utils"
 import { Labels } from "../src/constants/specificLabels"
 import { WidgetHeader } from "../src/components/WidgetHeader"
+import { getInLocalStorage } from "../src/utils/main.utils"
 
 export default function EpdsSurvey() {
   const router = useRouter()
   const ref = useRef(null)
-
-  const DEFAULT_LOCAL = "FR"
 
   const [questionsEpds, setQuestionsEpds] = useState()
   const [resultsBoard, setResultsBoard] = useState()
@@ -83,19 +82,6 @@ export default function EpdsSurvey() {
     },
   })
 
-  const [getLocalesInDatabase] = useLazyQuery(GET_LOCALES, {
-    client: client,
-    onCompleted: (data) => {
-      const locale = data.locales.find(
-        (element) => element.identifiant === DEFAULT_LOCAL
-      )
-      setLocaleSelected(locale)
-    },
-    onError: (err) => {
-      console.warn(err)
-    },
-  })
-
   const goToResults = async (event) => {
     router.push({
       pathname: "/results",
@@ -103,11 +89,8 @@ export default function EpdsSurvey() {
   }
 
   useEffect(() => {
-    const localesQuery = async () => {
-      await getLocalesInDatabase()
-    }
-
-    localesQuery()
+    const storageLocale = getInLocalStorage(STORAGE_LOCALE)
+    if (storageLocale) setLocaleSelected(JSON.parse(storageLocale))
   }, [])
 
   useEffect(() => {
@@ -188,10 +171,7 @@ export default function EpdsSurvey() {
           style={{ display: showPrevious ? "block" : "none" }}
           disabled={isLoading}
         >
-          <img
-            alt=""
-            src="/img/icone-precedent.svg"
-          />
+          <img alt="Flèche précédente" src="/img/icone-precedent.svg" />
           Précédent
         </button>
 
@@ -201,10 +181,7 @@ export default function EpdsSurvey() {
           disabled={!isEnabledNextButton}
           style={{ display: showNext ? "block" : "none" }}
         >
-          <img
-            alt=""
-            src="/img/icone-suivant.svg"
-          />
+          <img alt="Flèche suivante" src="/img/icone-suivant.svg" />
           Suivant
         </button>
 
@@ -220,10 +197,7 @@ export default function EpdsSurvey() {
           >
             Terminer
           </button>
-          <Spinner
-            animation="border"
-            hidden={!isLoading}
-          />
+          <Spinner animation="border" hidden={!isLoading} />
         </div>
       </div>
     )
@@ -231,7 +205,10 @@ export default function EpdsSurvey() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title={Labels.titleDPP} />
+      <WidgetHeader
+        title={Labels.titleDPP}
+        localeFlag={localeSelected?.drapeau.url}
+      />
       <div>{Labels.surveyExplanations}</div>
       <div className="epds-survey">
         {questionsEpds ? (
