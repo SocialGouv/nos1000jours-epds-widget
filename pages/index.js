@@ -9,11 +9,15 @@ import {
 } from "../src/constants/constants"
 import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
-import { useLazyQuery } from "@apollo/client"
-import { client, GET_LOCALES, LABELS_EPDS_TRADUCTION } from "../apollo-client"
+import { gql, useLazyQuery } from "@apollo/client"
+import { client } from "../apollo-client"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import Image from "next/image"
 import { convertArrayLabelsToObject } from "../src/utils/main.utils"
+import {
+  EPDS_LABELS_TRANSLATION_BY_LOCALE,
+  GET_LOCALES,
+} from "@socialgouv/nos1000jours-lib"
 
 export default function Home() {
   const router = useRouter()
@@ -46,19 +50,22 @@ export default function Home() {
     })
   }
 
-  const [getLabelsTranslationsQuery] = useLazyQuery(LABELS_EPDS_TRADUCTION, {
-    client: client,
-    onCompleted: (data) => {
-      const labelsData = data.labelsEpdsTraductions[0]?.labels
-      const labels = convertArrayLabelsToObject(labelsData)
-      setLabelsTranslated(labels)
-    },
-    onError: (err) => {
-      console.warn(err)
-    },
-  })
+  const [getLabelsTranslationsQuery] = useLazyQuery(
+    gql(EPDS_LABELS_TRANSLATION_BY_LOCALE),
+    {
+      client: client,
+      onCompleted: (data) => {
+        const labelsData = data.labelsEpdsTraductions[0]?.labels
+        const labels = convertArrayLabelsToObject(labelsData)
+        setLabelsTranslated(labels)
+      },
+      onError: (err) => {
+        console.warn(err)
+      },
+    }
+  )
 
-  const [getLocalesInDatabase] = useLazyQuery(GET_LOCALES, {
+  const [getLocalesInDatabase] = useLazyQuery(gql(GET_LOCALES), {
     client: client,
     onCompleted: (data) => {
       const locale = data.locales.find(

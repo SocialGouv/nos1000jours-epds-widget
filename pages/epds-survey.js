@@ -1,11 +1,7 @@
-import { useLazyQuery, useMutation } from "@apollo/client"
+import { gql, useLazyQuery, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import {
-  client,
-  EPDS_SAVE_RESPONSE,
-  QUESTIONNAIRE_EPDS_TRADUCTION,
-} from "../apollo-client"
+import { client } from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
 import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
 import { } from "@dataesr/react-dsfr"
@@ -29,6 +25,10 @@ import {
 import { Labels } from "../src/constants/specificLabels"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import { getInLocalStorage } from "../src/utils/main.utils"
+import {
+  EPDS_SAVE_RESPONSES_FOR_WIDGET,
+  EPDS_SURVEY_TRANSLATION_BY_LOCALE,
+} from "@socialgouv/nos1000jours-lib"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -43,20 +43,23 @@ export default function EpdsSurvey() {
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
 
-  const [getEpdsSurveyQuery] = useLazyQuery(QUESTIONNAIRE_EPDS_TRADUCTION, {
-    client: client,
-    onCompleted: (data) => {
-      const dataSorted = checkQuestionsOrder([
-        ...data.questionnaireEpdsTraductions,
-      ])
-      setQuestionsEpds(dataSorted)
-    },
-    onError: (err) => {
-      console.warn(err)
-    },
-  })
+  const [getEpdsSurveyQuery] = useLazyQuery(
+    gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
+    {
+      client: client,
+      onCompleted: (data) => {
+        const dataSorted = checkQuestionsOrder([
+          ...data.questionnaireEpdsTraductions,
+        ])
+        setQuestionsEpds(dataSorted)
+      },
+      onError: (err) => {
+        console.warn(err)
+      },
+    }
+  )
 
-  const [saveResponseQuery] = useMutation(EPDS_SAVE_RESPONSE, {
+  const [saveResponseQuery] = useMutation(gql(EPDS_SAVE_RESPONSES_FOR_WIDGET), {
     client: client,
     onError: (err) => {
       console.warn(err)
