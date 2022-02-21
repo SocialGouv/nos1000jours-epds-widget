@@ -1,3 +1,4 @@
+import { STORAGE_LOCALE } from "../constants/constants"
 import { Labels } from "../constants/specificLabels"
 
 /**
@@ -39,6 +40,11 @@ export const getColorIconAndTextByMood = (scoreLevel) => {
 
 export function getInLocalStorage(key) {
   if (typeof window !== "undefined") return localStorage.getItem(key)
+}
+
+export function getLocaleInLocalStorage() {
+  const storageLocale = getInLocalStorage(STORAGE_LOCALE)
+  if (storageLocale) return JSON.parse(storageLocale)
 }
 
 export const stringIsNotNullNorEmpty = (str) =>

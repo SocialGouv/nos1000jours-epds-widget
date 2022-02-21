@@ -89,7 +89,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        <WidgetHeader localeFlag={localeSelected?.drapeau.url} />
+        <WidgetHeader locale={localeSelected} />
         <Image
           src="/img/logo-1000j.svg"
           alt="Logo 1000 premiers jours"

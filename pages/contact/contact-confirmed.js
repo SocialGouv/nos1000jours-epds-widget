@@ -7,12 +7,16 @@ import {
 } from "../../src/constants/constants"
 import { } from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
-import { getInLocalStorage } from "../../src/utils/main.utils"
+import {
+  getInLocalStorage,
+  getLocaleInLocalStorage,
+} from "../../src/utils/main.utils"
 
 export default function ContactConfirmed() {
   const router = useRouter()
 
   const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
+  const localeSelected = getLocaleInLocalStorage()
 
   const confirmedImage = (contactType) => (
     <img
@@ -34,7 +38,7 @@ export default function ContactConfirmed() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title="être contacté(e)" />
+      <WidgetHeader title="être contacté(e)" locale={localeSelected} />
       <div className="contact-confirmed">
         {confirmedImage(contactType)}
         <p className="contact-confirmed-title">Demande envoyée</p>

@@ -9,7 +9,6 @@ import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
-  STORAGE_LOCALE,
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
@@ -24,7 +23,7 @@ import {
 } from "../src/utils/score-level.utils"
 import { Labels } from "../src/constants/specificLabels"
 import { WidgetHeader } from "../src/components/WidgetHeader"
-import { getInLocalStorage } from "../src/utils/main.utils"
+import { getLocaleInLocalStorage } from "../src/utils/main.utils"
 import {
   EPDS_SAVE_RESPONSES_FOR_WIDGET,
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,
@@ -92,8 +91,7 @@ export default function EpdsSurvey() {
   }
 
   useEffect(() => {
-    const storageLocale = getInLocalStorage(STORAGE_LOCALE)
-    if (storageLocale) setLocaleSelected(JSON.parse(storageLocale))
+    setLocaleSelected(getLocaleInLocalStorage())
   }, [])
 
   useEffect(() => {
@@ -208,10 +206,7 @@ export default function EpdsSurvey() {
 
   return (
     <ContentLayout>
-      <WidgetHeader
-        title={Labels.titleDPP}
-        localeFlag={localeSelected?.drapeau.url}
-      />
+      <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <div>{Labels.surveyExplanations}</div>
       <div className="epds-survey">
         {questionsEpds ? (

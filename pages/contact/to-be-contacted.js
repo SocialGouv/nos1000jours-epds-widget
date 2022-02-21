@@ -15,9 +15,12 @@ import {
   STORAGE_CONTACT_TYPE,
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
+import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
+
+  const localeSelected = getLocaleInLocalStorage()
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
@@ -112,7 +115,7 @@ export default function ToBeContacted() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title="être contacté(e)" />
+      <WidgetHeader title="être contacté(e)" locale={localeSelected} />
       <p>
         Se rendre disponible en tant que parent n'est pas toujours simple. Nous
         vous proposons de choisir le créneau et le type de prise de contact qui
