@@ -11,7 +11,6 @@ import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
 import { client } from "../apollo-client"
 import { WidgetHeader } from "../src/components/WidgetHeader"
-import Image from "next/image"
 import { convertArrayLabelsToObject } from "../src/utils/main.utils"
 import {
   EPDS_LABELS_TRANSLATION_BY_LOCALE,
@@ -89,7 +88,7 @@ export default function Home() {
     <div className="container">
       <div className="main">
         <WidgetHeader locale={localeSelected} />
-        <Image
+        <img
           src="/img/logo-1000j.svg"
           alt="Logo 1000 premiers jours"
           height={130}

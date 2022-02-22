@@ -1,5 +1,4 @@
 import { Col } from "react-bootstrap"
-import Image from "next/image"
 import { API_URL } from "../constants/constants"
 
 export function WidgetHeader({ title, locale }) {
@@ -7,7 +6,7 @@ export function WidgetHeader({ title, locale }) {
     <Col className="widget-header">
       {title ? (
         <>
-          <Image
+          <img
             src="/img/logo-1000j.svg"
             alt="Logo 1000 premiers jours"
             height={40}
@@ -18,7 +17,7 @@ export function WidgetHeader({ title, locale }) {
       ) : null}
 
       {locale?.drapeau?.url ? (
-        <Image
+        <img
           className="header-flag"
           alt="Drapeau de la langue"
           src={`${API_URL}${locale.drapeau.url}`}
