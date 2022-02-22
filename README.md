@@ -33,4 +33,4 @@ Avec l’iframe, il suffit d’ajouter le code suivant à l’endroit où vous s
 Certain labels ont besoin d'être traduit ou récupéré dans le BO. Dans le code du projet, ces labels sont appellés via des clées. 
 
 Voici la liste :
-- `slogan` : phrase d'accrode sur le 1er écran
+- `slogan` ou `slogan_monsiteweb`: phrase d'accroche sur le 1er écran 
