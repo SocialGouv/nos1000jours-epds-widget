@@ -1,4 +1,3 @@
-import styles from "../styles/Home.module.css"
 import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import { useEffect, useState } from "react"
@@ -87,8 +86,8 @@ export default function Home() {
   })
 
   return (
-    <div className={styles.container}>
-      <div className={styles.main}>
+    <div className="container">
+      <div className="main">
         <WidgetHeader locale={localeSelected} />
         <Image
           src="/img/logo-1000j.svg"
@@ -96,11 +95,7 @@ export default function Home() {
           height={130}
           width={130}
         />
-        <Row className="slogan">
-          {labelsTranslated?.slogan
-            ? labelsTranslated.slogan
-            : "FFFFuturs parents, parents, évaluez votre bien être émotionnel en quelques minutes"}
-        </Row>
+        <Row className="slogan">{getSlogan(source, labelsTranslated)}</Row>
         <br />
         <button
           className="fr-btn fr-btn--lg"
@@ -113,4 +108,18 @@ export default function Home() {
       </div>
     </div>
   )
+}
+
+export const getSlogan = (source, labels) => {
+  if (labels) {
+    if (source) {
+      const sloganBySource = `slogan_${source}`
+      if (labels[sloganBySource]) return labels[sloganBySource]
+    }
+
+    const sloganByLocale = labels.slogan
+    if (sloganByLocale) return sloganByLocale
+  }
+
+  return "Futurs parents, parents, évaluez votre bien être émotionnel en quelques minutes"
 }
