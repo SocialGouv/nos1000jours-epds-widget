@@ -39,6 +39,7 @@ export default function EpdsSurvey() {
   const [questionsEpds, setQuestionsEpds] = useState()
   const [resultsBoard, setResultsBoard] = useState()
   const [localeSelected, setLocaleSelected] = useState()
+  const [isRTL, setRTL] = useState(false)
 
   const [actualIndex, setActualIndex] = useState(1)
   const [isEnabledNextButton, setEnabledNextButton] = useState(false)
@@ -104,7 +105,10 @@ export default function EpdsSurvey() {
       })
     }
 
-    if (localeSelected) epdsSurveyQuery()
+    if (localeSelected) {
+      setRTL(localeSelected?.sens_lecture_droite_vers_gauche)
+      epdsSurveyQuery()
+    }
   }, [localeSelected])
 
   useEffect(() => {
@@ -215,7 +219,7 @@ export default function EpdsSurvey() {
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      <div>{getExplanations()}</div>
+      <div dir={isRTL ? "rtl" : "ltr"}>{getExplanations()}</div>
       <div className="epds-survey">
         {questionsEpds ? (
           <>
@@ -224,6 +228,7 @@ export default function EpdsSurvey() {
               refForOnClick={ref}
               resultsBoard={resultsBoard}
               setEnabledNextButton={setEnabledNextButton}
+              isRTL={isRTL}
             />
 
             <SurveyProgressBar

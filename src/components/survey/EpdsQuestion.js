@@ -1,6 +1,11 @@
 import React from "react"
 
-export function EpdsQuestion({ question, resultsBoard, setEnabledNextButton }) {
+export function EpdsQuestion({
+  question,
+  resultsBoard,
+  setEnabledNextButton,
+  isRTL = false,
+}) {
   const prefix = "q" + question.ordre
   const radio1Id = prefix + "-radio1"
   const radio2Id = prefix + "-radio2"
@@ -28,7 +33,7 @@ export function EpdsQuestion({ question, resultsBoard, setEnabledNextButton }) {
   }
 
   return (
-    <div className="epds-question">
+    <div className="epds-question" dir={isRTL ? "rtl" : "ltr"}>
       <form className="fr-form-group">
         <fieldset className="fr-fieldset">
           <legend id="radio-legend">
@@ -36,7 +41,8 @@ export function EpdsQuestion({ question, resultsBoard, setEnabledNextButton }) {
             <div className="question">{question.libelle}</div>
           </legend>
           <div
-            className="fr-fieldset__content epds-response"
+            className={`fr-fieldset__content epds-response ${isRTL ? "input-revert" : ""
+              }`}
             onChange={handleChange}
           >
             <div className="fr-radio-group">
