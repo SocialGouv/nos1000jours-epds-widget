@@ -35,6 +35,19 @@ export default function Home() {
     localesQuery()
   }, [])
 
+  useEffect(() => {
+    if (localeSelected) {
+      localStorage.setItem(STORAGE_LOCALE, JSON.stringify(localeSelected))
+
+      const translationQuery = async () => {
+        await getLabelsTranslationsQuery({
+          variables: { locale: localeSelected.identifiant },
+        })
+      }
+      translationQuery()
+    }
+  }, [localeSelected])
+
   const startSurvey = () => {
     localStorage.setItem(STORAGE_SOURCE, source)
     trackerClick("Home", EVENT_CLICK, "Commencer le test")
@@ -70,14 +83,6 @@ export default function Home() {
         (element) => element.identifiant === DEFAULT_LOCAL
       )
       setLocaleSelected(locale)
-      localStorage.setItem(STORAGE_LOCALE, JSON.stringify(locale))
-
-      const translationQuery = async () => {
-        await getLabelsTranslationsQuery({
-          variables: { locale: locale.identifiant },
-        })
-      }
-      translationQuery()
     },
     onError: (err) => {
       console.warn(err)
@@ -87,7 +92,10 @@ export default function Home() {
   return (
     <div className="container">
       <div className="main">
-        <WidgetHeader locale={localeSelected} />
+        <WidgetHeader
+          locale={localeSelected}
+          setLocaleSelected={setLocaleSelected}
+        />
         <img
           src="/img/logo-1000j.svg"
           alt="Logo 1000 premiers jours"

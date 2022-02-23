@@ -4,10 +4,6 @@
 .be-contacted-button-group-checkbox {
   margin-bottom: $mmd;
 
-  .btn-check:checked + .btn-primary {
-    background-color: var(--primaryBlueDark) !important;
-  }
-
   label:hover {
     background-color: transparent;
     color: var(--primaryBlueDark);

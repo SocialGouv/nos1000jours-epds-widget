@@ -1,7 +1,18 @@
+import { useState } from "react"
 import { Col } from "react-bootstrap"
 import { API_URL } from "../constants/constants"
+import { ChooseEpdsLocale } from "./ChooseEpdsLocale"
 
-export function WidgetHeader({ title, locale }) {
+/**
+ * 
+ * @param {Sting} title (Not required)
+ * @param {*} locale (Not required)
+ * @param {*} setLocaleSelected (Not required) doit être renseigné pour permettre l'ouverture de la modal
+ * @returns Header
+ */
+export function WidgetHeader({ title, locale, setLocaleSelected }) {
+  const [showSelectLocal, setShowSelectLocal] = useState(false)
+
   return (
     <Col className="widget-header">
       {title ? (
@@ -23,8 +34,16 @@ export function WidgetHeader({ title, locale }) {
           src={`${API_URL}${locale.drapeau.url}`}
           height={40}
           width={40}
+          style={{ cursor: setLocaleSelected ? "pointer" : "auto" }}
+          onClick={() => setShowSelectLocal(true)}
         />
       ) : null}
+
+      <ChooseEpdsLocale
+        show={showSelectLocal}
+        setShow={setShowSelectLocal}
+        setLocaleSelected={setLocaleSelected}
+      />
     </Col>
   )
 }
