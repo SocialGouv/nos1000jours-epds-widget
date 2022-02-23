@@ -10,11 +10,15 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
-import { getInLocalStorage } from "../src/utils/main.utils"
+import {
+  getInLocalStorage,
+  getLocaleInLocalStorage,
+} from "../src/utils/main.utils"
 
 export default function Results() {
   const router = useRouter()
 
+  const localeSelected = getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
     getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
   )
@@ -33,7 +37,7 @@ export default function Results() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title={Labels.titleDPP} />
+      <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
       <Row>
         <p>

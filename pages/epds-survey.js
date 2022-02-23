@@ -1,12 +1,7 @@
-import { useLazyQuery, useMutation } from "@apollo/client"
+import { gql, useLazyQuery, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import {
-  client,
-  EPDS_SAVE_RESPONSE,
-  GET_LOCALES,
-  QUESTIONNAIRE_EPDS_TRADUCTION,
-} from "../apollo-client"
+import { client } from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
 import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
 import { } from "@dataesr/react-dsfr"
@@ -28,12 +23,15 @@ import {
 } from "../src/utils/score-level.utils"
 import { Labels } from "../src/constants/specificLabels"
 import { WidgetHeader } from "../src/components/WidgetHeader"
+import { getLocaleInLocalStorage } from "../src/utils/main.utils"
+import {
+  EPDS_SAVE_RESPONSES_FOR_WIDGET,
+  EPDS_SURVEY_TRANSLATION_BY_LOCALE,
+} from "@socialgouv/nos1000jours-lib"
 
 export default function EpdsSurvey() {
   const router = useRouter()
   const ref = useRef(null)
-
-  const DEFAULT_LOCAL = "FR"
 
   const [questionsEpds, setQuestionsEpds] = useState()
   const [resultsBoard, setResultsBoard] = useState()
@@ -44,20 +42,23 @@ export default function EpdsSurvey() {
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
 
-  const [getEpdsSurveyQuery] = useLazyQuery(QUESTIONNAIRE_EPDS_TRADUCTION, {
-    client: client,
-    onCompleted: (data) => {
-      const dataSorted = checkQuestionsOrder([
-        ...data.questionnaireEpdsTraductions,
-      ])
-      setQuestionsEpds(dataSorted)
-    },
-    onError: (err) => {
-      console.warn(err)
-    },
-  })
+  const [getEpdsSurveyQuery] = useLazyQuery(
+    gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
+    {
+      client: client,
+      onCompleted: (data) => {
+        const dataSorted = checkQuestionsOrder([
+          ...data.questionnaireEpdsTraductions,
+        ])
+        setQuestionsEpds(dataSorted)
+      },
+      onError: (err) => {
+        console.warn(err)
+      },
+    }
+  )
 
-  const [saveResponseQuery] = useMutation(EPDS_SAVE_RESPONSE, {
+  const [saveResponseQuery] = useMutation(gql(EPDS_SAVE_RESPONSES_FOR_WIDGET), {
     client: client,
     onError: (err) => {
       console.warn(err)
@@ -83,19 +84,6 @@ export default function EpdsSurvey() {
     },
   })
 
-  const [getLocalesInDatabase] = useLazyQuery(GET_LOCALES, {
-    client: client,
-    onCompleted: (data) => {
-      const locale = data.locales.find(
-        (element) => element.identifiant === DEFAULT_LOCAL
-      )
-      setLocaleSelected(locale)
-    },
-    onError: (err) => {
-      console.warn(err)
-    },
-  })
-
   const goToResults = async (event) => {
     router.push({
       pathname: "/results",
@@ -103,11 +91,7 @@ export default function EpdsSurvey() {
   }
 
   useEffect(() => {
-    const localesQuery = async () => {
-      await getLocalesInDatabase()
-    }
-
-    localesQuery()
+    setLocaleSelected(getLocaleInLocalStorage())
   }, [])
 
   useEffect(() => {
@@ -188,10 +172,7 @@ export default function EpdsSurvey() {
           style={{ display: showPrevious ? "block" : "none" }}
           disabled={isLoading}
         >
-          <img
-            alt=""
-            src="/img/icone-precedent.svg"
-          />
+          <img alt="Flèche précédente" src="/img/icone-precedent.svg" />
           Précédent
         </button>
 
@@ -201,10 +182,7 @@ export default function EpdsSurvey() {
           disabled={!isEnabledNextButton}
           style={{ display: showNext ? "block" : "none" }}
         >
-          <img
-            alt=""
-            src="/img/icone-suivant.svg"
-          />
+          <img alt="Flèche suivante" src="/img/icone-suivant.svg" />
           Suivant
         </button>
 
@@ -220,10 +198,7 @@ export default function EpdsSurvey() {
           >
             Terminer
           </button>
-          <Spinner
-            animation="border"
-            hidden={!isLoading}
-          />
+          <Spinner animation="border" hidden={!isLoading} />
         </div>
       </div>
     )
@@ -231,7 +206,7 @@ export default function EpdsSurvey() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title={Labels.titleDPP} />
+      <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <div>{Labels.surveyExplanations}</div>
       <div className="epds-survey">
         {questionsEpds ? (

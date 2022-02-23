@@ -1,3 +1,4 @@
+import { STORAGE_LOCALE } from "../constants/constants"
 import { Labels } from "../constants/specificLabels"
 
 /**
@@ -41,5 +42,16 @@ export function getInLocalStorage(key) {
   if (typeof window !== "undefined") return localStorage.getItem(key)
 }
 
+export function getLocaleInLocalStorage() {
+  const storageLocale = getInLocalStorage(STORAGE_LOCALE)
+  if (storageLocale) return JSON.parse(storageLocale)
+}
+
 export const stringIsNotNullNorEmpty = (str) =>
   str !== null && str !== undefined && str.length > 0
+
+export function convertArrayLabelsToObject(data) {
+  const labels = {}
+  data?.forEach((item) => (labels[item.label.toLowerCase()] = item.texte))
+  return labels
+}

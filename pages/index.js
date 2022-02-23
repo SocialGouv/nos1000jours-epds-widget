@@ -1,20 +1,38 @@
-import styles from "../styles/Home.module.css"
 import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
-import Head from "next/head"
 import { useEffect, useState } from "react"
-import { STORAGE_SOURCE } from "../src/constants/constants"
+import {
+  DEFAULT_LOCAL,
+  STORAGE_LOCALE,
+  STORAGE_SOURCE,
+} from "../src/constants/constants"
 import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
+import { gql, useLazyQuery } from "@apollo/client"
+import { client } from "../apollo-client"
+import { WidgetHeader } from "../src/components/WidgetHeader"
+import { convertArrayLabelsToObject } from "../src/utils/main.utils"
+import {
+  EPDS_LABELS_TRANSLATION_BY_LOCALE,
+  GET_LOCALES,
+} from "@socialgouv/nos1000jours-lib"
 
 export default function Home() {
   const router = useRouter()
+
   const [source, setSource] = useState()
+  const [localeSelected, setLocaleSelected] = useState()
+  const [labelsTranslated, setLabelsTranslated] = useState()
 
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
     setSource(params.source)
+
+    const localesQuery = async () => {
+      await getLocalesInDatabase()
+    }
+    localesQuery()
   }, [])
 
   const startSurvey = () => {
@@ -30,25 +48,53 @@ export default function Home() {
     })
   }
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Questioinnaire EPDS" />
-        <link rel="icon" href="/img/logo-1000j.svg" />
-      </Head>
+  const [getLabelsTranslationsQuery] = useLazyQuery(
+    gql(EPDS_LABELS_TRANSLATION_BY_LOCALE),
+    {
+      client: client,
+      onCompleted: (data) => {
+        const labelsData = data.labelsEpdsTraductions[0]?.labels
+        const labels = convertArrayLabelsToObject(labelsData)
+        setLabelsTranslated(labels)
+      },
+      onError: (err) => {
+        console.warn(err)
+      },
+    }
+  )
 
-      <div className={styles.main}>
+  const [getLocalesInDatabase] = useLazyQuery(gql(GET_LOCALES), {
+    client: client,
+    onCompleted: (data) => {
+      const locale = data.locales.find(
+        (element) => element.identifiant === DEFAULT_LOCAL
+      )
+      setLocaleSelected(locale)
+      localStorage.setItem(STORAGE_LOCALE, JSON.stringify(locale))
+
+      const translationQuery = async () => {
+        await getLabelsTranslationsQuery({
+          variables: { locale: locale.identifiant },
+        })
+      }
+      translationQuery()
+    },
+    onError: (err) => {
+      console.warn(err)
+    },
+  })
+
+  return (
+    <div className="container">
+      <div className="main">
+        <WidgetHeader locale={localeSelected} />
         <img
           src="/img/logo-1000j.svg"
-          height={130}
-          style={{ margin: 15 }}
           alt="Logo 1000 premiers jours"
+          height={130}
+          width={130}
         />
-        <Row className="slogan">
-          Futurs parents, parents, évaluez votre bien être émotionnel en
-          quelques minutes
-        </Row>
+        <Row className="slogan">{getSlogan(source, labelsTranslated)}</Row>
         <br />
         <button
           className="fr-btn fr-btn--lg"
@@ -61,4 +107,18 @@ export default function Home() {
       </div>
     </div>
   )
+}
+
+export const getSlogan = (source, labels) => {
+  if (labels) {
+    if (source) {
+      const sloganBySource = `slogan_${source}`
+      if (labels[sloganBySource]) return labels[sloganBySource]
+    }
+
+    const sloganByLocale = labels.slogan
+    if (sloganByLocale) return sloganByLocale
+  }
+
+  return "Futurs parents, parents, évaluez votre bien être émotionnel en quelques minutes"
 }

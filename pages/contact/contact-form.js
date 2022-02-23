@@ -11,6 +11,7 @@ import {
 } from "../../src/constants/constants"
 import {
   getInLocalStorage,
+  getLocaleInLocalStorage,
   stringIsNotNullNorEmpty,
 } from "../../src/utils/main.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
@@ -34,6 +35,7 @@ export default function ContactForm() {
   const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
   const contactHours = getInLocalStorage(STORAGE_CONTACT_HOURS)
   const websiteSource = getInLocalStorage(STORAGE_SOURCE)
+  const localeSelected = getLocaleInLocalStorage()
 
   const requiredField = <p className="required-field">*Champs obligatoire</p>
 
@@ -201,7 +203,7 @@ export default function ContactForm() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title="être contacté(e)" />
+      <WidgetHeader title="être contacté(e)" locale={localeSelected} />
 
       <form className="contact-form" onSubmit={sendForm}>
         <div className={`form-group fr-input-group`}>
