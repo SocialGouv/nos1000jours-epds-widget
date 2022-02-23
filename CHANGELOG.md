@@ -1,3 +1,16 @@
+# [1.10.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.9.2...v1.10.0) (2022-02-23)
+
+
+### Features
+
+* explications ([180ff5a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/180ff5a95c97b23ee91b506ef0747074a20a9e67))
+* fix balise img ([aac7afc](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/aac7afc0d86fb2508ebd5f5f506a84a5ceab13f0))
+* header avec la langue sélectionné ([fd1ba48](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/fd1ba483b11fae5212c680108dc17a063e3d5881))
+* maj readme ([5c91296](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5c912969e279fc19fa1c8e1ce1e2c99c4b6bc9bd))
+* récupération du slodans dans le BO ([4991300](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4991300a9418da646d194a1f13c60b8bcf44e3ac))
+* slogan en fonciton de la source web ([02b1fa2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/02b1fa270bcdd4f9d38055397ca98ccecba2d93a))
+* utilisation de la lib pour les appel BO ([79f0505](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/79f05052b0866d5cd0fd5ba9da39275df30a5ac2))
+
 ## [1.9.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.9.1...v1.9.2) (2022-02-22)
 
 
