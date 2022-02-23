@@ -23,7 +23,10 @@ import {
 } from "../src/utils/score-level.utils"
 import { Labels } from "../src/constants/specificLabels"
 import { WidgetHeader } from "../src/components/WidgetHeader"
-import { getLocaleInLocalStorage } from "../src/utils/main.utils"
+import {
+  getLabelsInLocalStorage,
+  getLocaleInLocalStorage,
+} from "../src/utils/main.utils"
 import {
   EPDS_SAVE_RESPONSES_FOR_WIDGET,
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,
@@ -204,10 +207,15 @@ export default function EpdsSurvey() {
     )
   }
 
+  const getExplanations = () => {
+    const labels = getLabelsInLocalStorage()
+    return labels?.consigne ? labels.consigne : Labels.surveyExplanations
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      <div>{Labels.surveyExplanations}</div>
+      <div>{getExplanations()}</div>
       <div className="epds-survey">
         {questionsEpds ? (
           <>

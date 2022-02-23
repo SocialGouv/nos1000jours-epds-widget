@@ -3,6 +3,7 @@ import { } from "@dataesr/react-dsfr"
 import { useEffect, useState } from "react"
 import {
   DEFAULT_LOCAL,
+  STORAGE_LABELS,
   STORAGE_LOCALE,
   STORAGE_SOURCE,
 } from "../src/constants/constants"
@@ -69,6 +70,7 @@ export default function Home() {
         const labelsData = data.labelsEpdsTraductions[0]?.labels
         const labels = convertArrayLabelsToObject(labelsData)
         setLabelsTranslated(labels)
+        localStorage.setItem(STORAGE_LABELS, JSON.stringify(labels))
       },
       onError: (err) => {
         console.warn(err)

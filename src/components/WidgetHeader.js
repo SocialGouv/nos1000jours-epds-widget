@@ -35,7 +35,7 @@ export function WidgetHeader({ title, locale, setLocaleSelected }) {
           height={40}
           width={40}
           style={{ cursor: setLocaleSelected ? "pointer" : "auto" }}
-          onClick={() => setShowSelectLocal(true)}
+          onClick={() => (setLocaleSelected ? setShowSelectLocal(true) : null)}
         />
       ) : null}
 
