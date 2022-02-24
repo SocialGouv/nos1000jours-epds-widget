@@ -1,4 +1,4 @@
-import { getSlogan } from "../pages"
+import { getSlogan, getStartButtonText } from "../pages"
 
 describe("Page d'accueil", () => {
   describe("Affichage du slogan", () => {
@@ -47,6 +47,25 @@ describe("Page d'accueil", () => {
       expect(getSlogan(source, labels)).toBe(
         "Slogan du widget avec la source : test"
       )
+    })
+  })
+
+  describe("Texte du boutton COMMENCER LE TEST", () => {
+    const defaultText = "COMMENCER LE TEST"
+
+    test("La traduction est vide => texte par défaut", () => {
+      const labels = undefined
+      expect(getStartButtonText(labels)).toBe(defaultText)
+    })
+    test("La traduction ne contient pas le champs bouton_commencer => texte par défaut", () => {
+      const labels = {}
+      expect(getStartButtonText(labels)).toBe(defaultText)
+    })
+    test("La traduction contient le champs bouton_commencer => texte", () => {
+      const labels = {
+        bouton_commencer: "Cliquer ici",
+      }
+      expect(getStartButtonText(labels)).toBe("Cliquer ici")
     })
   })
 })

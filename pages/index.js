@@ -112,7 +112,7 @@ export default function Home() {
           disabled={!source}
           style={{ marginBottom: "5%" }}
         >
-          COMMENCER LE TEST
+          {getStartButtonText(labelsTranslated)}
         </button>
       </div>
     </div>
@@ -132,3 +132,6 @@ export const getSlogan = (source, labels) => {
 
   return "Futurs parents, parents, évaluez votre bien être émotionnel en quelques minutes"
 }
+
+export const getStartButtonText = (labels) =>
+  labels?.bouton_commencer ?? "COMMENCER LE TEST"

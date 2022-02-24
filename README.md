@@ -34,3 +34,4 @@ Certain labels ont besoin d'être traduit ou récupéré dans le BO. Dans le cod
 
 Voici la liste :
 - `slogan` ou `slogan_monsiteweb`: phrase d'accroche sur le 1er écran 
+- `bouton_commencer` : texte du bouton *Commencer* sur le 1er écran 
