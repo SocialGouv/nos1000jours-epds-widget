@@ -32,43 +32,36 @@ export function EpdsQuestion({
     setEnabledNextButton(true)
   }
 
+  const itemRadio = (radioId, libelle) => (
+    <div className="fr-radio-group">
+      <input type="radio" id={radioId} name="radio" />
+      <label
+        className={`fr-label ${isRTL ? "font-size-rtl" : "font-size-label"}`}
+        htmlFor={radioId}
+      >
+        {libelle}
+      </label>
+    </div>
+  )
+
   return (
     <div className="epds-question" dir={isRTL ? "rtl" : "ltr"}>
       <form className="fr-form-group">
         <fieldset className="fr-fieldset">
           <legend id="radio-legend">
             <div className="question-number">{question.ordre}</div>
-            <div className="question">{question.libelle}</div>
+            <div className={`question ${isRTL ? "font-size-rtl" : ""}`}>
+              {question.libelle}
+            </div>
           </legend>
           <div
-            className={`fr-fieldset__content epds-response ${isRTL ? "input-revert" : ""
-              }`}
+            className={`fr-fieldset__content epds-response ${isRTL ? "input-revert" : ""}`}
             onChange={handleChange}
           >
-            <div className="fr-radio-group">
-              <input type="radio" id={radio1Id} name="radio" />
-              <label className="fr-label" htmlFor={radio1Id}>
-                {question.reponse_1_libelle}
-              </label>
-            </div>
-            <div className="fr-radio-group">
-              <input type="radio" id={radio2Id} name="radio" />
-              <label className="fr-label" htmlFor={radio2Id}>
-                {question.reponse_2_libelle}
-              </label>
-            </div>
-            <div className="fr-radio-group">
-              <input type="radio" id={radio3Id} name="radio" />
-              <label className="fr-label" htmlFor={radio3Id}>
-                {question.reponse_3_libelle}
-              </label>
-            </div>
-            <div className="fr-radio-group">
-              <input type="radio" id={radio4Id} name="radio" />
-              <label className="fr-label" htmlFor={radio4Id}>
-                {question.reponse_4_libelle}
-              </label>
-            </div>
+            {itemRadio(radio1Id, question.reponse_1_libelle)}
+            {itemRadio(radio2Id, question.reponse_2_libelle)}
+            {itemRadio(radio3Id, question.reponse_3_libelle)}
+            {itemRadio(radio4Id, question.reponse_4_libelle)}
           </div>
         </fieldset>
       </form>

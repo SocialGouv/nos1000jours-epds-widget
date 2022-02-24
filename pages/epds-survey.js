@@ -219,7 +219,9 @@ export default function EpdsSurvey() {
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      <div dir={isRTL ? "rtl" : "ltr"}>{getExplanations()}</div>
+      <div dir={isRTL ? "rtl" : "ltr"} className={isRTL ? "font-size-rtl" : ""}>
+        {getExplanations()}
+      </div>
       <div className="epds-survey">
         {questionsEpds ? (
           <>

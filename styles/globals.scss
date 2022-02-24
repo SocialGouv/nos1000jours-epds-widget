@@ -132,6 +132,10 @@ a {
   line-height: 1.5em;
 }
 
+.font-size-rtl {
+  font-size: $md !important;
+}
+
 .widget-header{
   display: flex;
   align-items: center;
