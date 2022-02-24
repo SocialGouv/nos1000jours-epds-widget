@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.10.0...v1.10.1) (2022-02-24)
+
+
+### Bug Fixes
+
+* **ci:** autodevops-helm ([1c225a8](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1c225a8a83d2711fb1efd98281d91dd45a549e54))
+
 # [1.10.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.9.2...v1.10.0) (2022-02-23)
 
 
