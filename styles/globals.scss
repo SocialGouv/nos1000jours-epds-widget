@@ -144,9 +144,16 @@ a {
   justify-content: flex-end;
   flex: initial;
 
-  img {
+  .header-logo {
     margin-inline: $mmd;
-    height: 40px;
+  }
+
+  .header-flag {
+    display: flex;
+
+    img {
+      margin-inline: $xxxxs;
+    }
   }
   
   h5 {
@@ -155,11 +162,6 @@ a {
     text-align: center;
     margin-block: 0;
     flex-grow: 1;
-  }
-
-  .header-flag {
-    border-radius: 50% !important;
-    border: 1px solid var(--primaryBlueDark) !important;
   }
 }
 

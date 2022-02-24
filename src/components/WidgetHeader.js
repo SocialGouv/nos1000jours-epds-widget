@@ -18,6 +18,7 @@ export function WidgetHeader({ title, locale, setLocaleSelected }) {
       {title ? (
         <>
           <img
+            className="header-logo"
             src="/img/logo-1000j.svg"
             alt="Logo 1000 premiers jours"
             height={40}
@@ -28,15 +29,19 @@ export function WidgetHeader({ title, locale, setLocaleSelected }) {
       ) : null}
 
       {locale?.drapeau?.url ? (
-        <img
+        <div
           className="header-flag"
-          alt="Drapeau de la langue"
-          src={`${API_URL}${locale.drapeau.url}`}
-          height={40}
-          width={40}
           style={{ cursor: setLocaleSelected ? "pointer" : "auto" }}
           onClick={() => (setLocaleSelected ? setShowSelectLocal(true) : null)}
-        />
+        >
+          <img
+            alt="Drapeau de la langue"
+            src={`${API_URL}${locale.drapeau.url}`}
+            height={30}
+            width={30}
+          />
+          {locale.libelle_langue}
+        </div>
       ) : null}
 
       <ChooseEpdsLocale
