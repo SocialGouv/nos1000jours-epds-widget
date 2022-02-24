@@ -48,6 +48,17 @@ describe("Page d'accueil", () => {
         "Slogan du widget avec la source : test"
       )
     })
+    test("Slogan pour une langue donnée et une source comprenant des majuscules => texte de la clé slogan_masource", () => {
+      const source = "MonSiteWeb"
+      const labels = {
+        slogan: "Slogan de la langue par défaut",
+        slogan_monsiteweb: "Slogan du widget avec la source : MonSiteWeb",
+      }
+
+      expect(getSlogan(source, labels)).toBe(
+        "Slogan du widget avec la source : MonSiteWeb"
+      )
+    })
   })
 
   describe("Texte du boutton COMMENCER LE TEST", () => {

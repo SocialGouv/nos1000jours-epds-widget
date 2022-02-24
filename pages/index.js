@@ -122,7 +122,7 @@ export default function Home() {
 export const getSlogan = (source, labels) => {
   if (labels) {
     if (source) {
-      const sloganBySource = `slogan_${source}`
+      const sloganBySource = `slogan_${source.toLowerCase()}`
       if (labels[sloganBySource]) return labels[sloganBySource]
     }
 
