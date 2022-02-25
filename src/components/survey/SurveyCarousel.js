@@ -7,6 +7,7 @@ export function SurveyCarousel({
   refForOnClick,
   resultsBoard,
   setEnabledNextButton,
+  isRTL = false,
 }) {
   return (
     <Carousel
@@ -24,6 +25,7 @@ export function SurveyCarousel({
             question={question}
             resultsBoard={resultsBoard}
             setEnabledNextButton={setEnabledNextButton}
+            isRTL={isRTL}
           />
         </Carousel.Item>
       ))}

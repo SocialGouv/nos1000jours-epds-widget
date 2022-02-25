@@ -3,6 +3,7 @@ import { } from "@dataesr/react-dsfr"
 import { useEffect, useState } from "react"
 import {
   DEFAULT_LOCAL,
+  STORAGE_LABELS,
   STORAGE_LOCALE,
   STORAGE_SOURCE,
 } from "../src/constants/constants"
@@ -35,6 +36,19 @@ export default function Home() {
     localesQuery()
   }, [])
 
+  useEffect(() => {
+    if (localeSelected) {
+      localStorage.setItem(STORAGE_LOCALE, JSON.stringify(localeSelected))
+
+      const translationQuery = async () => {
+        await getLabelsTranslationsQuery({
+          variables: { locale: localeSelected.identifiant },
+        })
+      }
+      translationQuery()
+    }
+  }, [localeSelected])
+
   const startSurvey = () => {
     localStorage.setItem(STORAGE_SOURCE, source)
     trackerClick("Home", EVENT_CLICK, "Commencer le test")
@@ -56,6 +70,7 @@ export default function Home() {
         const labelsData = data.labelsEpdsTraductions[0]?.labels
         const labels = convertArrayLabelsToObject(labelsData)
         setLabelsTranslated(labels)
+        localStorage.setItem(STORAGE_LABELS, JSON.stringify(labels))
       },
       onError: (err) => {
         console.warn(err)
@@ -70,14 +85,6 @@ export default function Home() {
         (element) => element.identifiant === DEFAULT_LOCAL
       )
       setLocaleSelected(locale)
-      localStorage.setItem(STORAGE_LOCALE, JSON.stringify(locale))
-
-      const translationQuery = async () => {
-        await getLabelsTranslationsQuery({
-          variables: { locale: locale.identifiant },
-        })
-      }
-      translationQuery()
     },
     onError: (err) => {
       console.warn(err)
@@ -87,7 +94,10 @@ export default function Home() {
   return (
     <div className="container">
       <div className="main">
-        <WidgetHeader locale={localeSelected} />
+        <WidgetHeader
+          locale={localeSelected}
+          setLocaleSelected={setLocaleSelected}
+        />
         <img
           src="/img/logo-1000j.svg"
           alt="Logo 1000 premiers jours"
@@ -102,7 +112,7 @@ export default function Home() {
           disabled={!source}
           style={{ marginBottom: "5%" }}
         >
-          COMMENCER LE TEST
+          {getStartButtonText(labelsTranslated)}
         </button>
       </div>
     </div>
@@ -112,7 +122,7 @@ export default function Home() {
 export const getSlogan = (source, labels) => {
   if (labels) {
     if (source) {
-      const sloganBySource = `slogan_${source}`
+      const sloganBySource = `slogan_${source.toLowerCase()}`
       if (labels[sloganBySource]) return labels[sloganBySource]
     }
 
@@ -122,3 +132,6 @@ export const getSlogan = (source, labels) => {
 
   return "Futurs parents, parents, évaluez votre bien être émotionnel en quelques minutes"
 }
+
+export const getStartButtonText = (labels) =>
+  labels?.bouton_commencer ?? "COMMENCER LE TEST"

@@ -27,13 +27,18 @@
     font-weight: bold;
     padding-bottom: $xxxxxxs;
   }
+
+  .input-revert .fr-radio-group input[type=radio] + label:before {
+    position: revert !important;
+    margin: 0 0 0 20px !important;
+  }
 }
 
 .epds-response {
   margin-top: $xxxs;
   padding-left: $xl;
 
-  label {
+  .font-size-label {
     font-size: $xs !important;
   }
 }
