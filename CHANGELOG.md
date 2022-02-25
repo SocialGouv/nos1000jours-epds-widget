@@ -1,3 +1,21 @@
+# [1.11.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.10.1...v1.11.0) (2022-02-25)
+
+
+### Bug Fixes
+
+* slogan avec source en majuscule ([d4986f8](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d4986f83d1d61e8eed497c0cd523d7b2e930876c))
+
+
+### Features
+
+* **traduction:** bouton commencer ([981ddb3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/981ddb3ae9fb985da056676fb841ef46de1a1309))
+* **traduction:** changer la langue via le header ([59b218a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/59b218ad211e0e2a9322dc55c9c66a3de3ddc3bc))
+* **traduction:** drapeau du header ([27c8874](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/27c88743508ed6a45585a1df88bd414a8921e2a7))
+* **traduction:** labels ([f2224cd](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f2224cd8bbd8d0dce0d032d9bef565eff7331a8b))
+* **traduction:** lecture RTL des questions ([6a90d31](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/6a90d317c83ab0e18accf4a9d3dad9c30db23cf0))
+* **traduction:** taille de la font pour langue AR ([1562064](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1562064ef839a798e441dbbe118e9b568d1d73d9))
+* **traduction:** traduire la consigne ([343e535](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/343e535e49f69cd062482b0f71bc3de5dfb0e087))
+
 ## [1.10.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.10.0...v1.10.1) (2022-02-24)
 
 
