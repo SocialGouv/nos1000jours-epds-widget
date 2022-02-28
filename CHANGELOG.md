@@ -1,3 +1,18 @@
+# [1.12.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.11.0...v1.12.0) (2022-02-28)
+
+
+### Bug Fixes
+
+* label de la modal de chat et liste des langues ([142117b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/142117b2a9525c00c202f7454e9d6999e8695443))
+
+
+### Features
+
+* **matomo:** ajout contact chat ([587edcb](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/587edcb622f709b569c1f549c4d4b2b89be7ca1f))
+* **matomo:** confirmation d'envoi ([00494fc](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/00494fc435fea2c8ea4ecdab09476f57c0038edc))
+* **matomo:** css ([049b83a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/049b83af6a21e230658c58e9a51d5c66a754fee4))
+* **matomo:** refacto et ajout être contacté ([c1af004](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c1af0047fa6aae792198668781174cb98d86255d))
+
 # [1.11.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.10.1...v1.11.0) (2022-02-25)
 
 
