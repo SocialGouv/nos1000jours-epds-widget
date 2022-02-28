@@ -2,7 +2,7 @@ import React from "react"
 import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
-import { CATEG, trackerClick } from "../../utils/tracker.utils"
+import { CATEG, EVENT_CLICK, trackerClick } from "../../utils/tracker.utils"
 
 export function ContactMamanBlues({ scoreLevel }) {
   const router = useRouter()

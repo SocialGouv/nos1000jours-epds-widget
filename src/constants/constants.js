@@ -17,6 +17,7 @@ export const RequestContact = {
   type: {
     sms: "sms",
     email: "email",
+    chat: "chat",
   },
   hours: {
     morning: "matin",

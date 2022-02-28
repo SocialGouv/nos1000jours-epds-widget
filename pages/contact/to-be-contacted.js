@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react"
 import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import {
+  Button,
   ButtonGroup,
   Col,
+  Modal,
   Row,
   ToggleButton,
   ToggleButtonGroup,
@@ -16,6 +18,7 @@ import {
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
+import { CATEG, trackerClick } from "../../src/utils/tracker.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -25,6 +28,10 @@ export default function ToBeContacted() {
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
+
+  const [showModal, setShowModal] = useState(false)
+  const handleClose = () => setShowModal(false)
+  const handleShow = () => setShowModal(true)
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
@@ -37,7 +44,7 @@ export default function ToBeContacted() {
     router.back()
   }
 
-  const goToContactForm = async (event) => {
+  const goToContactForm = () => {
     localStorage.setItem(STORAGE_CONTACT_TYPE, itemValueType)
     localStorage.setItem(
       STORAGE_CONTACT_HOURS,
@@ -49,29 +56,56 @@ export default function ToBeContacted() {
     })
   }
 
+  const onValidate = async (event) => {
+    trackerClick(
+      CATEG.contact,
+      "Choix du type de prise de contact",
+      itemValueType
+    )
+
+    if (itemValueType == RequestContact.type.chat) {
+      handleShow()
+    } else goToContactForm()
+  }
+
+  const customToggleButton = (type) => (
+    <ToggleButton
+      className="contact-card"
+      key={type.id}
+      id={`radio-type-${type.id}`}
+      type="radio"
+      name="radio-type"
+      value={type.id}
+      checked={itemValueType === type.id}
+      onChange={(e) => setItemValueType(e.currentTarget.value)}
+    >
+      <Row className="card-center-img">
+        <img
+          alt=""
+          src={itemValueType === type.id ? type.iconSelected : type.icon}
+          height={50}
+        />
+        {type.text}
+      </Row>
+    </ToggleButton>
+  )
+
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
-      {defaultContactTypes.map((type, idx) => (
-        <ToggleButton
-          className="contact-card"
-          key={idx}
-          id={`radio-type-${idx}`}
-          type="radio"
-          name="radio-type"
-          value={type.id}
-          checked={itemValueType === type.id}
-          onChange={(e) => setItemValueType(e.currentTarget.value)}
-        >
-          <Row className="card-center-img">
-            <img
-              alt=""
-              src={itemValueType === type.id ? type.iconSelected : type.icon}
-              height={50}
-            />
-            {type.text}
-          </Row>
-        </ToggleButton>
-      ))}
+      <Col>
+        Maintenant par :
+        <Row>
+          {defaultContactTypes.byNow.map((type) => (
+            <Col key={type.id}>{customToggleButton(type)}</Col>
+          ))}
+        </Row>
+        Selon mes disponibilités, par :
+        <Row>
+          {defaultContactTypes.byAvailabilities.map((type) => (
+            <Col key={type.id}>{customToggleButton(type)}</Col>
+          ))}
+        </Row>
+      </Col>
     </ButtonGroup>
   )
 
@@ -121,7 +155,7 @@ export default function ToBeContacted() {
         vous proposons de choisir le créneau et le type de prise de contact qui
         vous conviennent.
       </p>
-      <div className="margin-bottom-8">Par quel moyen préférez-vous être contacté(e) ?</div>
+      <p>Par quel moyen préférez-vous être contacté(e) ?</p>
       <ButtonGroupType />
 
       {isSmsSelected ? (
@@ -140,31 +174,61 @@ export default function ToBeContacted() {
         <button
           className="fr-btn"
           disabled={!isValidButtonEnabled(itemValueType, contactHours)}
-          onClick={goToContactForm}
+          onClick={onValidate}
         >
           Valider
         </button>
       </Col>
+
+      <Modal
+        show={showModal}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Être contacté(e) par chat</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Merci pour l'intérêt que vous portez à ce type de contact, nous allons faire tout notre possible pour le mettre en place.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            J'ai compris
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </ContentLayout>
   )
 }
 
-const defaultContactTypes = [
-  {
-    icon: "../img/contact/sms.svg",
-    iconSelected: "../img/contact/sms-selected.svg",
-    id: RequestContact.type.sms,
-    isChecked: false,
-    text: "Par SMS",
-  },
-  {
-    icon: "../img/contact/email-contact.svg",
-    iconSelected: "../img/contact/email-contact-selected.svg",
-    id: RequestContact.type.email,
-    isChecked: false,
-    text: "Par email",
-  },
-]
+const defaultContactTypes = {
+  byNow: [
+    {
+      icon: "../img/contact/chat.svg",
+      iconSelected: "../img/contact/chat-selected.svg",
+      id: RequestContact.type.chat,
+      isChecked: false,
+      text: "Par chat",
+    },
+  ],
+  byAvailabilities: [
+    {
+      icon: "../img/contact/sms.svg",
+      iconSelected: "../img/contact/sms-selected.svg",
+      id: RequestContact.type.sms,
+      isChecked: false,
+      text: "Par SMS",
+    },
+    {
+      icon: "../img/contact/email-contact.svg",
+      iconSelected: "../img/contact/email-contact-selected.svg",
+      id: RequestContact.type.email,
+      isChecked: false,
+      text: "Par email",
+    },
+  ],
+}
 
 const defaultContactHours = [
   {
@@ -214,5 +278,6 @@ export const isValidButtonEnabled = (itemValueType, contactHours) => {
     contactHours?.find((item) => item.isChecked) != undefined
 
   return itemValueType == RequestContact.type.email ||
+    itemValueType == RequestContact.type.chat ||
     (itemValueType == RequestContact.type.sms && isHoursSelected)
 }
