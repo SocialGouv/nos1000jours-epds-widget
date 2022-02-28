@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import React from "react"
+import React, { useEffect } from "react"
 import { ContentLayout } from "../../src/components/Layout"
 import {
   RequestContact,
@@ -11,6 +11,11 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
 } from "../../src/utils/main.utils"
+import {
+  CATEG,
+  CONTACT_SENT,
+  trackerClick,
+} from "../../src/utils/tracker.utils"
 
 export default function ContactConfirmed() {
   const router = useRouter()
@@ -35,6 +40,24 @@ export default function ContactConfirmed() {
       pathname: "/results",
     })
   }
+
+  useEffect(() => {
+    let name
+    switch (contactType) {
+      case RequestContact.type.email:
+        name = CONTACT_SENT.mail
+        break
+      case RequestContact.type.sms:
+        name = CONTACT_SENT.sms
+        break
+    }
+
+    trackerClick(
+      CATEG.contact,
+      "Confirmation d'envoi de la demande de contact",
+      name
+    )
+  }, [])
 
   return (
     <ContentLayout>

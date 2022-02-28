@@ -14,7 +14,7 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
 } from "../src/constants/constants"
-import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
+import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { Spinner } from "react-bootstrap"
 import {
   scoreLevelForMacaron,
@@ -199,7 +199,7 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
-              trackerClick("Questionnaire", EVENT_CLICK, "Terminer")
+              trackerClick(CATEG.survey, EVENT_CLICK, "Terminer")
             }}
             disabled={!isEnabledNextButton || isLoading}
           >

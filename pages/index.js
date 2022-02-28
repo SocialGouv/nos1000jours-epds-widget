@@ -7,7 +7,7 @@ import {
   STORAGE_LOCALE,
   STORAGE_SOURCE,
 } from "../src/constants/constants"
-import { EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
+import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
 import { client } from "../apollo-client"
@@ -51,7 +51,7 @@ export default function Home() {
 
   const startSurvey = () => {
     localStorage.setItem(STORAGE_SOURCE, source)
-    trackerClick("Home", EVENT_CLICK, "Commencer le test")
+    trackerClick(CATEG.Home, EVENT_CLICK, "Commencer le test")
 
     goToEpdsSurvey()
   }

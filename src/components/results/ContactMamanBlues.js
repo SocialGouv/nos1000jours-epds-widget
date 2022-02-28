@@ -2,6 +2,7 @@ import React from "react"
 import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
+import { CATEG, EVENT_CLICK, trackerClick } from "../../utils/tracker.utils"
 
 export function ContactMamanBlues({ scoreLevel }) {
   const router = useRouter()
@@ -19,6 +20,12 @@ export function ContactMamanBlues({ scoreLevel }) {
   }
 
   const goToBeContacted = async (event) => {
+    trackerClick(
+      CATEG.contact,
+      `Macaron d'Elise ${EVENT_CLICK}`,
+      "Être contacté(e)"
+    )
+
     router.push({
       pathname: "/contact/to-be-contacted",
     })
