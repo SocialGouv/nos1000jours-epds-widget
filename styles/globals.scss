@@ -120,6 +120,7 @@ a {
   margin-bottom: $xxxxs; 
 }
 
+.modal-content .btn-primary,
 .btn-check:checked + .btn-primary {
   background-color: var(--primaryBlueDark) !important;
 }
