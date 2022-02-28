@@ -120,7 +120,7 @@ a {
   margin-bottom: $xxxxs; 
 }
 
-.modal-content .btn-primary,
+.modal-footer .btn-primary,
 .btn-check:checked + .btn-primary {
   background-color: var(--primaryBlueDark) !important;
 }
@@ -190,5 +190,11 @@ a {
 
   .btn-primary:hover {
     background-color: var(--primaryBlueDark) !important;
+  }
+}
+
+@media screen and (max-width: 991px){
+  .modal-choose-locale .col-md-6 {
+    width: 100%;
   }
 }

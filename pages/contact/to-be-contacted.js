@@ -190,7 +190,7 @@ export default function ToBeContacted() {
           <Modal.Title>Être contacté(e) par chat</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Merci pour l'intérêt que vous portez à ce type de contact, nous allons faire tout notre possible pour le mettre en place.
+          Merci pour l'intérêt que vous portez à ce type de prise de contact, cette fonctionnalité sera bientôt disponible.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
