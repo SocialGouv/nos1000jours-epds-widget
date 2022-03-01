@@ -17,6 +17,7 @@ import {
   EPDS_LABELS_TRANSLATION_BY_LOCALE,
   GET_LOCALES,
 } from "@socialgouv/nos1000jours-lib"
+import { LocaleButton } from "../src/components/LocaleButton"
 
 export default function Home() {
   const router = useRouter()
@@ -114,6 +115,10 @@ export default function Home() {
         >
           {getStartButtonText(labelsTranslated)}
         </button>
+        <LocaleButton
+          locale={localeSelected}
+          setLocaleSelected={setLocaleSelected}
+        />
       </div>
     </div>
   )
@@ -134,4 +139,4 @@ export const getSlogan = (source, labels) => {
 }
 
 export const getStartButtonText = (labels) =>
-  labels?.bouton_commencer ?? "COMMENCER LE TEST"
+  labels?.bouton_commencer ?? "Commencer"
