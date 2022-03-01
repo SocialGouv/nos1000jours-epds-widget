@@ -99,6 +99,7 @@ export default function ToBeContacted() {
             <Col key={type.id}>{customToggleButton(type)}</Col>
           ))}
         </Row>
+        <br />
         Selon mes disponibilités, par :
         <Row>
           {defaultContactTypes.byAvailabilities.map((type) => (
