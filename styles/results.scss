@@ -22,7 +22,7 @@
   }
 
   .content-img-descr {
-    display: inline-flex;
+    display: contents;
     margin-block: $xxxs;
   }
 
@@ -71,6 +71,7 @@
   .mamanblues-description {
     align-self: center; 
     color: black;
+    margin-block: $xxs;
   }
 }
 
