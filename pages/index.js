@@ -11,7 +11,6 @@ import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
 import { client } from "../apollo-client"
-import { WidgetHeader } from "../src/components/WidgetHeader"
 import { convertArrayLabelsToObject } from "../src/utils/main.utils"
 import {
   EPDS_LABELS_TRANSLATION_BY_LOCALE,
@@ -95,10 +94,6 @@ export default function Home() {
   return (
     <div className="container">
       <div className="main">
-        <WidgetHeader
-          locale={localeSelected}
-          setLocaleSelected={setLocaleSelected}
-        />
         <img
           src="/img/logo-1000j.svg"
           alt="Logo 1000 premiers jours"
@@ -118,6 +113,7 @@ export default function Home() {
         <LocaleButton
           locale={localeSelected}
           setLocaleSelected={setLocaleSelected}
+          hasText={true}
         />
       </div>
     </div>

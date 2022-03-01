@@ -138,21 +138,28 @@ a {
 }
 
 .widget-header{
-  display: flex;
   align-items: center;
   margin-block: $xl;
   width: 100%;
   justify-content: flex-end;
   flex: initial;
-
+  
   .header-logo {
     margin-inline: $mmd;
+  }
+
+  .header-block-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primaryBlueDark);
+    padding-bottom: $xxs;
+    margin-bottom: $xxs;
   }
   
   h5 {
     color: var(--primaryBlueDark);
     text-transform: uppercase;
-    text-align: center;
     margin-block: 0;
     flex-grow: 1;
   }
@@ -160,7 +167,7 @@ a {
 
 .modal-choose-locale {
   .header-choose-modal {
-    color: var(--primary);
+    color: var(--primaryBlueDark);
     border-bottom: none;
     align-self: center;
     font-size: 24px;
