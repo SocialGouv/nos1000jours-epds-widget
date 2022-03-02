@@ -14,6 +14,7 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
+import { Resources } from "../src/components/results/Resources"
 
 export default function Results() {
   const router = useRouter()
@@ -57,6 +58,8 @@ export default function Results() {
       <button className="fr-btn result-return-bt" onClick={goToSurvey}>
         Recommencer le questionnaire
       </button>
+
+      <Resources />
     </ContentLayout>
   )
 }

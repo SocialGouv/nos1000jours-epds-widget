@@ -93,3 +93,22 @@
   width: auto;
   margin-bottom: $xxxs; 
 }
+
+.icon-resource-type {
+  width: $xl;
+  margin-right: $xxxxs;
+}
+
+.resources {
+  width: 100%;
+  margin-bottom: $mmd;
+
+  .accordion-header {
+    border-left: $xxxxxxs solid var(--primaryBlueDark);
+
+    .accordion-button {
+      color: var(--primaryBlueDark);
+      padding-block: $xxxxs;
+    }
+  }
+}

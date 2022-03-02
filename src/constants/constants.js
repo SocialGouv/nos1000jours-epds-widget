@@ -9,6 +9,7 @@ export const STORAGE_CONTACT_HOURS = "contactHours"
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const EPDS_SOURCE = "SitePartenaire"
+export const PLARTFORM_FOR_RESOURCES = "1000_jours_widget"
 export const DEFAULT_LOCAL = "FR"
 
 export const PATTERN_EMAIL = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}"

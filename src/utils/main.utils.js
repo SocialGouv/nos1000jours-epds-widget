@@ -1,5 +1,6 @@
 import { STORAGE_LABELS, STORAGE_LOCALE } from "../constants/constants"
 import { Labels } from "../constants/specificLabels"
+import parse from "html-react-parser"
 
 /**
  * Permet de récupérer en une seule fois : couleur, texts et icone pour un mood
@@ -59,4 +60,8 @@ export function convertArrayLabelsToObject(data) {
   const labels = {}
   data?.forEach((item) => (labels[item.label.toLowerCase()] = item.texte))
   return labels
+}
+
+export const convertStringToHTML = (content) => {
+  if (typeof content === "string") return parse(content)
 }
