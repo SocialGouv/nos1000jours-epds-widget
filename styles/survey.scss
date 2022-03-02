@@ -67,7 +67,8 @@
   
   .progress {
     background-color: var(--primaryBlueLight);
-    margin-top: $xxxs;
+    margin-top: $sm;
+    margin-bottom: $xxxs;
   }
 
   .progress-bar {

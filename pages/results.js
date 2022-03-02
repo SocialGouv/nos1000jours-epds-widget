@@ -40,15 +40,17 @@ export default function Results() {
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
       <Row>
-        <p>
+        <div className="margin-bottom-8">
           <b>
             Oser en parler, c’est déjà prendre soin de soi et de son enfant !
           </b>
-        </p>
-        <p>{descriptionByScoreLevel(scoreLevelForTexts)}</p>
-        <p>
+        </div>
+        <div className="margin-bottom-8">
+          {descriptionByScoreLevel(scoreLevelForTexts)}
+        </div>
+        <div className="margin-bottom-8">
           <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
-        </p>
+        </div>
       </Row>
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
 

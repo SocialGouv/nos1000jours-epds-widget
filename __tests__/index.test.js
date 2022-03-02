@@ -61,8 +61,8 @@ describe("Page d'accueil", () => {
     })
   })
 
-  describe("Texte du boutton COMMENCER LE TEST", () => {
-    const defaultText = "COMMENCER LE TEST"
+  describe("Texte du boutton Commencer", () => {
+    const defaultText = "Commencer"
 
     test("La traduction est vide => texte par défaut", () => {
       const labels = undefined
