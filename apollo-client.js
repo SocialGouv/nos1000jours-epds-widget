@@ -30,20 +30,3 @@ export const EPDS_CONTACT_INFORMATION = gql`
     )
   }
 `
-
-export const GET_RESOURCES_BY_PLATFORM = gql`
-  query RessourcesEpds($plateforme: String) {
-    ressourcesEpds(where: { plateforme: $plateforme }) {
-      plateforme
-      ressources_configs {
-        texte_1
-        texte_2
-        ressources {
-          type
-          titre
-          contenu
-        }
-      }
-    }
-  }
-`

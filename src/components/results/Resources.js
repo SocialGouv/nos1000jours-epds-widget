@@ -1,23 +1,27 @@
-import { useLazyQuery } from "@apollo/client"
+import { gql, useLazyQuery } from "@apollo/client"
+import { GET_RESOURCES_BY_PLATFORM } from "@socialgouv/nos1000jours-lib"
 import { useEffect, useState } from "react"
 import { Accordion } from "react-bootstrap"
-import { client, GET_RESOURCES_BY_PLATFORM } from "../../../apollo-client"
+import { client } from "../../../apollo-client"
 import { PLARTFORM_FOR_RESOURCES } from "../../constants/constants"
 import { convertStringToHTML } from "../../utils/main.utils"
 
 export function Resources() {
   const [resources, setResources] = useState()
 
-  const [getResourcesByPlatform] = useLazyQuery(GET_RESOURCES_BY_PLATFORM, {
-    client: client,
-    onCompleted: (data) => {
-      const resourcesConfigs = data.ressourcesEpds[0].ressources_configs[0]
-      setResources(resourcesConfigs)
-    },
-    onError: (err) => {
-      console.warn(err)
-    },
-  })
+  const [getResourcesByPlatform] = useLazyQuery(
+    gql(GET_RESOURCES_BY_PLATFORM),
+    {
+      client: client,
+      onCompleted: (data) => {
+        const resourcesConfigs = data?.ressourcesEpds[0]?.ressources_configs[0]
+        setResources(resourcesConfigs)
+      },
+      onError: (err) => {
+        console.warn(err)
+      },
+    }
+  )
 
   useEffect(() => {
     const resourcesByPlatform = async () => {
@@ -30,7 +34,6 @@ export function Resources() {
   }, [])
 
   const displayContent = () => {
-    console.log(resources?.ressources)
     return resources?.ressources.map((item, index) => {
       return (
         <Accordion.Item key={index} eventKey={index}>
