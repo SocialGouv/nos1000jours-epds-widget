@@ -1,3 +1,14 @@
+## [1.12.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.12.0...v1.12.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* bouton changer la langue sur l'accueil ([d6ab8af](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d6ab8af88af43cfa4a838e2255e23ebc3a8ba6f6))
+* maj du header ([0009619](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0009619894fc0a20ae4dc2f2d936bb8083370cb9))
+* ui ([4429d62](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4429d62ba6e87d0dafdc88b75fbe0e1e9ea93983))
+* UI de la progressbar ([9cdf161](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/9cdf161a78a83e1635a5257b20a36806b475ac42))
+* UI maracon d'Elise ([a7d6d85](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a7d6d8511c920cfc0d84b306aa63c642811c0065))
+
 # [1.12.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.11.0...v1.12.0) (2022-02-28)
 
 
