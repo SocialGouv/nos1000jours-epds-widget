@@ -3,19 +3,27 @@ import { GET_RESOURCES_BY_PLATFORM } from "@socialgouv/nos1000jours-lib"
 import { useEffect, useState } from "react"
 import { Accordion } from "react-bootstrap"
 import { client } from "../../../apollo-client"
-import { PLARTFORM_FOR_RESOURCES } from "../../constants/constants"
-import { convertStringToHTML } from "../../utils/main.utils"
+import {
+  PLARTFORM_FOR_RESOURCES,
+  STORAGE_SCORE,
+} from "../../constants/constants"
+import { convertStringToHTML, getInLocalStorage } from "../../utils/main.utils"
 
 export function Resources() {
   const [resources, setResources] = useState()
+  const epdsScore = parseInt(getInLocalStorage(STORAGE_SCORE))
 
   const [getResourcesByPlatform] = useLazyQuery(
     gql(GET_RESOURCES_BY_PLATFORM),
     {
       client: client,
       onCompleted: (data) => {
-        const resourcesConfigs = data?.ressourcesEpds[0]?.ressources_configs[0]
-        setResources(resourcesConfigs)
+        const resourcesConfigs = data?.ressourcesEpds[0]?.ressources_configs
+        const resourcesConfigsItem = getResourcesByScore(
+          resourcesConfigs,
+          epdsScore
+        )
+        setResources(resourcesConfigsItem)
       },
       onError: (err) => {
         console.warn(err)
@@ -80,4 +88,16 @@ export const getIconByType = (type) => {
   }
 
   return <img alt="Icon" src={iconSource} className="icon-resource-type" />
+}
+
+/**
+ * Renvoie les bonnes ressources en fonction du score
+ * @param {*} resourcesConfigs Liste des resourcesConfigs pour une plateforme
+ */
+export const getResourcesByScore = (resourcesConfigs, score) => {
+  return resourcesConfigs.find(
+    (item) =>
+      (item.score_min <= score || item.score_min == null) &&
+      (score <= item.score_max || item.score_max == null)
+  )
 }

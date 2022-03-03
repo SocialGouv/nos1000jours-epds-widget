@@ -1,9 +1,12 @@
 export const STORAGE_SOURCE = "source"
 export const STORAGE_LOCALE = "locale"
 export const STORAGE_LABELS = "labels"
+
+export const STORAGE_SCORE = "score"
 export const STORAGE_SCORE_LEVEL_MOOD = "scoreLevelForMood"
 export const STORAGE_SCORE_LEVEL_TEXTS = "scoreLevelForTexts"
 export const STORAGE_SCORE_LEVEL_MACARON = "scoreLevelForMacaron"
+
 export const STORAGE_CONTACT_TYPE = "contactType"
 export const STORAGE_CONTACT_HOURS = "contactHours"
 
