@@ -4,6 +4,7 @@ export const CATEG = {
   contact: "Contact",
   home: "Home",
   survey: "Questionnaire",
+  resources: "Ressources",
 }
 
 export const CONTACT_SENT = {

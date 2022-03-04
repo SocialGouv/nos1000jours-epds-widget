@@ -8,6 +8,7 @@ import {
   STORAGE_SCORE,
 } from "../../constants/constants"
 import { convertStringToHTML, getInLocalStorage } from "../../utils/main.utils"
+import { CATEG, trackerClick } from "../../utils/tracker.utils"
 
 export function Resources() {
   const [resources, setResources] = useState()
@@ -41,11 +42,28 @@ export function Resources() {
     resourcesByPlatform()
   }, [])
 
+  const accordionIsExpanded = (isExpanded, libelle) => {
+    if (isExpanded) {
+      trackerClick(
+        CATEG.resources,
+        "Ouverture d'un accordéon au clique",
+        libelle
+      )
+    }
+  }
+
   const displayContent = () => {
     return resources?.ressources.map((item, index) => {
       return (
         <Accordion.Item key={index} eventKey={index}>
-          <Accordion.Header>
+          <Accordion.Header
+            onClick={(eventKey) =>
+              accordionIsExpanded(
+                eventKey.target.ariaExpanded === "false",
+                eventKey.target.textContent
+              )
+            }
+          >
             {getIconByType(item.type)}
             {item.titre}
           </Accordion.Header>
