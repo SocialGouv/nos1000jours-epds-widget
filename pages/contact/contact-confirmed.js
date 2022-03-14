@@ -23,11 +23,11 @@ export default function ContactConfirmed() {
   const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
   const localeSelected = getLocaleInLocalStorage()
 
-  const confirmedImage = (contactType) => (
+  const confirmedImage = (contactTypeConfirmed) => (
     <img
       alt=""
       src={
-        contactType == RequestContact.type.email
+        contactTypeConfirmed == RequestContact.type.email
           ? "../img/contact/email-sent.svg"
           : "../img/contact/sms-sent.svg"
       }

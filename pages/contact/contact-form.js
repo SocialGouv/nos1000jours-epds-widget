@@ -124,9 +124,9 @@ export default function ContactForm() {
         required={isRequired}
       />
 
-      {isEmailValid === undefined ? null : !isEmailValid ? (
+      {isEmailValid === false && (
         <InputError error="L'adresse mail n'est pas au bon format" />
-      ) : null}
+      )}
       {isRequired ? requiredField : null}
     </div>
   )
@@ -149,9 +149,9 @@ export default function ContactForm() {
         required={isRequired}
       />
 
-      {isPhoneValid === undefined ? null : !isPhoneValid ? (
+      {isPhoneValid === false && (
         <InputError error="Le numéro de téléphone n'est pas au bon format" />
-      ) : null}
+      )}
       {isRequired ? requiredField : null}
     </div>
   )
