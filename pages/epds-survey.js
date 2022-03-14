@@ -9,6 +9,7 @@ import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
+  STORAGE_SCORE,
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
@@ -84,6 +85,7 @@ export default function EpdsSurvey() {
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
 
+      localStorage.setItem(STORAGE_SCORE, totalScore)
       goToResults()
     },
   })

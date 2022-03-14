@@ -743,10 +743,10 @@
   resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.2.2.tgz#0fe3c8978a38f23411fbbdcaf4e3a7edaf8eecbf"
   integrity sha512-VWIToHeF0rFtLlGGkjdfUCtLckZebwXwYlnAVYwqMivUboqRgxl7wsUGkGfp6HM4cfYla9NQw4mbqRPXfTGu5Q==
 
-"@socialgouv/nos1000jours-lib@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/nos1000jours-lib/-/nos1000jours-lib-1.4.0.tgz#eb86e8e36c203be8aea0a62ee5eba731ffe57bbb"
-  integrity sha512-6QyHFnZHp28xZY1ji9glP4EkfDaEE/n3pqU5Zc1fEmGPb77BDZdfhfeS2Gg0CLpfgu+UCw8+W1acCzdDgAfiMg==
+"@socialgouv/nos1000jours-lib@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/nos1000jours-lib/-/nos1000jours-lib-1.5.0.tgz#bcef01f7f2f2a64f7283d2dd0cb97a14e38ca9a6"
+  integrity sha512-V9DsFeI007/Rw5YKmJ9asO9hepsdllVLS4fuQTMDJV9A2m0smFhHX/pHqIOv0nC3VJBB2ybaYCruRizIVWRA8w==
 
 "@testing-library/dom@^8.0.0":
   version "8.11.1"
@@ -2395,6 +2395,14 @@ html-dom-parser@1.0.4:
     domhandler "4.3.0"
     htmlparser2 "7.2.0"
 
+html-dom-parser@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-1.1.0.tgz#daf0ff559bb0c4ffe7543d507baeaf1e2ca14e2c"
+  integrity sha512-x3MOz8S8BkihGgggtp2N0U+JAWlD9iGERbjuBJH+gIGF9B1kGQh5x489IQ0YPqi8HyMIWCRLdJY1q3IaQlqG/Q==
+  dependencies:
+    domhandler "4.3.0"
+    htmlparser2 "7.2.0"
+
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-2.0.1.tgz#42a6dc4fd33f00281176e8b23759ca4e4fa185f3"
@@ -2414,6 +2422,16 @@ html-react-parser@^1.4.0:
   dependencies:
     domhandler "4.3.0"
     html-dom-parser "1.0.4"
+    react-property "2.0.0"
+    style-to-js "1.1.0"
+
+html-react-parser@^1.4.8:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-1.4.8.tgz#27bc0f9dc294c875daeca8a21a48d5b845a1364e"
+  integrity sha512-5XsBdFVhJLxdtRp7tWwZ6DwqOt6fJ+2lJc0lctwjX1yaxWNB41S5uzqii7vJcSCaabM+CK28U75e5f4wIMqdSg==
+  dependencies:
+    domhandler "4.3.0"
+    html-dom-parser "1.1.0"
     react-property "2.0.0"
     style-to-js "1.1.0"
 
