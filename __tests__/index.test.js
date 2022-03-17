@@ -3,7 +3,7 @@ import { getSlogan, getStartButtonText } from "../pages"
 describe("Page d'accueil", () => {
   describe("Affichage du slogan", () => {
     const defaultSlogan =
-      "Futurs parents, parents, évaluez votre bien-être émotionnel en quelques minutes"
+      "Futurs parents, parents, évaluez votre bien être émotionnel en quelques minutes"
 
     test("Aucun slogan renseigné pour une langue ou une source donnée => slogan par défaut", () => {
       const source = undefined

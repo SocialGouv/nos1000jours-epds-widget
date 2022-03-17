@@ -131,7 +131,7 @@ export const getSlogan = (source, labels) => {
     if (sloganByLocale) return sloganByLocale
   }
 
-  return "Futurs parents, parents, évaluez votre bien-être émotionnel en quelques minutes"
+  return "Futurs parents, parents, évaluez votre bien être émotionnel en quelques minutes"
 }
 
 export const getStartButtonText = (labels) =>
