@@ -1,0 +1,4 @@
+app:
+  enabled: True
+  probesPath: /healthz
+  envConfigName: nos1000jours-blues-epds-widget-configmap
