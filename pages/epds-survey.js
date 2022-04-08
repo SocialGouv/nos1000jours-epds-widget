@@ -24,6 +24,7 @@ import {
 import { Labels } from "../src/constants/specificLabels"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import {
+  getInLocalStorage,
   getLabelsInLocalStorage,
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
@@ -46,7 +47,7 @@ export default function EpdsSurvey() {
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
 
-  const source = localStorage.getItem(STORAGE_SOURCE)
+  const source = getInLocalStorage(STORAGE_SOURCE)
 
   const [getEpdsSurveyQuery] = useLazyQuery(
     gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
