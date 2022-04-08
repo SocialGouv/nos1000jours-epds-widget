@@ -50,8 +50,8 @@ export default function Home() {
   }, [localeSelected])
 
   const startSurvey = () => {
+    trackerClick(CATEG.Home, EVENT_CLICK, `Commencer le test - ${source}`)
     localStorage.setItem(STORAGE_SOURCE, source)
-    trackerClick(CATEG.Home, EVENT_CLICK, "Commencer le test")
 
     goToEpdsSurvey()
   }

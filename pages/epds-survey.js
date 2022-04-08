@@ -46,6 +46,8 @@ export default function EpdsSurvey() {
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
 
+  const source = localStorage.getItem(STORAGE_SOURCE)
+
   const [getEpdsSurveyQuery] = useLazyQuery(
     gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
     {
@@ -127,8 +129,6 @@ export default function EpdsSurvey() {
           .map((data) => data.points)
           .reduce((a, b) => a + b, 0)
 
-        const source = localStorage.getItem(STORAGE_SOURCE)
-
         await saveResponseQuery({
           variables: {
             compteur: 1,
@@ -199,7 +199,7 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
-              trackerClick(CATEG.survey, EVENT_CLICK, "Terminer")
+              trackerClick(CATEG.survey, EVENT_CLICK, `Terminer - ${source}`)
             }}
             disabled={!isEnabledNextButton || isLoading}
           >
