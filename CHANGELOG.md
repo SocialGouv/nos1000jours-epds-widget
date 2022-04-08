@@ -1,3 +1,17 @@
+# [1.13.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.12.6...v1.13.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* **dep:** downgrade next ([a763272](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a7632722ac459c7e8c8f0f4f292d3987cfce9313))
+* **storage:** source ([3333fd1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3333fd166d4f8aa02ac8f497e4f89958c7138012))
+
+
+### Features
+
+* **dep:** maj ([81d2c0f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/81d2c0f6d1df4575ba885abb234b0234341a7f99))
+* **matomo:** maj ([65516b7](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/65516b729c84538a5bee023a9eef801a0caa3879))
+
 ## [1.12.6](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.12.5...v1.12.6) (2022-04-04)
 
 
