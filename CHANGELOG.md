@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.13.1...v1.13.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* use kube-workflow ([#41](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/41)) ([8d7a629](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8d7a6290a7b07d7231b48ac2b3b489a22a6505fc))
+
 ## [1.13.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.13.0...v1.13.1) (2022-04-09)
 
 
