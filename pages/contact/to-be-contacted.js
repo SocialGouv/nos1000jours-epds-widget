@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import {
+  Badge,
   Button,
   ButtonGroup,
   Col,
@@ -80,6 +81,7 @@ export default function ToBeContacted() {
       onChange={(e) => setItemValueType(e.currentTarget.value)}
     >
       <Row className="card-center-img">
+        {type.badge}
         <img
           alt=""
           src={itemValueType === type.id ? type.iconSelected : type.icon}
@@ -211,6 +213,11 @@ const defaultContactTypes = {
       id: RequestContact.type.chat,
       isChecked: false,
       text: "Par chat",
+      badge: (
+        <Badge pill bg="primary">
+          MAINTENANT DISPONIBLE
+        </Badge>
+      ),
     },
   ],
   byAvailabilities: [
