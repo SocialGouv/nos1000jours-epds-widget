@@ -30,9 +30,9 @@ export default function ToBeContacted() {
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
-  const [showModal, setShowModal] = useState(false)
-  const handleClose = () => setShowModal(false)
-  const handleShow = () => setShowModal(true)
+  const [showChatModal, setShowChatModal] = useState(false)
+  const handleClose = () => setShowChatModal(false)
+  const handleShow = () => setShowChatModal(true)
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
@@ -55,6 +55,10 @@ export default function ToBeContacted() {
     router.push({
       pathname: "/contact/contact-form",
     })
+  }
+
+  const activeChat = () => {
+    router.back()
   }
 
   const onValidate = async (event) => {
@@ -184,7 +188,7 @@ export default function ToBeContacted() {
       </Col>
 
       <Modal
-        show={showModal}
+        show={showChatModal}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
@@ -193,11 +197,14 @@ export default function ToBeContacted() {
           <Modal.Title>Être contacté(e) par chat</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Merci pour l'intérêt que vous portez à ce type de prise de contact, cette fonctionnalité sera bientôt disponible.
+          Le chat va être activé une fois que vous validez votre choix. Vous pourrez converser avec Elise entre 10h et 17h en cliquant sur l'onglet de bas de page qui va s'afficher.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            J'ai compris
+          <Button variant="secondary" onClick={handleClose}>
+            Annuler
+          </Button>
+          <Button variant="primary" onClick={activeChat}>
+            Valider
           </Button>
         </Modal.Footer>
       </Modal>
