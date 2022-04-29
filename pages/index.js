@@ -99,6 +99,8 @@ export default function Home() {
           alt="Logo 1000 premiers jours"
           height={130}
           width={130}
+          onClick={source ? startSurvey : null}
+          className={`${source ? "cursor-pointer" : ""}`}
         />
         <Row className="slogan">{getSlogan(source, labelsTranslated)}</Row>
         <br />
