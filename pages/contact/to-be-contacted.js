@@ -165,8 +165,12 @@ export default function ToBeContacted() {
     useEffect(() => {
       if (chatLoaded) return
 
-      //@ts-ignore
-      new ZammadChat(zammadChatParameters)
+      try {
+        //@ts-ignore
+        new ZammadChat(zammadChatParameters)
+      } catch (e) {
+        console.error(`Erreur ZammadChat : ${e}`)
+      }
 
       setChatLoaded(true)
     }, [])
