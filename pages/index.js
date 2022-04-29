@@ -95,6 +95,12 @@ export default function Home() {
     <div className="container">
       <div className="main">
         <img
+          src="/img/logo-republique-francaise.png"
+          alt="Logo république française"
+          height={100}
+          className="rep-francaise-img"
+        />
+        <img
           src="/img/logo-1000j.svg"
           alt="Logo 1000 premiers jours"
           height={130}
