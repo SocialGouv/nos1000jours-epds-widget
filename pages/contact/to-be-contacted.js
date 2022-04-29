@@ -19,7 +19,12 @@ import {
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
-import { CATEG, trackerClick } from "../../src/utils/tracker.utils"
+import {
+  ACTION,
+  CATEG,
+  CONTACT_SENT,
+  trackerClick,
+} from "../../src/utils/tracker.utils"
 import {
   hideChatButton,
   zammadChatParameters,
@@ -68,11 +73,7 @@ export default function ToBeContacted() {
   }
 
   const onValidate = async (event) => {
-    trackerClick(
-      CATEG.contact,
-      "Choix du type de prise de contact",
-      itemValueType
-    )
+    trackerClick(CATEG.contact, ACTION.contact_type, itemValueType)
 
     if (itemValueType == RequestContact.type.chat) {
       const isChatInactive = chatButtonElement.classList.contains("is-inactive")
@@ -162,6 +163,7 @@ export default function ToBeContacted() {
   )
 
   const activeChat = () => {
+    trackerClick(CATEG.contact, ACTION.contact_confirm_sent, CONTACT_SENT.chat)
     chatButtonElement.click()
     router.back()
   }
