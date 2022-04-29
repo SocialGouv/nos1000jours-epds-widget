@@ -115,38 +115,8 @@ export default function Home() {
           setLocaleSelected={setLocaleSelected}
           hasText={true}
         />
-        {chatPastek()}
       </div>
     </div>
-  )
-}
-
-const chatPastek = () => {
-  const title = "<strong>Chat</strong> avec nous !"
-  const htmlChat = `
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://pastek.fabrique.social.gouv.fr/assets/chat/chat.min.js"></script>
-  <script>
-    $(function () {
-      new ZammadChat({
-        fontSize: '12px',
-        background: '#26366E',
-        chatId: ${process.env.NEXT_PUBLIC_PASTEK_CHAT_ID},
-        debug: true,
-        show: true,
-        flat: true,
-        cssAutoload: true,
-        title: '${title}',
-        host: 'wss://pastek.fabrique.social.gouv.fr/ws'
-      });
-    });
-  </script>`
-
-  return (
-    <div
-      className="content"
-      dangerouslySetInnerHTML={{ __html: htmlChat }}
-    ></div>
   )
 }
 

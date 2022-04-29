@@ -20,11 +20,17 @@ import {
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
 import { CATEG, trackerClick } from "../../src/utils/tracker.utils"
+import {
+  hideChatButton,
+  zammadChatParameters,
+} from "../../src/utils/chat.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
 
   const localeSelected = getLocaleInLocalStorage()
+  const [chatButtonElement, setChatButtonElement] = useState()
+  const [chatLoaded, setChatLoaded] = useState(false)
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
@@ -55,10 +61,6 @@ export default function ToBeContacted() {
     router.push({
       pathname: "/contact/contact-form",
     })
-  }
-
-  const activeChat = () => {
-    router.back()
   }
 
   const onValidate = async (event) => {
@@ -154,6 +156,24 @@ export default function ToBeContacted() {
     </ToggleButtonGroup>
   )
 
+  const activeChat = () => {
+    chatButtonElement.click()
+    router.back()
+  }
+
+  const Chat = () => {
+    useEffect(() => {
+      if (chatLoaded) return
+
+      //@ts-ignore
+      new ZammadChat(zammadChatParameters)
+
+      setChatLoaded(true)
+    }, [])
+
+    return <></>
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader title="être contacté(e)" locale={localeSelected} />
@@ -187,6 +207,9 @@ export default function ToBeContacted() {
         </button>
       </Col>
 
+      <Chat />
+      {hideChatButton(setChatButtonElement)}
+
       <Modal
         show={showChatModal}
         onHide={handleClose}
@@ -197,7 +220,7 @@ export default function ToBeContacted() {
           <Modal.Title>Être contacté(e) par chat</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Le chat va être activé une fois que vous validez votre choix. Vous pourrez converser avec Elise entre 10h et 17h en cliquant sur l'onglet de bas de page qui va s'afficher.
+          Le chat va être activé une fois que vous validez votre choix. Vous pourrez converser avec Elise entre 9h et 17h30 en cliquant sur l'onglet de bas de page qui va s'afficher.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
