@@ -254,7 +254,8 @@ export default function ToBeContacted() {
           <Modal.Title>Être contacté(e) par chat</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Elise n'est pas joignable en ce moment. Vous pouvez lui laisser un
+          Vous pouvez converser avec Elise entre 09h et 17h30 du Lundi au
+          Vendredi. Elle n'est pas joignable en ce moment. Vous pouvez lui laisser un
           message par SMS ou par mail, elle vous répondra dès que possible.
         </Modal.Body>
         <Modal.Footer>
