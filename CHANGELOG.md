@@ -1,3 +1,21 @@
+# [1.14.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.13.4...v1.14.0) (2022-04-29)
+
+
+### Bug Fixes
+
+* **chat:** SonarCLoud bug ([27266a2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/27266a2cca424be40444ace6bcd136f25ab80916))
+
+
+### Features
+
+* **chat:** ajout et config ([f385e04](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f385e042f00cc8c3cd8e26512c851c09892ce1bd))
+* **chat:** badge nouveauté ([ca110d1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ca110d1c1287c6a423ee4c07e6626f3cff9bb6b9))
+* **chat:** maj text ([4b106a9](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4b106a93d229c3576c358bd86fc6e4e08f61b56a))
+* **chat:** maj text ([e06986a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e06986acf4d4b8ae13cf061325c4742f7d61fe59))
+* **chat:** modification modale ([3c3b68f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3c3b68f7dd11fcb1912141481833946489ff2a6c))
+* **chat:** ouverture du chat ([c41a214](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c41a21432607034cd8cf011a550255bce1ae0284))
+* **chat:** tracker ([52438ae](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/52438aed81877494be81581234da4528aa8d29ba))
+
 ## [1.13.4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.13.3...v1.13.4) (2022-04-29)
 
 
