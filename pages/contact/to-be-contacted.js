@@ -37,8 +37,12 @@ export default function ToBeContacted() {
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   const [showChatModal, setShowChatModal] = useState(false)
-  const handleClose = () => setShowChatModal(false)
-  const handleShow = () => setShowChatModal(true)
+  const handleCloseChatModal = () => setShowChatModal(false)
+  const handleShowChatModal = () => setShowChatModal(true)
+
+  const [showEliseAbsentModal, setShowEliseAbsentModal] = useState(false)
+  const handleCloseEliseAbsentModal = () => setShowEliseAbsentModal(false)
+  const handleShowEliseAbsentModal = () => setShowEliseAbsentModal(true)
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
@@ -71,7 +75,8 @@ export default function ToBeContacted() {
     )
 
     if (itemValueType == RequestContact.type.chat) {
-      handleShow()
+      const isChatInactive = chatButtonElement.classList.contains("is-inactive")
+      isChatInactive ? handleShowEliseAbsentModal() : handleShowChatModal()
     } else goToContactForm()
   }
 
@@ -216,7 +221,7 @@ export default function ToBeContacted() {
 
       <Modal
         show={showChatModal}
-        onHide={handleClose}
+        onHide={handleCloseChatModal}
         backdrop="static"
         keyboard={false}
       >
@@ -224,14 +229,35 @@ export default function ToBeContacted() {
           <Modal.Title>Être contacté(e) par chat</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Le chat va être activé une fois que vous validez votre choix. Vous pourrez converser avec Elise entre 9h et 17h30 en cliquant sur l'onglet de bas de page qui va s'afficher.
+          Vous pouvez converser avec Elise entre 09h et 17h30 du Lundi au
+          Vendredi. Le chat va s'ouvrir une fois que vous validez votre choix.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseChatModal}>
             Annuler
           </Button>
           <Button variant="primary" onClick={activeChat}>
             Valider
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showEliseAbsentModal}
+        onHide={handleCloseEliseAbsentModal}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Être contacté(e) par chat</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Elise n'est pas joignable en ce moment. Vous pouvez lui laisser un
+          message par SMS ou par mail, elle vous répondra dès que possible.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseEliseAbsentModal}>
+            OK
           </Button>
         </Modal.Footer>
       </Modal>
