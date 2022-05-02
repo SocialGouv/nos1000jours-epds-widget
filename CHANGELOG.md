@@ -1,3 +1,11 @@
+# [1.15.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.14.0...v1.15.0) (2022-05-02)
+
+
+### Features
+
+* **accueil:** acces quesitonnaire via le logo ([0e63d94](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0e63d94882cdc75b143f1d085fbacacaa208ed0c))
+* **accueil:** logo marianne ([1e9f3a9](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1e9f3a93615bc6fc05ec434d2684120c7db836aa))
+
 # [1.14.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.13.4...v1.14.0) (2022-04-29)
 
 
