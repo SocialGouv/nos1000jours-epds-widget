@@ -12,7 +12,6 @@ import {
   getLocaleInLocalStorage,
 } from "../../src/utils/main.utils"
 import {
-  ACTION,
   CATEG,
   CONTACT_SENT,
   trackerClick,
@@ -53,7 +52,11 @@ export default function ContactConfirmed() {
         break
     }
 
-    trackerClick(CATEG.contact, ACTION.contact_confirm_sent, name)
+    trackerClick(
+      CATEG.contact,
+      "Confirmation d'envoi de la demande de contact",
+      name
+    )
   }, [])
 
   return (
