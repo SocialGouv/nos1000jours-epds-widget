@@ -100,14 +100,18 @@ export default function Home() {
           height={100}
           className="rep-francaise-img"
         />
-        <img
-          src="/img/logo-1000j.svg"
-          alt="Logo 1000 premiers jours"
-          height={130}
-          width={130}
-          onClick={source ? startSurvey : null}
-          className={`${source ? "cursor-pointer" : ""}`}
-        />
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.1000-premiers-jours.fr/fr/comment-differencier-baby-blues-et-depression-post-partum"
+        >
+          <img
+            src="/img/logo-1000j.svg"
+            alt="Logo 1000 premiers jours"
+            height={130}
+            width={130}
+          />
+        </a>
         <Row className="slogan">{getSlogan(source, labelsTranslated)}</Row>
         <br />
         <button

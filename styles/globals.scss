@@ -50,6 +50,14 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  a {
+    box-shadow: none;
+  }
+
+  [target=_blank]:after {
+    content: none;
+  }
 }
 
 .footer {
@@ -137,10 +145,6 @@ a {
 
 .font-size-rtl {
   font-size: $md !important;
-}
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .rep-francaise-img {
