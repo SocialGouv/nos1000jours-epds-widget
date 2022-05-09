@@ -4,7 +4,7 @@
   color: var(--primaryBlue);
 }
 
-.moderatelygood-mood{
+.moderatelygood-mood {
   color: var(--primaryYellowDark);
 }
 
@@ -44,15 +44,19 @@
     margin-top: $xxxxxxs;
     margin-bottom: $xxxxxs;
   }
+
   button:hover {
     --a: 0 !important;
   }
 
-  .moderatelygood-mood{
+  .moderatelygood-mood {
     background-color: var(--primaryYellowLight);
+    border: 2px var(--primaryYellowDark) solid;
+
     img {
       border: 3px solid var(--primaryYellowDark);
     }
+
     button {
       background-color: var(--primaryYellowDark);
     }
@@ -60,16 +64,19 @@
 
   .bad-mood {
     background-color: var(--primaryRedLight);
+    border: 2px var(--primaryOrange) solid;
+
     img {
       border: 3px solid var(--primaryOrange);
     }
+
     button {
       background-color: var(--primaryOrange);
     }
   }
 
   .mamanblues-description {
-    align-self: center; 
+    align-self: center;
     color: black;
     margin-block: $xxs;
   }
@@ -91,5 +98,5 @@
 
 .result-return-bt {
   width: auto;
-  margin-bottom: $xxxs; 
+  margin-bottom: $xxxs;
 }
