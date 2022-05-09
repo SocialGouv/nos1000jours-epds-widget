@@ -13,6 +13,7 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
   stringIsNotNullNorEmpty,
+  phoneNumberFormatting,
 } from "../../src/utils/main.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
@@ -68,6 +69,7 @@ export default function ContactForm() {
     if (!canSend) return
 
     const name = `${inputs.inputName.value} [${websiteSource}]`
+    const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
 
     let dateAsString = null
     if (stringIsNotNullNorEmpty(childBirthDate)) {
@@ -80,7 +82,7 @@ export default function ContactForm() {
       variables: {
         prenom: name,
         email: inputs.inputEmail.value,
-        telephone: inputs.inputPhone.value,
+        telephone: phoneNumber,
         nombreEnfants: numberOfChildren,
         naissanceDernierEnfant: dateAsString,
         moyen: contactType,

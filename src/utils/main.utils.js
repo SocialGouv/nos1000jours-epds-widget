@@ -60,3 +60,7 @@ export function convertArrayLabelsToObject(data) {
   data?.forEach((item) => (labels[item.label.toLowerCase()] = item.texte))
   return labels
 }
+
+export const phoneNumberFormatting = (phoneNumber) => {
+  return phoneNumber.replace(/(.{2})(?!$)/g, "$1 ")
+}
