@@ -100,3 +100,35 @@
   width: auto;
   margin-bottom: $xxxs;
 }
+
+.measure {
+  margin-block: $xs;
+
+  .measure-card {
+    padding-inline: $xxl;
+    padding-block: $mmd;
+    background-color: var(--primaryGrey);
+    border-left: 5px solid var(--primaryBlueDark);
+  }
+
+  .buttons-bloc {
+    margin-block: 5px;
+  }
+
+  .measure-button {
+    display: flex;
+    background-color: transparent;
+    color: var(--primaryBlueDark);
+    border-color: var(--primaryBlueDark);
+    border-radius: 0;
+    margin: $xxxs;
+  }
+
+  .measure-button:focus {
+    box-shadow: 0 0 0 2px var(--primaryBlueDark);
+  }
+
+  .measure-textearea {
+    margin-block: $mmd;
+  }
+}
