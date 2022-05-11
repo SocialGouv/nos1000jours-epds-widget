@@ -14,6 +14,7 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
+import { MeasuringIntentions } from "../src/components/results/MeasuringIntentions"
 
 export default function Results() {
   const router = useRouter()
@@ -53,6 +54,8 @@ export default function Results() {
         </div>
       </Row>
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+
+      <MeasuringIntentions scoreLevel={scoreLevelForMood} />
 
       <button className="fr-btn result-return-bt" onClick={goToSurvey}>
         Recommencer le questionnaire
