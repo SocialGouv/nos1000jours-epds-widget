@@ -29,6 +29,10 @@ Avec l’iframe, il suffit d’ajouter le code suivant à l’endroit où vous s
 <iframe src="https://nos1000jours-blues-epds-widget.fabrique.social.gouv.fr?source=monsiteweb" width="100%" height="600px" style="border: none"></iframe>
 ```
 
+## Utilisation du chat
+
+Pastek utilise Zammad chat : https://admin-docs.zammad.org/en/latest/channels/chat.html
+
 ## Affichage de certains labels stockés dans le Back Office
 Certain labels ont besoin d'être traduit ou récupéré dans le BO. Dans le code du projet, ces labels sont appellés via des clées. 
 
