@@ -1,3 +1,20 @@
+# [1.16.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.15.0...v1.16.0) (2022-05-12)
+
+
+### Bug Fixes
+
+* **accueil:** maj couleur ([0eb994a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0eb994a87606a79eaa9ce723b72c357f0d990d78))
+* **matomo:** maj id ([34c7540](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/34c754098a5da451d1e97bba1f7b11b8cd88e9cf))
+
+
+### Features
+
+* **accueil:** fond bleu ([ad78c9f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ad78c9f73463067899b35d676163bf2ec671a6a4))
+* **accueil:** maj couleurs ([f46c55d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f46c55df44ed482b2d527de1a2645a96523d3981))
+* **accueil:** maj couleurs ([7867a28](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7867a28b6e3935c12ab484198770fa10d2d87cb4))
+* **accueil:** redirection logo ([2c2d8f1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2c2d8f16ef56dec1f4a32c3cb8db02200f5b0420))
+* **contact:** formatage téléphone ([48567a7](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/48567a761e4956ffca2b62aa891b4b44941add1a))
+
 # [1.15.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.14.0...v1.15.0) (2022-05-02)
 
 
