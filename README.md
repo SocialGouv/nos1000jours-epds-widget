@@ -36,3 +36,7 @@ Voici la liste :
 - `slogan` ou `slogan_monsiteweb`: phrase d'accroche sur le 1er écran 
 - `bouton_commencer` : texte du bouton *Commencer* sur le 1er écran 
 - `consigne` : explications située au-dessus des questions pour aider à bien compléter le questionnaire
+
+## Utilisation du chat
+
+Pastek utilise Zammad chat : https://admin-docs.zammad.org/en/latest/channels/chat.html
