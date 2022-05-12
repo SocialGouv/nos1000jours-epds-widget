@@ -5,7 +5,7 @@
 }
 
 .epds-question {
-  justify-content: center; 
+  justify-content: center;
   display: flex;
 
   legend {
@@ -17,7 +17,7 @@
   }
 
   .question-number {
-    color: var(--primaryBlueLight);
+    color: var(--bleuFrance935);
     font-size: $xxxxl;
     padding-bottom: $xxxxxxs;
   }
@@ -28,7 +28,7 @@
     padding-bottom: $xxxxxxs;
   }
 
-  .input-revert .fr-radio-group input[type=radio] + label:before {
+  .input-revert .fr-radio-group input[type=radio]+label:before {
     position: revert !important;
     margin: 0 0 0 20px !important;
   }
@@ -64,15 +64,15 @@
 
 .survey-progressbar {
   margin: $mmd 0px $xxl 0px;
-  
+
   .progress {
-    background-color: var(--primaryBlueLight);
+    background-color: var(--bleuFrance935);
     margin-top: $sm;
     margin-bottom: $xxxs;
   }
 
   .progress-bar {
-    background-color: var(--primaryBlueDark);
+    background-color: var(--bleuFranceSun);
   }
 
   .progress-number {

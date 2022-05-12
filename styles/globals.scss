@@ -31,6 +31,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--bleuFrance975) !important;
 }
 
 a {
@@ -49,6 +50,14 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  a {
+    box-shadow: none;
+  }
+
+  [target=_blank]:after {
+    content: none;
+  }
 }
 
 .footer {
@@ -138,14 +147,14 @@ a {
   font-size: $md !important;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .rep-francaise-img {
   position: absolute;
   align-self: flex-start;
   top: 1em;
+}
+
+.fr-btn--secondary:disabled {
+  color: var(--grey425) !important;
 }
 
 .widget-header {

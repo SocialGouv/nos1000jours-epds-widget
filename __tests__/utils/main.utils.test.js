@@ -1,4 +1,7 @@
-import { getColorIconAndTextByMood } from "../../src/utils/main.utils"
+import {
+  getColorIconAndTextByMood,
+  phoneNumberFormatting,
+} from "../../src/utils/main.utils"
 
 describe("Utils", () => {
   describe("Retourner les bonnes informations en fonction du mood", () => {
@@ -25,6 +28,12 @@ describe("Utils", () => {
         moodColor: "bad-mood",
       }
       expect(getColorIconAndTextByMood(3)).toEqual(result)
+    })
+  })
+
+  describe("Formatage du numéro de téléphone", () => {
+    test("Numéro à 10 chiffres => xx xx xx xx xx", () => {
+      expect(phoneNumberFormatting("0123456789")).toEqual("01 23 45 67 89")
     })
   })
 })
