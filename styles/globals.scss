@@ -153,6 +153,10 @@ a {
   top: 1em;
 }
 
+.fr-btn--secondary:disabled {
+  color: var(--grey425) !important;
+}
+
 .widget-header {
   align-items: center;
   margin-block: $xl;
