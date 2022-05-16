@@ -36,7 +36,7 @@ describe("MeasuringIntentions", () => {
             "Vous allez bien, n'hésitez pas à revenir plus tard et vous questionner régulièrement. Sachez qu'Elise peut répondre à vos questions si vous en avez besoin."
           )
         ).toBeVisible()
-        
+
         // Bloc Elise
         expect(
           screen.getByRole("img", { name: "Portrait d'Elise" })
@@ -61,7 +61,7 @@ describe("MeasuringIntentions", () => {
             "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
           )
         ).toBeVisible()
-        
+
         // Bloc Elise
         expect(
           screen.getByRole("img", { name: "Portrait d'Elise" })
@@ -106,7 +106,7 @@ describe("MeasuringIntentions", () => {
 
         test("Réponse : je ne vais pas bien => affichage du portrait", async () => {
           fireEvent.click(noButton)
-          
+
           // Nouvelle question
           const badButton = screen.getByRole("button", {
             name: "Malgré le résultat, je n'ai pas l'impression d'aller bien",
@@ -172,10 +172,142 @@ describe("MeasuringIntentions", () => {
       })
     })
 
-    test("Test C => ", async () => {
-      expect(
-        displayComponentsByTest({ testId: "C", scoreLevel: 3 })
-      ).not.toBeNull()
+    describe("Test C", () => {
+      let yesButton, noButton, maybeButton
+
+      beforeEach(() => {
+        render(displayComponentsByTest({ testId: "C", scoreLevel: 3 }))
+
+        yesButton = screen.getByRole("button", { name: "Oui" })
+        noButton = screen.getByRole("button", { name: "Non" })
+        maybeButton = screen.getByRole("button", {
+          name: "Je ne suis pas sûr(e)",
+        })
+
+        // Bloc Elise
+        expect(
+          screen.getByRole("img", { name: "Portrait d'Elise" })
+        ).toBeInTheDocument()
+        expect(
+          screen.getByRole("button", { name: "être contacté(e)" })
+        ).toBeInTheDocument()
+      })
+
+      test("Réponse : Oui => affichage du portrait", async () => {
+        // Buttons
+        expect(yesButton).toBeInTheDocument()
+        expect(noButton).toBeInTheDocument()
+        expect(maybeButton).toBeInTheDocument()
+
+        // Action
+        fireEvent.click(yesButton)
+
+        // Phrase spécifique
+        expect(
+          await screen.findByText(
+            "Vous allez bien, n'hésitez pas à revenir plus tard et vous questionner régulièrement. Sachez qu'Elise peut répondre à vos questions si vous en avez besoin."
+          )
+        ).toBeVisible()
+      })
+
+      test("Réponse : Je ne suis pas sûr(e) => affichage du portrait", async () => {
+        // Buttons
+        expect(yesButton).toBeInTheDocument()
+        expect(noButton).toBeInTheDocument()
+        expect(maybeButton).toBeInTheDocument()
+
+        // Action
+        fireEvent.click(maybeButton)
+
+        // Phrase spécifique
+        expect(
+          await screen.findByText(
+            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
+          )
+        ).toBeVisible()
+      })
+
+      describe("Réponse : Non", () => {
+        test("Affichage de la nouvelle question", async () => {
+          // Buttons
+          expect(yesButton).toBeInTheDocument()
+          expect(noButton).toBeInTheDocument()
+          expect(maybeButton).toBeInTheDocument()
+
+          // Action
+          fireEvent.click(noButton)
+
+          // Phrase spécifique
+          expect(
+            await screen.findByText(
+              "Précisez nous ce qui rapprocherait le plus de la réalité"
+            )
+          ).toBeVisible()
+          expect(
+            await screen.getByRole("button", {
+              name: "Malgré le résultat, je n'ai pas l'impression d'aller bien",
+            })
+          ).toBeInTheDocument()
+          expect(
+            await screen.getByRole("button", {
+              name: "Autre chose : nous le dire",
+            })
+          ).toBeInTheDocument()
+        })
+
+        test("Réponse : je ne vais pas bien => affichage du portrait", async () => {
+          fireEvent.click(noButton)
+
+          // Nouvelle question
+          const badButton = screen.getByRole("button", {
+            name: "Malgré le résultat, je n'ai pas l'impression d'aller bien",
+          })
+          const otherButton = screen.getByRole("button", {
+            name: "Autre chose : nous le dire",
+          })
+          expect(badButton).toBeInTheDocument()
+          expect(otherButton).toBeInTheDocument()
+
+          // Action
+          fireEvent.click(badButton)
+
+          // Phrase spécifique
+          expect(
+            await screen.findByText(
+              "Nous vous conseillons de vous entretenir avec Elise. Elle saura vous apporter conseil."
+            )
+          ).toBeVisible()
+        })
+
+        test("Réponse : autre chose => affichage textarea", async () => {
+          fireEvent.click(noButton)
+
+          // Nouvelle question
+          const badButton = screen.getByRole("button", {
+            name: "Malgré le résultat, je n'ai pas l'impression d'aller bien",
+          })
+          const otherButton = screen.getByRole("button", {
+            name: "Autre chose : nous le dire",
+          })
+          expect(badButton).toBeInTheDocument()
+          expect(otherButton).toBeInTheDocument()
+
+          // Action
+          fireEvent.click(otherButton)
+
+          // Phrase spécifique
+          expect(
+            await screen.findByText(
+              "Expliquez-nous pourquoi vous êtes venu.es passer le test."
+            )
+          ).toBeVisible()
+          expect(
+            screen.getByRole("textbox", {
+              name: "textValueOther",
+            })
+          ).toBeInTheDocument()
+        })
+      })
     })
   })
 })
