@@ -138,6 +138,7 @@ const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
           <div>
             {askForDetails.contentResponse}
             <input
+              aria-label="textValueOther"
               type="textarea"
               name="textValue"
               className="fr-input measure-textearea"
