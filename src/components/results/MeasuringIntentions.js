@@ -27,7 +27,7 @@ export function MeasuringIntentions({ scoreLevel }) {
 
 const getRandomInt = (max) => {
   const randomVal = Math.random()
-  Math.floor(randomVal * max)
+  return Math.floor(randomVal * max)
 }
 
 const generateRandomTest = () => {
@@ -102,6 +102,7 @@ export const BeCloseToRealityQuestion = ({
               className="measure-button"
               key={index}
               value={item.value}
+              aria-label={item.label}
               onClick={() => setBeCloseToReality(item)}
             >
               {item.label}
