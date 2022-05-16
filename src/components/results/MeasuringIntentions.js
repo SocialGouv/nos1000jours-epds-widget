@@ -10,6 +10,8 @@ import {
 import { SCORE_LEVEL_GOOD } from "../../utils/score-level.utils"
 import { ContactMamanBlues } from "./ContactMamanBlues"
 
+const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
+
 export function MeasuringIntentions({ scoreLevel }) {
   const testId = generateRandomTest()
 
@@ -17,7 +19,7 @@ export function MeasuringIntentions({ scoreLevel }) {
   // TODO: forcé pour le moment pour avoir le bloc d'Elise orange, à revoir
   return (
     <div className="measure">
-      Test {testId}
+      {TEST_NUMBER_ENABLED === "true" ? <div>Test {testId}</div> : null}
       {scoreLevel == SCORE_LEVEL_GOOD
         ? displayComponentsByTest({ testId: testId, scoreLevel: 3 })
         : null}
