@@ -40,6 +40,7 @@ export default function Results() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
+      <MeasuringIntentions scoreLevel={scoreLevelForMood} />
       <Row>
         <div className="margin-bottom-8">
           <b>
@@ -54,8 +55,6 @@ export default function Results() {
         </div>
       </Row>
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
-
-      <MeasuringIntentions scoreLevel={scoreLevelForMood} />
 
       <button className="fr-btn result-return-bt" onClick={goToSurvey}>
         Recommencer le questionnaire

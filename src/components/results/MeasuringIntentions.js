@@ -13,28 +13,22 @@ import { ContactMamanBlues } from "./ContactMamanBlues"
 export function MeasuringIntentions({ scoreLevel }) {
   const testId = generateRandomTest()
 
-  const displayComponentsByTest = () => {
-    switch (testId) {
-      case TEST_B:
-        // TODO: forcé pour le moment pour avoir le bloc d'Elise orange, à revoir
-        return <BeCloseToRealityQuestion scoreLevel={3} />
-      case TEST_C:
-        return null
-      default:
-        return null
-    }
-  }
-
   // TODO: ne pas afficher le testId en prod
+  // TODO: forcé pour le moment pour avoir le bloc d'Elise orange, à revoir
   return (
     <div className="measure">
       Test {testId}
-      {scoreLevel == SCORE_LEVEL_GOOD ? displayComponentsByTest() : null}
+      {scoreLevel == SCORE_LEVEL_GOOD
+        ? displayComponentsByTest({ testId: testId, scoreLevel: 3 })
+        : null}
     </div>
   )
 }
 
-const getRandomInt = (max) => Math.floor(Math.random() * max)
+const getRandomInt = (max) => {
+  const randomVal = Math.random()
+  Math.floor(randomVal * max)
+}
 
 const generateRandomTest = () => {
   // expected output: 0, 1 or 2
@@ -48,7 +42,29 @@ const generateRandomTest = () => {
   }
 }
 
-const BeCloseToRealityQuestion = ({ scoreLevel }) => {
+export const displayComponentsByTest = ({ testId, scoreLevel }) => {
+  switch (testId) {
+    case TEST_B:
+      return <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
+    case TEST_C:
+      return (
+        <div>
+          <BeCloseToRealityQuestion
+            scoreLevel={scoreLevel}
+            displayMamanBlues={false}
+          />
+          <ContactMamanBlues scoreLevel={scoreLevel} />
+        </div>
+      )
+    default:
+      return null
+  }
+}
+
+export const BeCloseToRealityQuestion = ({
+  scoreLevel,
+  displayMamanBlues = true,
+}) => {
   const [beCloseToReality, setBeCloseToReality] = useState("")
   const [displayMore, setDisplayMore] = useState()
 
@@ -59,12 +75,19 @@ const BeCloseToRealityQuestion = ({ scoreLevel }) => {
         setDisplayMore(
           <div>
             {beCloseToReality.contentResponse}
-            <ContactMamanBlues scoreLevel={scoreLevel} />
+            {displayMamanBlues ? (
+              <ContactMamanBlues scoreLevel={scoreLevel} />
+            ) : null}
           </div>
         )
         break
       case "no":
-        setDisplayMore(<AskForDetailsQuestion scoreLevel={scoreLevel} />)
+        setDisplayMore(
+          <AskForDetailsQuestion
+            scoreLevel={scoreLevel}
+            displayMamanBlues={displayMamanBlues}
+          />
+        )
         break
     }
   }, [beCloseToReality])
@@ -92,7 +115,7 @@ const BeCloseToRealityQuestion = ({ scoreLevel }) => {
   )
 }
 
-const AskForDetailsQuestion = ({ scoreLevel }) => {
+const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
   const [askForDetails, setAskForDetails] = useState("")
   const [displayMore, setDisplayMore] = useState()
 
@@ -103,7 +126,9 @@ const AskForDetailsQuestion = ({ scoreLevel }) => {
         setDisplayMore(
           <div>
             {askForDetails.contentResponse}
-            <ContactMamanBlues scoreLevel={scoreLevel} />
+            {displayMamanBlues ? (
+              <ContactMamanBlues scoreLevel={scoreLevel} />
+            ) : null}
           </div>
         )
         break
