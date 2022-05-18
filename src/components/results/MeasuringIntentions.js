@@ -15,7 +15,6 @@ const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 export function MeasuringIntentions({ scoreLevel }) {
   const testId = generateRandomTest()
 
-  // TODO: ne pas afficher le testId en prod
   // TODO: forcé pour le moment pour avoir le bloc d'Elise orange, à revoir
   return (
     <div className="measure">
@@ -28,8 +27,11 @@ export function MeasuringIntentions({ scoreLevel }) {
 }
 
 const getRandomInt = (max) => {
-  const randomVal = Math.random()
-  return Math.floor(randomVal * max)
+  if (typeof window !== "undefined") {
+    const randomArray = window.crypto.getRandomValues(new Uint16Array(1))
+    const randomVal = randomArray[0]
+    return randomVal % max
+  }
 }
 
 const generateRandomTest = () => {
@@ -168,7 +170,6 @@ const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
           ))}
         </ToggleButtonGroup>
       </div>
-
       {displayMore}
     </div>
   )
