@@ -77,7 +77,7 @@ export default function ToBeContacted() {
 
     if (itemValueType == RequestContact.type.chat) {
       const isChatInactive = chatButtonElement.classList.contains("is-inactive")
-      isChatInactive ? handleShowEliseAbsentModal() : handleShowChatModal()
+      isChatInactive ? handleShowEliseAbsentModal() : activeChat() //handleShowChatModal()
     } else goToContactForm()
   }
 
@@ -221,6 +221,7 @@ export default function ToBeContacted() {
       <Chat />
       {hideChatButton(setChatButtonElement)}
 
+      {/* Mis en commentaire pour démarrer le chat dès la validation du choix au lieux de passer pa la modale de confirmation
       <Modal
         show={showChatModal}
         onHide={handleCloseChatModal}
@@ -242,7 +243,7 @@ export default function ToBeContacted() {
             Valider
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 
       <Modal
         show={showEliseAbsentModal}
