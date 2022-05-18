@@ -9,6 +9,7 @@ export const CATEG = {
 export const ACTION = {
   contact_confirm_sent: "Confirmation d'envoi de la demande de contact",
   contact_type: "Choix du type de prise de contact",
+  parcours: "Parcours",
 }
 
 export const CONTACT_SENT = {

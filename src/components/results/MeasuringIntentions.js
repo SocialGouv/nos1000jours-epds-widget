@@ -8,12 +8,14 @@ import {
   TEST_C,
 } from "../../constants/measuring-intentions"
 import { SCORE_LEVEL_GOOD } from "../../utils/score-level.utils"
+import { ACTION, CATEG, trackerClick } from "../../utils/tracker.utils"
 import { ContactMamanBlues } from "./ContactMamanBlues"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
 export function MeasuringIntentions({ scoreLevel }) {
   const testId = generateRandomTest()
+  trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${testId}`)
 
   // TODO: forcé pour le moment pour avoir le bloc d'Elise orange, à revoir
   return (
