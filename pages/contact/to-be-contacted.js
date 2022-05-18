@@ -41,9 +41,9 @@ export default function ToBeContacted() {
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
-  const [showChatModal, setShowChatModal] = useState(false)
-  const handleCloseChatModal = () => setShowChatModal(false)
-  const handleShowChatModal = () => setShowChatModal(true)
+  //const [showChatModal, setShowChatModal] = useState(false)
+  //const handleCloseChatModal = () => setShowChatModal(false)
+  //const handleShowChatModal = () => setShowChatModal(true)
 
   const [showEliseAbsentModal, setShowEliseAbsentModal] = useState(false)
   const handleCloseEliseAbsentModal = () => setShowEliseAbsentModal(false)
