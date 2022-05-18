@@ -168,6 +168,15 @@ export default function ToBeContacted() {
     router.back()
   }
 
+  const closeInactiveChat = () => {
+    trackerClick(
+      CATEG.contact,
+      ACTION.contact_confirm_sent,
+      CONTACT_SENT.no_chat
+    )
+    handleCloseEliseAbsentModal()
+  }
+
   const Chat = () => {
     useEffect(() => {
       if (chatLoaded) return
@@ -260,7 +269,7 @@ export default function ToBeContacted() {
           message par SMS ou par mail, elle vous répondra dès que possible.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseEliseAbsentModal}>
+          <Button variant="primary" onClick={closeInactiveChat}>
             OK
           </Button>
         </Modal.Footer>
