@@ -41,9 +41,9 @@ export default function ToBeContacted() {
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
-  const [showChatModal, setShowChatModal] = useState(false)
-  const handleCloseChatModal = () => setShowChatModal(false)
-  const handleShowChatModal = () => setShowChatModal(true)
+  //const [showChatModal, setShowChatModal] = useState(false)
+  //const handleCloseChatModal = () => setShowChatModal(false)
+  //const handleShowChatModal = () => setShowChatModal(true)
 
   const [showEliseAbsentModal, setShowEliseAbsentModal] = useState(false)
   const handleCloseEliseAbsentModal = () => setShowEliseAbsentModal(false)
@@ -77,7 +77,7 @@ export default function ToBeContacted() {
 
     if (itemValueType == RequestContact.type.chat) {
       const isChatInactive = chatButtonElement.classList.contains("is-inactive")
-      isChatInactive ? handleShowEliseAbsentModal() : handleShowChatModal()
+      isChatInactive ? handleShowEliseAbsentModal() : activeChat() //handleShowChatModal()
     } else goToContactForm()
   }
 
@@ -168,6 +168,15 @@ export default function ToBeContacted() {
     router.back()
   }
 
+  const closeInactiveChat = () => {
+    trackerClick(
+      CATEG.contact,
+      ACTION.contact_confirm_sent,
+      CONTACT_SENT.no_chat
+    )
+    handleCloseEliseAbsentModal()
+  }
+
   const Chat = () => {
     useEffect(() => {
       if (chatLoaded) return
@@ -221,6 +230,7 @@ export default function ToBeContacted() {
       <Chat />
       {hideChatButton(setChatButtonElement)}
 
+      {/* Mis en commentaire pour démarrer le chat dès la validation du choix au lieux de passer pa la modale de confirmation
       <Modal
         show={showChatModal}
         onHide={handleCloseChatModal}
@@ -242,7 +252,7 @@ export default function ToBeContacted() {
             Valider
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
 
       <Modal
         show={showEliseAbsentModal}
@@ -259,7 +269,7 @@ export default function ToBeContacted() {
           message par SMS ou par mail, elle vous répondra dès que possible.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseEliseAbsentModal}>
+          <Button variant="primary" onClick={closeInactiveChat}>
             OK
           </Button>
         </Modal.Footer>
