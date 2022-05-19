@@ -1,3 +1,12 @@
+## [1.17.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.17.0...v1.17.1) (2022-05-19)
+
+
+### Bug Fixes
+
+* **chat:** ajout tracker ([2b83e8d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2b83e8dafc8be65d6d3ad99d4e06422a88a2fed9))
+* **chat:** lancer directement le chat ([2b4c228](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2b4c22883ed3750dbe68baf021029fbbf9374711))
+* **chat:** sonarcloud ([3190c21](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3190c2137dfccad36a21cda1915e4c1541f7de05))
+
 # [1.17.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.16.0...v1.17.0) (2022-05-12)
 
 
