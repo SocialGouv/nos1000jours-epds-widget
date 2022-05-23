@@ -73,13 +73,18 @@ export const BeCloseToRealityQuestion = ({
 }) => {
   const [beCloseToReality, setBeCloseToReality] = useState("")
   const [displayMore, setDisplayMore] = useState()
+  const [displayItemSelected, setDisplayItemSelected] = useState(false)
 
   useEffect(() => {
     switch (beCloseToReality.value) {
       case "yes":
       case "maybe":
+        setDisplayItemSelected(true)
         setDisplayMore(
           <div>
+            <div className="measure-label-selected">
+              {beCloseToReality.label}
+            </div>
             {beCloseToReality.contentResponse}
             {displayMamanBlues ? (
               <ContactMamanBlues scoreLevel={scoreLevel} />
@@ -88,11 +93,17 @@ export const BeCloseToRealityQuestion = ({
         )
         break
       case "no":
+        setDisplayItemSelected(true)
         setDisplayMore(
-          <AskForDetailsQuestion
-            scoreLevel={scoreLevel}
-            displayMamanBlues={displayMamanBlues}
-          />
+          <div>
+            <div className="measure-label-selected">
+              {beCloseToReality.label}
+            </div>
+            <AskForDetailsQuestion
+              scoreLevel={scoreLevel}
+              displayMamanBlues={displayMamanBlues}
+            />
+          </div>
         )
         break
     }
@@ -101,21 +112,23 @@ export const BeCloseToRealityQuestion = ({
   return (
     <div className="measure-card">
       <b>Ce résultat semble-t-il être proche de la réalité ?</b>
-      <div className="buttons-bloc">
-        <ToggleButtonGroup type="radio" name="radio-reality">
-          {beCloseToRealityResponses.map((item, index) => (
-            <ToggleButton
-              className="measure-button"
-              key={index}
-              value={item.value}
-              aria-label={item.label}
-              onClick={() => setBeCloseToReality(item)}
-            >
-              {item.label}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      </div>
+      {!displayItemSelected && (
+        <div className="buttons-bloc">
+          <ToggleButtonGroup type="radio" name="radio-reality">
+            {beCloseToRealityResponses.map((item, index) => (
+              <ToggleButton
+                className="measure-button"
+                key={index}
+                value={item.value}
+                aria-label={item.label}
+                onClick={() => setBeCloseToReality(item)}
+              >
+                {item.label}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </div>
+      )}
 
       {displayMore}
     </div>
@@ -125,13 +138,16 @@ export const BeCloseToRealityQuestion = ({
 const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
   const [askForDetails, setAskForDetails] = useState("")
   const [displayMore, setDisplayMore] = useState()
+  const [displayItemSelected, setDisplayItemSelected] = useState(false)
 
   // TODO: envoyer le contenu de la zone de texte
   useEffect(() => {
     switch (askForDetails.value) {
       case "bad":
+        setDisplayItemSelected(true)
         setDisplayMore(
           <div>
+            <div className="measure-label-selected">{askForDetails.label}</div>
             {askForDetails.contentResponse}
             {displayMamanBlues ? (
               <ContactMamanBlues scoreLevel={scoreLevel} />
@@ -140,8 +156,10 @@ const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
         )
         break
       case "other":
+        setDisplayItemSelected(true)
         setDisplayMore(
           <div>
+            <div className="measure-label-selected">{askForDetails.label}</div>
             {askForDetails.contentResponse}
             <input
               aria-label="textValueOther"
@@ -158,20 +176,22 @@ const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
   return (
     <div>
       Précisez nous ce qui rapprocherait le plus de la réalité
-      <div className="buttons-bloc">
-        <ToggleButtonGroup type="radio" name="radio-details">
-          {askForDetailsResponses.map((item, index) => (
-            <ToggleButton
-              className="measure-button"
-              key={index}
-              value={item.value}
-              onClick={() => setAskForDetails(item)}
-            >
-              {item.label}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-      </div>
+      {!displayItemSelected && (
+        <div className="buttons-bloc">
+          <ToggleButtonGroup type="radio" name="radio-details">
+            {askForDetailsResponses.map((item, index) => (
+              <ToggleButton
+                className="measure-button"
+                key={index}
+                value={item.value}
+                onClick={() => setAskForDetails(item)}
+              >
+                {item.label}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </div>
+      )}
       {displayMore}
     </div>
   )

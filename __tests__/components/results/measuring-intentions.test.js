@@ -31,6 +31,8 @@ describe("MeasuringIntentions", () => {
         fireEvent.click(yesButton)
 
         // Phrase spécifique
+        expect(yesButton).not.toBeInTheDocument()
+        expect(await screen.findByText("Oui")).toBeVisible()
         expect(
           await screen.findByText(
             "Vous allez bien, n'hésitez pas à revenir plus tard et vous questionner régulièrement. Sachez qu'Elise peut répondre à vos questions si vous en avez besoin."
@@ -56,6 +58,8 @@ describe("MeasuringIntentions", () => {
         fireEvent.click(maybeButton)
 
         // Phrase spécifique
+        expect(maybeButton).not.toBeInTheDocument()
+        expect(await screen.findByText("Je ne suis pas sûr(e)")).toBeVisible()
         expect(
           await screen.findByText(
             "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
@@ -82,6 +86,8 @@ describe("MeasuringIntentions", () => {
           fireEvent.click(noButton)
 
           // Phrase spécifique
+          expect(noButton).not.toBeInTheDocument()
+          expect(await screen.findByText("Non")).toBeVisible()
           expect(
             await screen.findByText(
               "Précisez nous ce qui rapprocherait le plus de la réalité"
@@ -121,6 +127,12 @@ describe("MeasuringIntentions", () => {
           fireEvent.click(badButton)
 
           // Phrase spécifique
+          expect(badButton).not.toBeInTheDocument()
+          expect(
+            await screen.findByText(
+              "Malgré le résultat, je n'ai pas l'impression d'aller bien"
+            )
+          ).toBeVisible()
           expect(
             await screen.findByText(
               "Nous vous conseillons de vous entretenir avec Elise. Elle saura vous apporter conseil."
@@ -153,6 +165,10 @@ describe("MeasuringIntentions", () => {
           fireEvent.click(otherButton)
 
           // Phrase spécifique
+          expect(otherButton).not.toBeInTheDocument()
+          expect(
+            await screen.findByText("Autre chose : nous le dire")
+          ).toBeVisible()
           expect(
             await screen.findByText(
               "Expliquez-nous pourquoi vous êtes venu.es passer le test."
