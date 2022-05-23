@@ -140,7 +140,18 @@ const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
   const [displayMore, setDisplayMore] = useState()
   const [displayItemSelected, setDisplayItemSelected] = useState(false)
 
-  // TODO: envoyer le contenu de la zone de texte
+  const [textValue, setTextValue] = useState("")
+  const [sendDetails, setSendDetails] = useState(false)
+
+  const handleSendDetails = () => setSendDetails(true)
+
+  useEffect(() => {
+    if (sendDetails) {
+      // TODO: envoyer le contenu de la zone de texte dans le BO
+      console.log(textValue)
+    }
+  }, [sendDetails])
+
   useEffect(() => {
     switch (askForDetails.value) {
       case "bad":
@@ -166,7 +177,11 @@ const AskForDetailsQuestion = ({ scoreLevel, displayMamanBlues = true }) => {
               type="textarea"
               name="textValue"
               className="fr-input measure-textearea"
+              onChange={(e) => setTextValue(e.target.value)}
             />
+            <button className="fr-btn" onClick={handleSendDetails}>
+              Valider
+            </button>
           </div>
         )
         break
