@@ -5,7 +5,9 @@ import { ContactMamanBlues } from "../../../src/components/results/ContactMamanB
 
 describe("UI du ContactMamanBlues", () => {
   test("le score est 1 et le bloc de contact est vide", async () => {
-    const { container } = render(<ContactMamanBlues scoreLevel={1} />)
+    const { container } = render(
+      <ContactMamanBlues scoreLevel={1} hideContact={true} />
+    )
 
     expect(screen).not.toBeNull()
     expect(container.firstChild.firstChild).toBeNull()

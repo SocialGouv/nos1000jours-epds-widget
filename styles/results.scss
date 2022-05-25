@@ -49,6 +49,19 @@
     --a: 0 !important;
   }
 
+  .good-mood {
+    background-color: var(--primaryBlueLight);
+    border: 2px var(--primaryBlue) solid;
+
+    img {
+      border: 3px solid var(--primaryBlue);
+    }
+
+    button {
+      background-color: var(--primaryBlue);
+    }
+  }
+
   .moderatelygood-mood {
     background-color: var(--primaryYellowLight);
     border: 2px var(--primaryYellowDark) solid;

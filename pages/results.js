@@ -54,7 +54,10 @@ export default function Results() {
           <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
         </div>
       </Row>
-      <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+      <ContactMamanBlues
+        scoreLevel={scoreLevelForMacaron}
+        hideContact={scoreLevelForMacaron == 1}
+      />
 
       <button className="fr-btn result-return-bt" onClick={goToSurvey}>
         Recommencer le questionnaire
