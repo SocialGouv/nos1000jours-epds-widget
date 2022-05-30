@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
-import { demandeDeDetailsByScoreLevel } from "../../../utils/measuring-intentions.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
+
+const DETAILS_TYPE = {
+  TEXTE: "text",
+  TEXT_AREA: "text_area",
+  FORM: "form",
+}
 
 export const AskForDetailsQuestion = ({
   scoreLevel,
   displayMamanBlues = true,
+  data,
 }) => {
   const [askForDetails, setAskForDetails] = useState("")
   const [displayMore, setDisplayMore] = useState()
@@ -15,7 +21,6 @@ export const AskForDetailsQuestion = ({
   const [sendDetails, setSendDetails] = useState(false)
 
   const handleSendDetails = () => setSendDetails(true)
-  const demandeDeDetails = demandeDeDetailsByScoreLevel(scoreLevel)
 
   useEffect(() => {
     if (sendDetails) {
@@ -25,25 +30,25 @@ export const AskForDetailsQuestion = ({
   }, [sendDetails])
 
   useEffect(() => {
-    switch (askForDetails.value) {
-      case "mal":
+    switch (getDetailsTypeByValue(askForDetails.value)) {
+      case DETAILS_TYPE.TEXTE:
         setDisplayItemSelected(true)
         setDisplayMore(
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
-            {demandeDeDetails.commentaires[askForDetails.value]}
+            {data.commentaires[askForDetails.value]}
             {displayMamanBlues ? (
               <ContactMamanBlues scoreLevel={scoreLevel} />
             ) : null}
           </div>
         )
         break
-      case "autre":
+      case DETAILS_TYPE.TEXT_AREA:
         setDisplayItemSelected(true)
         setDisplayMore(
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
-            {demandeDeDetails.commentaires[askForDetails.value]}
+            {data.commentaires[askForDetails.value]}
             <input
               aria-label="textValueOther"
               type="textarea"
@@ -57,16 +62,42 @@ export const AskForDetailsQuestion = ({
           </div>
         )
         break
+      case DETAILS_TYPE.FORM:
+        setDisplayItemSelected(true)
+        setDisplayMore(
+          <div>
+            <div className="measure-label-selected">{askForDetails.label}</div>
+            {/* TODO: formulaire */}
+          </div>
+        )
+        break
     }
   }, [askForDetails])
 
+  const getDetailsTypeByValue = (value) => {
+    switch (value) {
+      case "mal":
+      case "seTourner":
+      case "bien":
+      case "curiosite":
+      case "proSante":
+        return DETAILS_TYPE.TEXTE
+      case "autre":
+      case "aucune":
+        return DETAILS_TYPE.TEXT_AREA
+      case "quiJoindre":
+      case "quoiFaire":
+        return DETAILS_TYPE.FORM
+    }
+  }
+
   return (
     <div>
-      {demandeDeDetails.question}
+      {data.question}
       {!displayItemSelected && (
         <div className="buttons-bloc">
           <ToggleButtonGroup type="radio" name="radio-details">
-            {demandeDeDetails.reponses.map((item, index) => (
+            {data.reponses.map((item, index) => (
               <ToggleButton
                 className="measure-button"
                 key={index}

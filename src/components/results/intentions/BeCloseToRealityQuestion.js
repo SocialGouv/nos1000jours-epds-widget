@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
 import {
+  demandeDeDetailsByScoreLevel,
+  estLePlusAdapte,
   estProcheDeLaRealite,
   estProcheDeLaRealiteCommentaireByScoreLevel,
 } from "../../../utils/measuring-intentions.utils"
+import {
+  SCORE_LEVEL_BAD,
+  SCORE_LEVEL_GOOD,
+  SCORE_LEVEL_MEDIUM,
+} from "../../../utils/score-level.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 import { AskForDetailsQuestion } from "./AskForDetailsQuestion"
 
@@ -16,41 +23,49 @@ export const BeCloseToRealityQuestion = ({
   const [displayItemSelected, setDisplayItemSelected] = useState(false)
 
   useEffect(() => {
-    switch (beCloseToReality.value) {
-      case "oui":
-      case "peutetre":
-        setDisplayItemSelected(true)
-        setDisplayMore(
-          <div>
-            <div className="measure-label-selected">
-              {beCloseToReality.label}
-            </div>
-            {
-              estProcheDeLaRealiteCommentaireByScoreLevel(scoreLevel)[
-              beCloseToReality.value
-              ]
-            }
+    if (
+      (scoreLevel === SCORE_LEVEL_GOOD && beCloseToReality.value === "oui") ||
+      beCloseToReality.value === "peutetre"
+    ) {
+      // Questionnaire terminé
+      setDisplayItemSelected(true)
+      setDisplayMore(
+        <div>
+          <div className="measure-label-selected">{beCloseToReality.label}</div>
+          {
+            estProcheDeLaRealiteCommentaireByScoreLevel(scoreLevel)[
+            beCloseToReality.value
+            ]
+          }
 
-            {displayMamanBlues ? (
-              <ContactMamanBlues scoreLevel={scoreLevel} />
-            ) : null}
-          </div>
-        )
-        break
-      case "non":
-        setDisplayItemSelected(true)
-        setDisplayMore(
-          <div>
-            <div className="measure-label-selected">
-              {beCloseToReality.label}
-            </div>
-            <AskForDetailsQuestion
-              scoreLevel={scoreLevel}
-              displayMamanBlues={displayMamanBlues}
-            />
-          </div>
-        )
-        break
+          {displayMamanBlues ? (
+            <ContactMamanBlues scoreLevel={scoreLevel} />
+          ) : null}
+        </div>
+      )
+    }
+    if (
+      beCloseToReality.value === "non" ||
+      (scoreLevel === SCORE_LEVEL_MEDIUM && beCloseToReality.value === "oui") ||
+      (scoreLevel === SCORE_LEVEL_BAD && beCloseToReality.value === "oui")
+    ) {
+      let data
+      if (beCloseToReality.value === "oui") data = estLePlusAdapte
+      if (beCloseToReality.value === "non")
+        data = demandeDeDetailsByScoreLevel(scoreLevel)
+
+      // Réponses multiples
+      setDisplayItemSelected(true)
+      setDisplayMore(
+        <div>
+          <div className="measure-label-selected">{beCloseToReality.label}</div>
+          <AskForDetailsQuestion
+            scoreLevel={scoreLevel}
+            displayMamanBlues={displayMamanBlues}
+            data={data}
+          />
+        </div>
+      )
     }
   }, [beCloseToReality])
 

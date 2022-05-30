@@ -20,12 +20,9 @@ export function MeasuringIntentions({ scoreLevel }) {
     <div className="measure">
       {TEST_NUMBER_ENABLED === "true" ? <div>Test {testId}</div> : null}
 
-      {/* {scoreLevel == SCORE_LEVEL_GOOD
-        ? displayComponentsByTest({ testId: testId, scoreLevel: scoreLevel })
-        : null} */}
       {displayComponentsByTest({
         testId: testId,
-        scoreLevel: SCORE_LEVEL_GOOD,
+        scoreLevel: scoreLevel,
       })}
     </div>
   )
@@ -52,11 +49,11 @@ const generateRandomTest = () => {
 }
 
 export const displayComponentsByTest = ({ testId, scoreLevel }) => {
-  if (scoreLevel == SCORE_LEVEL_GOOD) {
-    switch (testId) {
-      case TEST.B:
+  switch (scoreLevel) {
+    case SCORE_LEVEL_GOOD:
+      if (testId == TEST.B)
         return <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
-      case TEST.C:
+      if (testId == TEST.C)
         return (
           <div>
             <BeCloseToRealityQuestion
@@ -66,8 +63,23 @@ export const displayComponentsByTest = ({ testId, scoreLevel }) => {
             <ContactMamanBlues scoreLevel={scoreLevel} />
           </div>
         )
-      default:
-        return null
-    }
+      return null
+    case SCORE_LEVEL_MEDIUM:
+    case SCORE_LEVEL_BAD:
+      if (testId == TEST.B)
+        return <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
+      if (testId == TEST.C)
+        return (
+          <div>
+            <BeCloseToRealityQuestion
+              scoreLevel={scoreLevel}
+              displayMamanBlues={false}
+            />
+            <ContactMamanBlues scoreLevel={scoreLevel} />
+          </div>
+        )
+      return null
+    default:
+      return null
   }
 }

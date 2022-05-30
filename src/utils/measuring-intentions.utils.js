@@ -1,9 +1,17 @@
+import {
+  SCORE_LEVEL_BAD,
+  SCORE_LEVEL_GOOD,
+  SCORE_LEVEL_MEDIUM,
+} from "./score-level.utils"
+
 export const TEST = {
   A: "A",
   B: "B",
   C: "C",
 }
 
+const elisePeutVousAider =
+  "Si vous vous posez des questions, Elise peut vous aider à y voir plus clair. Le test est un outil de dépistage. Il aide les professionnels de santé à poser un diagnostique de cette maladie touchant XXX de parents."
 const demandeDeDetails = {
   lvl1: {
     question: "Précisez nous ce qui rapprocherait le plus de la réalité",
@@ -17,29 +25,43 @@ const demandeDeDetails = {
         label: "Autre chose : nous le dire",
       },
     ],
-    commentaires: { // TODO: tableau
+    commentaires: {
       mal: "Nous vous conseillons de vous entretenir avec Elise. Elle saura vous apporter conseil.",
       autre: "Expliquez-nous pourquoi vous êtes venu.es passer le test.",
     },
   },
   lvl3: {
     question: "Précisez nous ce qui rapprocherait le plus de la réalité",
-    reponses: { // TODO: tableau
-      bien: "Malgré le résultat, je l'impression que tout va bien",
-      curiosite: "J'ai fait le test par curiosité",
-      proSante: "Je suis professionnel de santé",
-      aucune: "Aucune des trois : je vous explique",
-    },
-    commentaires: { // TODO: tableau
-      bien: "", //TODO: commentaire
-      curiosite: "", //TODO: commentaire
-      proSante: "", //TODO: commentaire + inscriptioni webinaire ?
+    reponses: [
+      {
+        value: "bien",
+        label: "Malgré le résultat, je l'impression que tout va bien",
+      },
+      {
+        value: "curiosite",
+        label: "J'ai fait le test par curiosité",
+      },
+      {
+        value: "proSante",
+        label: "Je suis professionnel de santé",
+      },
+      {
+        value: "aucune",
+        label: "Aucune des trois : je vous explique",
+      },
+    ],
+    commentaires: {
+      bien: elisePeutVousAider,
+      curiosite: elisePeutVousAider,
+      //TODO: commentaire + inscriptioni webinaire ?
+      proSante:
+        "Merci pour l'intérêt que vous portez à notre solution. Si vous avez des commentaires, des suggestions, n'hésitez pas à nous en faire part à l'adresse suivante : contact.1000J@ ....",
       aucune: "", //TODO: texteArea + commentaire
     },
   },
 }
 
-const estLePlusAdapte = {
+export const estLePlusAdapte = {
   question:
     "Nous vous conseillons de prendre une de ces actions pour être accompagné(e). Qu'est-ce qui vous semble le plus adapté pour vous ?",
   reponses: [
@@ -56,14 +78,14 @@ const estLePlusAdapte = {
     {
       value: "seTourner",
       label:
-        "Je en sais pas vers qui me tourner : je rentre en contact avec Elise",
+        "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
     },
     {
       value: "aucune",
       label: "Aucune des proposition / Je ne sais pas quoi faire",
     },
   ],
-  commentaires: { // TODO: tableau
+  commentaires: {
     quiJoindre: "", //TODO: formulaire + commentaire + mail
     quoiFaire: "", //TODO: formulaire + commentaire + mail
     seTourner: "", // TODO: rien
@@ -94,11 +116,6 @@ export const estProcheDeLaRealite = {
         "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe.",
       non: demandeDeDetails.lvl1,
     },
-    lvl2: {
-      oui: "",
-      peutetre: "",
-      non: "",
-    },
     lvl3: {
       oui: estLePlusAdapte,
       peutetre:
@@ -110,31 +127,20 @@ export const estProcheDeLaRealite = {
 
 export const demandeDeDetailsByScoreLevel = (scoreLevel) => {
   switch (scoreLevel) {
-    case 1:
+    case SCORE_LEVEL_GOOD:
       return demandeDeDetails.lvl1
-    case 2:
-      return demandeDeDetails.lvl2
-    case 3:
+    case SCORE_LEVEL_MEDIUM:
+    case SCORE_LEVEL_BAD:
       return demandeDeDetails.lvl3
   }
 }
 
 export const estProcheDeLaRealiteCommentaireByScoreLevel = (scoreLevel) => {
   switch (scoreLevel) {
-    case 1:
+    case SCORE_LEVEL_GOOD:
       return estProcheDeLaRealite.commentaires.lvl1
-    case 2:
-      return estProcheDeLaRealite.commentaires.lvl2
-    case 3:
+    case SCORE_LEVEL_MEDIUM:
+    case SCORE_LEVEL_BAD:
       return estProcheDeLaRealite.commentaires.lvl3
-  }
-}
-
-export const questionByTest = (testId, scoreLevel) => {
-  switch (testId) {
-    case TEST.B:
-      break
-    case TEST.C:
-      break
   }
 }
