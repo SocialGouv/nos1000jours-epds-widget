@@ -1,18 +1,18 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { displayComponentsByTest } from "../../../src/components/results/MeasuringIntentions"
+import { displayComponentsByTest } from "../../../src/components/results/intentions/MeasuringIntentions"
 
 describe("MeasuringIntentions", () => {
   describe("Reponse EPDS : Je vais bien", () => {
     test("Test A => aucun retour", async () => {
-      expect(displayComponentsByTest({ testId: "A", scoreLevel: 3 })).toBeNull()
+      expect(displayComponentsByTest({ testId: "A", scoreLevel: 1 })).toBeNull()
     })
 
     describe("Test B", () => {
       let yesButton, noButton, maybeButton
 
       beforeEach(() => {
-        render(displayComponentsByTest({ testId: "B", scoreLevel: 3 }))
+        render(displayComponentsByTest({ testId: "B", scoreLevel: 1 }))
 
         yesButton = screen.getByRole("button", { name: "Oui" })
         noButton = screen.getByRole("button", { name: "Non" })
@@ -192,7 +192,7 @@ describe("MeasuringIntentions", () => {
       let yesButton, noButton, maybeButton
 
       beforeEach(() => {
-        render(displayComponentsByTest({ testId: "C", scoreLevel: 3 }))
+        render(displayComponentsByTest({ testId: "C", scoreLevel: 1 }))
 
         yesButton = screen.getByRole("button", { name: "Oui" })
         noButton = screen.getByRole("button", { name: "Non" })

@@ -14,7 +14,7 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
-import { MeasuringIntentions } from "../src/components/results/MeasuringIntentions"
+import { MeasuringIntentions } from "../src/components/results/intentions/MeasuringIntentions"
 
 export default function Results() {
   const router = useRouter()
