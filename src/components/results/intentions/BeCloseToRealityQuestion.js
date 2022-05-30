@@ -70,7 +70,7 @@ export const BeCloseToRealityQuestion = ({
   }, [beCloseToReality])
 
   return (
-    <div className="measure-card">
+    <div>
       <b>{estProcheDeLaRealite.question}</b>
       {!displayItemSelected && (
         <div className="buttons-bloc">

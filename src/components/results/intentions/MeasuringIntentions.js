@@ -1,13 +1,9 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { TEST } from "../../../utils/measuring-intentions.utils"
-import {
-  SCORE_LEVEL_BAD,
-  SCORE_LEVEL_GOOD,
-  SCORE_LEVEL_MEDIUM,
-} from "../../../utils/score-level.utils"
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
+import * as Icon from "react-bootstrap-icons"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
@@ -15,15 +11,36 @@ export function MeasuringIntentions({ scoreLevel }) {
   const testId = generateRandomTest()
   trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${testId}`)
 
-  // TODO: forcé pour le moment pour avoir le bloc d'Elise orange, à revoir
+  const content = displayComponentsByTest({
+    testId: testId,
+    scoreLevel: scoreLevel,
+  })
+
+  const [component, setComponent] = useState(content)
+
+  const onReset = () => {
+    setComponent(undefined)
+  }
+
+  useEffect(() => {
+    if (component == undefined) setComponent(content)
+  }, [component])
+
   return (
     <div className="measure">
       {TEST_NUMBER_ENABLED === "true" ? <div>Test {testId}</div> : null}
 
-      {displayComponentsByTest({
-        testId: testId,
-        scoreLevel: scoreLevel,
-      })}
+      <div className="measure-card">
+        <button
+          className="fr-btn fr-btn--secondary margin-bottom-8"
+          onClick={onReset}
+        >
+          <Icon.Reply className="margin-right-8" />
+          Recommencer
+        </button>
+
+        {component}
+      </div>
     </div>
   )
 }
@@ -49,37 +66,17 @@ const generateRandomTest = () => {
 }
 
 export const displayComponentsByTest = ({ testId, scoreLevel }) => {
-  switch (scoreLevel) {
-    case SCORE_LEVEL_GOOD:
-      if (testId == TEST.B)
-        return <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
-      if (testId == TEST.C)
-        return (
-          <div>
-            <BeCloseToRealityQuestion
-              scoreLevel={scoreLevel}
-              displayMamanBlues={false}
-            />
-            <ContactMamanBlues scoreLevel={scoreLevel} />
-          </div>
-        )
-      return null
-    case SCORE_LEVEL_MEDIUM:
-    case SCORE_LEVEL_BAD:
-      if (testId == TEST.B)
-        return <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
-      if (testId == TEST.C)
-        return (
-          <div>
-            <BeCloseToRealityQuestion
-              scoreLevel={scoreLevel}
-              displayMamanBlues={false}
-            />
-            <ContactMamanBlues scoreLevel={scoreLevel} />
-          </div>
-        )
-      return null
-    default:
-      return null
-  }
+  if (testId == TEST.B)
+    return <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
+  if (testId == TEST.C)
+    return (
+      <div>
+        <BeCloseToRealityQuestion
+          scoreLevel={scoreLevel}
+          displayMamanBlues={false}
+        />
+        <ContactMamanBlues scoreLevel={scoreLevel} />
+      </div>
+    )
+  return null
 }
