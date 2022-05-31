@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.7",
-    "@dataesr/react-dsfr": "^0.9.7",
+    "@dataesr/react-dsfr": "^2.0.0",
     "@socialgouv/matomo-next": "^1.2.2",
     "@socialgouv/nos1000jours-lib": "^1.4.0",
     "bootstrap": "^5.1.3",
