@@ -10,6 +10,9 @@ export const TEST = {
   C: "C",
 }
 
+export const cestUneBonneEtape =
+  "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
+
 const elisePeutVousAider =
   "Si vous vous posez des questions, Elise peut vous aider à y voir plus clair. Le test est un outil de dépistage. Il aide les professionnels de santé à poser un diagnostique de cette maladie touchant XXX de parents."
 const demandeDeDetails = {
@@ -53,10 +56,9 @@ const demandeDeDetails = {
     commentaires: {
       bien: elisePeutVousAider,
       curiosite: elisePeutVousAider,
-      //TODO: commentaire + inscriptioni webinaire ?
       proSante:
         "Merci pour l'intérêt que vous portez à notre solution. Si vous avez des commentaires, des suggestions, n'hésitez pas à nous en faire part à l'adresse suivante : contact.1000J@ ....",
-      aucune: "", //TODO: texteArea + commentaire
+      aucune: "",
     },
   },
 }
@@ -86,10 +88,11 @@ export const estLePlusAdapte = {
     },
   ],
   commentaires: {
-    quiJoindre: "", //TODO: formulaire + commentaire + mail
-    quoiFaire: "", //TODO: formulaire + commentaire + mail
-    seTourner: "", // TODO: rien
-    aucune: "", //TODO: TextArea + commentaire
+    quiJoindre: "",
+    quoiFaire: "",
+    seTourner: "",
+    aucune:
+      "Avec vos mots expliquez-nous ce qui serait le plus adapté pour vous :",
   },
 }
 
@@ -118,8 +121,7 @@ export const estProcheDeLaRealite = {
     },
     lvl3: {
       oui: estLePlusAdapte,
-      peutetre:
-        "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter.",
+      peutetre: cestUneBonneEtape,
       non: demandeDeDetails.lvl3,
     },
   },

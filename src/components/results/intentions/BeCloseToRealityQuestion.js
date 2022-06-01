@@ -38,9 +38,7 @@ export const BeCloseToRealityQuestion = ({
             ]
           }
 
-          {displayMamanBlues ? (
-            <ContactMamanBlues scoreLevel={scoreLevel} />
-          ) : null}
+          {displayMamanBlues && <ContactMamanBlues scoreLevel={scoreLevel} />}
         </div>
       )
     }

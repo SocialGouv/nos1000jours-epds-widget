@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import {
+  SCORE_LEVEL_BAD,
+  SCORE_LEVEL_MEDIUM,
+} from "../../../utils/score-level.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
+import { FormToSendMail } from "./FormToSendMail"
+import { TextAreaToSendDetails } from "./TextAreaToSendDetails"
 
 const DETAILS_TYPE = {
   TEXTE: "text",
@@ -17,18 +23,6 @@ export const AskForDetailsQuestion = ({
   const [displayMore, setDisplayMore] = useState()
   const [displayItemSelected, setDisplayItemSelected] = useState(false)
 
-  const [textValue, setTextValue] = useState("")
-  const [sendDetails, setSendDetails] = useState(false)
-
-  const handleSendDetails = () => setSendDetails(true)
-
-  useEffect(() => {
-    if (sendDetails) {
-      // TODO: envoyer le contenu de la zone de texte dans le BO
-      console.log(textValue)
-    }
-  }, [sendDetails])
-
   useEffect(() => {
     switch (getDetailsTypeByValue(askForDetails.value)) {
       case DETAILS_TYPE.TEXTE:
@@ -37,9 +31,9 @@ export const AskForDetailsQuestion = ({
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
             {data.commentaires[askForDetails.value]}
-            {displayMamanBlues ? (
+            {displayMamanBlues && askForDetails.value !== "proSante" && (
               <ContactMamanBlues scoreLevel={scoreLevel} />
-            ) : null}
+            )}
           </div>
         )
         break
@@ -49,16 +43,13 @@ export const AskForDetailsQuestion = ({
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
             {data.commentaires[askForDetails.value]}
-            <input
-              aria-label="textValueOther"
-              type="textarea"
-              name="textValue"
-              className="fr-input measure-textearea"
-              onChange={(e) => setTextValue(e.target.value)}
+            <TextAreaToSendDetails
+              scoreLevel={scoreLevel}
+              displayMamanBlues={
+                scoreLevel == SCORE_LEVEL_MEDIUM ||
+                scoreLevel == SCORE_LEVEL_BAD
+              }
             />
-            <button className="fr-btn" onClick={handleSendDetails}>
-              Valider
-            </button>
           </div>
         )
         break
@@ -67,7 +58,7 @@ export const AskForDetailsQuestion = ({
         setDisplayMore(
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
-            {/* TODO: formulaire */}
+            <FormToSendMail scoreLevel={scoreLevel} />
           </div>
         )
         break

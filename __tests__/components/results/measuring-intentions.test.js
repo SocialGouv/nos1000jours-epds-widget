@@ -419,33 +419,50 @@ describe("MeasuringIntentions", () => {
             })
           })
 
-          test("Réponse : Je sais qui joindre", async () => {
+          afterEach(() => {
+            // Bloc Elise
+            mamanBluesBlocToBeInTheDocument()
+          })
+
+          test("Réponse : Je sais qui joindre => formulaire", async () => {
             // Action
             fireEvent.click(quiJoindre)
 
+            // Phrases spécifiques
             expect(
               await screen.findByText(
                 "Je sais qui joindre : je vais contacter mon professionnel de santé et parler du résultat du test"
               )
             ).toBeVisible()
-            //mamanBluesBlocToBeInTheDocument()
+            expect(
+              await screen.findByText(
+                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
+              )
+            ).toBeVisible()
+
             // TODO: check formulaire
           })
 
-          test("Réponse : Je sais quoi faire", async () => {
+          test("Réponse : Je sais quoi faire => formulaire", async () => {
             // Action
             fireEvent.click(quoiFaire)
 
+            // Phrases spécifiques
             expect(
               await screen.findByText(
                 "Je sais quoi faire : je montre le résultat de ce test à mon entourage"
               )
             ).toBeVisible()
-            //mamanBluesBlocToBeInTheDocument()
+            expect(
+              await screen.findByText(
+                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
+              )
+            ).toBeVisible()
+
             // TODO: check formulaire
           })
 
-          test("Réponse : Je en sais pas vers qui me tourner", async () => {
+          test("Réponse : Je ne sais pas vers qui me tourner => texte", async () => {
             fireEvent.click(seTourner)
 
             expect(
@@ -453,25 +470,35 @@ describe("MeasuringIntentions", () => {
                 "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise"
               )
             ).toBeVisible()
-            //TODO: mamanBluesBlocToBeInTheDocument()
           })
 
-          test("Réponse : Aucune des proposition / Je ne sais pas quoi faire", async () => {
+          test("Réponse : Aucune des proposition / Je ne sais pas quoi faire => textarea", async () => {
             // Action
             fireEvent.click(aucune)
 
+            // Phrases spécifiques
             expect(
               await screen.findByText(
                 "Aucune des proposition / Je ne sais pas quoi faire"
               )
             ).toBeVisible()
             expect(
+              await screen.findByText(
+                "Avec vos mots expliquez-nous ce qui serait le plus adapté pour vous :"
+              )
+            ).toBeVisible()
+            expect(
+              await screen.findByText(
+                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
+              )
+            ).toBeVisible()
+
+            // Text Area
+            expect(
               screen.getByRole("textbox", {
                 name: "textValueOther",
               })
             ).toBeInTheDocument()
-            //mamanBluesBlocToBeInTheDocument()
-            // TODO: check commentaire + phrase d'accroche
           })
         })
       })
@@ -563,6 +590,9 @@ describe("MeasuringIntentions", () => {
                 "Malgré le résultat, je l'impression que tout va bien"
               )
             ).toBeVisible()
+
+            // Bloc Elise
+            mamanBluesBlocToBeInTheDocument()
           })
 
           test("Réponse : J'ai fait le test par curiosité => texte", async () => {
@@ -572,24 +602,48 @@ describe("MeasuringIntentions", () => {
             expect(
               await screen.findByText("J'ai fait le test par curiosité")
             ).toBeVisible()
+
+            // Bloc Elise
+            mamanBluesBlocToBeInTheDocument()
           })
 
-          test("Réponse : Je suis professionnel de santé", async () => {
+          test("Réponse : Je suis professionnel de santé => texte", async () => {
             // Action
             fireEvent.click(proSante)
 
             expect(
               await screen.findByText("Je suis professionnel de santé")
             ).toBeVisible()
+
+            // Bloc Elise
+            expect(
+              screen.queryByRole("img", { name: "Portrait d'Elise" })
+            ).toBeNull()
           })
 
-          test("Réponse : Aucune des trois => affichage text area", async () => {
+          test("Réponse : Aucune des trois => textarea", async () => {
             // Action
             fireEvent.click(aucune)
 
+            // Phrases spécifiques
             expect(
               await screen.findByText("Aucune des trois : je vous explique")
             ).toBeVisible()
+            expect(
+              await screen.findByText(
+                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
+              )
+            ).toBeVisible()
+
+            // Text Area
+            expect(
+              screen.getByRole("textbox", {
+                name: "textValueOther",
+              })
+            ).toBeInTheDocument()
+
+            // Bloc Elise
+            mamanBluesBlocToBeInTheDocument()
           })
         })
       })
