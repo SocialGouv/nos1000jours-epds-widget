@@ -6,7 +6,7 @@ import {
   SCORE_LEVEL_GOOD,
 } from "../../../src/utils/score-level.utils"
 
-describe("MeasuringIntentions", () => {
+describe("UI de MeasuringIntentions", () => {
   // Bloc Elise
   const mamanBluesBlocToBeInTheDocument = () => {
     expect(
@@ -440,7 +440,17 @@ describe("MeasuringIntentions", () => {
               )
             ).toBeVisible()
 
-            // TODO: check formulaire
+            // Formaulaire
+            expect(
+              await screen.findByText(
+                "Recevez votre résultat au questionnaire par mail pour le partager à votre professionnel de santé :"
+              )
+            ).toBeVisible()
+            expect(
+              screen.getByRole("form", {
+                name: "formToSendMail",
+              })
+            ).toBeInTheDocument()
           })
 
           test("Réponse : Je sais quoi faire => formulaire", async () => {
@@ -459,7 +469,17 @@ describe("MeasuringIntentions", () => {
               )
             ).toBeVisible()
 
-            // TODO: check formulaire
+            // Formaulaire
+            expect(
+              await screen.queryByText(
+                "Recevez votre résultat au questionnaire par mail pour le partager à votre professionnel de santé :"
+              )
+            ).toBeNull()
+            expect(
+              screen.getByRole("form", {
+                name: "formToSendMail",
+              })
+            ).toBeInTheDocument()
           })
 
           test("Réponse : Je ne sais pas vers qui me tourner => texte", async () => {

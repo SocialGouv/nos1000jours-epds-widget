@@ -58,7 +58,10 @@ export const AskForDetailsQuestion = ({
         setDisplayMore(
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
-            <FormToSendMail scoreLevel={scoreLevel} />
+            <FormToSendMail
+              scoreLevel={scoreLevel}
+              forHimself={askForDetails.value === "quiJoindre"}
+            />
           </div>
         )
         break

@@ -27,3 +27,14 @@ export const EpdsResultsComments = {
     conclusion: "",
   },
 }
+
+export const Form = {
+  placeholder: {
+    name: "Écrivez ici votre prénom",
+    email: "Écrivez ici l’adresse mail",
+  },
+  error: {
+    email: "L'adresse mail n'est pas au bon format",
+  },
+  required: "*Champs obligatoire",
+}
