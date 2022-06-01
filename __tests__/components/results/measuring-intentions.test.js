@@ -22,6 +22,8 @@ describe("MeasuringIntentions", () => {
       expect(
         displayComponentsByTest({ testId: "A", scoreLevel: SCORE_LEVEL_GOOD })
       ).toBeNull()
+
+      expect(screen.queryByRole("button", { name: "Recommencer" })).toBeNull()
     })
 
     describe("Test B", () => {
@@ -333,6 +335,7 @@ describe("MeasuringIntentions", () => {
         displayComponentsByTest({ testId: "A", scoreLevel: SCORE_LEVEL_BAD })
       ).toBeNull()
 
+      expect(screen.queryByRole("button", { name: "Recommencer" })).toBeNull()
       // On ne peut pas vérifier si le bloc de contact est présent car il est hors du bloc généré par `displayComponentsByTest`
     })
 

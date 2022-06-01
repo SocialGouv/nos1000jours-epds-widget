@@ -11,16 +11,17 @@ export function MeasuringIntentions({ scoreLevel }) {
   const testId = generateRandomTest()
   trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${testId}`)
 
-  const content = displayComponentsByTest({
-    testId: testId,
-    scoreLevel: scoreLevel,
-  })
-
-  const [component, setComponent] = useState(content)
-
   const onReset = () => {
     setComponent(undefined)
   }
+
+  const content = displayComponentsByTest({
+    testId: testId,
+    scoreLevel: scoreLevel,
+    onReset,
+  })
+
+  const [component, setComponent] = useState(content)
 
   useEffect(() => {
     if (component == undefined) setComponent(content)
@@ -29,18 +30,7 @@ export function MeasuringIntentions({ scoreLevel }) {
   return (
     <div className="measure">
       {TEST_NUMBER_ENABLED === "true" ? <div>Test {testId}</div> : null}
-
-      <div className="measure-card">
-        <button
-          className="fr-btn fr-btn--secondary margin-bottom-8"
-          onClick={onReset}
-        >
-          <Icon.Reply className="margin-right-8" />
-          Recommencer
-        </button>
-
-        {component}
-      </div>
+      {component}
     </div>
   )
 }
@@ -65,11 +55,14 @@ const generateRandomTest = () => {
   }
 }
 
-export const displayComponentsByTest = ({ testId, scoreLevel }) => {
-  if (testId == TEST.B)
-    return <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
-  if (testId == TEST.C)
-    return (
+export const displayComponentsByTest = ({ testId, scoreLevel, onReset }) => {
+  if (testId == TEST.B) {
+    const contentTestB = <BeCloseToRealityQuestion scoreLevel={scoreLevel} />
+    return cardComponentAndRetryButton(contentTestB, onReset)
+  }
+
+  if (testId == TEST.C) {
+    const contentTestC = (
       <div>
         <BeCloseToRealityQuestion
           scoreLevel={scoreLevel}
@@ -78,5 +71,22 @@ export const displayComponentsByTest = ({ testId, scoreLevel }) => {
         <ContactMamanBlues scoreLevel={scoreLevel} />
       </div>
     )
+    return cardComponentAndRetryButton(contentTestC, onReset)
+  }
+
   return null
 }
+
+const cardComponentAndRetryButton = (content, onReset) => (
+  <div className="measure-card">
+    <button
+      className="fr-btn fr-btn--secondary margin-bottom-8"
+      onClick={onReset}
+    >
+      <Icon.Reply className="margin-right-8" />
+      Recommencer
+    </button>
+
+    {content}
+  </div>
+)
