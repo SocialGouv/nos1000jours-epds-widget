@@ -7,8 +7,9 @@ import * as Icon from "react-bootstrap-icons"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
-export function MeasuringIntentions({ scoreLevel }) {
+export function MeasuringIntentions({ scoreLevel, setTestId }) {
   const testId = generateRandomTest()
+  setTestId(testId)
   trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${testId}`)
 
   const onReset = () => {

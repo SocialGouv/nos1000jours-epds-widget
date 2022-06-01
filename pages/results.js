@@ -15,9 +15,12 @@ import {
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
 import { MeasuringIntentions } from "../src/components/results/intentions/MeasuringIntentions"
+import { TEST } from "../src/utils/measuring-intentions.utils"
+import { useState } from "react"
 
 export default function Results() {
   const router = useRouter()
+  const [testId, setTestId] = useState(null)
 
   const localeSelected = getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
@@ -36,11 +39,18 @@ export default function Results() {
     })
   }
 
+  const showContactMamanBlues = () => {
+    return scoreLevelForMacaron != 1 && testId !== TEST.B //|| testId !== TEST.C
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
-      <MeasuringIntentions scoreLevel={scoreLevelForMood} />
+      <MeasuringIntentions
+        scoreLevel={scoreLevelForMood}
+        setTestId={setTestId}
+      />
       <Row>
         <div className="margin-bottom-8">
           <b>
@@ -54,10 +64,9 @@ export default function Results() {
           <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
         </div>
       </Row>
-      <ContactMamanBlues
-        scoreLevel={scoreLevelForMacaron}
-        hideContact={scoreLevelForMacaron == 1}
-      />
+      {showContactMamanBlues() && (
+        <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+      )}
 
       <button className="fr-btn result-return-bt" onClick={goToSurvey}>
         Recommencer le questionnaire
