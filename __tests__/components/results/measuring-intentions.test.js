@@ -39,14 +39,17 @@ describe("MeasuringIntentions", () => {
         maybeButton = screen.getByRole("button", {
           name: "Je ne suis pas sûr(e)",
         })
-      })
 
-      test("Réponse : Oui => affichage du portrait", async () => {
         // Buttons
         expect(yesButton).toBeInTheDocument()
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
+        expect(
+          screen.getByRole("button", { name: "Recommencer" })
+        ).toBeInTheDocument()
+      })
 
+      test("Réponse : Oui => affichage du portrait", async () => {
         // Action
         fireEvent.click(yesButton)
 
@@ -64,11 +67,6 @@ describe("MeasuringIntentions", () => {
       })
 
       test("Réponse : Je ne suis pas sûr(e) => affichage du portrait", async () => {
-        // Buttons
-        expect(yesButton).toBeInTheDocument()
-        expect(noButton).toBeInTheDocument()
-        expect(maybeButton).toBeInTheDocument()
-
         // Action
         fireEvent.click(maybeButton)
 
@@ -87,11 +85,6 @@ describe("MeasuringIntentions", () => {
 
       describe("Réponse : Non", () => {
         test("Affichage de la nouvelle question", async () => {
-          // Buttons
-          expect(yesButton).toBeInTheDocument()
-          expect(noButton).toBeInTheDocument()
-          expect(maybeButton).toBeInTheDocument()
-
           // Action
           fireEvent.click(noButton)
 
@@ -121,6 +114,7 @@ describe("MeasuringIntentions", () => {
         })
 
         test("Réponse : je ne vais pas bien => affichage du portrait", async () => {
+          // Action
           fireEvent.click(noButton)
 
           // Nouvelle question
@@ -154,6 +148,7 @@ describe("MeasuringIntentions", () => {
         })
 
         test("Réponse : autre chose => affichage textarea", async () => {
+          // Action
           fireEvent.click(noButton)
 
           // Nouvelle question
@@ -207,16 +202,19 @@ describe("MeasuringIntentions", () => {
           name: "Je ne suis pas sûr(e)",
         })
 
+        // Buttons
+        expect(yesButton).toBeInTheDocument()
+        expect(noButton).toBeInTheDocument()
+        expect(maybeButton).toBeInTheDocument()
+        expect(
+          screen.getByRole("button", { name: "Recommencer" })
+        ).toBeInTheDocument()
+
         // Bloc Elise
         mamanBluesBlocToBeInTheDocument()
       })
 
       test("Réponse : Oui => affichage du portrait", async () => {
-        // Buttons
-        expect(yesButton).toBeInTheDocument()
-        expect(noButton).toBeInTheDocument()
-        expect(maybeButton).toBeInTheDocument()
-
         // Action
         fireEvent.click(yesButton)
 
@@ -229,11 +227,6 @@ describe("MeasuringIntentions", () => {
       })
 
       test("Réponse : Je ne suis pas sûr(e) => affichage du portrait", async () => {
-        // Buttons
-        expect(yesButton).toBeInTheDocument()
-        expect(noButton).toBeInTheDocument()
-        expect(maybeButton).toBeInTheDocument()
-
         // Action
         fireEvent.click(maybeButton)
 
@@ -247,11 +240,6 @@ describe("MeasuringIntentions", () => {
 
       describe("Réponse : Non", () => {
         test("Affichage de la nouvelle question", async () => {
-          // Buttons
-          expect(yesButton).toBeInTheDocument()
-          expect(noButton).toBeInTheDocument()
-          expect(maybeButton).toBeInTheDocument()
-
           // Action
           fireEvent.click(noButton)
 
@@ -274,6 +262,7 @@ describe("MeasuringIntentions", () => {
         })
 
         test("Réponse : je ne vais pas bien => affichage du portrait", async () => {
+          // Action
           fireEvent.click(noButton)
 
           // Nouvelle question
@@ -298,6 +287,7 @@ describe("MeasuringIntentions", () => {
         })
 
         test("Réponse : autre chose => affichage textarea", async () => {
+          // Action
           fireEvent.click(noButton)
 
           // Nouvelle question
@@ -355,15 +345,18 @@ describe("MeasuringIntentions", () => {
         maybeButton = screen.getByRole("button", {
           name: "Je ne suis pas sûr(e)",
         })
+
+        // Buttons
+        expect(yesButton).toBeInTheDocument()
+        expect(noButton).toBeInTheDocument()
+        expect(maybeButton).toBeInTheDocument()
+        expect(
+          screen.getByRole("button", { name: "Recommencer" })
+        ).toBeInTheDocument()
       })
 
       describe("Réponse : Oui", () => {
         test("Affichage de la nouvelle question + réponses", async () => {
-          // Buttons
-          expect(yesButton).toBeInTheDocument()
-          expect(noButton).toBeInTheDocument()
-          expect(maybeButton).toBeInTheDocument()
-
           // Action
           fireEvent.click(yesButton)
 
@@ -409,6 +402,7 @@ describe("MeasuringIntentions", () => {
           let quiJoindre, quoiFaire, seTourner, aucune
 
           beforeEach(() => {
+            // Action
             fireEvent.click(yesButton)
 
             quiJoindre = screen.getByRole("button", {
@@ -426,6 +420,7 @@ describe("MeasuringIntentions", () => {
           })
 
           test("Réponse : Je sais qui joindre", async () => {
+            // Action
             fireEvent.click(quiJoindre)
 
             expect(
@@ -438,6 +433,7 @@ describe("MeasuringIntentions", () => {
           })
 
           test("Réponse : Je sais quoi faire", async () => {
+            // Action
             fireEvent.click(quoiFaire)
 
             expect(
@@ -461,6 +457,7 @@ describe("MeasuringIntentions", () => {
           })
 
           test("Réponse : Aucune des proposition / Je ne sais pas quoi faire", async () => {
+            // Action
             fireEvent.click(aucune)
 
             expect(
@@ -480,11 +477,6 @@ describe("MeasuringIntentions", () => {
       })
 
       test("Réponse : Je ne suis pas sûr(e) => affichage du portrait", async () => {
-        // Buttons
-        expect(yesButton).toBeInTheDocument()
-        expect(noButton).toBeInTheDocument()
-        expect(maybeButton).toBeInTheDocument()
-
         // Action
         fireEvent.click(maybeButton)
 
@@ -503,11 +495,6 @@ describe("MeasuringIntentions", () => {
 
       describe("Réponse : Non", () => {
         test("Affichage de la nouvelle question & réponses", async () => {
-          // Buttons
-          expect(yesButton).toBeInTheDocument()
-          expect(noButton).toBeInTheDocument()
-          expect(maybeButton).toBeInTheDocument()
-
           // Action
           fireEvent.click(noButton)
 
@@ -550,6 +537,7 @@ describe("MeasuringIntentions", () => {
           let bien, curiosite, proSante, aucune
 
           beforeEach(() => {
+            // Action
             fireEvent.click(noButton)
 
             bien = screen.getByRole("button", {
@@ -567,6 +555,7 @@ describe("MeasuringIntentions", () => {
           })
 
           test("Réponse : Malgré le résultat, je l'impression que tout va bien => texte", async () => {
+            // Action
             fireEvent.click(bien)
 
             expect(
@@ -577,6 +566,7 @@ describe("MeasuringIntentions", () => {
           })
 
           test("Réponse : J'ai fait le test par curiosité => texte", async () => {
+            // Action
             fireEvent.click(curiosite)
 
             expect(
@@ -585,6 +575,7 @@ describe("MeasuringIntentions", () => {
           })
 
           test("Réponse : Je suis professionnel de santé", async () => {
+            // Action
             fireEvent.click(proSante)
 
             expect(
@@ -593,6 +584,7 @@ describe("MeasuringIntentions", () => {
           })
 
           test("Réponse : Aucune des trois => affichage text area", async () => {
+            // Action
             fireEvent.click(aucune)
 
             expect(
