@@ -46,8 +46,9 @@ export const AskForDetailsQuestion = ({
             <TextAreaToSendDetails
               scoreLevel={scoreLevel}
               displayMamanBlues={
-                scoreLevel == SCORE_LEVEL_MEDIUM ||
-                scoreLevel == SCORE_LEVEL_BAD
+                displayMamanBlues &&
+                (scoreLevel == SCORE_LEVEL_MEDIUM ||
+                  scoreLevel == SCORE_LEVEL_BAD)
               }
             />
           </div>
@@ -61,6 +62,7 @@ export const AskForDetailsQuestion = ({
             <FormToSendMail
               scoreLevel={scoreLevel}
               forHimself={askForDetails.value === "quiJoindre"}
+              displayMamanBlues={displayMamanBlues}
             />
           </div>
         )

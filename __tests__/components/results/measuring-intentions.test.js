@@ -209,9 +209,13 @@ describe("UI de MeasuringIntentions", () => {
         expect(
           screen.getByRole("button", { name: "Recommencer" })
         ).toBeInTheDocument()
+      })
 
+      afterEach(() => {
         // Bloc Elise
-        mamanBluesBlocToBeInTheDocument()
+        expect(
+          screen.queryByRole("img", { name: "Portrait d'Elise" })
+        ).toBeNull()
       })
 
       test("Réponse : Oui => affichage du portrait", async () => {
@@ -483,6 +487,7 @@ describe("UI de MeasuringIntentions", () => {
           })
 
           test("Réponse : Je ne sais pas vers qui me tourner => texte", async () => {
+            // Action
             fireEvent.click(seTourner)
 
             expect(
@@ -665,6 +670,129 @@ describe("UI de MeasuringIntentions", () => {
             // Bloc Elise
             mamanBluesBlocToBeInTheDocument()
           })
+        })
+      })
+    })
+
+    describe("Test C", () => {
+      let yesButton, noButton, maybeButton
+
+      beforeEach(() => {
+        render(
+          displayComponentsByTest({
+            testId: "C",
+            scoreLevel: SCORE_LEVEL_BAD,
+          })
+        )
+
+        yesButton = screen.getByRole("button", { name: "Oui" })
+        noButton = screen.getByRole("button", { name: "Non" })
+        maybeButton = screen.getByRole("button", {
+          name: "Je ne suis pas sûr(e)",
+        })
+
+        // Buttons
+        expect(yesButton).toBeInTheDocument()
+        expect(noButton).toBeInTheDocument()
+        expect(maybeButton).toBeInTheDocument()
+        expect(
+          screen.getByRole("button", { name: "Recommencer" })
+        ).toBeInTheDocument()
+      })
+
+      afterEach(() => {
+        // Bloc Elise
+        expect(
+          screen.queryByRole("img", { name: "Portrait d'Elise" })
+        ).toBeNull()
+      })
+
+      describe("Réponse : Oui", () => {
+        let quiJoindre, quoiFaire, seTourner, aucune
+
+        beforeEach(() => {
+          // Action
+          fireEvent.click(yesButton)
+
+          quiJoindre = screen.getByRole("button", {
+            name: "Je sais qui joindre : je vais contacter mon professionnel de santé et parler du résultat du test",
+          })
+          quoiFaire = screen.getByRole("button", {
+            name: "Je sais quoi faire : je montre le résultat de ce test à mon entourage",
+          })
+          seTourner = screen.getByRole("button", {
+            name: "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
+          })
+          aucune = screen.getByRole("button", {
+            name: "Aucune des proposition / Je ne sais pas quoi faire",
+          })
+        })
+
+        test("Réponse : Je sais qui joindre => formulaire", async () => {
+          // Action
+          fireEvent.click(quiJoindre)
+        })
+
+        test("Réponse : Je sais quoi faire => formulaire", async () => {
+          // Action
+          fireEvent.click(quoiFaire)
+        })
+
+        test("Réponse : Je ne sais pas vers qui me tourner => texte", async () => {
+          // Action
+          fireEvent.click(seTourner)
+        })
+
+        test("Réponse : Aucune des proposition / Je ne sais pas quoi faire => textarea", async () => {
+          // Action
+          fireEvent.click(aucune)
+        })
+      })
+
+      test("Réponse : Je ne suis pas sûr(e)", async () => {
+        // Action
+        fireEvent.click(maybeButton)
+      })
+
+      describe("Réponse : Non", () => {
+        let bien, curiosite, proSante, aucune
+
+        beforeEach(() => {
+          // Action
+          fireEvent.click(noButton)
+
+          bien = screen.getByRole("button", {
+            name: "Malgré le résultat, je l'impression que tout va bien",
+          })
+          curiosite = screen.getByRole("button", {
+            name: "J'ai fait le test par curiosité",
+          })
+          proSante = screen.getByRole("button", {
+            name: "Je suis professionnel de santé",
+          })
+          aucune = screen.getByRole("button", {
+            name: "Aucune des trois : je vous explique",
+          })
+        })
+
+        test("Réponse : Malgré le résultat, je l'impression que tout va bien => texte", async () => {
+          // Action
+          fireEvent.click(bien)
+        })
+
+        test("Réponse : J'ai fait le test par curiosité => texte", async () => {
+          // Action
+          fireEvent.click(curiosite)
+        })
+
+        test("Réponse : Je suis professionnel de santé => texte", async () => {
+          // Action
+          fireEvent.click(proSante)
+        })
+
+        test("Réponse : Aucune des trois => textarea", async () => {
+          // Action
+          fireEvent.click(aucune)
         })
       })
     })

@@ -39,10 +39,6 @@ export default function Results() {
     })
   }
 
-  const showContactMamanBlues = () => {
-    return scoreLevelForMacaron != 1 && testId !== TEST.B //|| testId !== TEST.C
-  }
-
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
@@ -64,7 +60,7 @@ export default function Results() {
           <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
         </div>
       </Row>
-      {showContactMamanBlues() && (
+      {showContactMamanBlues(scoreLevelForMacaron, testId) && (
         <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
       )}
 
@@ -99,4 +95,8 @@ export const conclusionByScoreLevel = (level) => {
     default:
       return "Pas de conclusion disponible"
   }
+}
+
+export const showContactMamanBlues = (scoreLevel, testId) => {
+  return (scoreLevel != 1 && testId !== TEST.B) || testId === TEST.C
 }

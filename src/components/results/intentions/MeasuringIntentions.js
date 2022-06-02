@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { TEST } from "../../../utils/measuring-intentions.utils"
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
-import { ContactMamanBlues } from "../ContactMamanBlues"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
 
@@ -64,13 +63,10 @@ export const displayComponentsByTest = ({ testId, scoreLevel, onReset }) => {
 
   if (testId == TEST.C) {
     const contentTestC = (
-      <div>
-        <BeCloseToRealityQuestion
-          scoreLevel={scoreLevel}
-          displayMamanBlues={false}
-        />
-        <ContactMamanBlues scoreLevel={scoreLevel} />
-      </div>
+      <BeCloseToRealityQuestion
+        scoreLevel={scoreLevel}
+        displayMamanBlues={false}
+      />
     )
     return cardComponentAndRetryButton(contentTestC, onReset)
   }
