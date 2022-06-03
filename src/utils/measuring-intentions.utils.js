@@ -15,9 +15,13 @@ export const cestUneBonneEtape =
 
 const elisePeutVousAider =
   "Si vous vous posez des questions, Elise peut vous aider à y voir plus clair. Le test est un outil de dépistage. Il aide les professionnels de santé à poser un diagnostique de cette maladie touchant XXX de parents."
+const seRapprocheDeLaRealite =
+  "Précisez nous ce qui se rapprocherait le plus de la réalité"
+const aucune = "Aucune des trois : je vous explique"
+
 const demandeDeDetails = {
   lvl1: {
-    question: "Précisez nous ce qui rapprocherait le plus de la réalité",
+    question: seRapprocheDeLaRealite,
     reponses: [
       {
         value: "mal",
@@ -34,7 +38,7 @@ const demandeDeDetails = {
     },
   },
   lvl3: {
-    question: "Précisez nous ce qui rapprocherait le plus de la réalité",
+    question: seRapprocheDeLaRealite,
     reponses: [
       {
         value: "bien",
@@ -50,7 +54,7 @@ const demandeDeDetails = {
       },
       {
         value: "aucune",
-        label: "Aucune des trois : je vous explique",
+        label: aucune,
       },
     ],
     commentaires: {
@@ -84,7 +88,7 @@ export const estLePlusAdapte = {
     },
     {
       value: "aucune",
-      label: "Aucune des proposition / Je ne sais pas quoi faire",
+      label: aucune,
     },
   ],
   commentaires: {

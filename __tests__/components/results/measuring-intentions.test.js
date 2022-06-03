@@ -93,7 +93,7 @@ describe("UI de MeasuringIntentions", () => {
           expect(await screen.findByText("Non")).toBeVisible()
           expect(
             await screen.findByText(
-              "Précisez nous ce qui rapprocherait le plus de la réalité"
+              "Précisez nous ce qui se rapprocherait le plus de la réalité"
             )
           ).toBeVisible()
           expect(
@@ -250,7 +250,7 @@ describe("UI de MeasuringIntentions", () => {
           // Phrase spécifique
           expect(
             await screen.findByText(
-              "Précisez nous ce qui rapprocherait le plus de la réalité"
+              "Précisez nous ce qui se rapprocherait le plus de la réalité"
             )
           ).toBeVisible()
           expect(
@@ -392,7 +392,7 @@ describe("UI de MeasuringIntentions", () => {
           ).toBeInTheDocument()
           expect(
             await screen.getByRole("button", {
-              name: "Aucune des proposition / Je ne sais pas quoi faire",
+              name: "Aucune des trois : je vous explique",
             })
           ).toBeInTheDocument()
 
@@ -419,7 +419,7 @@ describe("UI de MeasuringIntentions", () => {
               name: "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
             })
             aucune = screen.getByRole("button", {
-              name: "Aucune des proposition / Je ne sais pas quoi faire",
+              name: "Aucune des trois : je vous explique",
             })
           })
 
@@ -497,15 +497,13 @@ describe("UI de MeasuringIntentions", () => {
             ).toBeVisible()
           })
 
-          test("Réponse : Aucune des proposition / Je ne sais pas quoi faire => textarea", async () => {
+          test("Réponse : Aucune des trois : je vous explique => textarea", async () => {
             // Action
             fireEvent.click(aucune)
 
             // Phrases spécifiques
             expect(
-              await screen.findByText(
-                "Aucune des proposition / Je ne sais pas quoi faire"
-              )
+              await screen.findByText("Aucune des trois : je vous explique")
             ).toBeVisible()
             expect(
               await screen.findByText(
@@ -556,7 +554,7 @@ describe("UI de MeasuringIntentions", () => {
 
           expect(
             await screen.findByText(
-              "Précisez nous ce qui rapprocherait le plus de la réalité"
+              "Précisez nous ce qui se rapprocherait le plus de la réalité"
             )
           ).toBeVisible()
 
@@ -724,7 +722,7 @@ describe("UI de MeasuringIntentions", () => {
             name: "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
           })
           aucune = screen.getByRole("button", {
-            name: "Aucune des proposition / Je ne sais pas quoi faire",
+            name: "Aucune des trois : je vous explique",
           })
         })
 
@@ -743,7 +741,7 @@ describe("UI de MeasuringIntentions", () => {
           fireEvent.click(seTourner)
         })
 
-        test("Réponse : Aucune des proposition / Je ne sais pas quoi faire => textarea", async () => {
+        test("Réponse : Aucune des trois : je vous explique => textarea", async () => {
           // Action
           fireEvent.click(aucune)
         })
