@@ -39,7 +39,7 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
 
   return (
     <div>
-      {forHimself && "Recevez votre résultat au questionnaire par mail pour le partager à votre professionnel de santé :"}
+      <div className="margin-bottom-12">{forHimself && "Recevez votre résultat au questionnaire par mail pour le partager à votre professionnel de santé :"}</div>
       <form
         className="contact-form margin-bottom-8"
         aria-label="formToSendMail"
@@ -58,7 +58,7 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
           />
         </div>
         <div className={`form-group fr-input-group ${isEmailValid && "fr-input-group--valid"}`}>
-          <label>Votre mail * :</label>
+          <label>{forHimself ? "Votre mail * :" : "L'email de votre proche * :"}</label>
           <input
             type="email"
             className={`form-control fr-input ${isEmailValid && "custom-input-valid"}`}

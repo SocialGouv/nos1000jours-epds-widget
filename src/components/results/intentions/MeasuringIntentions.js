@@ -77,13 +77,12 @@ export const displayComponentsByTest = ({ testId, scoreLevel, onReset }) => {
 const cardComponentAndRetryButton = (content, onReset) => (
   <div className="measure-card">
     <button
-      className="fr-btn fr-btn--secondary margin-bottom-8"
+      className="fr-btn fr-btn--tertiary-no-outline margin-bottom-8 measure-button-back"
       onClick={onReset}
     >
-      <Icon.Reply className="margin-right-8" />
-      Recommencer
+      <Icon.ChevronLeft className="margin-right-8" />
+      Retour
     </button>
-
     {content}
   </div>
 )

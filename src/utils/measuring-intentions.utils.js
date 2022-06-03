@@ -18,6 +18,8 @@ const elisePeutVousAider =
 const seRapprocheDeLaRealite =
   "Précisez nous ce qui se rapprocherait le plus de la réalité"
 const aucune = "Aucune des trois : je vous explique"
+const nePasSavoir =
+  "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
 
 const demandeDeDetails = {
   lvl1: {
@@ -119,13 +121,12 @@ export const estProcheDeLaRealite = {
   commentaires: {
     lvl1: {
       oui: "Vous allez bien, n'hésitez pas à revenir plus tard et vous questionner régulièrement. Sachez qu'Elise peut répondre à vos questions si vous en avez besoin.",
-      peutetre:
-        "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe.",
+      peutetre: nePasSavoir,
       non: demandeDeDetails.lvl1,
     },
     lvl3: {
       oui: estLePlusAdapte,
-      peutetre: cestUneBonneEtape,
+      peutetre: nePasSavoir,
       non: demandeDeDetails.lvl3,
     },
   },

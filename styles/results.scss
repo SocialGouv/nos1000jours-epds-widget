@@ -150,4 +150,13 @@
     margin-top: $xxxxs;
     margin-bottom: $md;
   }
+
+  .measure-button-back {
+    font-size: $xs;
+    padding-inline-start: 0;
+  }
+
+  .measure-button-back:hover {
+    background-color: transparent;
+  }
 }

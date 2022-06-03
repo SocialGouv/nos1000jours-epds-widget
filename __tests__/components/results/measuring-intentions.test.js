@@ -23,7 +23,7 @@ describe("UI de MeasuringIntentions", () => {
         displayComponentsByTest({ testId: "A", scoreLevel: SCORE_LEVEL_GOOD })
       ).toBeNull()
 
-      expect(screen.queryByRole("button", { name: "Recommencer" })).toBeNull()
+      expect(screen.queryByRole("button", { name: "Retour" })).toBeNull()
     })
 
     describe("Test B", () => {
@@ -45,7 +45,7 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Recommencer" })
+          screen.getByRole("button", { name: "Retour" })
         ).toBeInTheDocument()
       })
 
@@ -207,7 +207,7 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Recommencer" })
+          screen.getByRole("button", { name: "Retour" })
         ).toBeInTheDocument()
       })
 
@@ -329,7 +329,7 @@ describe("UI de MeasuringIntentions", () => {
         displayComponentsByTest({ testId: "A", scoreLevel: SCORE_LEVEL_BAD })
       ).toBeNull()
 
-      expect(screen.queryByRole("button", { name: "Recommencer" })).toBeNull()
+      expect(screen.queryByRole("button", { name: "Retour" })).toBeNull()
       // On ne peut pas vérifier si le bloc de contact est présent car il est hors du bloc généré par `displayComponentsByTest`
     })
 
@@ -355,7 +355,7 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Recommencer" })
+          screen.getByRole("button", { name: "Retour" })
         ).toBeInTheDocument()
       })
 
@@ -455,6 +455,7 @@ describe("UI de MeasuringIntentions", () => {
                 name: "formToSendMail",
               })
             ).toBeInTheDocument()
+            expect(await screen.findByText("Votre mail * :")).toBeVisible()
           })
 
           test("Réponse : Je sais quoi faire => formulaire", async () => {
@@ -484,6 +485,9 @@ describe("UI de MeasuringIntentions", () => {
                 name: "formToSendMail",
               })
             ).toBeInTheDocument()
+            expect(
+              await screen.findByText("L'email de votre proche * :")
+            ).toBeVisible()
           })
 
           test("Réponse : Je ne sais pas vers qui me tourner => texte", async () => {
@@ -535,7 +539,7 @@ describe("UI de MeasuringIntentions", () => {
         expect(await screen.findByText("Je ne suis pas sûr(e)")).toBeVisible()
         expect(
           await screen.findByText(
-            "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
+            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
           )
         ).toBeVisible()
 
@@ -694,7 +698,7 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Recommencer" })
+          screen.getByRole("button", { name: "Retour" })
         ).toBeInTheDocument()
       })
 
