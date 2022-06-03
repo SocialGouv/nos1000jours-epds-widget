@@ -1,3 +1,10 @@
+## [1.17.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.17.1...v1.17.2) (2022-06-03)
+
+
+### Bug Fixes
+
+* **chat:** cacher le contact par chat ([52ffde8](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/52ffde807b38f55a3c988995db48584378edaa32))
+
 ## [1.17.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.17.0...v1.17.1) (2022-05-19)
 
 
