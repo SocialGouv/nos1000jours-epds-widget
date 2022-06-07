@@ -6,6 +6,7 @@ import {
   STORAGE_LABELS,
   STORAGE_LOCALE,
   STORAGE_SOURCE,
+  STORAGE_TEST_INTENTIONS,
 } from "../src/constants/constants"
 import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
@@ -52,6 +53,7 @@ export default function Home() {
   const startSurvey = () => {
     trackerClick(CATEG.Home, EVENT_CLICK, `Commencer le test - ${source}`)
     localStorage.setItem(STORAGE_SOURCE, source)
+    localStorage.removeItem(STORAGE_TEST_INTENTIONS)
 
     goToEpdsSurvey()
   }

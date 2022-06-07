@@ -1,6 +1,7 @@
 export const STORAGE_SOURCE = "source"
 export const STORAGE_LOCALE = "locale"
 export const STORAGE_LABELS = "labels"
+export const STORAGE_TEST_INTENTIONS = "testABC"
 export const STORAGE_SCORE_LEVEL_MOOD = "scoreLevelForMood"
 export const STORAGE_SCORE_LEVEL_TEXTS = "scoreLevelForTexts"
 export const STORAGE_SCORE_LEVEL_MACARON = "scoreLevelForMacaron"

@@ -3,6 +3,8 @@ import { TEST } from "../../../utils/measuring-intentions.utils"
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
+import { STORAGE_TEST_INTENTIONS } from "../../../constants/constants"
+import { getInLocalStorage } from "../../../utils/main.utils"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
@@ -11,9 +13,11 @@ export const MeasuringIntentions = ({ scoreLevel, setTestId }) => {
   const [component, setComponent] = useState()
 
   useEffect(() => {
-    const id = generateRandomTest()
+    const id =
+      getInLocalStorage(STORAGE_TEST_INTENTIONS) ?? generateRandomTest()
     setTestId(id)
     setTest(id)
+    localStorage.setItem(STORAGE_TEST_INTENTIONS, id)
 
     trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${id}`)
   }, [])

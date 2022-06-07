@@ -18,13 +18,16 @@ export function LocaleButton({ hasText, locale, setLocaleSelected }) {
         disabled={!hasText}
         onClick={() => (locale ? setShowSelectLocal(true) : null)}
       >
-        <img
-          alt="Drapeau de la langue"
-          src={`${API_URL}${locale?.drapeau.url}`}
-          height={20}
-          width={20}
-        />
-        {hasText ? "Changer la langue" : null}
+        {locale?.drapeau.url && (
+          <img
+            alt="Drapeau de la langue"
+            src={`${API_URL}${locale?.drapeau.url}`}
+            height={20}
+            width={20}
+          />
+        )}
+
+        {hasText && "Changer la langue"}
       </button>
 
       <ChooseEpdsLocale
