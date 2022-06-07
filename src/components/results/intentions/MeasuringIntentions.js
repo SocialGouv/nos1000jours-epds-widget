@@ -6,30 +6,37 @@ import * as Icon from "react-bootstrap-icons"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
-export function MeasuringIntentions({ scoreLevel, setTestId }) {
-  const testId = generateRandomTest()
-  setTestId(testId)
-  trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${testId}`)
+export const MeasuringIntentions = ({ scoreLevel, setTestId }) => {
+  const [test, setTest] = useState()
+  const [component, setComponent] = useState()
+
+  useEffect(() => {
+    const id = generateRandomTest()
+    setTestId(id)
+    setTest(id)
+
+    trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${id}`)
+  }, [])
+
+  useEffect(() => {
+    if (test != undefined && component == undefined) {
+      const content = displayComponentsByTest({
+        testId: test,
+        scoreLevel: scoreLevel,
+        onReset,
+      })
+
+      setComponent(content)
+    }
+  }, [test, component])
 
   const onReset = () => {
     setComponent(undefined)
   }
 
-  const content = displayComponentsByTest({
-    testId: testId,
-    scoreLevel: scoreLevel,
-    onReset,
-  })
-
-  const [component, setComponent] = useState(content)
-
-  useEffect(() => {
-    if (component == undefined) setComponent(content)
-  }, [component])
-
   return (
     <div className="measure">
-      {TEST_NUMBER_ENABLED === "true" ? <div>Test {testId}</div> : null}
+      {TEST_NUMBER_ENABLED === "true" ? <div>Test {test}</div> : null}
       {component}
     </div>
   )

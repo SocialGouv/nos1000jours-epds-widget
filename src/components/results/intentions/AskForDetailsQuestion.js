@@ -100,7 +100,7 @@ export const AskForDetailsQuestion = ({
                 value={item.value}
                 onClick={() => setAskForDetails(item)}
               >
-                {item.label}
+                {convertStringWithfirstPartInBold(":", item.label)}
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
@@ -108,5 +108,17 @@ export const AskForDetailsQuestion = ({
       )}
       {displayMore}
     </div>
+  )
+}
+
+const convertStringWithfirstPartInBold = (character, label) => {
+  const result = label.split(character)
+
+  return result.length > 1 ? (
+    <div>
+      <b>{result[0]}</b> {character} {result[1]}
+    </div>
+  ) : (
+    <div>{label}</div>
   )
 }
