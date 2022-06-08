@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { useEffect, useState } from "react"
-import { Spinner } from "react-bootstrap"
 import { PATTERN_EMAIL } from "../../../constants/constants"
 import { Form } from "../../../constants/specificLabels"
+import { LoaderFoButton } from "../../../utils/main.utils"
 import { cestUneBonneEtape } from "../../../utils/measuring-intentions.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 
@@ -77,7 +77,7 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
           disabled={!canSend || isLoading}
         >
           Valider
-          {isLoading && <Loader />}
+          {isLoading && <LoaderFoButton />}
         </button>
       </form >
       <div>{cestUneBonneEtape}</div>
@@ -85,7 +85,3 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
     </div >
   )
 }
-
-const Loader = () => (
-  <Spinner animation="border" size="sm" className="margin-start-10" />
-)

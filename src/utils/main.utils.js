@@ -1,3 +1,4 @@
+import { Spinner } from "react-bootstrap"
 import { STORAGE_LABELS, STORAGE_LOCALE } from "../constants/constants"
 import { Labels } from "../constants/specificLabels"
 
@@ -64,3 +65,7 @@ export function convertArrayLabelsToObject(data) {
 export const phoneNumberFormatting = (phoneNumber) => {
   return phoneNumber.replace(/(.{2})(?!$)/g, "$1 ")
 }
+
+export const LoaderFoButton = () => (
+  <Spinner animation="border" size="sm" className="margin-start-10" />
+)

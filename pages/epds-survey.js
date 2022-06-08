@@ -9,6 +9,7 @@ import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
+  STORAGE_SCORE,
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
@@ -74,6 +75,7 @@ export default function EpdsSurvey() {
     onCompleted: (data) => {
       // Le niveau du score est mis en mémoire ici afin de ne pas faire transiter les résultats
       const totalScore = totalScoreFromResults(resultsBoard)
+      localStorage.setItem(STORAGE_SCORE, totalScore)
       localStorage.setItem(
         STORAGE_SCORE_LEVEL_MOOD,
         scoreLevelForMood(totalScore, resultsBoard[9].points)
