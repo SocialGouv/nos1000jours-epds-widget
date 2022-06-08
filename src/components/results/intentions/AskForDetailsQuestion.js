@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import { trackerForIntentions } from "../../../utils/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_MEDIUM,
@@ -26,7 +27,9 @@ export const AskForDetailsQuestion = ({
   useEffect(() => {
     switch (getDetailsTypeByValue(askForDetails.value)) {
       case DETAILS_TYPE.TEXTE:
+        trackerForIntentions(scoreLevel, askForDetails.label)
         setDisplayItemSelected(true)
+
         setDisplayMore(
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
@@ -38,7 +41,9 @@ export const AskForDetailsQuestion = ({
         )
         break
       case DETAILS_TYPE.TEXT_AREA:
+        trackerForIntentions(scoreLevel, askForDetails.label)
         setDisplayItemSelected(true)
+
         setDisplayMore(
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>
@@ -55,7 +60,9 @@ export const AskForDetailsQuestion = ({
         )
         break
       case DETAILS_TYPE.FORM:
+        trackerForIntentions(scoreLevel, askForDetails.label)
         setDisplayItemSelected(true)
+
         setDisplayMore(
           <div>
             <div className="measure-label-selected">{askForDetails.label}</div>

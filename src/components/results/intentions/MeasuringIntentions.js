@@ -19,7 +19,7 @@ export const MeasuringIntentions = ({ scoreLevel, setTestId }) => {
     setTest(id)
     localStorage.setItem(STORAGE_TEST_INTENTIONS, id)
 
-    trackerClick(CATEG.contact, `${ACTION.contact_confirm_sent}${id}`)
+    trackerClick(CATEG.test, `${ACTION.parcours}${id}`)
   }, [])
 
   useEffect(() => {

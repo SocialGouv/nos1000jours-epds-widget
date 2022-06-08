@@ -4,6 +4,7 @@ export const CATEG = {
   contact: "Contact",
   home: "Home",
   survey: "Questionnaire",
+  test: "Test",
 }
 
 export const ACTION = {

@@ -5,6 +5,7 @@ import {
   estLePlusAdapte,
   estProcheDeLaRealite,
   estProcheDeLaRealiteCommentaireByScoreLevel,
+  trackerForIntentions,
 } from "../../../utils/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
@@ -27,8 +28,10 @@ export const BeCloseToRealityQuestion = ({
       (scoreLevel === SCORE_LEVEL_GOOD && beCloseToReality.value === "oui") ||
       beCloseToReality.value === "peutetre"
     ) {
-      // Questionnaire terminé
+      trackerForIntentions(scoreLevel, beCloseToReality.label)
       setDisplayItemSelected(true)
+
+      // Questionnaire terminé
       setDisplayMore(
         <div>
           <div className="measure-label-selected">{beCloseToReality.label}</div>
@@ -52,8 +55,10 @@ export const BeCloseToRealityQuestion = ({
       if (beCloseToReality.value === "non")
         data = demandeDeDetailsByScoreLevel(scoreLevel)
 
-      // Réponses multiples
+      trackerForIntentions(scoreLevel, beCloseToReality.label)
       setDisplayItemSelected(true)
+
+      // Réponses multiples
       setDisplayMore(
         <div>
           <div className="measure-label-selected">{beCloseToReality.label}</div>

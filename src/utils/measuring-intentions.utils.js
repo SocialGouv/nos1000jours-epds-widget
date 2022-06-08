@@ -1,8 +1,11 @@
+import { STORAGE_TEST_INTENTIONS } from "../constants/constants"
+import { getColorIconAndTextByMood, getInLocalStorage } from "./main.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,
   SCORE_LEVEL_MEDIUM,
 } from "./score-level.utils"
+import { ACTION, CATEG, trackerClick } from "./tracker.utils"
 
 export const TEST = {
   A: "A",
@@ -150,4 +153,15 @@ export const estProcheDeLaRealiteCommentaireByScoreLevel = (scoreLevel) => {
     case SCORE_LEVEL_BAD:
       return estProcheDeLaRealite.commentaires.lvl3
   }
+}
+
+export const trackerForIntentions = (scoreLevel, label) => {
+  const testId = getInLocalStorage(STORAGE_TEST_INTENTIONS)
+  const moodLevel = getColorIconAndTextByMood(scoreLevel).moodText
+
+  trackerClick(
+    CATEG.test,
+    `${ACTION.parcours}${testId}`,
+    `${moodLevel} - ${label}`
+  )
 }
