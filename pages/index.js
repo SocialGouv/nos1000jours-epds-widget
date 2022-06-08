@@ -51,7 +51,7 @@ export default function Home() {
   }, [localeSelected])
 
   const startSurvey = () => {
-    trackerClick(CATEG.Home, EVENT_CLICK, `Commencer le test - ${source}`)
+    trackerClick(CATEG.home, EVENT_CLICK, `Commencer le test - ${source}`)
     localStorage.setItem(STORAGE_SOURCE, source)
     localStorage.removeItem(STORAGE_TEST_INTENTIONS)
 

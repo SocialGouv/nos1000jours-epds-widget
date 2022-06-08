@@ -69,7 +69,7 @@ export const TextAreaToSendDetails = ({
 
       {sendSuccessful && (
         <span className="margin-start-10">
-          Votre commentaire bien été envoyé
+          Votre commentaire a bien été envoyé
         </span>
       )}
 
