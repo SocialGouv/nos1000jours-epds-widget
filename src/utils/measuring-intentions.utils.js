@@ -106,7 +106,7 @@ export const estLePlusAdapte = {
 }
 
 export const estProcheDeLaRealite = {
-  question: "Ce résultat semble-t-il être proche de la réalité ?",
+  question: "Ce résultat semble-t-il proche de ce que vous vivez ?",
   reponses: [
     {
       value: "oui",

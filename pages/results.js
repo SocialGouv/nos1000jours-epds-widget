@@ -21,6 +21,7 @@ import { useState } from "react"
 export default function Results() {
   const router = useRouter()
   const [testId, setTestId] = useState(null)
+  const [isTestStarted, setTestStarted] = useState(false)
 
   const localeSelected = getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
@@ -39,6 +40,20 @@ export default function Results() {
     })
   }
 
+  const DescriptionAndConclusion = () => (
+    <Row>
+      <div className="margin-bottom-8">
+        <b>Oser en parler, c’est déjà prendre soin de soi et de son enfant !</b>
+      </div>
+      <div className="margin-bottom-8">
+        {descriptionByScoreLevel(scoreLevelForTexts)}
+      </div>
+      <div className="margin-bottom-8">
+        <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
+      </div>
+    </Row>
+  )
+
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
@@ -46,25 +61,17 @@ export default function Results() {
       <MeasuringIntentions
         scoreLevel={scoreLevelForMood}
         setTestId={setTestId}
+        setTestStarted={setTestStarted}
       />
-      <Row>
-        <div className="margin-bottom-8">
-          <b>
-            Oser en parler, c’est déjà prendre soin de soi et de son enfant !
-          </b>
-        </div>
-        <div className="margin-bottom-8">
-          {descriptionByScoreLevel(scoreLevelForTexts)}
-        </div>
-        <div className="margin-bottom-8">
-          <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
-        </div>
-      </Row>
+      {!isTestStarted && <DescriptionAndConclusion />}
       {showContactMamanBlues(scoreLevelForMacaron, testId) && (
         <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
       )}
 
-      <button className="fr-btn result-return-bt" onClick={goToSurvey}>
+      <button
+        className="fr-btn fr-btn--secondary result-return-bt"
+        onClick={goToSurvey}
+      >
         Recommencer le questionnaire
       </button>
     </ContentLayout>

@@ -18,6 +18,7 @@ import { AskForDetailsQuestion } from "./AskForDetailsQuestion"
 export const BeCloseToRealityQuestion = ({
   scoreLevel,
   displayMamanBlues = true,
+  setShowBackButton,
 }) => {
   const [beCloseToReality, setBeCloseToReality] = useState("")
   const [displayMore, setDisplayMore] = useState()
@@ -30,6 +31,7 @@ export const BeCloseToRealityQuestion = ({
     ) {
       trackerForIntentions(scoreLevel, beCloseToReality.label)
       setDisplayItemSelected(true)
+      setShowBackButton(true)
 
       // Questionnaire terminé
       setDisplayMore(
@@ -57,6 +59,7 @@ export const BeCloseToRealityQuestion = ({
 
       trackerForIntentions(scoreLevel, beCloseToReality.label)
       setDisplayItemSelected(true)
+      setShowBackButton(true)
 
       // Réponses multiples
       setDisplayMore(
