@@ -40,9 +40,9 @@ export function ContactMamanBlues({ scoreLevel }) {
         <div className="content-img-descr">
           <img alt="Portrait d'Elise" src="../img/portrait-elise.jpg" />
           <div className="mamanblues-description">
-            Vous pouvez être contacté(e) par Élise, notre partenaire
-            (association composée par des volontaires ayant connu la
-            difficulté maternelle), afin de <b>trouver une aide adaptée autour de vous.</b>
+            <b>Trouvez un accompagnement personnalisé près de chez vous </b>
+            auprès de professionnels sensibilisés aux difficultés maternelles en
+            échangeant avec Elise, présidente de l’association Maman Blues
           </div>
         </div>
         <button className="fr-btn" onClick={goToBeContacted}>

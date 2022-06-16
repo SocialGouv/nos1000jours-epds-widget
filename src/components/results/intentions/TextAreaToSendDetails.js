@@ -50,13 +50,12 @@ export const TextAreaToSendDetails = ({
 
   return (
     <div>
-      <input
+      <textarea
         aria-label="textValueOther"
-        type="textarea"
-        name="textValue"
         className="fr-input measure-textearea"
         onChange={(e) => setTextValue(e.target.value)}
         disabled={isLoading || sendSuccessful}
+        rows="5"
       />
       <button
         className="fr-btn"
