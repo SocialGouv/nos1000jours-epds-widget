@@ -69,3 +69,15 @@ export const phoneNumberFormatting = (phoneNumber) => {
 export const LoaderFoButton = () => (
   <Spinner animation="border" size="sm" className="margin-start-10" />
 )
+
+export const convertStringWithfirstPartInBold = (character, label) => {
+  const result = label.split(character)
+
+  return result.length > 1 ? (
+    <div>
+      <b>{result[0]}</b> {character} {result[1]}
+    </div>
+  ) : (
+    <div>{label}</div>
+  )
+}

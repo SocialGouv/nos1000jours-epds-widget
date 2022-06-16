@@ -29,20 +29,16 @@ export const BeCloseToRealityQuestion = ({
       (scoreLevel === SCORE_LEVEL_GOOD && beCloseToReality.value === "oui") ||
       beCloseToReality.value === "peutetre"
     ) {
-      trackerForIntentions(scoreLevel, beCloseToReality.label)
-      setDisplayItemSelected(true)
-      setShowBackButton(true)
+      itemSelected(beCloseToReality.label)
 
       // Questionnaire terminé
       setDisplayMore(
         <div>
-          <div className="measure-label-selected">{beCloseToReality.label}</div>
           {
             estProcheDeLaRealiteCommentaireByScoreLevel(scoreLevel)[
             beCloseToReality.value
             ]
           }
-
           {displayMamanBlues && <ContactMamanBlues scoreLevel={scoreLevel} />}
         </div>
       )
@@ -57,14 +53,11 @@ export const BeCloseToRealityQuestion = ({
       if (beCloseToReality.value === "non")
         data = demandeDeDetailsByScoreLevel(scoreLevel)
 
-      trackerForIntentions(scoreLevel, beCloseToReality.label)
-      setDisplayItemSelected(true)
-      setShowBackButton(true)
+      itemSelected(beCloseToReality.label)
 
       // Réponses multiples
       setDisplayMore(
         <div>
-          <div className="measure-label-selected">{beCloseToReality.label}</div>
           <AskForDetailsQuestion
             scoreLevel={scoreLevel}
             displayMamanBlues={displayMamanBlues}
@@ -75,9 +68,15 @@ export const BeCloseToRealityQuestion = ({
     }
   }, [beCloseToReality])
 
+  const itemSelected = (label) => {
+    trackerForIntentions(scoreLevel, label)
+    setDisplayItemSelected(true)
+    setShowBackButton(true)
+  }
+
   return (
     <div>
-      <b>{estProcheDeLaRealite.question}</b>
+      {!displayItemSelected && <b>{estProcheDeLaRealite.question}</b>}
       {!displayItemSelected && (
         <div className="buttons-bloc">
           <ToggleButtonGroup type="radio" name="radio-reality">

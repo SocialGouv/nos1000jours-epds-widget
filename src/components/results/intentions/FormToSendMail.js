@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { PATTERN_EMAIL } from "../../../constants/constants"
 import { Form } from "../../../constants/specificLabels"
 import { LoaderFoButton } from "../../../utils/main.utils"
-import { cestUneBonneEtape } from "../../../utils/measuring-intentions.utils"
+import { contacterAToutMoment } from "../../../utils/measuring-intentions.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 
 /**
@@ -72,7 +72,7 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
         </div>
         <p className="required-field">{Form.required}</p>
         <button
-          className="fr-btn"
+          className="fr-btn margin-bottom-12"
           type="submit"
           disabled={!canSend || isLoading}
         >
@@ -80,7 +80,7 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
           {isLoading && <LoaderFoButton />}
         </button>
       </form >
-      <div>{cestUneBonneEtape}</div>
+      <div>{contacterAToutMoment}</div>
       {displayMamanBlues && <ContactMamanBlues scoreLevel={scoreLevel} />}
     </div >
   )

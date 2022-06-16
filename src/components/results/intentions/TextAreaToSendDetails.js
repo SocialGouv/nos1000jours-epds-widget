@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { client } from "../../../../apollo-client"
 import { STORAGE_SCORE } from "../../../constants/constants"
 import { getInLocalStorage, LoaderFoButton } from "../../../utils/main.utils"
-import { cestUneBonneEtape } from "../../../utils/measuring-intentions.utils"
+import { contacterAToutMoment } from "../../../utils/measuring-intentions.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 
 export const TextAreaToSendDetails = ({
@@ -75,7 +75,7 @@ export const TextAreaToSendDetails = ({
 
       {displayMamanBlues && (
         <div>
-          {cestUneBonneEtape}
+          {contacterAToutMoment}
           <ContactMamanBlues scoreLevel={scoreLevel} />
         </div>
       )}

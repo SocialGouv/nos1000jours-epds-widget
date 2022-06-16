@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import { convertStringWithfirstPartInBold } from "../../../utils/main.utils"
 import { trackerForIntentions } from "../../../utils/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
@@ -27,8 +28,7 @@ export const AskForDetailsQuestion = ({
   useEffect(() => {
     switch (getDetailsTypeByValue(askForDetails.value)) {
       case DETAILS_TYPE.TEXTE:
-        trackerForIntentions(scoreLevel, askForDetails.label)
-        setDisplayItemSelected(true)
+        itemSelected(askForDetails.label)
 
         setDisplayMore(
           <div>
@@ -41,8 +41,7 @@ export const AskForDetailsQuestion = ({
         )
         break
       case DETAILS_TYPE.TEXT_AREA:
-        trackerForIntentions(scoreLevel, askForDetails.label)
-        setDisplayItemSelected(true)
+        itemSelected(askForDetails.label)
 
         setDisplayMore(
           <div>
@@ -60,8 +59,7 @@ export const AskForDetailsQuestion = ({
         )
         break
       case DETAILS_TYPE.FORM:
-        trackerForIntentions(scoreLevel, askForDetails.label)
-        setDisplayItemSelected(true)
+        itemSelected(askForDetails.label)
 
         setDisplayMore(
           <div>
@@ -76,6 +74,11 @@ export const AskForDetailsQuestion = ({
         break
     }
   }, [askForDetails])
+
+  const itemSelected = (label) => {
+    trackerForIntentions(label)
+    setDisplayItemSelected(true)
+  }
 
   const getDetailsTypeByValue = (value) => {
     switch (value) {
@@ -96,7 +99,8 @@ export const AskForDetailsQuestion = ({
 
   return (
     <div>
-      {data.question}
+      {!displayItemSelected &&
+        convertStringWithfirstPartInBold("?", data.question)}
       {!displayItemSelected && (
         <div className="buttons-bloc">
           <ToggleButtonGroup type="radio" name="radio-details">
@@ -115,17 +119,5 @@ export const AskForDetailsQuestion = ({
       )}
       {displayMore}
     </div>
-  )
-}
-
-const convertStringWithfirstPartInBold = (character, label) => {
-  const result = label.split(character)
-
-  return result.length > 1 ? (
-    <div>
-      <b>{result[0]}</b> {character} {result[1]}
-    </div>
-  ) : (
-    <div>{label}</div>
   )
 }

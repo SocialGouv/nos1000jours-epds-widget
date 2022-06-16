@@ -5,8 +5,20 @@ import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,
 } from "../../../src/utils/score-level.utils"
+import {
+  contacterAToutMoment,
+  estLePlusAdapte,
+} from "../../../src/utils/measuring-intentions.utils"
 
 describe("UI de MeasuringIntentions", () => {
+  const findLabelEstLePlusAdapte = (value) =>
+    estLePlusAdapte.reponses.find((item) => item.value === value).label
+
+  const mockSetState = jest.fn()
+  jest.mock("react", () => ({
+    useState: (initial) => [initial, mockSetState],
+  }))
+
   // Bloc Elise
   const mamanBluesBlocToBeInTheDocument = () => {
     expect(
@@ -31,7 +43,12 @@ describe("UI de MeasuringIntentions", () => {
 
       beforeEach(() => {
         render(
-          displayComponentsByTest({ testId: "B", scoreLevel: SCORE_LEVEL_GOOD })
+          displayComponentsByTest({
+            testId: "B",
+            scoreLevel: SCORE_LEVEL_GOOD,
+            showBackButton: false,
+            setShowBackButton: mockSetState,
+          })
         )
 
         yesButton = screen.getByRole("button", { name: "Oui" })
@@ -45,8 +62,8 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Retour" })
-        ).toBeInTheDocument()
+          screen.queryByRole("button", { name: "Retour" })
+        ).not.toBeInTheDocument()
       })
 
       test("Réponse : Oui => affichage du portrait", async () => {
@@ -55,7 +72,7 @@ describe("UI de MeasuringIntentions", () => {
 
         // Phrase spécifique
         expect(yesButton).not.toBeInTheDocument()
-        expect(await screen.findByText("Oui")).toBeVisible()
+        expect(await screen.queryByText("Oui")).not.toBeInTheDocument()
         expect(
           await screen.findByText(
             "Vous allez bien, n'hésitez pas à revenir plus tard et vous questionner régulièrement. Sachez qu'Elise peut répondre à vos questions si vous en avez besoin."
@@ -72,10 +89,12 @@ describe("UI de MeasuringIntentions", () => {
 
         // Phrase spécifique
         expect(maybeButton).not.toBeInTheDocument()
-        expect(await screen.findByText("Je ne suis pas sûr(e)")).toBeVisible()
+        expect(
+          await screen.queryByText("Je ne suis pas sûr(e)")
+        ).not.toBeInTheDocument()
         expect(
           await screen.findByText(
-            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
+            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
           )
         ).toBeVisible()
 
@@ -90,7 +109,7 @@ describe("UI de MeasuringIntentions", () => {
 
           // Phrase spécifique
           expect(noButton).not.toBeInTheDocument()
-          expect(await screen.findByText("Non")).toBeVisible()
+          expect(await screen.queryByText("Non")).not.toBeInTheDocument()
           expect(
             await screen.findByText(
               "Précisez nous ce qui se rapprocherait le plus de la réalité"
@@ -193,7 +212,12 @@ describe("UI de MeasuringIntentions", () => {
 
       beforeEach(() => {
         render(
-          displayComponentsByTest({ testId: "C", scoreLevel: SCORE_LEVEL_GOOD })
+          displayComponentsByTest({
+            testId: "C",
+            scoreLevel: SCORE_LEVEL_GOOD,
+            showBackButton: false,
+            setShowBackButton: mockSetState,
+          })
         )
 
         yesButton = screen.getByRole("button", { name: "Oui" })
@@ -207,8 +231,8 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Retour" })
-        ).toBeInTheDocument()
+          screen.queryByRole("button", { name: "Retour" })
+        ).not.toBeInTheDocument()
       })
 
       afterEach(() => {
@@ -237,7 +261,7 @@ describe("UI de MeasuringIntentions", () => {
         // Phrase spécifique
         expect(
           await screen.findByText(
-            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
+            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
           )
         ).toBeVisible()
       })
@@ -341,6 +365,8 @@ describe("UI de MeasuringIntentions", () => {
           displayComponentsByTest({
             testId: "B",
             scoreLevel: SCORE_LEVEL_BAD,
+            showBackButton: false,
+            setShowBackButton: mockSetState,
           })
         )
 
@@ -355,8 +381,8 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Retour" })
-        ).toBeInTheDocument()
+          screen.queryByRole("button", { name: "Retour" })
+        ).not.toBeInTheDocument()
       })
 
       describe("Réponse : Oui", () => {
@@ -366,33 +392,29 @@ describe("UI de MeasuringIntentions", () => {
 
           // Phrase spécifique
           expect(yesButton).not.toBeInTheDocument()
-          expect(await screen.findByText("Oui")).toBeVisible()
+          expect(await screen.queryByText("Oui")).not.toBeInTheDocument()
 
-          expect(
-            await screen.findByText(
-              "Nous vous conseillons de prendre une de ces actions pour être accompagné(e). Qu'est-ce qui vous semble le plus adapté pour vous ?"
-            )
-          ).toBeVisible()
+          expect(await screen.findByText("Que vais-je faire")).toBeVisible()
 
           // Nouveaux boutons
           expect(
             await screen.getByRole("button", {
-              name: "Je sais qui joindre : je vais contacter mon professionnel de santé et parler du résultat du test",
+              name: findLabelEstLePlusAdapte("quiJoindre"),
             })
           ).toBeInTheDocument()
           expect(
             await screen.getByRole("button", {
-              name: "Je sais quoi faire : je montre le résultat de ce test à mon entourage",
+              name: findLabelEstLePlusAdapte("quoiFaire"),
             })
           ).toBeInTheDocument()
           expect(
             await screen.getByRole("button", {
-              name: "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
+              name: findLabelEstLePlusAdapte("seTourner"),
             })
           ).toBeInTheDocument()
           expect(
             await screen.getByRole("button", {
-              name: "Aucune des trois : je vous explique",
+              name: findLabelEstLePlusAdapte("aucune"),
             })
           ).toBeInTheDocument()
 
@@ -410,16 +432,16 @@ describe("UI de MeasuringIntentions", () => {
             fireEvent.click(yesButton)
 
             quiJoindre = screen.getByRole("button", {
-              name: "Je sais qui joindre : je vais contacter mon professionnel de santé et parler du résultat du test",
+              name: findLabelEstLePlusAdapte("quiJoindre"),
             })
             quoiFaire = screen.getByRole("button", {
-              name: "Je sais quoi faire : je montre le résultat de ce test à mon entourage",
+              name: findLabelEstLePlusAdapte("quoiFaire"),
             })
             seTourner = screen.getByRole("button", {
-              name: "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
+              name: findLabelEstLePlusAdapte("seTourner"),
             })
             aucune = screen.getByRole("button", {
-              name: "Aucune des trois : je vous explique",
+              name: findLabelEstLePlusAdapte("aucune"),
             })
           })
 
@@ -434,15 +456,9 @@ describe("UI de MeasuringIntentions", () => {
 
             // Phrases spécifiques
             expect(
-              await screen.findByText(
-                "Je sais qui joindre : je vais contacter mon professionnel de santé et parler du résultat du test"
-              )
+              await screen.findByText(findLabelEstLePlusAdapte("quiJoindre"))
             ).toBeVisible()
-            expect(
-              await screen.findByText(
-                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
-              )
-            ).toBeVisible()
+            expect(await screen.findByText(contacterAToutMoment)).toBeVisible()
 
             // Formaulaire
             expect(
@@ -464,15 +480,9 @@ describe("UI de MeasuringIntentions", () => {
 
             // Phrases spécifiques
             expect(
-              await screen.findByText(
-                "Je sais quoi faire : je montre le résultat de ce test à mon entourage"
-              )
+              await screen.findByText(findLabelEstLePlusAdapte("quoiFaire"))
             ).toBeVisible()
-            expect(
-              await screen.findByText(
-                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
-              )
-            ).toBeVisible()
+            expect(await screen.findByText(contacterAToutMoment)).toBeVisible()
 
             // Formaulaire
             expect(
@@ -495,9 +505,7 @@ describe("UI de MeasuringIntentions", () => {
             fireEvent.click(seTourner)
 
             expect(
-              await screen.findByText(
-                "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise"
-              )
+              await screen.findByText(findLabelEstLePlusAdapte("seTourner"))
             ).toBeVisible()
           })
 
@@ -507,18 +515,12 @@ describe("UI de MeasuringIntentions", () => {
 
             // Phrases spécifiques
             expect(
-              await screen.findByText("Aucune des trois : je vous explique")
+              await screen.findByText(findLabelEstLePlusAdapte("aucune"))
             ).toBeVisible()
             expect(
-              await screen.findByText(
-                "Avec vos mots expliquez-nous ce qui serait le plus adapté pour vous :"
-              )
+              await screen.findByText(estLePlusAdapte.commentaires.aucune)
             ).toBeVisible()
-            expect(
-              await screen.findByText(
-                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
-              )
-            ).toBeVisible()
+            expect(await screen.findByText(contacterAToutMoment)).toBeVisible()
 
             // Text Area
             expect(
@@ -536,10 +538,12 @@ describe("UI de MeasuringIntentions", () => {
 
         // Phrase spécifique
         expect(maybeButton).not.toBeInTheDocument()
-        expect(await screen.findByText("Je ne suis pas sûr(e)")).toBeVisible()
+        expect(
+          await screen.queryByText("Je ne suis pas sûr(e)")
+        ).not.toBeInTheDocument()
         expect(
           await screen.findByText(
-            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
+            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
           )
         ).toBeVisible()
 
@@ -554,7 +558,7 @@ describe("UI de MeasuringIntentions", () => {
 
           // Phrase spécifique
           expect(noButton).not.toBeInTheDocument()
-          expect(await screen.findByText("Non")).toBeVisible()
+          expect(await screen.queryByText("Non")).not.toBeInTheDocument()
 
           expect(
             await screen.findByText(
@@ -578,17 +582,10 @@ describe("UI de MeasuringIntentions", () => {
               name: "Je suis professionnel de santé",
             })
           ).toBeInTheDocument()
-          expect(
-            await screen.getByRole("button", {
-              name: "Aucune des trois : je vous explique",
-            })
-          ).toBeInTheDocument()
-
-          //TODO: Bloc Elise
         })
 
         describe("Réponses spécifiques", () => {
-          let bien, curiosite, proSante, aucune
+          let bien, curiosite, proSante
 
           beforeEach(() => {
             // Action
@@ -602,9 +599,6 @@ describe("UI de MeasuringIntentions", () => {
             })
             proSante = screen.getByRole("button", {
               name: "Je suis professionnel de santé",
-            })
-            aucune = screen.getByRole("button", {
-              name: "Aucune des trois : je vous explique",
             })
           })
 
@@ -647,31 +641,6 @@ describe("UI de MeasuringIntentions", () => {
               screen.queryByRole("img", { name: "Portrait d'Elise" })
             ).toBeNull()
           })
-
-          test("Réponse : Aucune des trois => textarea", async () => {
-            // Action
-            fireEvent.click(aucune)
-
-            // Phrases spécifiques
-            expect(
-              await screen.findByText("Aucune des trois : je vous explique")
-            ).toBeVisible()
-            expect(
-              await screen.findByText(
-                "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
-              )
-            ).toBeVisible()
-
-            // Text Area
-            expect(
-              screen.getByRole("textbox", {
-                name: "textValueOther",
-              })
-            ).toBeInTheDocument()
-
-            // Bloc Elise
-            mamanBluesBlocToBeInTheDocument()
-          })
         })
       })
     })
@@ -684,6 +653,8 @@ describe("UI de MeasuringIntentions", () => {
           displayComponentsByTest({
             testId: "C",
             scoreLevel: SCORE_LEVEL_BAD,
+            showBackButton: false,
+            setShowBackButton: mockSetState,
           })
         )
 
@@ -698,8 +669,8 @@ describe("UI de MeasuringIntentions", () => {
         expect(noButton).toBeInTheDocument()
         expect(maybeButton).toBeInTheDocument()
         expect(
-          screen.getByRole("button", { name: "Retour" })
-        ).toBeInTheDocument()
+          screen.queryByRole("button", { name: "Retour" })
+        ).not.toBeInTheDocument()
       })
 
       afterEach(() => {
@@ -717,16 +688,16 @@ describe("UI de MeasuringIntentions", () => {
           fireEvent.click(yesButton)
 
           quiJoindre = screen.getByRole("button", {
-            name: "Je sais qui joindre : je vais contacter mon professionnel de santé et parler du résultat du test",
+            name: findLabelEstLePlusAdapte("quiJoindre"),
           })
           quoiFaire = screen.getByRole("button", {
-            name: "Je sais quoi faire : je montre le résultat de ce test à mon entourage",
+            name: findLabelEstLePlusAdapte("quoiFaire"),
           })
           seTourner = screen.getByRole("button", {
-            name: "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
+            name: findLabelEstLePlusAdapte("seTourner"),
           })
           aucune = screen.getByRole("button", {
-            name: "Aucune des trois : je vous explique",
+            name: findLabelEstLePlusAdapte("aucune"),
           })
         })
 
@@ -757,7 +728,7 @@ describe("UI de MeasuringIntentions", () => {
       })
 
       describe("Réponse : Non", () => {
-        let bien, curiosite, proSante, aucune
+        let bien, curiosite, proSante
 
         beforeEach(() => {
           // Action
@@ -771,9 +742,6 @@ describe("UI de MeasuringIntentions", () => {
           })
           proSante = screen.getByRole("button", {
             name: "Je suis professionnel de santé",
-          })
-          aucune = screen.getByRole("button", {
-            name: "Aucune des trois : je vous explique",
           })
         })
 
@@ -790,11 +758,6 @@ describe("UI de MeasuringIntentions", () => {
         test("Réponse : Je suis professionnel de santé => texte", async () => {
           // Action
           fireEvent.click(proSante)
-        })
-
-        test("Réponse : Aucune des trois => textarea", async () => {
-          // Action
-          fireEvent.click(aucune)
         })
       })
     })

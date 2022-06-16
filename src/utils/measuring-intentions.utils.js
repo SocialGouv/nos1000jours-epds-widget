@@ -13,16 +13,16 @@ export const TEST = {
   C: "C",
 }
 
-export const cestUneBonneEtape =
-  "C'est une bonne étape, vous pouvez tout de même parler à Elise. Elle est présente pour vous écouter, vous conseiller, vous orienter."
+export const contacterAToutMoment =
+  "Sachez qu’à tout moment vous pouvez contacter Elise."
 
 const elisePeutVousAider =
   "Si vous vous posez des questions, Elise peut vous aider à y voir plus clair. Le test est un outil de dépistage. Il aide les professionnels de santé à poser un diagnostique de cette maladie touchant XXX de parents."
 const seRapprocheDeLaRealite =
   "Précisez nous ce qui se rapprocherait le plus de la réalité"
-const aucune = "Aucune des trois : je vous explique"
+const aucune = "Autre. Je précise"
 const nePasSavoir =
-  "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à mieux comprendre ce qu'il se passe."
+  "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
 
 const demandeDeDetails = {
   lvl1: {
@@ -73,23 +73,19 @@ const demandeDeDetails = {
 }
 
 export const estLePlusAdapte = {
-  question:
-    "Nous vous conseillons de prendre une de ces actions pour être accompagné(e). Qu'est-ce qui vous semble le plus adapté pour vous ?",
+  question: "Que vais-je faire ? Prenez une des actions suivantes.",
   reponses: [
     {
       value: "quiJoindre",
-      label:
-        "Je sais qui joindre : je vais contacter mon professionnel de santé et parler du résultat du test",
+      label: "Je contacte mon professionnel de santé",
     },
     {
       value: "quoiFaire",
-      label:
-        "Je sais quoi faire : je montre le résultat de ce test à mon entourage",
+      label: "Je partage le résultat de ce test à mon entourage",
     },
     {
       value: "seTourner",
-      label:
-        "Je ne sais pas vers qui me tourner : je rentre en contact avec Elise",
+      label: "Je ne sais pas vers qui me tourner",
     },
     {
       value: "aucune",
@@ -100,8 +96,7 @@ export const estLePlusAdapte = {
     quiJoindre: "",
     quoiFaire: "",
     seTourner: "",
-    aucune:
-      "Avec vos mots expliquez-nous ce qui serait le plus adapté pour vous :",
+    aucune: "Avec vos mots, expliquez-nous ce que vous comptez faire.",
   },
 }
 
