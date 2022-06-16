@@ -31,6 +31,10 @@ describe("UI de MeasuringIntentions", () => {
     ).toBeInTheDocument()
   }
 
+  const mamanBluesBlocNotToBeInTheDocument = () => {
+    expect(screen.queryByRole("img", { name: "Portrait d'Elise" })).toBeNull()
+  }
+
   describe("Reponse EPDS : Je vais bien", () => {
     test("Test A => aucun retour", async () => {
       expect(
@@ -121,9 +125,7 @@ describe("UI de MeasuringIntentions", () => {
           ).toBeInTheDocument()
 
           // Bloc Elise
-          expect(
-            screen.queryByRole("img", { name: "Portrait d'Elise" })
-          ).toBeNull()
+          mamanBluesBlocNotToBeInTheDocument()
         })
 
         test("Réponse : je ne vais pas bien => affichage du portrait", async () => {
@@ -194,9 +196,7 @@ describe("UI de MeasuringIntentions", () => {
           ).toBeInTheDocument()
 
           // Bloc Elise
-          expect(
-            screen.queryByRole("img", { name: "Portrait d'Elise" })
-          ).toBeNull()
+          mamanBluesBlocNotToBeInTheDocument()
         })
       })
     })
@@ -230,10 +230,7 @@ describe("UI de MeasuringIntentions", () => {
       })
 
       afterEach(() => {
-        // Bloc Elise
-        expect(
-          screen.queryByRole("img", { name: "Portrait d'Elise" })
-        ).toBeNull()
+        mamanBluesBlocNotToBeInTheDocument()
       })
 
       test("Réponse : Oui => affichage du portrait", async () => {
@@ -405,9 +402,7 @@ describe("UI de MeasuringIntentions", () => {
           ).toBeInTheDocument()
 
           // Bloc Elise
-          expect(
-            screen.queryByRole("img", { name: "Portrait d'Elise" })
-          ).toBeNull()
+          mamanBluesBlocNotToBeInTheDocument()
         })
 
         describe("Réponses spécifiques", () => {
@@ -615,9 +610,7 @@ describe("UI de MeasuringIntentions", () => {
             ).toBeVisible()
 
             // Bloc Elise
-            expect(
-              screen.queryByRole("img", { name: "Portrait d'Elise" })
-            ).toBeNull()
+            mamanBluesBlocNotToBeInTheDocument()
           })
         })
       })
@@ -652,10 +645,7 @@ describe("UI de MeasuringIntentions", () => {
       })
 
       afterEach(() => {
-        // Bloc Elise
-        expect(
-          screen.queryByRole("img", { name: "Portrait d'Elise" })
-        ).toBeNull()
+        mamanBluesBlocNotToBeInTheDocument()
       })
 
       describe("Réponse : Oui", () => {
