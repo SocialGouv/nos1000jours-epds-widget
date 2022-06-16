@@ -17,11 +17,11 @@ export const contacterAToutMoment =
   "Sachez qu’à tout moment vous pouvez contacter Elise."
 
 const elisePeutVousAider =
-  "Si vous vous posez des questions, Elise peut vous aider à y voir plus clair. Le test est un outil de dépistage. Il aide les professionnels de santé à poser un diagnostique de cette maladie touchant XXX de parents."
-const seRapprocheDeLaRealite =
-  "Précisez nous ce qui se rapprocherait le plus de la réalité"
+  "Même si vous n’avez pas la sensation de traverser une difficulté maternelle, sachez qu’à tout moment vous pouvez contacter Elise. Pour rappel, la dépression post-partum touche 100 000 femmes et 75 000 hommes chaque année en France. Elle tue une femme par mois."
+export const seRapprocheDeLaRealite =
+  "Précisez nous ce qui se rapprocherait le plus de ce que vous vivez"
 const aucune = "Autre. Je précise"
-const nePasSavoir =
+export const nePasSavoir =
   "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
 
 const demandeDeDetails = {
@@ -57,16 +57,12 @@ const demandeDeDetails = {
         value: "proSante",
         label: "Je suis professionnel de santé",
       },
-      {
-        value: "aucune",
-        label: aucune,
-      },
     ],
     commentaires: {
       bien: elisePeutVousAider,
       curiosite: elisePeutVousAider,
       proSante:
-        "Merci pour l'intérêt que vous portez à notre solution. Si vous avez des commentaires, des suggestions, n'hésitez pas à nous en faire part à l'adresse suivante : contact.1000J@ ....",
+        "Merci pour l'intérêt que vous portez à notre solution. Si vous avez des commentaires, des suggestions, n'hésitez pas à nous en faire part à l'adresse suivante : 1000joursblues@fabrique.social.gouv.fr",
       aucune: "",
     },
   },

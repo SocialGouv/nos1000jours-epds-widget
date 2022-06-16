@@ -8,6 +8,8 @@ import {
 import {
   contacterAToutMoment,
   estLePlusAdapte,
+  nePasSavoir,
+  seRapprocheDeLaRealite,
 } from "../../../src/utils/measuring-intentions.utils"
 
 describe("UI de MeasuringIntentions", () => {
@@ -92,11 +94,7 @@ describe("UI de MeasuringIntentions", () => {
         expect(
           await screen.queryByText("Je ne suis pas sûr(e)")
         ).not.toBeInTheDocument()
-        expect(
-          await screen.findByText(
-            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
-          )
-        ).toBeVisible()
+        expect(await screen.findByText(nePasSavoir)).toBeVisible()
 
         // Bloc Elise
         mamanBluesBlocToBeInTheDocument()
@@ -110,11 +108,7 @@ describe("UI de MeasuringIntentions", () => {
           // Phrase spécifique
           expect(noButton).not.toBeInTheDocument()
           expect(await screen.queryByText("Non")).not.toBeInTheDocument()
-          expect(
-            await screen.findByText(
-              "Précisez nous ce qui se rapprocherait le plus de la réalité"
-            )
-          ).toBeVisible()
+          expect(await screen.findByText(seRapprocheDeLaRealite)).toBeVisible()
           expect(
             await screen.getByRole("button", {
               name: "Malgré le résultat, je n'ai pas l'impression d'aller bien",
@@ -259,11 +253,7 @@ describe("UI de MeasuringIntentions", () => {
         fireEvent.click(maybeButton)
 
         // Phrase spécifique
-        expect(
-          await screen.findByText(
-            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
-          )
-        ).toBeVisible()
+        expect(await screen.findByText(nePasSavoir)).toBeVisible()
       })
 
       describe("Réponse : Non", () => {
@@ -272,11 +262,7 @@ describe("UI de MeasuringIntentions", () => {
           fireEvent.click(noButton)
 
           // Phrase spécifique
-          expect(
-            await screen.findByText(
-              "Précisez nous ce qui se rapprocherait le plus de la réalité"
-            )
-          ).toBeVisible()
+          expect(await screen.findByText(seRapprocheDeLaRealite)).toBeVisible()
           expect(
             await screen.getByRole("button", {
               name: "Malgré le résultat, je n'ai pas l'impression d'aller bien",
@@ -541,11 +527,7 @@ describe("UI de MeasuringIntentions", () => {
         expect(
           await screen.queryByText("Je ne suis pas sûr(e)")
         ).not.toBeInTheDocument()
-        expect(
-          await screen.findByText(
-            "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
-          )
-        ).toBeVisible()
+        expect(await screen.findByText(nePasSavoir)).toBeVisible()
 
         // Bloc Elise
         mamanBluesBlocToBeInTheDocument()
@@ -560,11 +542,7 @@ describe("UI de MeasuringIntentions", () => {
           expect(noButton).not.toBeInTheDocument()
           expect(await screen.queryByText("Non")).not.toBeInTheDocument()
 
-          expect(
-            await screen.findByText(
-              "Précisez nous ce qui se rapprocherait le plus de la réalité"
-            )
-          ).toBeVisible()
+          expect(await screen.findByText(seRapprocheDeLaRealite)).toBeVisible()
 
           // Nouveaux boutons
           expect(
