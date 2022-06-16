@@ -58,7 +58,7 @@ export const TextAreaToSendDetails = ({
         rows="5"
       />
       <button
-        className="fr-btn"
+        className="fr-btn margin-bottom-12"
         onClick={handleSendDetails}
         disabled={isLoading || sendSuccessful}
       >
@@ -67,9 +67,9 @@ export const TextAreaToSendDetails = ({
       </button>
 
       {sendSuccessful && (
-        <span className="margin-start-10">
+        <div className="margin-bottom-12">
           Votre commentaire a bien été envoyé
-        </span>
+        </div>
       )}
 
       {displayMamanBlues && (
