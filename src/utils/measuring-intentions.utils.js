@@ -24,7 +24,7 @@ const aucune = "Autre. Je précise"
 export const nePasSavoir =
   "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
 
-const demandeDeDetails = {
+export const demandeDeDetails = {
   lvl1: {
     question: seRapprocheDeLaRealite,
     reponses: [
@@ -47,7 +47,7 @@ const demandeDeDetails = {
     reponses: [
       {
         value: "bien",
-        label: "Malgré le résultat, je l'impression que tout va bien",
+        label: "Malgré le résultat, j'ai l'impression que tout va bien",
       },
       {
         value: "curiosite",

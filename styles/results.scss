@@ -126,6 +126,10 @@
 
   .buttons-bloc {
     margin-block: 5px;
+
+    label {
+      text-align: start;
+    }
   }
 
   .measure-button {

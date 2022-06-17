@@ -7,6 +7,7 @@ import {
 } from "../../../src/utils/score-level.utils"
 import {
   contacterAToutMoment,
+  demandeDeDetails,
   estLePlusAdapte,
   nePasSavoir,
   seRapprocheDeLaRealite,
@@ -15,6 +16,8 @@ import {
 describe("UI de MeasuringIntentions", () => {
   const findLabelEstLePlusAdapte = (value) =>
     estLePlusAdapte.reponses.find((item) => item.value === value).label
+  const findLabelDemandeDeDetailsLvl3 = (value) =>
+    demandeDeDetails.lvl3.reponses.find((item) => item.value === value).label
 
   const mockSetState = jest.fn()
   jest.mock("react", () => ({
@@ -377,7 +380,7 @@ describe("UI de MeasuringIntentions", () => {
           expect(yesButton).not.toBeInTheDocument()
           expect(await screen.queryByText("Oui")).not.toBeInTheDocument()
 
-          expect(await screen.findByText("Que vais-je faire")).toBeVisible()
+          expect(await screen.findByText("Prenez une des actions suivantes.")).toBeVisible()
 
           // Nouveaux boutons
           expect(
@@ -542,7 +545,7 @@ describe("UI de MeasuringIntentions", () => {
           // Nouveaux boutons
           expect(
             await screen.getByRole("button", {
-              name: "Malgré le résultat, je l'impression que tout va bien",
+              name: findLabelDemandeDeDetailsLvl3("bien"),
             })
           ).toBeInTheDocument()
           expect(
@@ -565,7 +568,7 @@ describe("UI de MeasuringIntentions", () => {
             fireEvent.click(noButton)
 
             bien = screen.getByRole("button", {
-              name: "Malgré le résultat, je l'impression que tout va bien",
+              name: findLabelDemandeDeDetailsLvl3("bien"),
             })
             curiosite = screen.getByRole("button", {
               name: "J'ai fait le test par curiosité",
@@ -580,9 +583,7 @@ describe("UI de MeasuringIntentions", () => {
             fireEvent.click(bien)
 
             expect(
-              await screen.findByText(
-                "Malgré le résultat, je l'impression que tout va bien"
-              )
+              await screen.findByText(findLabelDemandeDeDetailsLvl3("bien"))
             ).toBeVisible()
 
             // Bloc Elise
@@ -703,7 +704,7 @@ describe("UI de MeasuringIntentions", () => {
           fireEvent.click(noButton)
 
           bien = screen.getByRole("button", {
-            name: "Malgré le résultat, je l'impression que tout va bien",
+            name: findLabelDemandeDeDetailsLvl3("bien"),
           })
           curiosite = screen.getByRole("button", {
             name: "J'ai fait le test par curiosité",

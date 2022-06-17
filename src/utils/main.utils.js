@@ -75,7 +75,7 @@ export const convertStringWithfirstPartInBold = (character, label) => {
 
   return result.length > 1 ? (
     <div>
-      <b>{result[0]}</b> {character} {result[1]}
+      <b>{result[0]} {character}</b> {result[1]}
     </div>
   ) : (
     <div>{label}</div>

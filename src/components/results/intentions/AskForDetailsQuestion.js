@@ -111,7 +111,7 @@ export const AskForDetailsQuestion = ({
                 value={item.value}
                 onClick={() => setAskForDetails(item)}
               >
-                {convertStringWithfirstPartInBold(":", item.label)}
+                {item.label}
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
