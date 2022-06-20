@@ -2,7 +2,7 @@
 import { useMutation } from "@apollo/client"
 import { useEffect, useState } from "react"
 import { client, EPDS_PARTAGE_RESULTS, EPDS_PARTAGE_RESULTS_ENTOURAGE } from "../../../../apollo-client"
-import { PATTERN_EMAIL, STORAGE_RESULTS_BOARD, STORAGE_SOURCE, URL_PROD } from "../../../constants/constants"
+import { PATTERN_EMAIL, STORAGE_RESULTS_BOARD } from "../../../constants/constants"
 import { Form } from "../../../constants/specificLabels"
 import { convertDateToString, getColorIconAndTextByMood, getInLocalStorage, jsonParse, LoaderFoButton } from "../../../utils/main.utils"
 import { contacterAToutMoment } from "../../../utils/measuring-intentions.utils"
@@ -22,7 +22,6 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
   const [isLoading, setLoading] = useState(false)
   const [queryShareResponses, setQueryShareResponses] = useState()
 
-  const websiteSource = getInLocalStorage(STORAGE_SOURCE)
   const resultsBoard = jsonParse(getInLocalStorage(STORAGE_RESULTS_BOARD))
   const queryForPartage = forHimself ? EPDS_PARTAGE_RESULTS : EPDS_PARTAGE_RESULTS_ENTOURAGE
 
@@ -58,7 +57,6 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
           email: inputs.inputEmail.value,
           prenom: inputs.inputName.value,
           date: dateAsString,
-          url_test: `${URL_PROD}/?source=${websiteSource}`,
           mood_level: getColorIconAndTextByMood(scoreLevel).moodText
         },
       })

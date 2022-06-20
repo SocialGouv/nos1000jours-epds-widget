@@ -37,7 +37,6 @@ export const EPDS_PARTAGE_RESULTS = gql`
     $prenom: String
     $detail_questions: [String]
     $detail_reponses: [String]
-    $url_test: String
     $date: String
     $mood_level: String
   ) {
@@ -46,7 +45,6 @@ export const EPDS_PARTAGE_RESULTS = gql`
       prenom: $prenom
       detail_questions: $detail_questions
       detail_reponses: $detail_reponses
-      url_test: $url_test
       date: $date
       mood_level: $mood_level
     )
@@ -59,7 +57,6 @@ export const EPDS_PARTAGE_RESULTS_ENTOURAGE = gql`
     $prenom: String
     $detail_questions: [String]
     $detail_reponses: [String]
-    $url_test: String
     $date: String
     $mood_level: String
   ) {
@@ -68,7 +65,6 @@ export const EPDS_PARTAGE_RESULTS_ENTOURAGE = gql`
       prenom: $prenom
       detail_questions: $detail_questions
       detail_reponses: $detail_reponses
-      url_test: $url_test
       date: $date
       mood_level: $mood_level
     )

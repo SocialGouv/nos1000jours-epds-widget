@@ -73,7 +73,7 @@ export const estLePlusAdapte = {
   reponses: [
     {
       value: "quiJoindre",
-      label: "Je contacte mon professionnel de santé",
+      label: "Je montre le résultat à mon professionnel de santé",
     },
     {
       value: "quoiFaire",
