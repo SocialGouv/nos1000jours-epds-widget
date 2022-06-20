@@ -15,13 +15,12 @@ import {
   getLocaleInLocalStorage,
   stringIsNotNullNorEmpty,
   phoneNumberFormatting,
+  convertDateToString,
 } from "../../src/utils/main.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
 import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"
 import { useRouter } from "next/router"
-import Moment from "moment"
-import "moment/locale/fr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
 
@@ -76,7 +75,7 @@ export default function ContactForm() {
     let dateAsString = null
     if (stringIsNotNullNorEmpty(childBirthDate)) {
       const date = new Date(childBirthDate)
-      dateAsString = Moment(date).locale("fr").format("L").replace(/\//g, "-")
+      dateAsString = convertDateToString(date, "-")
     }
 
     setLoading(true)

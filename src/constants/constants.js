@@ -7,6 +7,7 @@ export const STORAGE_SCORE = "score"
 export const STORAGE_SCORE_LEVEL_MACARON = "scoreLevelForMacaron"
 export const STORAGE_SCORE_LEVEL_MOOD = "scoreLevelForMood"
 export const STORAGE_SCORE_LEVEL_TEXTS = "scoreLevelForTexts"
+export const STORAGE_RESULTS_BOARD = "resultsBoard"
 
 export const STORAGE_CONTACT_TYPE = "contactType"
 export const STORAGE_CONTACT_HOURS = "contactHours"
@@ -14,6 +15,8 @@ export const STORAGE_CONTACT_HOURS = "contactHours"
 export const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const EPDS_SOURCE = "SitePartenaire"
 export const DEFAULT_LOCAL = "FR"
+export const URL_PROD =
+  "https://nos1000jours-blues-epds-widget.fabrique.social.gouv.fr"
 
 export const PATTERN_EMAIL = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}"
 

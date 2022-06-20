@@ -1,6 +1,8 @@
 import { Spinner } from "react-bootstrap"
 import { STORAGE_LABELS, STORAGE_LOCALE } from "../constants/constants"
 import { Labels } from "../constants/specificLabels"
+import Moment from "moment"
+import "moment/locale/fr"
 
 /**
  * Permet de récupérer en une seule fois : couleur, texts et icone pour un mood
@@ -53,6 +55,10 @@ export function getLabelsInLocalStorage() {
   if (storageLabels) return JSON.parse(storageLabels)
 }
 
+export function jsonParse(data) {
+  if (typeof data !== "undefined") return JSON.parse(data)
+}
+
 export const stringIsNotNullNorEmpty = (str) =>
   str !== null && str !== undefined && str.length > 0
 
@@ -80,4 +86,14 @@ export const convertStringWithfirstPartInBold = (character, label) => {
   ) : (
     <div>{label}</div>
   )
+}
+
+/**
+ * @param {Date} date
+ * @param {String} separator
+ * @returns date in String
+ */
+export const convertDateToString = (date, separator) => {
+  console.log(Moment(date).locale("fr"))
+  return Moment(date).locale("fr").format("L").replace(/\//g, separator)
 }

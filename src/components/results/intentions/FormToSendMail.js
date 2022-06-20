@@ -1,8 +1,10 @@
 /* eslint-disable prettier/prettier */
+import { useMutation } from "@apollo/client"
 import { useEffect, useState } from "react"
-import { PATTERN_EMAIL } from "../../../constants/constants"
+import { client, EPDS_PARTAGE_RESULTS, EPDS_PARTAGE_RESULTS_ENTOURAGE } from "../../../../apollo-client"
+import { PATTERN_EMAIL, STORAGE_RESULTS_BOARD, STORAGE_SOURCE, URL_PROD } from "../../../constants/constants"
 import { Form } from "../../../constants/specificLabels"
-import { LoaderFoButton } from "../../../utils/main.utils"
+import { convertDateToString, getColorIconAndTextByMood, getInLocalStorage, jsonParse, LoaderFoButton } from "../../../utils/main.utils"
 import { contacterAToutMoment } from "../../../utils/measuring-intentions.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 
@@ -18,23 +20,49 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
 
   const [canSend, setCanSend] = useState(false)
   const [isLoading, setLoading] = useState(false)
+  const [queryShareResponses, setQueryShareResponses] = useState()
+
+  const websiteSource = getInLocalStorage(STORAGE_SOURCE)
+  const resultsBoard = jsonParse(getInLocalStorage(STORAGE_RESULTS_BOARD))
+  const queryForPartage = forHimself ? EPDS_PARTAGE_RESULTS : EPDS_PARTAGE_RESULTS_ENTOURAGE
 
   useEffect(() => {
     setCanSend(isEmailValid && isNameValid)
   }, [isEmailValid, isNameValid])
 
+  const [sendEmailReponseQuery] = useMutation(queryForPartage, {
+    client: client,
+    onCompleted: () => {
+      setQueryShareResponses("Le mail a été envoyé")
+      setLoading(false)
+    },
+    onError: (err) => {
+      console.warn(err)
+      setQueryShareResponses(err.toString())
+      setLoading(false)
+    },
+  })
+
   const sendForm = async (event) => {
     event.preventDefault()
-
-    // TODO: send mail et générer les pdf
     setLoading(true)
 
-    console.log(event.target.inputName.value)
-    console.log(event.target.inputEmail.value)
+    if (canSend) {
+      const inputs = event.target
+      const dateAsString = convertDateToString(new Date(), "/")
 
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
+      await sendEmailReponseQuery({
+        variables: {
+          detail_questions: resultsBoard.map((data) => data.question),
+          detail_reponses: resultsBoard.map((data) => data.response),
+          email: inputs.inputEmail.value,
+          prenom: inputs.inputName.value,
+          date: dateAsString,
+          url_test: `${URL_PROD}/?source=${websiteSource}`,
+          mood_level: getColorIconAndTextByMood(scoreLevel).moodText
+        },
+      })
+    }
   }
 
   return (
@@ -79,6 +107,11 @@ export const FormToSendMail = ({ scoreLevel, displayMamanBlues = true, forHimsel
           Valider
           {isLoading && <LoaderFoButton />}
         </button>
+
+        <div className="margin-bottom-12">
+          {queryShareResponses}
+        </div>
+
       </form >
       <div>{contacterAToutMoment}</div>
       {displayMamanBlues && <ContactMamanBlues scoreLevel={scoreLevel} />}

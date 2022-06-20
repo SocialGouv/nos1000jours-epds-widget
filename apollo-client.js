@@ -30,3 +30,47 @@ export const EPDS_CONTACT_INFORMATION = gql`
     )
   }
 `
+
+export const EPDS_PARTAGE_RESULTS = gql`
+  mutation (
+    $email: String!
+    $prenom: String
+    $detail_questions: [String]
+    $detail_reponses: [String]
+    $url_test: String
+    $date: String
+    $mood_level: String
+  ) {
+    epdsPartagePourSoiMeme(
+      email: $email
+      prenom: $prenom
+      detail_questions: $detail_questions
+      detail_reponses: $detail_reponses
+      url_test: $url_test
+      date: $date
+      mood_level: $mood_level
+    )
+  }
+`
+
+export const EPDS_PARTAGE_RESULTS_ENTOURAGE = gql`
+  mutation (
+    $email: String!
+    $prenom: String
+    $detail_questions: [String]
+    $detail_reponses: [String]
+    $url_test: String
+    $date: String
+    $mood_level: String
+  ) {
+    epdsPartageEntourage(
+      email: $email
+      prenom: $prenom
+      detail_questions: $detail_questions
+      detail_reponses: $detail_reponses
+      url_test: $url_test
+      date: $date
+      mood_level: $mood_level
+    )
+  }
+`
