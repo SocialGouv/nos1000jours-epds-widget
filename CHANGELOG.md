@@ -1,3 +1,47 @@
+# [1.18.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.17.2...v1.18.0) (2022-06-27)
+
+
+### Bug Fixes
+
+* **intentions:** affichage bouton après sélection ([8b416d5](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8b416d5a10e0ed883654869f87aec655813d437e))
+* **intentions:** boutons recommencer ([09b3c81](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/09b3c8164d890e0a3e70043ec8f38392aa5325e1))
+* **intentions:** contact maman blues et textarea ([f82ce60](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f82ce60ff176be356591960b1b4e9e7bbc8f98e6))
+* **intentions:** maj mails ([fedb3e4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/fedb3e450f4ee1a57ff586b11d9ff0d934f4b1dc))
+* **intentions:** réponse non ([457e752](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/457e7525d79d01b29254037b371dec05cde419b5))
+* **intentions:** réponse oui ([ee48f26](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ee48f260052ad51bf4778dbcba3867ba6bfc13bd))
+* **intentions:** retours ([05978bc](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/05978bc7ae54695b0eddf582f681f7d2153cca2d))
+* **intentions:** retours parcours général ([672cb8d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/672cb8dd41965aad246b49f4655bd2d61283f88b))
+* **intentions:** sonar cloud ([d192c8b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d192c8b8141e6a3d5e895016028b0f74cf220db8))
+* **intentions:** styles + bouton retour ([e8762b9](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e8762b93f92cb0b09fedd3cc9b4b1f5318865cfc))
+* **intentions:** tracker test ([9f2e035](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/9f2e035394c3f7cf993eae4ac651db03ceb5918a))
+* **intentions:** ui ([3027c71](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3027c716d4cfe6daa9fe01fa8cb1f59201f83b06))
+* **intentions:** wording ([5fdcd2f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5fdcd2f0923d990c3fa41b0d1b8d0b8f4b2bb4e9))
+* **intentions:** wording et bouton ([b5c0ddf](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b5c0ddf790e551f63aee31fd9a9fb2efdd654026))
+* **intentions:** wording et tracker ([488e078](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/488e0781604057b4546d2976ed850a1c774bc781))
+* **random:** sonarcloud ([c5711b4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c5711b4a79b8a939a8dd00e830658254f3811cc0))
+
+
+### Features
+
+* **iintentions:** envoi des comemntaires au BO ([d12a9a2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d12a9a28142c44b50cc558226dc350a4fd3dacfe))
+* **initentions:** bouton reset ([cf11f78](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/cf11f78eab6be6d856904d9ebc2480e1e5c4a48b))
+* **intensions:** cacher le bloc contact des résultats ([29108ea](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/29108ea9ee9eaf607d25dd95f01291510e6cadef))
+* **intentions:** affichage testvABC en focntion de l'env ([f4dde05](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f4dde05df6bff696544cb350afe642afb1e9ab17))
+* **intentions:** ajout bouton valider ([c13e05b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c13e05b2bed4e5fdbb533923ad5b509f93b163fd))
+* **intentions:** ajout test C ([a6cb792](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a6cb792c2f0539a74f94bf4c248c94c8290a9741))
+* **intentions:** ajout tracker ([128aa2c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/128aa2c074a9a0f6419960943cacf9ef5502acdf))
+* **intentions:** avancement des scenarios ([dc6db9e](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/dc6db9eae7998bec58db8da1e13bc19794bc5db2))
+* **intentions:** envoi de mails ([23486f0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/23486f077babe1e04d6127a1af93809bc51b4bec))
+* **intentions:** envoi des mails via la lib ([67c655c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/67c655ce90705127448de130ee5b2fe5bb1e2627))
+* **intentions:** formulaire d'envoi des resultats + refacto ([3f5fbab](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3f5fbab73bcfddfe8f72c0b43a92fb6720ebbf44))
+* **intentions:** init random ([35d2235](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/35d22357c6a9590619f59ed17c378c8068cd7f0b))
+* **intentions:** init test A et B pour "je vais bien" ([5b1e2a6](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5b1e2a68887f9b9fba97d55c980d96e51385ba68))
+* **intentions:** maj bloc maman blues ([e00b144](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e00b144d8073f7a7eb88c5de8e79e05b3b07159f))
+* **intentions:** MAJ pour Je vais bien ([afc2737](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/afc27372ec9d34c4100c5a7b6251724f3d778dc0))
+* **intentions:** persistance TEST ([d974eb1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d974eb1f3dc8ee2858010892a027d44c3e8f80ba))
+* **intentions:** refacto + affichage bloc contact + testB ([1812584](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/181258488f55e61080236840013146b015c84f0e))
+* **intentsions:** affichage bloc de contact ([b012bf5](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b012bf534b09409e6f8ee177652138b9263beace))
+
 ## [1.17.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.17.1...v1.17.2) (2022-06-03)
 
 
