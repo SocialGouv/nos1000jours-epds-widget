@@ -730,10 +730,10 @@
   resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.2.2.tgz#0fe3c8978a38f23411fbbdcaf4e3a7edaf8eecbf"
   integrity sha512-VWIToHeF0rFtLlGGkjdfUCtLckZebwXwYlnAVYwqMivUboqRgxl7wsUGkGfp6HM4cfYla9NQw4mbqRPXfTGu5Q==
 
-"@socialgouv/nos1000jours-lib@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@socialgouv/nos1000jours-lib/-/nos1000jours-lib-1.6.1.tgz#d91a414fb6ce58dc20b9bd990942febdbd6df621"
-  integrity sha512-RnID8UJsFDkGVcImWiok12jvgj52C4Ac3bgmmVqxxBb3U8ZVVgEsZIV3oqSB6HQqmXKrATjkyM/RqoZ3wgLT4Q==
+"@socialgouv/nos1000jours-lib@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/nos1000jours-lib/-/nos1000jours-lib-1.7.0.tgz#68a015641d7303201a06f532eca50c8b865449fe"
+  integrity sha512-zjOlmXAlfT/At0gzqEnCx+/eeraz0/l4+2I4DfS5vWk0gMSrJQ+6JGjS9qv+v1+zsH4qorORN3y10jMFNeHfQw==
 
 "@testing-library/dom@^8.0.0":
   version "8.11.1"

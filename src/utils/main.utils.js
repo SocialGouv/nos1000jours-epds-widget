@@ -94,6 +94,5 @@ export const convertStringWithfirstPartInBold = (character, label) => {
  * @returns date in String
  */
 export const convertDateToString = (date, separator) => {
-  console.log(Moment(date).locale("fr"))
   return Moment(date).locale("fr").format("L").replace(/\//g, separator)
 }
