@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from "react"
 import { Col, Spinner } from "react-bootstrap"
 import { ContentLayout } from "../../src/components/Layout"
@@ -14,14 +15,14 @@ import {
   getLocaleInLocalStorage,
   stringIsNotNullNorEmpty,
   phoneNumberFormatting,
+  convertDateToString,
 } from "../../src/utils/main.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
 import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"
 import { useRouter } from "next/router"
-import Moment from "moment"
-import "moment/locale/fr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
+import { Form } from "../../src/constants/specificLabels"
 
 export default function ContactForm() {
   const router = useRouter()
@@ -38,7 +39,7 @@ export default function ContactForm() {
   const websiteSource = getInLocalStorage(STORAGE_SOURCE)
   const localeSelected = getLocaleInLocalStorage()
 
-  const requiredField = <p className="required-field">*Champs obligatoire</p>
+  const requiredField = <p className="required-field">{Form.required}</p>
 
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
     client: client,
@@ -74,7 +75,7 @@ export default function ContactForm() {
     let dateAsString = null
     if (stringIsNotNullNorEmpty(childBirthDate)) {
       const date = new Date(childBirthDate)
-      dateAsString = Moment(date).locale("fr").format("L").replace(/\//g, "-")
+      dateAsString = convertDateToString(date, "-")
     }
 
     setLoading(true)
@@ -122,14 +123,12 @@ export default function ContactForm() {
         name="inputEmail"
         pattern={PATTERN_EMAIL}
         onChange={(e) => setEmailValid(e.target.validity.valid)}
-        placeholder="Écrivez ici l’adresse mail"
+        placeholder={Form.placeholder.email}
         required={isRequired}
       />
 
-      {isEmailValid === false && (
-        <InputError error="L'adresse mail n'est pas au bon format" />
-      )}
-      {isRequired ? requiredField : null}
+      {isEmailValid === false && <InputError error={Form.error.email} />}
+      {isRequired && requiredField}
     </div>
   )
 
@@ -215,7 +214,7 @@ export default function ContactForm() {
             className={`form-control fr-input`}
             id="inputName"
             name="inputName"
-            placeholder="Écrivez ici votre prénom"
+            placeholder={Form.placeholder.name}
           />
         </div>
 

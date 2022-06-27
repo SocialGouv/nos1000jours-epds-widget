@@ -1,5 +1,8 @@
+import { Spinner } from "react-bootstrap"
 import { STORAGE_LABELS, STORAGE_LOCALE } from "../constants/constants"
 import { Labels } from "../constants/specificLabels"
+import Moment from "moment"
+import "moment/locale/fr"
 
 /**
  * Permet de récupérer en une seule fois : couleur, texts et icone pour un mood
@@ -52,6 +55,10 @@ export function getLabelsInLocalStorage() {
   if (storageLabels) return JSON.parse(storageLabels)
 }
 
+export function jsonParse(data) {
+  if (typeof data !== "undefined") return JSON.parse(data)
+}
+
 export const stringIsNotNullNorEmpty = (str) =>
   str !== null && str !== undefined && str.length > 0
 
@@ -63,4 +70,29 @@ export function convertArrayLabelsToObject(data) {
 
 export const phoneNumberFormatting = (phoneNumber) => {
   return phoneNumber.replace(/(.{2})(?!$)/g, "$1 ")
+}
+
+export const LoaderFoButton = () => (
+  <Spinner animation="border" size="sm" className="margin-start-10" />
+)
+
+export const convertStringWithfirstPartInBold = (character, label) => {
+  const result = label.split(character)
+
+  return result.length > 1 ? (
+    <div>
+      <b>{result[0]} {character}</b> {result[1]}
+    </div>
+  ) : (
+    <div>{label}</div>
+  )
+}
+
+/**
+ * @param {Date} date
+ * @param {String} separator
+ * @returns date in String
+ */
+export const convertDateToString = (date, separator) => {
+  return Moment(date).locale("fr").format("L").replace(/\//g, separator)
 }

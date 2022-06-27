@@ -130,6 +130,14 @@ a {
   margin-bottom: $xxxxs;
 }
 
+.margin-bottom-12 {
+  margin-bottom: $xxs;
+}
+
+.margin-right-8 {
+  margin-right: $xxxxs;
+}
+
 .modal-footer .btn-primary,
 .btn-check:checked+.btn-primary {
   background-color: var(--primaryBlueDark) !important;
@@ -144,7 +152,7 @@ a {
 }
 
 .font-size-rtl {
-  font-size: $md !important;
+  font-size: $md  !important;
 }
 
 .rep-francaise-img {

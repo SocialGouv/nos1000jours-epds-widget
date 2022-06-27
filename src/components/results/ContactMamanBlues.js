@@ -9,6 +9,9 @@ export function ContactMamanBlues({ scoreLevel }) {
   let colorsByLevel
 
   switch (scoreLevel) {
+    case 1:
+      colorsByLevel = "good-mood"
+      break
     case 2:
       colorsByLevel = "moderatelygood-mood"
       break
@@ -33,21 +36,19 @@ export function ContactMamanBlues({ scoreLevel }) {
 
   return (
     <div className="contact-mamanblues">
-      {scoreLevel > 1 ? (
-        <Row className={`contact-content ${colorsByLevel}`}>
-          <div className="content-img-descr">
-            <img alt="Portrait d'Elise" src="../img/portrait-elise.jpg" />
-            <div className="mamanblues-description">
-              Vous pouvez être contacté(e) par Élise, notre partenaire
-              (association composée par des volontaires ayant connu la
-              difficulté maternelle), afin de <b>trouver une aide adaptée autour de vous.</b>
-            </div>
+      <Row className={`contact-content ${colorsByLevel}`}>
+        <div className="content-img-descr">
+          <img alt="Portrait d'Elise" src="../img/portrait-elise.jpg" />
+          <div className="mamanblues-description">
+            <b>Trouvez un accompagnement personnalisé près de chez vous </b>
+            auprès de professionnels sensibilisés aux difficultés maternelles en
+            échangeant avec Elise, présidente de l’association Maman Blues
           </div>
-          <button className="fr-btn" onClick={goToBeContacted}>
-            être contacté(e)
-          </button>
-        </Row>
-      ) : null}
+        </div>
+        <button className="fr-btn" onClick={goToBeContacted}>
+          être contacté(e)
+        </button>
+      </Row>
     </div>
   )
 }

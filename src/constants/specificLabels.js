@@ -18,12 +18,23 @@ export const EpdsResultsComments = {
   },
   level2: {
     description:
-      "Les changements importants liés à l’arrivée d’un bébé sont des facteurs de stress dont certains signes peuvent évoquer ceux de la dépression post partum. Vous exprimez des signes évocateurs de la dépression post partum, il est donc nécessaire de consulter le professionnel de santé qui vous suit pour échanger.",
+      "Les changements importants liés à l’arrivée d’un bébé sont des facteurs de stress dont certains signes peuvent évoquer ceux de la dépression post partum. Vous exprimez des signes évocateurs de la dépression post partum, il est donc nécessaire d'échanger avec un professionnel de santé.",
     conclusion: "",
   },
   level3: {
     description:
-      "Les changements importants liés à l’arrivée d’un bébé sont des facteurs de stress dont certains signes peuvent évoquer ceux de la dépression post partum. Vous exprimez des signes évocateurs de la dépression post partum, il est donc nécessaire de consulter le professionnel de santé qui vous suit pour échanger.",
+      "Les changements importants liés à l’arrivée d’un bébé sont des facteurs de stress dont certains signes peuvent évoquer ceux de la dépression post partum. Vous exprimez des signes évocateurs de la dépression post partum, il est donc nécessaire d'échanger avec un professionnel de santé.",
     conclusion: "",
   },
+}
+
+export const Form = {
+  placeholder: {
+    name: "Écrivez ici votre prénom",
+    email: "Écrivez ici l’adresse mail",
+  },
+  error: {
+    email: "L'adresse mail n'est pas au bon format",
+  },
+  required: "*Champs obligatoire",
 }

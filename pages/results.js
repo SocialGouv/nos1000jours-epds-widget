@@ -14,9 +14,14 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
+import { MeasuringIntentions } from "../src/components/results/intentions/MeasuringIntentions"
+import { TEST } from "../src/utils/measuring-intentions.utils"
+import { useState } from "react"
 
 export default function Results() {
   const router = useRouter()
+  const [testId, setTestId] = useState(null)
+  const [isTestStarted, setTestStarted] = useState(false)
 
   const localeSelected = getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
@@ -35,26 +40,38 @@ export default function Results() {
     })
   }
 
+  const DescriptionAndConclusion = () => (
+    <Row>
+      <div className="margin-bottom-8">
+        <b>Oser en parler, c’est déjà prendre soin de soi et de son enfant !</b>
+      </div>
+      <div className="margin-bottom-8">
+        {descriptionByScoreLevel(scoreLevelForTexts)}
+      </div>
+      <div className="margin-bottom-8">
+        <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
+      </div>
+    </Row>
+  )
+
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
-      <Row>
-        <div className="margin-bottom-8">
-          <b>
-            Oser en parler, c’est déjà prendre soin de soi et de son enfant !
-          </b>
-        </div>
-        <div className="margin-bottom-8">
-          {descriptionByScoreLevel(scoreLevelForTexts)}
-        </div>
-        <div className="margin-bottom-8">
-          <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
-        </div>
-      </Row>
-      <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+      <MeasuringIntentions
+        scoreLevel={scoreLevelForMood}
+        setTestId={setTestId}
+        setTestStarted={setTestStarted}
+      />
+      {!isTestStarted && <DescriptionAndConclusion />}
+      {showContactMamanBlues(scoreLevelForMacaron, testId) && (
+        <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+      )}
 
-      <button className="fr-btn result-return-bt" onClick={goToSurvey}>
+      <button
+        className="fr-btn fr-btn--secondary result-return-bt"
+        onClick={goToSurvey}
+      >
         Recommencer le questionnaire
       </button>
     </ContentLayout>
@@ -85,4 +102,8 @@ export const conclusionByScoreLevel = (level) => {
     default:
       return "Pas de conclusion disponible"
   }
+}
+
+export const showContactMamanBlues = (scoreLevel, testId) => {
+  return (scoreLevel != 1 && testId !== TEST.B) || testId === TEST.C
 }

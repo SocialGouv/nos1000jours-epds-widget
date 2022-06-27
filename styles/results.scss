@@ -49,6 +49,19 @@
     --a: 0 !important;
   }
 
+  .good-mood {
+    background-color: var(--primaryBlueLight);
+    border: 2px var(--primaryBlue) solid;
+
+    img {
+      border: 3px solid var(--primaryBlue);
+    }
+
+    button {
+      background-color: var(--primaryBlue);
+    }
+  }
+
   .moderatelygood-mood {
     background-color: var(--primaryYellowLight);
     border: 2px var(--primaryYellowDark) solid;
@@ -99,4 +112,61 @@
 .result-return-bt {
   width: auto;
   margin-bottom: $xxxs;
+}
+
+.measure {
+  margin-block: $xs;
+
+  .measure-card {
+    padding-inline: $xxl;
+    padding-block: $mmd;
+    background-color: var(--primaryGrey);
+    border-left: 5px solid var(--primaryBlueDark);
+  }
+
+  .buttons-bloc {
+    margin-block: 5px;
+
+    label {
+      text-align: start;
+    }
+  }
+
+  .measure-button {
+    display: flex;
+    background-color: transparent;
+    color: var(--primaryBlueDark);
+    border-color: var(--primaryBlueDark);
+    border-radius: 0;
+    margin: $xxxs;
+  }
+
+  .measure-button:focus {
+    box-shadow: 0 0 0 2px var(--primaryBlueDark);
+  }
+
+  .measure-textearea {
+    margin-block: $mmd;
+  }
+
+  .measure-label-selected {
+    font-weight: bold;
+    margin-top: $xxxxs;
+    margin-bottom: $md;
+  }
+
+  .measure-button-back {
+    font-size: $xs;
+    padding-inline-start: 0;
+  }
+
+  .measure-button-back:hover {
+    background-color: transparent;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .measure .buttons-bloc .btn-group {
+    display: inherit;
+  }
 }
