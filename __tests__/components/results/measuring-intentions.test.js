@@ -38,6 +38,26 @@ describe("UI de MeasuringIntentions", () => {
     expect(screen.queryByRole("img", { name: "Portrait d'Elise" })).toBeNull()
   }
 
+  const onClickMaybeButton = async (maybeButton) => {
+    // Action
+    fireEvent.click(maybeButton)
+
+    // Affichage du bouton
+    expect(maybeButton).not.toBeInTheDocument()
+    expect(
+      await screen.queryByText("Je ne suis pas sûr(e)")
+    ).not.toBeInTheDocument()
+  }
+
+  const onClickNoButton = async (noButton) => {
+    // Action
+    fireEvent.click(noButton)
+
+    // Phrase spécifique
+    expect(noButton).not.toBeInTheDocument()
+    expect(await screen.queryByText("Non")).not.toBeInTheDocument()
+  }
+
   describe("Reponse EPDS : Je vais bien", () => {
     test("Test A => aucun retour", async () => {
       expect(
@@ -93,14 +113,7 @@ describe("UI de MeasuringIntentions", () => {
       })
 
       test("Réponse : Je ne suis pas sûr(e) => affichage du portrait", async () => {
-        // Action
-        fireEvent.click(maybeButton)
-
-        // Phrase spécifique
-        expect(maybeButton).not.toBeInTheDocument()
-        expect(
-          await screen.queryByText("Je ne suis pas sûr(e)")
-        ).not.toBeInTheDocument()
+        onClickMaybeButton(maybeButton)
         expect(await screen.findByText(nePasSavoir)).toBeVisible()
 
         // Bloc Elise
@@ -109,12 +122,8 @@ describe("UI de MeasuringIntentions", () => {
 
       describe("Réponse : Non", () => {
         test("Affichage de la nouvelle question", async () => {
-          // Action
-          fireEvent.click(noButton)
+          onClickNoButton(noButton)
 
-          // Phrase spécifique
-          expect(noButton).not.toBeInTheDocument()
-          expect(await screen.queryByText("Non")).not.toBeInTheDocument()
           expect(await screen.findByText(seRapprocheDeLaRealite)).toBeVisible()
           expect(
             await screen.getByRole("button", {
@@ -517,14 +526,7 @@ describe("UI de MeasuringIntentions", () => {
       })
 
       test("Réponse : Je ne suis pas sûr(e) => affichage du portrait", async () => {
-        // Action
-        fireEvent.click(maybeButton)
-
-        // Phrase spécifique
-        expect(maybeButton).not.toBeInTheDocument()
-        expect(
-          await screen.queryByText("Je ne suis pas sûr(e)")
-        ).not.toBeInTheDocument()
+        onClickMaybeButton(maybeButton)
         expect(await screen.findByText(nePasSavoir)).toBeVisible()
 
         // Bloc Elise
@@ -533,13 +535,7 @@ describe("UI de MeasuringIntentions", () => {
 
       describe("Réponse : Non", () => {
         test("Affichage de la nouvelle question & réponses", async () => {
-          // Action
-          fireEvent.click(noButton)
-
-          // Phrase spécifique
-          expect(noButton).not.toBeInTheDocument()
-          expect(await screen.queryByText("Non")).not.toBeInTheDocument()
-
+          onClickNoButton(noButton)
           expect(await screen.findByText(seRapprocheDeLaRealite)).toBeVisible()
 
           // Nouveaux boutons
