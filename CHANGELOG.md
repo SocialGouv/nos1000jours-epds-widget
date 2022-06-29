@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.18.0...v1.19.0) (2022-06-29)
+
+
+### Features
+
+* **intentions:** suppr bouton retour au questionnaire ([690e010](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/690e010d72a41fee037f9bc8de83c9eee8ffd2cc))
+
 # [1.18.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.17.2...v1.18.0) (2022-06-27)
 
 
