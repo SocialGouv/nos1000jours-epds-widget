@@ -2,8 +2,10 @@ import { useRouter } from "next/router"
 import React, { useEffect } from "react"
 import { ContentLayout } from "../../src/components/Layout"
 import {
+  OPEN_CONTACT_FROM_EMAIL,
   RequestContact,
   STORAGE_CONTACT_TYPE,
+  STORAGE_SOURCE,
 } from "../../src/constants/constants"
 import { } from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
@@ -22,6 +24,7 @@ export default function ContactConfirmed() {
   const router = useRouter()
 
   const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
+  const websiteSource = getInLocalStorage(STORAGE_SOURCE)
   const localeSelected = getLocaleInLocalStorage()
 
   const confirmedImage = (contactTypeConfirmed) => (
@@ -71,9 +74,11 @@ export default function ContactConfirmed() {
             : "Vous devriez recevoir un SMS d’Elise dans les 48h en fonction des disponibilités sélectionnées."}
         </p>
 
-        <button className="fr-btn" onClick={goToResults}>
-          Retour à mon résultat
-        </button>
+        {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
+          <button className="fr-btn" onClick={goToResults}>
+            Retour à mon résultat
+          </button>
+        )}
       </div>
     </ContentLayout>
   )
