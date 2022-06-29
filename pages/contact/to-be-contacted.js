@@ -16,9 +16,13 @@ import {
   RequestContact,
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
+  STORAGE_SOURCE,
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
-import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
+import {
+  getLocaleInLocalStorage,
+  readSourceInUrl,
+} from "../../src/utils/main.utils"
 import {
   ACTION,
   CATEG,
@@ -48,6 +52,11 @@ export default function ToBeContacted() {
   const [showEliseAbsentModal, setShowEliseAbsentModal] = useState(false)
   const handleCloseEliseAbsentModal = () => setShowEliseAbsentModal(false)
   const handleShowEliseAbsentModal = () => setShowEliseAbsentModal(true)
+
+  useEffect(() => {
+    const source = readSourceInUrl()
+    localStorage.setItem(STORAGE_SOURCE, source)
+  }, [])
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)

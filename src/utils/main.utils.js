@@ -96,3 +96,9 @@ export const convertStringWithfirstPartInBold = (character, label) => {
 export const convertDateToString = (date, separator) => {
   return Moment(date).locale("fr").format("L").replace(/\//g, separator)
 }
+
+export const readSourceInUrl = () => {
+  const urlSearchParams = new URLSearchParams(window.location.search)
+  const params = Object.fromEntries(urlSearchParams.entries())
+  return params.source
+}

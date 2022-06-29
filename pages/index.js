@@ -12,7 +12,10 @@ import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
 import { client } from "../apollo-client"
-import { convertArrayLabelsToObject } from "../src/utils/main.utils"
+import {
+  convertArrayLabelsToObject,
+  readSourceInUrl,
+} from "../src/utils/main.utils"
 import {
   EPDS_LABELS_TRANSLATION_BY_LOCALE,
   GET_LOCALES,
@@ -27,9 +30,8 @@ export default function Home() {
   const [labelsTranslated, setLabelsTranslated] = useState()
 
   useEffect(() => {
-    const urlSearchParams = new URLSearchParams(window.location.search)
-    const params = Object.fromEntries(urlSearchParams.entries())
-    setSource(params.source)
+    const paramSource = readSourceInUrl()
+    setSource(paramSource)
 
     const localesQuery = async () => {
       await getLocalesInDatabase()
