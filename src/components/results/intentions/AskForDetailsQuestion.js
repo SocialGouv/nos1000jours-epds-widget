@@ -76,7 +76,7 @@ export const AskForDetailsQuestion = ({
   }, [askForDetails])
 
   const itemSelected = (label) => {
-    trackerForIntentions(label)
+    trackerForIntentions(scoreLevel, label)
     setDisplayItemSelected(true)
   }
 
