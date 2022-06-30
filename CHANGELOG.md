@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.19.0...v1.19.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* **matomo:** tracker ([79b6421](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/79b64216c028d52b930f9111aedc99f92a652575))
+
 # [1.19.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.18.0...v1.19.0) (2022-06-29)
 
 
