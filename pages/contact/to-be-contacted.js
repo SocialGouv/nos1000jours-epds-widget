@@ -55,7 +55,7 @@ export default function ToBeContacted() {
 
   useEffect(() => {
     const source = readSourceInUrl()
-    localStorage.setItem(STORAGE_SOURCE, source)
+    if (source) localStorage.setItem(STORAGE_SOURCE, source)
   }, [])
 
   useEffect(() => {
