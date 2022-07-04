@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap"
 import { useRouter } from "next/router"
 import {
+  OPEN_CONTACT_FROM_EMAIL,
   RequestContact,
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
@@ -45,6 +46,8 @@ export default function ToBeContacted() {
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
+  const [websiteSource, setWebsiteSource] = useState(false)
+
   //const [showChatModal, setShowChatModal] = useState(false)
   //const handleCloseChatModal = () => setShowChatModal(false)
   //const handleShowChatModal = () => setShowChatModal(true)
@@ -55,7 +58,10 @@ export default function ToBeContacted() {
 
   useEffect(() => {
     const source = readSourceInUrl()
-    if (source) localStorage.setItem(STORAGE_SOURCE, source)
+    if (source) {
+      localStorage.setItem(STORAGE_SOURCE, source)
+      setWebsiteSource(source)
+    }
   }, [])
 
   useEffect(() => {
@@ -225,9 +231,11 @@ export default function ToBeContacted() {
       ) : null}
 
       <Col className="be-contacted-bottom-buttons">
-        <button className="fr-btn fr-btn--secondary" onClick={cancel}>
-          Annuler
-        </button>
+        {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
+          <button className="fr-btn fr-btn--secondary" onClick={cancel}>
+            Annuler
+          </button>
+        )}
         <button
           className="fr-btn"
           disabled={!isValidButtonEnabled(itemValueType, contactHours)}

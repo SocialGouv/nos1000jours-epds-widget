@@ -98,9 +98,7 @@ export default function ContactForm() {
   }
 
   const cancel = () => {
-    router.push({
-      pathname: "/results",
-    })
+    router.back()
   }
 
   const goToConfirmation = () => {
