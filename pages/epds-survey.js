@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { client } from "../apollo-client"
 import { ContentLayout } from "../src/components/Layout"
 import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
-import { } from "@dataesr/react-dsfr"
+import * as Icon from "react-bootstrap-icons"
 import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
@@ -43,6 +43,7 @@ export default function EpdsSurvey() {
   const [resultsBoard, setResultsBoard] = useState()
   const [localeSelected, setLocaleSelected] = useState()
   const [isRTL, setRTL] = useState(false)
+  const [showConsigne, setShowConsigne] = useState(true)
 
   const [actualIndex, setActualIndex] = useState(1)
   const [isEnabledNextButton, setEnabledNextButton] = useState(false)
@@ -125,6 +126,8 @@ export default function EpdsSurvey() {
   useEffect(() => {
     if (resultsBoard != undefined)
       setEnabledNextButton(resultsBoard[actualIndex - 1] != null)
+
+    if (actualIndex == 2) setShowConsigne(false)
   }, [actualIndex])
 
   useEffect(() => {
@@ -221,12 +224,38 @@ export default function EpdsSurvey() {
     return labels?.consigne ? labels.consigne : Labels.surveyExplanations
   }
 
+  const onConsigneClick = () => {
+    setShowConsigne(!showConsigne)
+  }
+
+  const Consigne = () => {
+    return (
+      <div>
+        <div className="cursor-pointer" onClick={onConsigneClick}>
+          {showConsigne ? (
+            <Icon.ChevronUp className="margin-right-8" />
+          ) : (
+            <Icon.ChevronDown className="margin-right-8" />
+          )}
+          <u>Consignes</u>
+        </div>
+        {showConsigne && (
+          <div
+            dir={isRTL ? "rtl" : "ltr"}
+            className={isRTL ? "font-size-rtl" : ""}
+          >
+            <i>{getExplanations()}</i>
+          </div>
+        )}
+      </div>
+    )
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      <div dir={isRTL ? "rtl" : "ltr"} className={isRTL ? "font-size-rtl" : ""}>
-        {getExplanations()}
-      </div>
+
+      <Consigne />
       <div className="epds-survey">
         {questionsEpds ? (
           <>
