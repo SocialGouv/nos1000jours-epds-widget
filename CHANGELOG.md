@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.20.0...v1.21.0) (2022-07-06)
+
+
+### Features
+
+* **matomo:** ajout tag sur les formulaires ([09aa087](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/09aa087ab4f1b0e31572c36347c80dc5309c941e))
+
 # [1.20.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.19.3...v1.20.0) (2022-07-06)
 
 
