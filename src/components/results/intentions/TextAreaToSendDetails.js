@@ -4,7 +4,10 @@ import { useEffect, useState } from "react"
 import { client } from "../../../../apollo-client"
 import { STORAGE_SCORE } from "../../../constants/constants"
 import { getInLocalStorage, LoaderFoButton } from "../../../utils/main.utils"
-import { contacterAToutMoment } from "../../../utils/measuring-intentions.utils"
+import {
+  contacterAToutMoment,
+  trackerForIntentions,
+} from "../../../utils/measuring-intentions.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 
 export const TextAreaToSendDetails = ({
@@ -45,6 +48,8 @@ export const TextAreaToSendDetails = ({
     if (sendDetails) {
       setLoading(true)
       sendCommentsRequest()
+
+      trackerForIntentions(scoreLevel, "Envoi du commentaire")
     }
   }, [sendDetails])
 

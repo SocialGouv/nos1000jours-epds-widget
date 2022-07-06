@@ -17,7 +17,10 @@ import {
   jsonParse,
   LoaderFoButton,
 } from "../../../utils/main.utils"
-import { contacterAToutMoment } from "../../../utils/measuring-intentions.utils"
+import {
+  contacterAToutMoment,
+  trackerForIntentions,
+} from "../../../utils/measuring-intentions.utils"
 import { ContactMamanBlues } from "../ContactMamanBlues"
 
 /**
@@ -67,6 +70,12 @@ export const FormToSendMail = ({
     if (canSend) {
       const inputs = event.target
       const dateAsString = convertDateToString(new Date(), "/")
+
+      trackerForIntentions(
+        scoreLevel,
+        `Envoi des réponses EPDS ${forHimself ? "à soi-même" : "à son entourage"
+        }`
+      )
 
       await sendEmailReponseQuery({
         variables: {
