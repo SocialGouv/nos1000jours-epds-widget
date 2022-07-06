@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.19.3...v1.20.0) (2022-07-06)
+
+
+### Features
+
+* **epds:** cacher consigne ([1999e64](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1999e64a2ba09c7889783ff0f89a0591c4a8af78))
+
 ## [1.19.3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.19.2...v1.19.3) (2022-07-04)
 
 
