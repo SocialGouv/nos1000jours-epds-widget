@@ -138,6 +138,10 @@ a {
   margin-right: $xxxxs;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .modal-footer .btn-primary,
 .btn-check:checked+.btn-primary {
   background-color: var(--primaryBlueDark) !important;
