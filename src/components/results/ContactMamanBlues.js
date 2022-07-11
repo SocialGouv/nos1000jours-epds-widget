@@ -3,6 +3,9 @@ import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import { CATEG, EVENT_CLICK, trackerClick } from "../../utils/tracker.utils"
+import { getInLocalStorage } from "../../utils/main.utils"
+import { STORAGE_TEST_VERS_QUI_SE_TOURNER } from "../../constants/constants"
+import { clearIntentionsData } from "../../utils/measuring-intentions.utils"
 
 export function ContactMamanBlues({ scoreLevel }) {
   const router = useRouter()
@@ -28,6 +31,15 @@ export function ContactMamanBlues({ scoreLevel }) {
       `Macaron d'Elise ${EVENT_CLICK}`,
       "Être contacté(e)"
     )
+
+    if (getInLocalStorage(STORAGE_TEST_VERS_QUI_SE_TOURNER))
+      trackerClick(
+        CATEG.contact,
+        `Macaron d'Elise ${EVENT_CLICK}`,
+        "Être contacté(e) - Je ne sais pas vers qui me tourner"
+      )
+
+    clearIntentionsData()
 
     router.push({
       pathname: "/contact/to-be-contacted",

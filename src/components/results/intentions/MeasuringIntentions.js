@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { TEST } from "../../../utils/measuring-intentions.utils"
+import {
+  clearIntentionsData,
+  TEST,
+} from "../../../utils/measuring-intentions.utils"
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
@@ -28,6 +31,7 @@ export const MeasuringIntentions = ({
   }, [])
 
   useEffect(() => {
+    clearIntentionsData()
     if (test != undefined && component == undefined) {
       updateComponent()
     }

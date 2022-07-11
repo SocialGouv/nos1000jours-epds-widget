@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
 import { convertStringWithfirstPartInBold } from "../../../utils/main.utils"
-import { trackerForIntentions } from "../../../utils/measuring-intentions.utils"
+import {
+  saveIsIntentionVersQuiSeTourner,
+  trackerForIntentions,
+} from "../../../utils/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_MEDIUM,
@@ -29,6 +32,7 @@ export const AskForDetailsQuestion = ({
     switch (getDetailsTypeByValue(askForDetails.value)) {
       case DETAILS_TYPE.TEXTE:
         itemSelected(askForDetails.label)
+        saveIsIntentionVersQuiSeTourner(askForDetails.label)
 
         setDisplayMore(
           <div>
