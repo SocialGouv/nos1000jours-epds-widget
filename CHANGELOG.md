@@ -1,3 +1,10 @@
+## [1.22.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.22.0...v1.22.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency moment to v2.29.4 [security] ([4535085](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4535085d0da0a873ef83ff3114fb0ded0b122e77))
+
 # [1.22.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.21.0...v1.22.0) (2022-07-11)
 
 
