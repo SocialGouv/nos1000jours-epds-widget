@@ -1,4 +1,4 @@
-import { STORAGE_TEST_INTENTIONS } from "../constants/constants"
+import { STORAGE_TEST_INTENTIONS, STORAGE_TEST_VERS_QUI_SE_TOURNER } from "../constants/constants"
 import { getColorIconAndTextByMood, getInLocalStorage } from "./main.utils"
 import {
   SCORE_LEVEL_BAD,
@@ -23,6 +23,7 @@ export const seRapprocheDeLaRealite =
 const aucune = "Autre. Je précise"
 export const nePasSavoir =
   "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
+const versQuiSeTourner = "Je ne sais pas vers qui me tourner"
 
 export const demandeDeDetails = {
   lvl1: {
@@ -81,7 +82,7 @@ export const estLePlusAdapte = {
     },
     {
       value: "seTourner",
-      label: "Je ne sais pas vers qui me tourner",
+      label: versQuiSeTourner,
     },
     {
       value: "aucune",
@@ -155,4 +156,15 @@ export const trackerForIntentions = (scoreLevel, label) => {
     `${ACTION.parcours}${testId}`,
     `${moodLevel} - ${label}`
   )
+}
+
+export const saveIsIntentionVersQuiSeTourner = (label) => {
+  localStorage.setItem(
+    STORAGE_TEST_VERS_QUI_SE_TOURNER,
+    label === versQuiSeTourner
+  )
+}
+
+export const clearIntentionsData = () => {
+  localStorage.removeItem(STORAGE_TEST_VERS_QUI_SE_TOURNER)
 }
