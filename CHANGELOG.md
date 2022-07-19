@@ -1,3 +1,16 @@
+# [1.23.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.22.2...v1.23.0) (2022-07-19)
+
+
+### Bug Fixes
+
+* **avant epds:** refacto ([e01fb07](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e01fb07244de75a19348decf22d906b7fa4831d1))
+* duplication ([32c3664](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/32c366412010186f0b26bc8d47f624c303dc727e))
+
+
+### Features
+
+* **avant epds:** ajout d'un nouvel écran + refacto ([2756e14](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2756e144ff4503370db7ab86d28c4a9d8f03f029))
+
 ## [1.22.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.22.1...v1.22.2) (2022-07-19)
 
 
