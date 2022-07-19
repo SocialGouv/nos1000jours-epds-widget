@@ -21,6 +21,7 @@ import {
   GET_LOCALES,
 } from "@socialgouv/nos1000jours-lib"
 import { LocaleButton } from "../src/components/LocaleButton"
+import { CarouselCustom } from "../src/components/CarouselCustom"
 
 export default function Home() {
   const router = useRouter()
@@ -126,6 +127,7 @@ export default function Home() {
         >
           {getStartButtonText(labelsTranslated)}
         </button>
+        <CarouselCustom />
         <LocaleButton
           locale={localeSelected}
           setLocaleSelected={setLocaleSelected}

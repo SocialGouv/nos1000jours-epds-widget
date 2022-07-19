@@ -233,6 +233,31 @@ a {
   }
 }
 
+.carousel-custom {
+  margin-bottom: 30px;
+
+  .carousel-indicators {
+    margin-bottom: 0;
+
+    button {
+      width: $xxxs;
+      height: $xxxs;
+      border-radius: 100%;
+      background-color: var(--bleuFranceSun) !important;
+    }
+  }
+
+  .carousel-inner {
+    margin-bottom: $xxl;
+    margin-inline: 50px;
+    width: auto;
+  }
+
+  .carousel-caption {
+    padding: 0;
+  }
+}
+
 [href] {
   background-image: none !important;
 }
