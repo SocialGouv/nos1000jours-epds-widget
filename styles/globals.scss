@@ -231,6 +231,10 @@ a {
   }
 }
 
+[href] {
+  background-image: none !important;
+}
+
 @media screen and (max-width: 991px) {
   .modal-choose-locale .col-md-6 {
     width: 100%;

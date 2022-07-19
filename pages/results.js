@@ -36,7 +36,7 @@ export default function Results() {
 
   const goToSurvey = () => {
     router.push({
-      pathname: "/epds-survey",
+      pathname: "/survey/epds-survey",
     })
   }
 
