@@ -1,11 +1,11 @@
 import { gql, useLazyQuery, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import { client } from "../apollo-client"
-import { ContentLayout } from "../src/components/Layout"
-import { SurveyCarousel } from "../src/components/survey/SurveyCarousel"
+import { client } from "../../apollo-client"
+import { ContentLayout } from "../../src/components/Layout"
+import { SurveyCarousel } from "../../src/components/survey/SurveyCarousel"
 import * as Icon from "react-bootstrap-icons"
-import { SurveyProgressBar } from "../src/components/survey/SurveyProgressBar"
+import { SurveyProgressBar } from "../../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
   EPDS_SOURCE,
@@ -15,21 +15,21 @@ import {
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
-} from "../src/constants/constants"
-import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
+} from "../../src/constants/constants"
+import { CATEG, EVENT_CLICK, trackerClick } from "../../src/utils/tracker.utils"
 import { Spinner } from "react-bootstrap"
 import {
   scoreLevelForMacaron,
   scoreLevelForMood,
   scoreLevelForTexts,
-} from "../src/utils/score-level.utils"
-import { Labels } from "../src/constants/specificLabels"
-import { WidgetHeader } from "../src/components/WidgetHeader"
+} from "../../src/utils/score-level.utils"
+import { Labels } from "../../src/constants/specificLabels"
+import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
   getInLocalStorage,
   getLabelsInLocalStorage,
   getLocaleInLocalStorage,
-} from "../src/utils/main.utils"
+} from "../../src/utils/main.utils"
 import {
   EPDS_SAVE_RESPONSES_FOR_WIDGET,
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,

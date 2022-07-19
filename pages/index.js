@@ -57,12 +57,12 @@ export default function Home() {
     localStorage.setItem(STORAGE_SOURCE, source)
     localStorage.removeItem(STORAGE_TEST_INTENTIONS)
 
-    goToEpdsSurvey()
+    goToBeforeSurvey()
   }
 
-  const goToEpdsSurvey = async (event) => {
+  const goToBeforeSurvey = async (event) => {
     router.push({
-      pathname: "/epds-survey",
+      pathname: "/survey/before-survey",
     })
   }
 

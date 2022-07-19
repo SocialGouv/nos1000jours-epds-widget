@@ -39,7 +39,7 @@
   padding-left: $xl;
 
   .font-size-label {
-    font-size: $xs !important;
+    font-size: $xs  !important;
   }
 }
 
@@ -78,5 +78,45 @@
   .progress-number {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+.before-survey {
+  color: var(--bleuFranceSun);
+  margin-bottom: $mmd;
+
+  .item-information {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--bleuFrance935);
+    border: 1px solid var(--bleuFranceMain);
+    border-radius: $xxxs;
+    margin-block: $sm;
+    padding: $xxxs;
+
+    img {
+      width: $xxxxxl;
+      margin-right: $xxxs;
+    }
+  }
+
+  .contact-maman-blues {
+    display: flex;
+    flex-direction: row;
+    margin-block: $mmd;
+
+    img {
+      align-self: center;
+      border-radius: 50%;
+      height: 100px;
+      width: auto;
+      padding: 0;
+      margin-right: $xl;
+      border: 3px solid var(--bleuFranceMain);
+    }
+  }
+
+  .button-start-survey {
+    text-align: center;
   }
 }
