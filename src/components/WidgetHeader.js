@@ -16,8 +16,6 @@ export function WidgetHeader({ title, locale }) {
             className="header-logo"
             src="/img/logo-1000j.svg"
             alt="Logo 1000 premiers jours"
-            height={40}
-            width={40}
           />
           <LocaleButton locale={locale} />
         </div>
