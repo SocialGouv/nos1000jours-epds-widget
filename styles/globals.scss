@@ -235,6 +235,7 @@ a {
 
 .carousel-custom {
   margin-bottom: 30px;
+  width: 100%;
 
   .carousel-indicators {
     margin-bottom: 0;
@@ -249,12 +250,32 @@ a {
 
   .carousel-inner {
     margin-bottom: $xxl;
-    margin-inline: 50px;
-    width: auto;
+
+    .carousel-item {
+      padding-inline: 35px;
+
+      img {
+        width: inherit;
+      }
+    }
   }
 
   .carousel-caption {
-    padding: 0;
+    padding: 20px 0 0 0;
+    bottom: 0;
+    height: 100%;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: auto;
+  }
+
+  .text-multilign {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 

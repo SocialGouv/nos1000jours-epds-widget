@@ -11,7 +11,7 @@ import {
 import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
-import { client } from "../apollo-client"
+import { client, GET_TEMOIGNAGES_CHIFFRES } from "../apollo-client"
 import {
   convertArrayLabelsToObject,
   readSourceInUrl,
@@ -30,6 +30,9 @@ export default function Home() {
   const [localeSelected, setLocaleSelected] = useState()
   const [labelsTranslated, setLabelsTranslated] = useState()
 
+  const [temoignages, setTemoignages] = useState()
+  const [chiffresChoc, setChiffresChoc] = useState()
+
   useEffect(() => {
     const paramSource = readSourceInUrl()
     setSource(paramSource)
@@ -38,6 +41,11 @@ export default function Home() {
       await getLocalesInDatabase()
     }
     localesQuery()
+
+    const temoignagesQuery = async () => {
+      await getTemoignagesAndChiffresInDatabase()
+    }
+    temoignagesQuery()
   }, [])
 
   useEffect(() => {
@@ -76,6 +84,27 @@ export default function Home() {
         const labels = convertArrayLabelsToObject(labelsData)
         setLabelsTranslated(labels)
         localStorage.setItem(STORAGE_LABELS, JSON.stringify(labels))
+      },
+      onError: (err) => {
+        console.warn(err)
+      },
+    }
+  )
+
+  const [getTemoignagesAndChiffresInDatabase] = useLazyQuery(
+    GET_TEMOIGNAGES_CHIFFRES,
+    {
+      client: client,
+      onCompleted: (data) => {
+        const chiffresInData = data.temoignages.filter(
+          (item) => item.chiffre_choc
+        )
+        setChiffresChoc(chiffresInData)
+
+        const temoignagesInData = data.temoignages.filter(
+          (item) => !item.chiffre_choc
+        )
+        setTemoignages(temoignagesInData)
       },
       onError: (err) => {
         console.warn(err)
@@ -127,7 +156,7 @@ export default function Home() {
         >
           {getStartButtonText(labelsTranslated)}
         </button>
-        <CarouselCustom />
+        {temoignages && <CarouselCustom data={temoignages} />}
         <LocaleButton
           locale={localeSelected}
           setLocaleSelected={setLocaleSelected}
