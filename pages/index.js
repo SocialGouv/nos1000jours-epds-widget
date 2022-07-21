@@ -25,6 +25,7 @@ import { CarouselCustom } from "../src/components/CarouselCustom"
 
 export default function Home() {
   const router = useRouter()
+  const MAX_CAROUSEL_ITEMS = 6
 
   const [source, setSource] = useState()
   const [localeSelected, setLocaleSelected] = useState()
@@ -99,12 +100,12 @@ export default function Home() {
         const chiffresInData = data.temoignages.filter(
           (item) => item.chiffre_choc
         )
-        setChiffresChoc(chiffresInData)
+        setChiffresChoc(chiffresInData.slice(0, MAX_CAROUSEL_ITEMS))
 
         const temoignagesInData = data.temoignages.filter(
           (item) => !item.chiffre_choc
         )
-        setTemoignages(temoignagesInData)
+        setTemoignages(temoignagesInData.slice(0, MAX_CAROUSEL_ITEMS))
       },
       onError: (err) => {
         console.warn(err)
@@ -124,6 +125,23 @@ export default function Home() {
       console.warn(err)
     },
   })
+
+  const CarouselsTemoignagesEtChiffres = () => (
+    <>
+      {temoignages && (
+        <>
+          <div className="accueil-title-carousel">Témoignages :</div>
+          <CarouselCustom data={temoignages} />
+        </>
+      )}
+      {chiffresChoc && (
+        <>
+          <div className="accueil-title-carousel">En chiffres :</div>
+          <CarouselCustom data={chiffresChoc} />
+        </>
+      )}
+    </>
+  )
 
   return (
     <div className="container">
@@ -156,7 +174,7 @@ export default function Home() {
         >
           {getStartButtonText(labelsTranslated)}
         </button>
-        {temoignages && <CarouselCustom data={temoignages} />}
+        <CarouselsTemoignagesEtChiffres />
         <LocaleButton
           locale={localeSelected}
           setLocaleSelected={setLocaleSelected}

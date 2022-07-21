@@ -6,6 +6,15 @@ export function CarouselCustom({ data }) {
   const chevronPrevious = <Icon.ChevronLeft size={35} color="blue" />
   const chevronNext = <Icon.ChevronRight size={35} color="blue" />
 
+  const isChiffreChoc = data[0].chiffre_choc
+
+  const CaptionBloc = ({ item }) => (
+    <Carousel.Caption>
+      {parse(replacePbyDiv(item.texte))}
+      {isChiffreChoc && <div className="source">{item.source}</div>}
+    </Carousel.Caption>
+  )
+
   return (
     <Carousel
       className="carousel-custom"
@@ -14,10 +23,25 @@ export function CarouselCustom({ data }) {
     >
       {data.map((item, index) => (
         <Carousel.Item key={index}>
-          <img src="../img/bulle-bleue.svg" alt="First slide" />
-          <Carousel.Caption>
-            {parse(replacePbyDiv(item.texte))}
-          </Carousel.Caption>
+          {isChiffreChoc ? (
+            <div className="blue-light-bloc">
+              <CaptionBloc item={item} />
+            </div>
+          ) : (
+            <>
+              {/* <img src="../img/bulle-bleue.svg" alt={data.title} /> */}
+              {/* <div
+                style={{
+                  backgroundImage: `url("../img/bulle-bleue.svg")`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              > */}
+              <div className="blue-dark-bloc">
+                <CaptionBloc item={item} />
+              </div>
+            </>
+          )}
         </Carousel.Item>
       ))}
     </Carousel>
