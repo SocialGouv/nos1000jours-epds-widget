@@ -30,3 +30,14 @@ export const EPDS_CONTACT_INFORMATION = gql`
     )
   }
 `
+
+export const GET_TEMOIGNAGES_CHIFFRES = gql`
+  query temoignages {
+    temoignages {
+      titre
+      texte
+      chiffre_choc
+      source
+    }
+  }
+`

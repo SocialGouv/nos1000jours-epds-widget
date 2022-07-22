@@ -169,6 +169,11 @@ a {
   color: var(--grey425) !important;
 }
 
+.accueil-title-carousel {
+  width: 100%;
+  color: var(--bleuFranceSun);
+}
+
 .widget-header {
   align-items: center;
   margin-block: $xl;
@@ -233,6 +238,79 @@ a {
   }
 }
 
+.carousel-custom {
+  margin-bottom: $lg;
+  margin-top: $xxxxxs  !important;
+  width: 100%;
+
+  .carousel-indicators {
+    margin-bottom: 0;
+
+    button {
+      width: $xxxs;
+      height: $xxxs;
+      border-radius: 100%;
+      background-color: var(--bleuFranceSun) !important;
+    }
+  }
+
+  .carousel-inner {
+    margin-bottom: $xxl;
+
+    .carousel-item {
+      padding-inline: 35px;
+    }
+  }
+
+  .carousel-caption {
+    padding: $xxxxs;
+    position: inherit;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: auto;
+  }
+
+  .text-multilign {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .blue-dark-bloc {
+    background-color: var(--bleuFranceMain);
+    border: 1px solid var(--bleuFranceSun);
+    border-radius: $xxxxs;
+  }
+
+  .blue-light-bloc {
+    background-color: var(--bleuFrance935);
+    border: 1px solid var(--bleuFranceMain);
+    border-radius: $xxxxs;
+
+    .carousel-caption {
+      color: var(--bleuFranceSun);
+    }
+  }
+
+  .source {
+    color: var(--grey200);
+    font-style: italic;
+    font-size: small;
+  }
+
+  .apostrophe-bloc {
+    position: absolute;
+    margin: $xxxxxs;
+
+    img {
+      height: 20px;
+    }
+  }
+}
+
 [href] {
   background-image: none !important;
 }
@@ -246,5 +324,11 @@ a {
 @media screen and (max-width: 400px) {
   .rep-francaise-img {
     position: relative;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .carousel-custom {
+    width: 80%;
   }
 }
