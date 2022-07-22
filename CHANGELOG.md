@@ -1,3 +1,13 @@
+# [1.24.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.23.0...v1.24.0) (2022-07-22)
+
+
+### Features
+
+* **accueil:** affichage des témoignages ([ca29729](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ca2972936123e29ed53b3dc8bffa981765ce6cdd))
+* **accueil:** création du carousel ([8285d5f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8285d5ffe92dc47fb9e4ac47b0af4ceba7b1d0f4))
+* **accueil:** style + ajours carousel chiffres ([099ddf4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/099ddf407039b4c1b385647e497ca94f3e1a3f7d))
+* **accueil:** ui carousel ([73371b3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/73371b368c54e35bb07d9595581cb0f5698951ca))
+
 # [1.23.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.22.2...v1.23.0) (2022-07-19)
 
 
