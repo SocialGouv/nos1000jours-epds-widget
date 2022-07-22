@@ -300,6 +300,15 @@ a {
     font-style: italic;
     font-size: small;
   }
+
+  .apostrophe-bloc {
+    position: absolute;
+    margin: $xxxxxs;
+
+    img {
+      height: 20px;
+    }
+  }
 }
 
 [href] {

@@ -44,7 +44,7 @@ export default function BeforeSurvey() {
           <img src={IMG_ACCOMPAGNEMENT} alt="Icon accompagnement" />
           <div>
             Grâce à ce questionnaire,{" "}
-            <b>41 personnes par mois sont accompagnées et orientées</b>vers les
+            <b>41 personnes par mois sont accompagnées et orientées</b> vers les
             professionnels de santé formés.
           </div>
         </div>

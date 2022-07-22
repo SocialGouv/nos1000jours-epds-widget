@@ -29,15 +29,13 @@ export function CarouselCustom({ data }) {
             </div>
           ) : (
             <>
-              {/* <img src="../img/bulle-bleue.svg" alt={data.title} /> */}
-              {/* <div
-                style={{
-                  backgroundImage: `url("../img/bulle-bleue.svg")`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                }}
-              > */}
               <div className="blue-dark-bloc">
+                <div className="apostrophe-bloc">
+                  <div>
+                    <img src="../img/apostrophe.svg" />
+                    <img src="../img/apostrophe.svg" />
+                  </div>
+                </div>
                 <CaptionBloc item={item} />
               </div>
             </>
