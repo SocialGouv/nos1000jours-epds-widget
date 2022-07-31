@@ -319,13 +319,13 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@dataesr/react-dsfr@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@dataesr/react-dsfr/-/react-dsfr-2.3.0.tgz#6a2e56b86ec56d54726829b7293678b6ee744a20"
-  integrity sha512-fea+EVzyxmASygmXI+8hpzohQ7p+H756nPfXl2Ij4ihVB7KJvgK57ZKQvKskTibpDQzNIBrgwA47x1tSbVaEtA==
+"@dataesr/react-dsfr@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@dataesr/react-dsfr/-/react-dsfr-3.0.0.tgz#3bdc84dcff93251e077c191424c43a67a586afe8"
+  integrity sha512-45xB2Gm9ycjOFO7mJRbuHttCSwyzUVNpgWrT3K2ZA4tsYhBFhyOqxNYMrvdb+odOrgvN8MoJtOjL8TMwaMtImA==
   dependencies:
     "@babel/runtime" "^7.16.3"
-    "@gouvfr/dsfr" "1.5.0"
+    "@gouvfr/dsfr" "1.7.0"
     classnames "^2.3.1"
     html-react-parser "^1.4.0"
     prop-types "^15.7.2"
@@ -346,10 +346,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@gouvfr/dsfr@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@gouvfr/dsfr/-/dsfr-1.5.0.tgz#a627d7a9772e48aa42614e8e8bc292542a114df6"
-  integrity sha512-RboR8xAUV3sxF3qsM67ZxQPgBoE1+fLbv8f4LmGrmEJEsx0yLVAQxu51ALFcPMEop6qPgwaAIh7B4FxLyfTZlw==
+"@gouvfr/dsfr@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@gouvfr/dsfr/-/dsfr-1.7.0.tgz#54d5b4da8d607b57aaa36452e574cd5874a21881"
+  integrity sha512-FMaB37SN5Zc5R5sryOGAnWRFQfmfbycHDV+656JCOKgAVKkzU1c5bjzjXTSsK2FtDbnog+qSHct2pGNQHlFDsQ==
 
 "@graphql-typed-document-node/core@^3.0.0":
   version "3.1.1"
