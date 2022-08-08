@@ -41,3 +41,13 @@ export const GET_TEMOIGNAGES_CHIFFRES = gql`
     }
   }
 `
+
+export const GET_RESUTLATS_COUNT = gql`
+  query resultatsCount {
+    reponsesEpdsConnection {
+      aggregate {
+        count
+      }
+    }
+  }
+`

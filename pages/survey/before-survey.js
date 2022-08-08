@@ -1,4 +1,7 @@
+import { useLazyQuery } from "@apollo/client"
 import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+import { client, GET_RESUTLATS_COUNT } from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
@@ -10,13 +13,37 @@ export default function BeforeSurvey() {
   const IMG_PARENTS = "../img/icone-parent.svg"
   const IMG_ACCOMPAGNEMENT = "../img/icone-accompagnement.svg"
 
+  const TOTAL_RESULTS_COUNT_DEFAULT = 35000
+  const [totalResultsCount, setTotalResultsCount] = useState(
+    TOTAL_RESULTS_COUNT_DEFAULT
+  )
+
   const localeSelected = getLocaleInLocalStorage()
+
+  useEffect(() => {
+    const resultatsCountQuery = async () => {
+      await getResultatsCountInDatabase()
+    }
+    resultatsCountQuery()
+  }, [])
 
   const goToEpdseSurvey = async (event) => {
     router.push({
       pathname: "/survey/epds-survey",
     })
   }
+
+  const [getResultatsCountInDatabase] = useLazyQuery(GET_RESUTLATS_COUNT, {
+    client: client,
+    onCompleted: (data) => {
+      const number = data.reponsesEpdsConnection.aggregate.count
+
+      setTotalResultsCount(number)
+    },
+    onError: (err) => {
+      console.warn(err)
+    },
+  })
 
   return (
     <ContentLayout>
@@ -35,17 +62,18 @@ export default function BeforeSurvey() {
         <div className="item-information">
           <img src={IMG_PARENTS} alt="Icone parent" />
           <div>
-            Depuis son lancement en juillet 2021, <b>plus de 2 000 parents</b> ont
-            répondu aux 10 questions sur leur état émotionnel.
+            Depuis son lancement en juillet 2021, les parents ont complété
+            <b> {totalResultsCount.toLocaleString()} questionnaires </b>sur leur
+            état émotionnel.
           </div>
         </div>
 
         <div className="item-information">
           <img src={IMG_ACCOMPAGNEMENT} alt="Icon accompagnement" />
           <div>
-            Grâce à ce questionnaire,{" "}
-            <b>41 personnes par mois sont accompagnées et orientées</b> vers les
-            professionnels de santé formés.
+            Grâce à ce questionnaire,
+            <b> 41 personnes par mois sont accompagnées et orientées</b> vers
+            les professionnels de santé formés.
           </div>
         </div>
 
