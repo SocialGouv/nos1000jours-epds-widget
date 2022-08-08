@@ -8,7 +8,7 @@ import {
   contacterAToutMoment,
   trackerForIntentions,
 } from "../../../utils/measuring-intentions.utils"
-import { ContactMamanBlues } from "../ContactMamanBlues"
+import { ContactMamanBlues } from "../../results/ContactMamanBlues"
 
 export const TextAreaToSendDetails = ({
   scoreLevel,

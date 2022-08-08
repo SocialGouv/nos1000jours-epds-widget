@@ -9,7 +9,7 @@ import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_MEDIUM,
 } from "../../../utils/score-level.utils"
-import { ContactMamanBlues } from "../ContactMamanBlues"
+import { ContactMamanBlues } from "../../results/ContactMamanBlues"
 import { FormToSendMail } from "./FormToSendMail"
 import { TextAreaToSendDetails } from "./TextAreaToSendDetails"
 

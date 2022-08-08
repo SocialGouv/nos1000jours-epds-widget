@@ -21,7 +21,7 @@ import {
   contacterAToutMoment,
   trackerForIntentions,
 } from "../../../utils/measuring-intentions.utils"
-import { ContactMamanBlues } from "../ContactMamanBlues"
+import { ContactMamanBlues } from "../../results/ContactMamanBlues"
 
 /**
  * @param {number} scoreLevel Niveau du score (1, 2, 3) obtenu lors du passage de l'EPDS

@@ -12,7 +12,7 @@ import {
   SCORE_LEVEL_GOOD,
   SCORE_LEVEL_MEDIUM,
 } from "../../../utils/score-level.utils"
-import { ContactMamanBlues } from "../ContactMamanBlues"
+import { ContactMamanBlues } from "../../results/ContactMamanBlues"
 import { AskForDetailsQuestion } from "./AskForDetailsQuestion"
 
 export const BeCloseToRealityQuestion = ({
