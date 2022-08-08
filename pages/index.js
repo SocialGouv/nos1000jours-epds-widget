@@ -128,13 +128,13 @@ export default function Home() {
 
   const CarouselsTemoignagesEtChiffres = () => (
     <>
-      {temoignages && (
+      {temoignages?.length > 0 && (
         <>
-          <div className="accueil-title-carousel">Témoignages :</div>
+          <div className="accueil-title-carousel">Témoignages : </div>
           <CarouselCustom data={temoignages} />
         </>
       )}
-      {chiffresChoc && (
+      {chiffresChoc?.length > 0 && (
         <>
           <div className="accueil-title-carousel">En chiffres :</div>
           <CarouselCustom data={chiffresChoc} />
