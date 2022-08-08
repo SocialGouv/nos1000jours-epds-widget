@@ -156,6 +156,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.1000-premiers-jours.fr/fr/comment-differencier-baby-blues-et-depression-post-partum"
+          className="logo-img"
         >
           <img
             src="/img/logo-1000j.svg"
