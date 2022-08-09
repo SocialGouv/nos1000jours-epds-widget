@@ -4,7 +4,7 @@ import {
   showContactMamanBlues,
 } from "../pages/results"
 import { EpdsResultsComments } from "../src/constants/specificLabels"
-import { TEST } from "../src/utils/measuring-intentions.utils"
+import { TEST } from "../src/utils/ab-testing/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,

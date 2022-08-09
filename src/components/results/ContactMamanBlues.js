@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { CATEG, EVENT_CLICK, trackerClick } from "../../utils/tracker.utils"
 import { getInLocalStorage } from "../../utils/main.utils"
 import { STORAGE_TEST_VERS_QUI_SE_TOURNER } from "../../constants/constants"
-import { clearIntentionsData } from "../../utils/measuring-intentions.utils"
+import { clearIntentionsData } from "../../utils/ab-testing/measuring-intentions.utils"
 
 export function ContactMamanBlues({ scoreLevel }) {
   const router = useRouter()

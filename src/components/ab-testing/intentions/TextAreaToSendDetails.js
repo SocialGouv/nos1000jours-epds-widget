@@ -7,7 +7,7 @@ import { getInLocalStorage, LoaderFoButton } from "../../../utils/main.utils"
 import {
   contacterAToutMoment,
   trackerForIntentions,
-} from "../../../utils/measuring-intentions.utils"
+} from "../../../utils/ab-testing/measuring-intentions.utils"
 import { ContactMamanBlues } from "../../results/ContactMamanBlues"
 
 export const TextAreaToSendDetails = ({

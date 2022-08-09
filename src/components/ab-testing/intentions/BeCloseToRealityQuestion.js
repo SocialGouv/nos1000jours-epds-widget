@@ -6,7 +6,7 @@ import {
   estProcheDeLaRealite,
   estProcheDeLaRealiteCommentaireByScoreLevel,
   trackerForIntentions,
-} from "../../../utils/measuring-intentions.utils"
+} from "../../../utils/ab-testing/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,

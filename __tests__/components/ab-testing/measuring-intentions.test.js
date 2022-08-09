@@ -10,7 +10,7 @@ import {
   estLePlusAdapte,
   nePasSavoir,
   seRapprocheDeLaRealite,
-} from "../../../src/utils/measuring-intentions.utils"
+} from "../../../src/utils/ab-testing/measuring-intentions.utils"
 import { displayComponentsByTest } from "../../../src/components/ab-testing/intentions/MeasuringIntentions"
 
 describe("UI de MeasuringIntentions", () => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import {
   clearIntentionsData,
   TEST,
-} from "../../../utils/measuring-intentions.utils"
+} from "../../../utils/ab-testing/measuring-intentions.utils"
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
