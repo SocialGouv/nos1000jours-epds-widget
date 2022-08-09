@@ -1,0 +1,38 @@
+@import "../sizes.scss";
+
+.demographic-data {
+  color: var(--bleuFranceSun);
+
+  .bloc-name {
+    padding-top: $md;
+    padding-bottom: $xxxxxs;
+  }
+
+  .btn-group {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    background-color: white;
+    color: var(--bleuFranceSun);
+    border-color: var(--primaryGrey);
+    border-radius: $xxxxxs  !important;
+    margin: 0 $xxxxxs $xxxxxs $xxxxxs;
+    line-height: 2rem;
+  }
+
+  .btn-checked {
+    background-color: var(--bleuFranceSun);
+    color: white;
+  }
+
+  .required-field {
+    color: var(--grey200);
+  }
+
+  .button-validation {
+    text-align: center;
+    margin-block: $md;
+  }
+}

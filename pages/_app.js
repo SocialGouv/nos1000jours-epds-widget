@@ -5,6 +5,7 @@ import "../styles/colors.scss"
 import "../styles/survey.scss"
 import "../styles/results.scss"
 import "../styles/beContacted.scss"
+import "../styles/ab-testing/demographic-data.scss"
 
 import { init } from "@socialgouv/matomo-next"
 import App from "next/app"
