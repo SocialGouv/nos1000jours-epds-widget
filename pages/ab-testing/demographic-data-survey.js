@@ -18,6 +18,7 @@ export default function DemographicDataSurvey() {
   const router = useRouter()
 
   const localeSelected = getLocaleInLocalStorage()
+  const [showDataDetails, setShowDataDetails] = useState(false)
 
   const [genderItems, setGenderItems] = useState(genderValues)
   const [ageItems, setAgeItems] = useState(ageValues)
@@ -81,7 +82,7 @@ export default function DemographicDataSurvey() {
         <RadioButtonGroup
           groupName="radio-situation"
           data={situationItems}
-          defaultData={situationValues}
+          defaultData={situationItems}
           setItems={setSituationItems}
         />
       </div>
@@ -105,11 +106,34 @@ export default function DemographicDataSurvey() {
     )
   }
 
+  const openDataDetail = () => {
+    setShowDataDetails(!showDataDetails)
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader locale={localeSelected} />
       <div className="demographic-data">
         <u>À quoi servent ces données ?</u>
+        <img src="../img/icone-aide.svg" onClick={openDataDetail} />
+
+        {showDataDetails && (
+          <div className="data-details">
+            <p>
+              Les données récoltées sont <b>anonymes</b>. Elles permettront aux
+              chercheurs qui accompagnent le programme des
+              <b> 1 000 Premiers Jours</b> lancé par le Ministère des
+              solidarités et de la santé d'initier une cartigraphie.
+            </p>
+            <p>
+              <i>
+                A ce jour, il n'existe aucune donnée démographique permettant
+                aux chercheurs de mieux comprendre la dépression post-partum
+                <b> touchant pourtant +16% des parents.</b>
+              </i>
+            </p>
+          </div>
+        )}
 
         <GenderBloc />
         <AgeBloc />

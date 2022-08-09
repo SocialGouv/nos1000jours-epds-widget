@@ -22,6 +22,10 @@
     line-height: 2rem;
   }
 
+  img {
+    padding: $xxxxs;
+  }
+
   .btn-checked {
     background-color: var(--bleuFranceSun);
     color: white;
@@ -34,5 +38,10 @@
   .button-validation {
     text-align: center;
     margin-block: $md;
+  }
+
+  .data-details {
+    background-color: white;
+    padding: $xxs;
   }
 }
