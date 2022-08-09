@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.25.0...v1.25.1) (2022-08-09)
+
+
+### Bug Fixes
+
+* **epds:** maj consigne ([8c878ed](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8c878ede295cf8a4a4b5b2fdf57a6d8f13893fcd))
+
 # [1.25.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.24.0...v1.25.0) (2022-08-09)
 
 
