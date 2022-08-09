@@ -102,3 +102,18 @@ export const readSourceInUrl = () => {
   const params = Object.fromEntries(urlSearchParams.entries())
   return params.source
 }
+
+/**
+ * Pour les groupes de boutons radio : permet de mettre à jour la valeur `isChecked` de l'item sélectionné
+ * @param {Array} list liste des items
+ * @param {*} itemSelected l'item sélectionné
+ * @returns Liste mise à jour avec l'item sélectionné
+ */
+export const updateRadioButtonSelectedInList = (list, itemSelected) =>
+  list.map((item) => {
+    if (item.id === itemSelected.id) {
+      return { ...item, isChecked: !itemSelected.isChecked }
+    }
+
+    return item
+  })
