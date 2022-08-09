@@ -1,7 +1,7 @@
 export const Labels = {
   titleDPP: "Et si c'était la dépression post-partum ?",
   surveyExplanations:
-    "Veuillez cocher la réponse qui vous semble décrire le mieux comment vous vous êtes senti(e) au cours des 7 derniers jours et pas seulement au jour d’aujourd’hui.",
+    "Veuillez cocher la réponse qui vous semble décrire le mieux comment vous vous êtes senti(e) au cours des 7 derniers jours et pas seulement aujourd’hui.",
   mood: {
     good: "Je vais bien",
     moderatelyGood: "Je vais moins bien",
