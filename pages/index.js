@@ -128,13 +128,13 @@ export default function Home() {
 
   const CarouselsTemoignagesEtChiffres = () => (
     <>
-      {temoignages && (
+      {temoignages?.length > 0 && (
         <>
-          <div className="accueil-title-carousel">Témoignages :</div>
+          <div className="accueil-title-carousel">Témoignages : </div>
           <CarouselCustom data={temoignages} />
         </>
       )}
-      {chiffresChoc && (
+      {chiffresChoc?.length > 0 && (
         <>
           <div className="accueil-title-carousel">En chiffres :</div>
           <CarouselCustom data={chiffresChoc} />
@@ -156,6 +156,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.1000-premiers-jours.fr/fr/comment-differencier-baby-blues-et-depression-post-partum"
+          className="logo-img"
         >
           <img
             src="/img/logo-1000j.svg"
