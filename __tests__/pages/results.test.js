@@ -2,14 +2,14 @@ import {
   conclusionByScoreLevel,
   descriptionByScoreLevel,
   showContactMamanBlues,
-} from "../pages/results"
-import { EpdsResultsComments } from "../src/constants/specificLabels"
-import { TEST } from "../src/utils/ab-testing/measuring-intentions.utils"
+} from "../../pages/results"
+import { EpdsResultsComments } from "../../src/constants/specificLabels"
+import { TEST } from "../../src/utils/ab-testing/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,
   SCORE_LEVEL_MEDIUM,
-} from "../src/utils/score-level.utils"
+} from "../../src/utils/score-level.utils"
 
 describe("Résultats", () => {
   describe("Description en fonction du level", () => {
