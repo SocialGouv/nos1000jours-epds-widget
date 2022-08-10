@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
@@ -19,11 +19,24 @@ export default function DemographicDataSurvey() {
 
   const localeSelected = getLocaleInLocalStorage()
   const [showDataDetails, setShowDataDetails] = useState(false)
+  const [isValudateButtonEnabled, setValudateButtonEnabled] = useState(true)
 
   const [genderItems, setGenderItems] = useState(genderValues)
   const [ageItems, setAgeItems] = useState(ageValues)
   const [situationItems, setSituationItems] = useState(situationValues)
   const [entourageItems, setEntourageItems] = useState(entourageValues)
+  const [residenceValue, setResidenceValue] = useState()
+
+  useEffect(() => {
+    const isCompleted = checkIsFormCompleted(
+      genderItems,
+      ageItems,
+      residenceValue,
+      situationItems,
+      entourageItems
+    )
+    setValudateButtonEnabled(isCompleted)
+  }, [genderItems, ageItems, situationItems, entourageItems, residenceValue])
 
   const RadioButtonGroup = ({ groupName, data, defaultData, setItems }) => (
     <ToggleButtonGroup type="radio" name={groupName}>
@@ -110,6 +123,19 @@ export default function DemographicDataSurvey() {
     setShowDataDetails(!showDataDetails)
   }
 
+  const sendData = () => {
+    const gender = genderItems?.find((item) => item.isChecked)
+    const age = ageItems?.find((item) => item.isChecked)
+    const residence = false // TODO:
+    const sitiations = situationItems?.filter((item) => item.isChecked)
+    const entourage = entourageItems?.find((item) => item.isChecked)
+
+    console.log(`gender : ${gender.text}`)
+    console.log(`age : ${age.text}`)
+    console.log(`nb sitiations : ${sitiations.length()}`)
+    console.log(`entourage : ${entourage.text}`)
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader locale={localeSelected} />
@@ -143,9 +169,37 @@ export default function DemographicDataSurvey() {
 
         <i className="required-field">Tous les champs sont obligatoires</i>
         <div className="button-validation">
-          <button className="fr-btn fr-btn--lg">Envoyer</button>
+          <button
+            className="fr-btn fr-btn--lg"
+            disabled={!isValudateButtonEnabled}
+            onClick={sendData}
+          >
+            Envoyer
+          </button>
         </div>
       </div>
     </ContentLayout>
+  )
+}
+
+export const checkIsFormCompleted = (
+  genderData,
+  ageData,
+  residenceData,
+  situationData,
+  entourageData
+) => {
+  const isGenderCompeleted = genderData?.find((item) => item.isChecked)
+  const isAgeCompeleted = ageData?.find((item) => item.isChecked)
+  const isResidenceCompeleted = false
+  const isSituationCompeleted = situationData?.find((item) => item.isChecked)
+  const isEntourageCompeleted = entourageData?.find((item) => item.isChecked)
+
+  return (
+    isGenderCompeleted &&
+    isAgeCompeleted &&
+    //isResidenceCompeleted &&
+    isSituationCompeleted &&
+    isEntourageCompeleted
   )
 }
