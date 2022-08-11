@@ -70,7 +70,7 @@ describe("Questionnaire démographique", () => {
         checkIsFormCompleted(
           genderValues,
           ageValues,
-          null, // TODO:
+          undefined,
           situationValues,
           entourageValues
         )
@@ -133,7 +133,7 @@ describe("Questionnaire démographique", () => {
         checkIsFormCompleted(
           genderValues,
           ageValues,
-          null, // TODO:
+          undefined,
           situationValues,
           entourageValues
         )
@@ -192,11 +192,21 @@ describe("Questionnaire démographique", () => {
         },
       ]
 
+      const residenceValue = {
+        zipcode: "49000",
+        city: "Écouflant",
+        departmentName: "Maine-et-Loire",
+        departmentNumber: "49",
+        region: "Pays de la Loire",
+        label1Bold: "Écouflant",
+        label2: "49, Maine-et-Loire, Pays de la Loire",
+      }
+
       expect(
         checkIsFormCompleted(
           genderValues,
           ageValues,
-          null, // TODO:
+          residenceValue,
           situationValues,
           entourageValues
         )

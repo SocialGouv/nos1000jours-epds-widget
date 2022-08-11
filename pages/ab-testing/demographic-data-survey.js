@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
@@ -84,10 +85,6 @@ export default function DemographicDataSurvey() {
     )
   }
 
-  const ResidenceBloc = () => {
-    return <div className="bloc-name">Code postal de résidence :</div>
-  }
-
   const SituationBloc = () => {
     return (
       <div>
@@ -126,13 +123,13 @@ export default function DemographicDataSurvey() {
   const sendData = () => {
     const gender = genderItems?.find((item) => item.isChecked)
     const age = ageItems?.find((item) => item.isChecked)
-    const residence = false // TODO:
-    const sitiations = situationItems?.filter((item) => item.isChecked)
+    const situations = situationItems?.filter((item) => item.isChecked)
     const entourage = entourageItems?.find((item) => item.isChecked)
 
     console.log(`gender : ${gender.text}`)
     console.log(`age : ${age.text}`)
-    console.log(`nb sitiations : ${sitiations.length()}`)
+    console.log(`résidence : ${residenceValue}`)
+    console.log(`nb sitiations : ${situations.length}`)
     console.log(`entourage : ${entourage.text}`)
   }
 
@@ -163,7 +160,12 @@ export default function DemographicDataSurvey() {
 
         <GenderBloc />
         <AgeBloc />
-        <ResidenceBloc />
+
+        <div>
+          <div className="bloc-name">Code postal de résidence :</div>
+          <AutoCompleteZipCode setCitySelected={setResidenceValue} />
+        </div>
+
         <SituationBloc />
         <EntourageBloc />
 
@@ -191,14 +193,14 @@ export const checkIsFormCompleted = (
 ) => {
   const isGenderCompeleted = genderData?.find((item) => item.isChecked)
   const isAgeCompeleted = ageData?.find((item) => item.isChecked)
-  const isResidenceCompeleted = false
+  const isResidenceCompeleted = residenceData != undefined
   const isSituationCompeleted = situationData?.find((item) => item.isChecked)
   const isEntourageCompeleted = entourageData?.find((item) => item.isChecked)
 
   return (
     isGenderCompeleted &&
     isAgeCompeleted &&
-    //isResidenceCompeleted &&
+    isResidenceCompeleted &&
     isSituationCompeleted &&
     isEntourageCompeleted
   )
