@@ -51,3 +51,38 @@ export const GET_RESUTLATS_COUNT = gql`
     }
   }
 `
+
+export const INFORMATION_DEMOGRAPHIQUES = gql`
+  mutation (
+    $genre: String
+    $age: String
+    $entourageDispo: String
+    $situation: String
+    $codePostal: Int
+    $ville: String
+    $departement: Int
+    $region: String
+    $reponsesEpds: ID
+  ) {
+    createInformationsDemographique(
+      input: {
+        data: {
+          genre: $genre
+          age: $age
+          entourage_dispo: $entourageDispo
+          situation: $situation
+          code_postal: $codePostal
+          ville: $ville
+          departement: $departement
+          region: $region
+          reponses_epds: $reponsesEpds
+        }
+      }
+    ) {
+      informationsDemographique {
+        id
+        created_at
+      }
+    }
+  }
+`

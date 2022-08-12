@@ -1,11 +1,14 @@
+import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import { client, INFORMATION_DEMOGRAPHIQUES } from "../../apollo-client"
 import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
   ageValues,
+  convertArraySituationsToString,
   entourageValues,
   genderValues,
   situationValues,
@@ -120,17 +123,35 @@ export default function DemographicDataSurvey() {
     setShowDataDetails(!showDataDetails)
   }
 
-  const sendData = () => {
+  const [sendInfosQuery] = useMutation(INFORMATION_DEMOGRAPHIQUES, {
+    client: client,
+    onCompleted: () => {
+      console.log("OK") // TODO:
+    },
+    onError: (err) => {
+      console.error(err)
+    },
+  })
+
+  const sendData = async () => {
     const gender = genderItems?.find((item) => item.isChecked)
     const age = ageItems?.find((item) => item.isChecked)
     const situations = situationItems?.filter((item) => item.isChecked)
     const entourage = entourageItems?.find((item) => item.isChecked)
 
-    console.log(`gender : ${gender.text}`)
-    console.log(`age : ${age.text}`)
-    console.log(`résidence : ${residenceValue}`)
-    console.log(`nb sitiations : ${situations.length}`)
-    console.log(`entourage : ${entourage.text}`)
+    await sendInfosQuery({
+      variables: {
+        genre: gender.text,
+        age: age.text,
+        situation: convertArraySituationsToString(situations),
+        entourageDispo: entourage.text,
+        codePostal: parseInt(residenceValue.zipcode),
+        ville: residenceValue.city,
+        departement: parseInt(residenceValue.departmentNumber),
+        region: residenceValue.region,
+        //reponsesEpds: 1,
+      },
+    })
   }
 
   return (

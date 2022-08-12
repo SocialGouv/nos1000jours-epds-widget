@@ -3,7 +3,7 @@
   input {
     border: 1px solid #999;
     padding: 8px;
-    width: 300px;
+    width: 90%;
   }
 
   .no-autocomplete {
@@ -19,7 +19,7 @@
     max-height: 143px;
     overflow-y: auto;
     padding-left: 0;
-    width: calc(300px + 1rem);
+    width: 90%;
   }
 
   .autocomplete li {
