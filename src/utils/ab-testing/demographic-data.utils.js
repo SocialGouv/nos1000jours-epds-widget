@@ -10,7 +10,7 @@ export const genderValues = [
     isChecked: false,
   },
   {
-    id: "non précisé",
+    id: "nonPrecise",
     text: "Non précisé",
     isChecked: false,
   },
@@ -18,37 +18,37 @@ export const genderValues = [
 
 export const ageValues = [
   {
-    id: "-18ans",
+    id: "moinsDe18ans",
     text: "-18 ans",
     isChecked: false,
   },
   {
-    id: "18-25ans",
+    id: "entre18_25ans",
     text: "18 - 25 ans",
     isChecked: false,
   },
   {
-    id: "25-30ans",
+    id: "entre25_30ans",
     text: "25 - 30 ans",
     isChecked: false,
   },
   {
-    id: "30-35ans",
+    id: "entre30_35ans",
     text: "30 - 35 ans",
     isChecked: false,
   },
   {
-    id: "35-40ans",
+    id: "entre35_40ans",
     text: "35 - 40 ans",
     isChecked: false,
   },
   {
-    id: "40-45ans",
+    id: "entre40_45ans",
     text: "40 - 45 ans",
     isChecked: false,
   },
   {
-    id: "45ans+",
+    id: "plusDe45ans",
     text: "45 ans et +",
     isChecked: false,
   },
@@ -56,17 +56,17 @@ export const ageValues = [
 
 export const situationValues = [
   {
-    id: "attendez1Enfant",
+    id: "vousAttendez1Enfant",
     text: "Vous attendez un enfant",
     isChecked: false,
   },
   {
-    id: "avezEnfantDeMoinsDe2ans",
+    id: "vousAvezEnfantDeMoinsDe2ans",
     text: "Vous avez un enfant de moins de 2 ans",
     isChecked: false,
   },
   {
-    id: "avezDesEnfantsDePlusDe2ans",
+    id: "vousAvezDesEnfantsDePlusDe2ans",
     text: "Vous avez un ou plusieurs enfant de plus de 2 ans",
     isChecked: false,
   },

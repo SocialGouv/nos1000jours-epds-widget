@@ -2,7 +2,11 @@ import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
-import { client, INFORMATION_DEMOGRAPHIQUES } from "../../apollo-client"
+import {
+  client,
+  SAVE_INFORMATION_DEMOGRAPHIQUES,
+  UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
+} from "../../apollo-client"
 import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
@@ -15,6 +19,7 @@ import {
 } from "../../src/utils/ab-testing/demographic-data.utils"
 import {
   getLocaleInLocalStorage,
+  LoaderFoButton,
   updateRadioButtonSelectedInList as updateButtonSelectedInList,
 } from "../../src/utils/main.utils"
 
@@ -24,6 +29,7 @@ export default function DemographicDataSurvey() {
   const localeSelected = getLocaleInLocalStorage()
   const [showDataDetails, setShowDataDetails] = useState(false)
   const [isValudateButtonEnabled, setValudateButtonEnabled] = useState(true)
+  const [isLoading, setLoading] = useState(false)
 
   const [genderItems, setGenderItems] = useState(genderValues)
   const [ageItems, setAgeItems] = useState(ageValues)
@@ -123,15 +129,48 @@ export default function DemographicDataSurvey() {
     setShowDataDetails(!showDataDetails)
   }
 
-  const [sendInfosQuery] = useMutation(INFORMATION_DEMOGRAPHIQUES, {
+  const [sendInfosQuery] = useMutation(SAVE_INFORMATION_DEMOGRAPHIQUES, {
     client: client,
-    onCompleted: () => {
-      console.log("OK") // TODO:
+    onCompleted: (data) => {
+      // TODO:
+      console.log("OK : " + data)
+      setLoading(false)
     },
     onError: (err) => {
       console.error(err)
+      setLoading(false)
     },
   })
+
+  // const [updateEpdsIdInInfosQuery] = useMutation(
+  //   UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
+  //   {
+  //     client: client,
+  //     onCompleted: () => {
+  //       // TODO:
+  //       console.log("OK")
+  //       setLoading(false)
+  //     },
+  //     onError: (err) => {
+  //       console.error(err)
+  //       setLoading(false)
+  //     },
+  //   }
+  // )
+
+  // const updateId = async () => {
+  //   const infoDemoId = "5"
+  //   const reponsesEpdsId = "1"
+
+  //   setLoading(true)
+
+  //   await updateEpdsIdInInfosQuery({
+  //     variables: {
+  //       infoDemographiqueId: infoDemoId,
+  //       reponsesEpdsId: reponsesEpdsId,
+  //     },
+  //   })
+  // }
 
   const sendData = async () => {
     const gender = genderItems?.find((item) => item.isChecked)
@@ -139,15 +178,17 @@ export default function DemographicDataSurvey() {
     const situations = situationItems?.filter((item) => item.isChecked)
     const entourage = entourageItems?.find((item) => item.isChecked)
 
+    setLoading(true)
+
     await sendInfosQuery({
       variables: {
-        genre: gender.text,
-        age: age.text,
+        genre: gender.id,
+        age: age.id,
         situation: convertArraySituationsToString(situations),
-        entourageDispo: entourage.text,
-        codePostal: parseInt(residenceValue.zipcode),
+        entourageDispo: entourage.id,
+        codePostal: residenceValue.zipcode,
         ville: residenceValue.city,
-        departement: parseInt(residenceValue.departmentNumber),
+        departement: residenceValue.departmentNumber,
         region: residenceValue.region,
         //reponsesEpds: 1,
       },
@@ -199,6 +240,7 @@ export default function DemographicDataSurvey() {
           >
             Envoyer
           </button>
+          {isLoading ? <LoaderFoButton /> : null}
         </div>
       </div>
     </ContentLayout>

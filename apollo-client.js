@@ -52,15 +52,15 @@ export const GET_RESUTLATS_COUNT = gql`
   }
 `
 
-export const INFORMATION_DEMOGRAPHIQUES = gql`
+export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
   mutation (
-    $genre: String
-    $age: String
-    $entourageDispo: String
+    $genre: ENUM_INFORMATIONSDEMOGRAPHIQUES_GENRE
+    $age: ENUM_INFORMATIONSDEMOGRAPHIQUES_AGE
+    $entourageDispo: ENUM_INFORMATIONSDEMOGRAPHIQUES_ENTOURAGE_DISPO
     $situation: String
-    $codePostal: Int
+    $codePostal: String
     $ville: String
-    $departement: Int
+    $departement: String
     $region: String
     $reponsesEpds: ID
   ) {
@@ -77,6 +77,27 @@ export const INFORMATION_DEMOGRAPHIQUES = gql`
           region: $region
           reponses_epds: $reponsesEpds
         }
+      }
+    ) {
+      informationsDemographique {
+        id
+        created_at
+      }
+    }
+  }
+`
+
+/**
+ * MAJ de l'ID du résultats EPDS associé au formulaire des informationis démographiques
+ * @param {ID} infoDemographiqueId ID du formulaire Informations Démographiques
+ * @param {ID} reponsesEpdsId ID de la réponse EPDS
+ */
+export const UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES = gql`
+  mutation ($infoDemographiqueId: ID!, $reponsesEpdsId: ID) {
+    updateInformationsDemographique(
+      input: {
+        where: { id: $infoDemographiqueId }
+        data: { reponses_epds: $reponsesEpdsId }
       }
     ) {
       informationsDemographique {
