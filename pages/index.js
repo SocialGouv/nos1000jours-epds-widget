@@ -6,7 +6,6 @@ import {
   STORAGE_LABELS,
   STORAGE_LOCALE,
   STORAGE_SOURCE,
-  STORAGE_TEST_ABC,
 } from "../src/constants/constants"
 import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
@@ -22,6 +21,7 @@ import {
 } from "@socialgouv/nos1000jours-lib"
 import { LocaleButton } from "../src/components/LocaleButton"
 import { CarouselCustom } from "../src/components/CarouselCustom"
+import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 
 export default function Home() {
   const router = useRouter()
@@ -65,8 +65,8 @@ export default function Home() {
   const startSurvey = () => {
     trackerClick(CATEG.home, EVENT_CLICK, `Commencer le test - ${source}`)
     localStorage.setItem(STORAGE_SOURCE, source)
-    localStorage.removeItem(STORAGE_TEST_ABC)
 
+    AbTestingUtils.generateRandomTest()
     goToBeforeSurvey()
   }
 

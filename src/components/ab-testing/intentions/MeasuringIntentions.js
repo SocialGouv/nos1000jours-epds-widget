@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
-import {
-  clearIntentionsData,
-  TEST,
-} from "../../../utils/ab-testing/measuring-intentions.utils"
+import { clearIntentionsData } from "../../../utils/ab-testing/measuring-intentions.utils"
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
 import { getInLocalStorage } from "../../../utils/main.utils"
 import { STORAGE_TEST_ABC } from "../../../constants/constants"
+import {
+  generateRandomTest,
+  TEST,
+} from "../../../utils/ab-testing/ab-testing.utils"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
@@ -61,26 +62,6 @@ export const MeasuringIntentions = ({ scoreLevel, setTestStarted }) => {
     TEST_NUMBER_ENABLED === "true" ? <div>Test {test}</div> : null
 
   return <div className="measure">{component}</div>
-}
-
-const getRandomInt = (max) => {
-  if (typeof window !== "undefined") {
-    const randomArray = window.crypto.getRandomValues(new Uint16Array(1))
-    const randomVal = randomArray[0]
-    return randomVal % max
-  }
-}
-
-const generateRandomTest = () => {
-  // expected output: 0, 1 or 2
-  switch (getRandomInt(3)) {
-    case 0:
-      return TEST.A
-    case 1:
-      return TEST.B
-    case 2:
-      return TEST.C
-  }
 }
 
 export const displayComponentsByTest = ({

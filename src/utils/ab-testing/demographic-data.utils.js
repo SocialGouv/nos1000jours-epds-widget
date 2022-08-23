@@ -1,3 +1,7 @@
+import { STORAGE_TEST_ABC } from "../../constants/constants"
+import { getInLocalStorage } from "../main.utils"
+import { TEST } from "./ab-testing.utils"
+
 export const genderValues = [
   {
     id: "femme",
@@ -97,4 +101,26 @@ export const convertArraySituationsToString = (situations) => {
   })
 
   return situationsString
+}
+
+/**
+ * Pour Test B : renvoi les nouveaux labels des boutons
+ */
+export const infoDemographicSurveyForBeforeEpds = () => {
+  const test = getInLocalStorage(STORAGE_TEST_ABC)
+  if (test === TEST.B) {
+    return {
+      buttonLabelInBeforeSurvey: "Suivant",
+      buttonLabelInInfoDemographicSurvey:
+        "Envoyer et commencer le questionnaire",
+    }
+  }
+
+  return null
+}
+
+export const goToDemographicSurvey = async (router) => {
+  router.push({
+    pathname: "/ab-testing/demographic-data-survey",
+  })
 }

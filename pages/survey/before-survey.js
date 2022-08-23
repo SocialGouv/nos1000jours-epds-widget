@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { client, GET_RESUTLATS_COUNT } from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
+import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
 
 export default function BeforeSurvey() {
@@ -19,6 +20,8 @@ export default function BeforeSurvey() {
   )
 
   const localeSelected = getLocaleInLocalStorage()
+  const demographicData =
+    DemographicDataUtils.infoDemographicSurveyForBeforeEpds()
 
   useEffect(() => {
     const resultatsCountQuery = async () => {
@@ -27,10 +30,14 @@ export default function BeforeSurvey() {
     resultatsCountQuery()
   }, [])
 
-  const goToEpdseSurvey = async (event) => {
+  const goToEpdsSurvey = async () => {
     router.push({
       pathname: "/survey/epds-survey",
     })
+  }
+
+  const goToDemographicSurvey = async () => {
+    DemographicDataUtils.goToDemographicSurvey(router)
   }
 
   const [getResultatsCountInDatabase] = useLazyQuery(GET_RESUTLATS_COUNT, {
@@ -87,8 +94,12 @@ export default function BeforeSurvey() {
         </div>
 
         <div className="button-start-survey">
-          <button className="fr-btn fr-btn--lg" onClick={goToEpdseSurvey}>
-            Commencer le questionnaire
+          <button
+            className="fr-btn fr-btn--lg"
+            onClick={demographicData ? goToDemographicSurvey : goToEpdsSurvey}
+          >
+            {demographicData?.buttonLabelInBeforeSurvey ??
+              "Commencer le questionnaire"}
           </button>
         </div>
       </div>

@@ -9,12 +9,7 @@ import {
   SCORE_LEVEL_MEDIUM,
 } from "../score-level.utils"
 import { ACTION, CATEG, trackerClick } from "../tracker.utils"
-
-export const TEST = {
-  A: "A",
-  B: "B",
-  C: "C",
-}
+import { TEST } from "./ab-testing.utils"
 
 export const contacterAToutMoment =
   "Sachez qu’à tout moment vous pouvez contacter Elise."

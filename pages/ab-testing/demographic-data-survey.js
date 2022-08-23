@@ -19,6 +19,7 @@ import {
   LoaderFoButton,
   updateRadioButtonSelectedInList as updateButtonSelectedInList,
 } from "../../src/utils/main.utils"
+import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 
 export default function DemographicDataSurvey({ epdsTestID }) {
   const router = useRouter()
@@ -33,6 +34,9 @@ export default function DemographicDataSurvey({ epdsTestID }) {
   const [situationItems, setSituationItems] = useState(situationValues)
   const [entourageItems, setEntourageItems] = useState(entourageValues)
   const [residenceValue, setResidenceValue] = useState()
+
+  const demographicData =
+    DemographicDataUtils.infoDemographicSurveyForBeforeEpds()
 
   useEffect(() => {
     const isCompleted = checkIsFormCompleted(
@@ -126,6 +130,12 @@ export default function DemographicDataSurvey({ epdsTestID }) {
     setShowDataDetails(!showDataDetails)
   }
 
+  const goToEpdsSurvey = async () => {
+    router.push({
+      pathname: "/survey/epds-survey",
+    })
+  }
+
   const [sendInfosQuery] = useMutation(SAVE_INFORMATION_DEMOGRAPHIQUES, {
     client: client,
     onCompleted: (data) => {
@@ -134,6 +144,8 @@ export default function DemographicDataSurvey({ epdsTestID }) {
       const id =
         data.createInformationsDemographique.informationsDemographique.id
       if (!epdsTestID) localStorage.setItem(STORAGE_TEST_DEMOGRAPHIC_ID, id)
+
+      goToEpdsSurvey()
     },
     onError: (err) => {
       console.error(err)
@@ -207,7 +219,7 @@ export default function DemographicDataSurvey({ epdsTestID }) {
             disabled={!isValudateButtonEnabled}
             onClick={sendData}
           >
-            Envoyer
+            {demographicData?.buttonLabelInInfoDemographicSurvey ?? "Envoyer"}
           </button>
           {isLoading ? <LoaderFoButton /> : null}
         </div>
