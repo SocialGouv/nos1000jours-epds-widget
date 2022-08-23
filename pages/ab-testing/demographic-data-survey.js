@@ -53,7 +53,7 @@ export default function DemographicDataSurvey({ epdsTestID }) {
           className={`${item.isChecked ? "btn-checked" : ""}`}
           id={`radio-${item.id}`}
           value={item.value}
-          onChange={(e) =>
+          onChange={() =>
             setItems(updateButtonSelectedInList(defaultData, item))
           }
         >
