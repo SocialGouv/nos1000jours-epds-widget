@@ -15,13 +15,12 @@ import {
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
 import { useState } from "react"
-import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
-import { TEST } from "../src/utils/ab-testing/measuring-intentions.utils"
+//import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
 
 export default function Results() {
   const router = useRouter()
-  const [testId, setTestId] = useState(null)
-  const [isTestStarted, setTestStarted] = useState(false)
+  //const [testId, setTestId] = useState(null)
+  //const [isTestStarted, setTestStarted] = useState(false)
 
   const localeSelected = getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
@@ -58,15 +57,15 @@ export default function Results() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
-      <MeasuringIntentions
+      {/* <MeasuringIntentions
         scoreLevel={scoreLevelForMood}
         setTestId={setTestId}
         setTestStarted={setTestStarted}
-      />
+      /> 
       {!isTestStarted && <DescriptionAndConclusion />}
-      {showContactMamanBlues(scoreLevelForMacaron, testId) && (
-        <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
-      )}
+      */}
+      <DescriptionAndConclusion />
+      <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
 
       <button
         className="fr-btn fr-btn--secondary result-return-bt"
@@ -102,8 +101,4 @@ export const conclusionByScoreLevel = (level) => {
     default:
       return "Pas de conclusion disponible"
   }
-}
-
-export const showContactMamanBlues = (scoreLevel, testId) => {
-  return (scoreLevel != 1 && testId !== TEST.B) || testId === TEST.C
 }

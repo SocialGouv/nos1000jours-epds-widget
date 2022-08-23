@@ -2,7 +2,7 @@ export const STORAGE_LABELS = "labels"
 export const STORAGE_LOCALE = "locale"
 export const STORAGE_SOURCE = "source"
 
-export const STORAGE_TEST_INTENTIONS = "testABC"
+export const STORAGE_TEST_ABC = "testABC"
 export const STORAGE_TEST_VERS_QUI_SE_TOURNER = "testVersQuiSeTourner"
 export const STORAGE_TEST_DEMOGRAPHIC_ID = "testDemographicId"
 

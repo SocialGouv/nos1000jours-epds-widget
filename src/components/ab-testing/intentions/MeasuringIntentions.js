@@ -6,8 +6,8 @@ import {
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
-import { STORAGE_TEST_INTENTIONS } from "../../../constants/constants"
 import { getInLocalStorage } from "../../../utils/main.utils"
+import { STORAGE_TEST_ABC } from "../../../constants/constants"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
@@ -21,11 +21,10 @@ export const MeasuringIntentions = ({
   const [showBackButton, setShowBackButton] = useState(false)
 
   useEffect(() => {
-    const id =
-      getInLocalStorage(STORAGE_TEST_INTENTIONS) ?? generateRandomTest()
+    const id = getInLocalStorage(STORAGE_TEST_ABC) ?? generateRandomTest()
     setTestId(id)
     setTest(id)
-    localStorage.setItem(STORAGE_TEST_INTENTIONS, id)
+    localStorage.setItem(STORAGE_TEST_ABC, id)
 
     trackerClick(CATEG.test, `${ACTION.parcours}${id}`)
   }, [])

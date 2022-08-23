@@ -1,5 +1,5 @@
 import {
-  STORAGE_TEST_INTENTIONS,
+  STORAGE_TEST_ABC,
   STORAGE_TEST_VERS_QUI_SE_TOURNER,
 } from "../../constants/constants"
 import { getColorIconAndTextByMood, getInLocalStorage } from "../main.utils"
@@ -151,7 +151,7 @@ export const estProcheDeLaRealiteCommentaireByScoreLevel = (scoreLevel) => {
 }
 
 export const trackerForIntentions = (scoreLevel, label) => {
-  const testId = getInLocalStorage(STORAGE_TEST_INTENTIONS)
+  const testId = getInLocalStorage(STORAGE_TEST_ABC)
   const moodLevel = getColorIconAndTextByMood(scoreLevel).moodText
 
   trackerClick(
@@ -170,4 +170,8 @@ export const saveIsIntentionVersQuiSeTourner = (label) => {
 
 export const clearIntentionsData = () => {
   localStorage.removeItem(STORAGE_TEST_VERS_QUI_SE_TOURNER)
+}
+
+export const showContactMamanBlues = (scoreLevel, testId) => {
+  return (scoreLevel != 1 && testId !== TEST.B) || testId === TEST.C
 }
