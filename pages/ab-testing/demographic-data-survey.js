@@ -2,14 +2,11 @@ import { useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
-import {
-  client,
-  SAVE_INFORMATION_DEMOGRAPHIQUES,
-  UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
-} from "../../apollo-client"
+import { client, SAVE_INFORMATION_DEMOGRAPHIQUES } from "../../apollo-client"
 import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
+import { STORAGE_TEST_DEMOGRAPHIC_ID } from "../../src/constants/constants"
 import {
   ageValues,
   convertArraySituationsToString,
@@ -23,7 +20,7 @@ import {
   updateRadioButtonSelectedInList as updateButtonSelectedInList,
 } from "../../src/utils/main.utils"
 
-export default function DemographicDataSurvey() {
+export default function DemographicDataSurvey({ epdsTestID }) {
   const router = useRouter()
 
   const localeSelected = getLocaleInLocalStorage()
@@ -132,45 +129,17 @@ export default function DemographicDataSurvey() {
   const [sendInfosQuery] = useMutation(SAVE_INFORMATION_DEMOGRAPHIQUES, {
     client: client,
     onCompleted: (data) => {
-      // TODO:
-      console.log("OK : " + data)
       setLoading(false)
+
+      const id =
+        data.createInformationsDemographique.informationsDemographique.id
+      if (!epdsTestID) localStorage.setItem(STORAGE_TEST_DEMOGRAPHIC_ID, id)
     },
     onError: (err) => {
       console.error(err)
       setLoading(false)
     },
   })
-
-  // const [updateEpdsIdInInfosQuery] = useMutation(
-  //   UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
-  //   {
-  //     client: client,
-  //     onCompleted: () => {
-  //       // TODO:
-  //       console.log("OK")
-  //       setLoading(false)
-  //     },
-  //     onError: (err) => {
-  //       console.error(err)
-  //       setLoading(false)
-  //     },
-  //   }
-  // )
-
-  // const updateId = async () => {
-  //   const infoDemoId = "5"
-  //   const reponsesEpdsId = "1"
-
-  //   setLoading(true)
-
-  //   await updateEpdsIdInInfosQuery({
-  //     variables: {
-  //       infoDemographiqueId: infoDemoId,
-  //       reponsesEpdsId: reponsesEpdsId,
-  //     },
-  //   })
-  // }
 
   const sendData = async () => {
     const gender = genderItems?.find((item) => item.isChecked)
@@ -190,7 +159,7 @@ export default function DemographicDataSurvey() {
         ville: residenceValue.city,
         departement: residenceValue.departmentNumber,
         region: residenceValue.region,
-        //reponsesEpds: 1,
+        reponsesEpds: epdsTestID,
       },
     })
   }
@@ -267,4 +236,30 @@ export const checkIsFormCompleted = (
     isSituationCompeleted &&
     isEntourageCompeleted
   )
+}
+
+/**
+ * MAJ de l'ID du questionnaire EPDS dans le questionnaire Démographique
+ * @param {*} updateEpdsIdInInfosQuery query UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES
+ * @param {String} reponsesEpdsID ID du questionnaire EPDS
+ */
+export const updateInfoDemographic = (
+  updateEpdsIdInInfosQuery,
+  reponsesEpdsID
+) => {
+  const infoDemographicID = localStorage.getItem(STORAGE_TEST_DEMOGRAPHIC_ID)
+
+  const updateId = async () => {
+    await updateEpdsIdInInfosQuery({
+      variables: {
+        infoDemographiqueId: infoDemographicID,
+        reponsesEpdsId: reponsesEpdsID,
+      },
+    })
+  }
+
+  if (infoDemographicID) {
+    updateId()
+    localStorage.removeItem(STORAGE_TEST_DEMOGRAPHIC_ID)
+  }
 }

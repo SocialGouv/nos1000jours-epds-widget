@@ -42,6 +42,9 @@ export const GET_TEMOIGNAGES_CHIFFRES = gql`
   }
 `
 
+/**
+ * Nombre total de tests EPDS passés
+ */
 export const GET_RESUTLATS_COUNT = gql`
   query resultatsCount {
     reponsesEpdsConnection {
