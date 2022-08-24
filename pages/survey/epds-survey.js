@@ -38,6 +38,7 @@ import {
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,
 } from "@socialgouv/nos1000jours-lib"
 import { updateInfoDemographic } from "../ab-testing/demographic-data-survey"
+import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -100,7 +101,10 @@ export default function EpdsSurvey() {
         updateEpdsIdInInfosQuery,
         data.createReponsesEpdsWidget.id
       )
-      goToResults()
+
+      if (DemographicDataUtils.uiAdaptationForInfoDemographic?.isAfterEpds)
+        goToDemographicSurvey()
+      else goToResults()
     },
   })
 
@@ -120,6 +124,10 @@ export default function EpdsSurvey() {
     router.push({
       pathname: "/results",
     })
+  }
+
+  const goToDemographicSurvey = async () => {
+    DemographicDataUtils.goToDemographicSurvey(router)
   }
 
   useEffect(() => {

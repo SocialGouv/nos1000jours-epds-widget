@@ -96,7 +96,11 @@ export default function BeforeSurvey() {
         <div className="button-start-survey">
           <button
             className="fr-btn fr-btn--lg"
-            onClick={demographicData ? goToDemographicSurvey : goToEpdsSurvey}
+            onClick={
+              demographicData?.buttonLabelInBeforeSurvey
+                ? goToDemographicSurvey
+                : goToEpdsSurvey
+            }
           >
             {demographicData?.buttonLabelInBeforeSurvey ??
               "Commencer le questionnaire"}

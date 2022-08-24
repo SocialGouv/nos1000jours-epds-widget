@@ -106,13 +106,21 @@ export const convertArraySituationsToString = (situations) => {
 /**
  * Pour Test B : renvoi les nouveaux labels des boutons
  */
-export const infoDemographicSurveyForBeforeEpds = () => {
+export const uiAdaptationForInfoDemographic = () => {
   const test = getInLocalStorage(STORAGE_TEST_ABC)
   if (test === TEST.B) {
     return {
+      isBeforeEpds: true,
       buttonLabelInBeforeSurvey: "Suivant",
       buttonLabelInInfoDemographicSurvey:
         "Envoyer et commencer le questionnaire",
+    }
+  }
+  if (test === TEST.C) {
+    return {
+      isAfterEpds: true,
+      buttonLabelInInfoDemographicSurvey:
+        "Envoyer et afficher le résultat du questionnaire",
     }
   }
 

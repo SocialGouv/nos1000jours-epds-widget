@@ -1,7 +1,7 @@
 import { STORAGE_TEST_ABC } from "../../../src/constants/constants"
 import {
   convertArraySituationsToString,
-  infoDemographicSurveyForBeforeEpds,
+  uiAdaptationForInfoDemographic,
 } from "../../../src/utils/ab-testing/demographic-data.utils"
 
 describe("Utils", () => {
@@ -40,11 +40,11 @@ describe("Utils", () => {
     })
   })
 
-  describe("Les nouvelles valeur pour le Test B : avant le test EPDS", () => {
+  describe("Les nouvelles valeur pour le Tests B/C", () => {
     test("N'est pas le test B => null", () => {
-      expect(infoDemographicSurveyForBeforeEpds()).toBeNull()
+      expect(uiAdaptationForInfoDemographic()).toBeNull()
     })
-    test("Est le test B => les nouveaux labels", () => {
+    test("Est le test B : avant le test EPDS => les nouveaux labels", () => {
       const localStorageMock = {
         getItem: mockJest.mockImplementation((key) => {
           if (key === STORAGE_TEST_ABC) return "B"
@@ -56,14 +56,30 @@ describe("Utils", () => {
       })
 
       const expected = {
+        isBeforeEpds: true,
         buttonLabelInBeforeSurvey: "Suivant",
-        buttonLabelInInforDemigraphicSurvey:
+        buttonLabelInInfoDemographicSurvey:
           "Envoyer et commencer le questionnaire",
       }
-      expect(infoDemographicSurveyForBeforeEpds()).toEqual(expected)
+      expect(uiAdaptationForInfoDemographic()).toEqual(expected)
     })
-  })
+    test("Est le test C : après le test EPDS => les nouveaux labels", () => {
+      const localStorageMock = {
+        getItem: mockJest.mockImplementation((key) => {
+          if (key === STORAGE_TEST_ABC) return "C"
+          return null
+        }),
+      }
+      Object.defineProperty(window, "localStorage", {
+        value: localStorageMock,
+      })
 
-  describe("Les nouvelles valeur pour le Test C : après le test EPDS", () => {
+      const expected = {
+        isAfterEpds: true,
+        buttonLabelInInfoDemographicSurvey:
+          "Envoyer et afficher le résultat du questionnaire",
+      }
+      expect(uiAdaptationForInfoDemographic()).toEqual(expected)
+    })
   })
 })

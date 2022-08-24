@@ -35,8 +35,7 @@ export default function DemographicDataSurvey({ epdsTestID }) {
   const [entourageItems, setEntourageItems] = useState(entourageValues)
   const [residenceValue, setResidenceValue] = useState()
 
-  const demographicData =
-    DemographicDataUtils.infoDemographicSurveyForBeforeEpds()
+  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   useEffect(() => {
     const isCompleted = checkIsFormCompleted(
@@ -136,6 +135,12 @@ export default function DemographicDataSurvey({ epdsTestID }) {
     })
   }
 
+  const goToResults = async () => {
+    router.push({
+      pathname: "/results",
+    })
+  }
+
   const [sendInfosQuery] = useMutation(SAVE_INFORMATION_DEMOGRAPHIQUES, {
     client: client,
     onCompleted: (data) => {
@@ -145,7 +150,8 @@ export default function DemographicDataSurvey({ epdsTestID }) {
         data.createInformationsDemographique.informationsDemographique.id
       if (!epdsTestID) localStorage.setItem(STORAGE_TEST_DEMOGRAPHIC_ID, id)
 
-      goToEpdsSurvey()
+      if (demographicData?.isAfterEpds) goToResults()
+      else goToEpdsSurvey()
     },
     onError: (err) => {
       console.error(err)
