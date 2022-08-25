@@ -11,6 +11,7 @@ export const STORAGE_SCORE_LEVEL_MACARON = "scoreLevelForMacaron"
 export const STORAGE_SCORE_LEVEL_MOOD = "scoreLevelForMood"
 export const STORAGE_SCORE_LEVEL_TEXTS = "scoreLevelForTexts"
 export const STORAGE_RESULTS_BOARD = "resultsBoard"
+export const STORAGE_RESULTS_ID = "resultsBoardId"
 
 export const STORAGE_CONTACT_TYPE = "contactType"
 export const STORAGE_CONTACT_HOURS = "contactHours"

@@ -20,8 +20,7 @@ export default function BeforeSurvey() {
   )
 
   const localeSelected = getLocaleInLocalStorage()
-  const demographicData =
-    DemographicDataUtils.infoDemographicSurveyForBeforeEpds()
+  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   useEffect(() => {
     const resultatsCountQuery = async () => {

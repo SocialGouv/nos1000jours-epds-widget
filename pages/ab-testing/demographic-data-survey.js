@@ -6,7 +6,10 @@ import { client, SAVE_INFORMATION_DEMOGRAPHIQUES } from "../../apollo-client"
 import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
-import { STORAGE_TEST_DEMOGRAPHIC_ID } from "../../src/constants/constants"
+import {
+  STORAGE_RESULTS_ID,
+  STORAGE_TEST_DEMOGRAPHIC_ID,
+} from "../../src/constants/constants"
 import {
   ageValues,
   convertArraySituationsToString,
@@ -15,13 +18,14 @@ import {
   situationValues,
 } from "../../src/utils/ab-testing/demographic-data.utils"
 import {
+  getInLocalStorage,
   getLocaleInLocalStorage,
   LoaderFoButton,
   updateRadioButtonSelectedInList as updateButtonSelectedInList,
 } from "../../src/utils/main.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 
-export default function DemographicDataSurvey({ epdsTestID }) {
+export default function DemographicDataSurvey() {
   const router = useRouter()
 
   const localeSelected = getLocaleInLocalStorage()
@@ -35,6 +39,7 @@ export default function DemographicDataSurvey({ epdsTestID }) {
   const [entourageItems, setEntourageItems] = useState(entourageValues)
   const [residenceValue, setResidenceValue] = useState()
 
+  const epdsTestID = getInLocalStorage(STORAGE_RESULTS_ID)
   const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   useEffect(() => {
@@ -265,7 +270,7 @@ export const updateInfoDemographic = (
   updateEpdsIdInInfosQuery,
   reponsesEpdsID
 ) => {
-  const infoDemographicID = localStorage.getItem(STORAGE_TEST_DEMOGRAPHIC_ID)
+  const infoDemographicID = getInLocalStorage(STORAGE_TEST_DEMOGRAPHIC_ID)
 
   const updateId = async () => {
     await updateEpdsIdInInfosQuery({
@@ -276,6 +281,7 @@ export const updateInfoDemographic = (
     })
   }
 
+  localStorage.removeItem(STORAGE_RESULTS_ID)
   if (infoDemographicID) {
     updateId()
     localStorage.removeItem(STORAGE_TEST_DEMOGRAPHIC_ID)

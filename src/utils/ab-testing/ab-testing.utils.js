@@ -4,6 +4,10 @@ export const TEST = {
   C: "C",
 }
 
+/**
+ * Génère aléatoirement A, B ou C
+ * @returns A, B ou C
+ */
 export const generateRandomTest = () => {
   // expected output: 0, 1 or 2
   switch (getRandomInt(3)) {

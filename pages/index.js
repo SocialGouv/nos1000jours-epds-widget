@@ -6,6 +6,7 @@ import {
   STORAGE_LABELS,
   STORAGE_LOCALE,
   STORAGE_SOURCE,
+  STORAGE_TEST_ABC,
 } from "../src/constants/constants"
 import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
@@ -66,7 +67,7 @@ export default function Home() {
     trackerClick(CATEG.home, EVENT_CLICK, `Commencer le test - ${source}`)
     localStorage.setItem(STORAGE_SOURCE, source)
 
-    AbTestingUtils.generateRandomTest()
+    localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
     goToBeforeSurvey()
   }
 

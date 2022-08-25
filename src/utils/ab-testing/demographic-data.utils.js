@@ -1,4 +1,4 @@
-import { STORAGE_TEST_ABC } from "../../constants/constants"
+import { STORAGE_TEST_ABC, STORAGE_RESULTS_ID } from "../../constants/constants"
 import { getInLocalStorage } from "../main.utils"
 import { TEST } from "./ab-testing.utils"
 
@@ -127,8 +127,8 @@ export const uiAdaptationForInfoDemographic = () => {
   return null
 }
 
-export const goToDemographicSurvey = async (router) => {
-  router.push({
-    pathname: "/ab-testing/demographic-data-survey",
-  })
+export const goToDemographicSurvey = async (router, epdsTestID) => {
+  if (epdsTestID) localStorage.setItem(STORAGE_RESULTS_ID, epdsTestID)
+
+  router.push({ pathname: "/ab-testing/demographic-data-survey" })
 }

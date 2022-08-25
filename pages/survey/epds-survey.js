@@ -56,6 +56,7 @@ export default function EpdsSurvey() {
   const [isLoading, setLoading] = useState(false)
 
   const source = getInLocalStorage(STORAGE_SOURCE)
+  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   const [getEpdsSurveyQuery] = useLazyQuery(
     gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
@@ -97,14 +98,16 @@ export default function EpdsSurvey() {
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
 
-      updateInfoDemographic(
-        updateEpdsIdInInfosQuery,
-        data.createReponsesEpdsWidget.id
-      )
+      if (demographicData?.isAfterEpds)
+        goToDemographicSurvey(data.createReponsesEpdsWidget.id)
+      else {
+        updateInfoDemographic(
+          updateEpdsIdInInfosQuery,
+          data.createReponsesEpdsWidget.id
+        )
 
-      if (DemographicDataUtils.uiAdaptationForInfoDemographic?.isAfterEpds)
-        goToDemographicSurvey()
-      else goToResults()
+        goToResults()
+      }
     },
   })
 
@@ -126,8 +129,8 @@ export default function EpdsSurvey() {
     })
   }
 
-  const goToDemographicSurvey = async () => {
-    DemographicDataUtils.goToDemographicSurvey(router)
+  const goToDemographicSurvey = async (epdsTestID) => {
+    DemographicDataUtils.goToDemographicSurvey(router, epdsTestID)
   }
 
   useEffect(() => {
