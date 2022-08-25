@@ -13,12 +13,8 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
 } from "../../src/utils/main.utils"
-import {
-  ACTION,
-  CATEG,
-  CONTACT_SENT,
-  trackerClick,
-} from "../../src/utils/tracker.utils"
+import * as TrackerUtils from "../../src/utils/tracker.utils"
+import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 
 export default function ContactConfirmed() {
   const router = useRouter()
@@ -49,14 +45,21 @@ export default function ContactConfirmed() {
     let name
     switch (contactType) {
       case RequestContact.type.email:
-        name = CONTACT_SENT.mail
+        name = TrackerUtils.CONTACT_SENT.mail
         break
       case RequestContact.type.sms:
-        name = CONTACT_SENT.sms
+        name = TrackerUtils.CONTACT_SENT.sms
         break
     }
 
-    trackerClick(CATEG.contact, ACTION.contact_confirm_sent, name)
+    TrackerUtils.trackerClick(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.ACTION.contact_confirm_sent,
+      name
+    )
+    DemographicDataUtils.trackerForDemographie(
+      `${TrackerUtils.ACTION.contact_confirm_sent} par ${name}`
+    )
   }, [])
 
   return (

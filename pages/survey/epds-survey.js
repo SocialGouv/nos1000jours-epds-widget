@@ -235,6 +235,9 @@ export default function EpdsSurvey() {
               setSendScore(true)
               setLoading(true)
               trackerClick(CATEG.survey, EVENT_CLICK, `Terminer - ${source}`)
+              DemographicDataUtils.trackerForDemographie(
+                "Questionnaire EPDS - Terminer"
+              )
             }}
             disabled={!isEnabledNextButton || isLoading}
           >

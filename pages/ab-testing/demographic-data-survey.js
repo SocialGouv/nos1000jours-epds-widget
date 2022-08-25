@@ -185,6 +185,13 @@ export default function DemographicDataSurvey() {
         reponsesEpds: epdsTestID,
       },
     })
+
+    const trackerLabel = demographicData?.isAfterEpds
+      ? demographicData?.buttonLabelInInfoDemographicSurvey
+      : "Envoyer"
+    DemographicDataUtils.trackerForDemographie(
+      `Questionnaire démographique - ${trackerLabel}`
+    )
   }
 
   return (

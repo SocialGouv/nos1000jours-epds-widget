@@ -30,12 +30,19 @@ export default function BeforeSurvey() {
   }, [])
 
   const goToEpdsSurvey = async () => {
+    DemographicDataUtils.trackerForDemographie(
+      "Informations avant EPDS - Commencer le questionnaire"
+    )
+
     router.push({
       pathname: "/survey/epds-survey",
     })
   }
 
   const goToDemographicSurvey = async () => {
+    DemographicDataUtils.trackerForDemographie(
+      `Informations avant EPDS - ${demographicData?.buttonLabelInBeforeSurvey}`
+    )
     DemographicDataUtils.goToDemographicSurvey(router)
   }
 
