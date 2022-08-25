@@ -115,10 +115,6 @@ export default function EpdsSurvey() {
     UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
     {
       client: client,
-      onCompleted: () => {
-        // TODO:
-        console.log("OK")
-      },
       onError: (err) => console.error(err),
     }
   )
