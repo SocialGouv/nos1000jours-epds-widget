@@ -10,10 +10,7 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
-import {
-  getInLocalStorage,
-  getLocaleInLocalStorage,
-} from "../src/utils/main.utils"
+import * as StorageUtils from "../src/utils/storage.utils"
 import { useState } from "react"
 import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
 
@@ -21,15 +18,15 @@ export default function Results() {
   const router = useRouter()
   const [isTestStarted, setTestStarted] = useState(false)
 
-  const localeSelected = getLocaleInLocalStorage()
+  const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
-    getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
+    StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
   )
   const scoreLevelForTexts = parseInt(
-    getInLocalStorage(STORAGE_SCORE_LEVEL_TEXTS)
+    StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_TEXTS)
   )
   const scoreLevelForMacaron = parseInt(
-    getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
+    StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
 
   const goToSurvey = () => {

@@ -21,10 +21,10 @@ import {
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
-  getLocaleInLocalStorage,
   readSourceInUrl,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
+import * as StorageUtils from "../../src/utils/storage.utils"
 import {
   ACTION,
   CATEG,
@@ -39,7 +39,7 @@ import {
 export default function ToBeContacted() {
   const router = useRouter()
 
-  const localeSelected = getLocaleInLocalStorage()
+  const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const [chatButtonElement, setChatButtonElement] = useState()
   const [chatLoaded, setChatLoaded] = useState(false)
 

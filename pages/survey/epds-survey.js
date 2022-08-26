@@ -29,16 +29,12 @@ import {
 import { Labels } from "../../src/constants/specificLabels"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
-  getInLocalStorage,
-  getLabelsInLocalStorage,
-  getLocaleInLocalStorage,
-} from "../../src/utils/main.utils"
-import {
   EPDS_SAVE_RESPONSES_FOR_WIDGET,
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,
 } from "@socialgouv/nos1000jours-lib"
 import { updateInfoDemographic } from "../ab-testing/demographic-data-survey"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
+import * as StorageUtils from "../../src/utils/storage.utils"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -55,7 +51,7 @@ export default function EpdsSurvey() {
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
 
-  const source = getInLocalStorage(STORAGE_SOURCE)
+  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   const [getEpdsSurveyQuery] = useLazyQuery(
@@ -130,7 +126,7 @@ export default function EpdsSurvey() {
   }
 
   useEffect(() => {
-    setLocaleSelected(getLocaleInLocalStorage())
+    setLocaleSelected(StorageUtils.getLocaleInLocalStorage())
   }, [])
 
   useEffect(() => {
@@ -250,7 +246,7 @@ export default function EpdsSurvey() {
   }
 
   const getExplanations = () => {
-    const labels = getLabelsInLocalStorage()
+    const labels = StorageUtils.getLabelsInLocalStorage()
     return labels?.consigne ? labels.consigne : Labels.surveyExplanations
   }
 

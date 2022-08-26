@@ -9,19 +9,16 @@ import {
 } from "../../src/constants/constants"
 import { } from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
-import {
-  getInLocalStorage,
-  getLocaleInLocalStorage,
-} from "../../src/utils/main.utils"
+import * as StorageUtils from "../../src/utils/storage.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 
 export default function ContactConfirmed() {
   const router = useRouter()
 
-  const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
-  const websiteSource = getInLocalStorage(STORAGE_SOURCE)
-  const localeSelected = getLocaleInLocalStorage()
+  const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
+  const websiteSource = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+  const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
   const confirmedImage = (contactTypeConfirmed) => (
     <img

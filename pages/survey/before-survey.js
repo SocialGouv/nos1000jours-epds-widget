@@ -5,7 +5,7 @@ import { client, GET_RESUTLATS_COUNT } from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
-import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
+import * as StorageUtils from "../../src/utils/storage.utils"
 
 export default function BeforeSurvey() {
   const router = useRouter()
@@ -19,7 +19,7 @@ export default function BeforeSurvey() {
     TOTAL_RESULTS_COUNT_DEFAULT
   )
 
-  const localeSelected = getLocaleInLocalStorage()
+  const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   useEffect(() => {

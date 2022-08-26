@@ -3,12 +3,12 @@ import { clearIntentionsData } from "../../../utils/ab-testing/measuring-intenti
 import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
-import { getInLocalStorage } from "../../../utils/main.utils"
 import { STORAGE_TEST_ABC } from "../../../constants/constants"
 import {
   generateRandomTest,
   TEST,
 } from "../../../utils/ab-testing/ab-testing.utils"
+import * as StorageUtils from "../../../utils/storage.utils"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 

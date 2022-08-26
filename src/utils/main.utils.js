@@ -1,5 +1,4 @@
 import { Spinner } from "react-bootstrap"
-import { STORAGE_LABELS, STORAGE_LOCALE } from "../constants/constants"
 import { Labels } from "../constants/specificLabels"
 import Moment from "moment"
 import "moment/locale/fr"
@@ -39,20 +38,6 @@ export const getColorIconAndTextByMood = (scoreLevel) => {
     moodText: text,
     moodColor: color,
   }
-}
-
-export function getInLocalStorage(key) {
-  if (typeof window !== "undefined") return localStorage.getItem(key)
-}
-
-export function getLocaleInLocalStorage() {
-  const storageLocale = getInLocalStorage(STORAGE_LOCALE)
-  if (storageLocale) return JSON.parse(storageLocale)
-}
-
-export function getLabelsInLocalStorage() {
-  const storageLabels = getInLocalStorage(STORAGE_LABELS)
-  if (storageLabels) return JSON.parse(storageLabels)
 }
 
 export function jsonParse(data) {

@@ -3,12 +3,13 @@ import { EPDS_SAVE_COMMENTS } from "@socialgouv/nos1000jours-lib"
 import { useEffect, useState } from "react"
 import { client } from "../../../../apollo-client"
 import { STORAGE_SCORE } from "../../../constants/constants"
-import { getInLocalStorage, LoaderFoButton } from "../../../utils/main.utils"
+import { LoaderFoButton } from "../../../utils/main.utils"
 import {
   contacterAToutMoment,
   trackerForIntentions,
 } from "../../../utils/ab-testing/measuring-intentions.utils"
 import { ContactMamanBlues } from "../../results/ContactMamanBlues"
+import * as StorageUtils from "../../../utils/storage.utils"
 
 export const TextAreaToSendDetails = ({
   scoreLevel,
@@ -34,7 +35,7 @@ export const TextAreaToSendDetails = ({
   })
 
   const sendCommentsRequest = async () => {
-    const score = parseInt(getInLocalStorage(STORAGE_SCORE))
+    const score = parseInt(StorageUtils.getInLocalStorage(STORAGE_SCORE))
 
     await sendCommentsQuery({
       variables: {
