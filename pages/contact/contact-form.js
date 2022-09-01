@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from "react"
-import { Col, Spinner } from "react-bootstrap"
+import { Col } from "react-bootstrap"
 import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import {
@@ -16,6 +16,7 @@ import {
   stringIsNotNullNorEmpty,
   phoneNumberFormatting,
   convertDateToString,
+  LoaderFoButton,
 } from "../../src/utils/main.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
@@ -232,17 +233,13 @@ export default function ContactForm() {
             disabled={!canSend || isLoading}
           >
             Valider
-            {isLoading ? <Loader /> : null}
+            {isLoading ? <LoaderFoButton /> : null}
           </button>
         </Col>
       </form>
     </ContentLayout>
   )
 }
-
-const Loader = () => (
-  <Spinner animation="border" size="sm" className="margin-start-10" />
-)
 
 const InputError = ({ error }) => (
   <p id="text-input-error-desc-error" className="fr-error-text">

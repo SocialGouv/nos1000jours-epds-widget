@@ -14,9 +14,9 @@ import {
   getInLocalStorage,
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
-import { MeasuringIntentions } from "../src/components/results/intentions/MeasuringIntentions"
-import { TEST } from "../src/utils/measuring-intentions.utils"
 import { useState } from "react"
+import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
+import { TEST } from "../src/utils/ab-testing/measuring-intentions.utils"
 
 export default function Results() {
   const router = useRouter()

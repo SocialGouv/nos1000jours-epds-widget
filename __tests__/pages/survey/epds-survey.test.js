@@ -1,7 +1,7 @@
 import {
   checkQuestionsOrder,
   totalScoreFromResults,
-} from "../pages/survey/epds-survey"
+} from "../../../pages/survey/epds-survey"
 
 describe("Questionnaire", () => {
   describe("Vérification de l'ordre des questions", () => {

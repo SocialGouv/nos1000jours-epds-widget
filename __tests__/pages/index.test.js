@@ -1,4 +1,4 @@
-import { getSlogan, getStartButtonText } from "../pages"
+import { getSlogan, getStartButtonText } from "../../pages"
 
 describe("Page d'accueil", () => {
   describe("Affichage du slogan", () => {

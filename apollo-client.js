@@ -42,11 +42,70 @@ export const GET_TEMOIGNAGES_CHIFFRES = gql`
   }
 `
 
+/**
+ * Nombre total de tests EPDS passés
+ */
 export const GET_RESUTLATS_COUNT = gql`
   query resultatsCount {
     reponsesEpdsConnection {
       aggregate {
         count
+      }
+    }
+  }
+`
+
+export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
+  mutation (
+    $genre: ENUM_INFORMATIONSDEMOGRAPHIQUES_GENRE
+    $age: ENUM_INFORMATIONSDEMOGRAPHIQUES_AGE
+    $entourageDispo: ENUM_INFORMATIONSDEMOGRAPHIQUES_ENTOURAGE_DISPO
+    $situation: String
+    $codePostal: String
+    $ville: String
+    $departement: String
+    $region: String
+    $reponsesEpds: ID
+  ) {
+    createInformationsDemographique(
+      input: {
+        data: {
+          genre: $genre
+          age: $age
+          entourage_dispo: $entourageDispo
+          situation: $situation
+          code_postal: $codePostal
+          ville: $ville
+          departement: $departement
+          region: $region
+          reponses_epds: $reponsesEpds
+        }
+      }
+    ) {
+      informationsDemographique {
+        id
+        created_at
+      }
+    }
+  }
+`
+
+/**
+ * MAJ de l'ID du résultats EPDS associé au formulaire des informationis démographiques
+ * @param {ID} infoDemographiqueId ID du formulaire Informations Démographiques
+ * @param {ID} reponsesEpdsId ID de la réponse EPDS
+ */
+export const UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES = gql`
+  mutation ($infoDemographiqueId: ID!, $reponsesEpdsId: ID) {
+    updateInformationsDemographique(
+      input: {
+        where: { id: $infoDemographiqueId }
+        data: { reponses_epds: $reponsesEpdsId }
+      }
+    ) {
+      informationsDemographique {
+        id
+        created_at
       }
     }
   }

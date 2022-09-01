@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { displayComponentsByTest } from "../../../src/components/results/intentions/MeasuringIntentions"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,
@@ -11,7 +10,8 @@ import {
   estLePlusAdapte,
   nePasSavoir,
   seRapprocheDeLaRealite,
-} from "../../../src/utils/measuring-intentions.utils"
+} from "../../../src/utils/ab-testing/measuring-intentions.utils"
+import { displayComponentsByTest } from "../../../src/components/ab-testing/intentions/MeasuringIntentions"
 
 describe("UI de MeasuringIntentions", () => {
   const findLabelEstLePlusAdapte = (value) =>

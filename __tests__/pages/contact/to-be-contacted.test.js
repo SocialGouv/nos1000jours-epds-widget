@@ -1,8 +1,8 @@
 import {
   convertHoursListInString,
   isValidButtonEnabled,
-} from "../../pages/contact/to-be-contacted"
-import { RequestContact } from "../../src/constants/constants"
+} from "../../../pages/contact/to-be-contacted"
+import { RequestContact } from "../../../src/constants/constants"
 
 describe("Demande de contact", () => {
   describe("Validité des choix seléctionnés", () => {

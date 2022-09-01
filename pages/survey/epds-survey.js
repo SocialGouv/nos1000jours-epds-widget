@@ -1,7 +1,10 @@
 import { gql, useLazyQuery, useMutation } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect, useRef, useState } from "react"
-import { client } from "../../apollo-client"
+import {
+  client,
+  UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
+} from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { SurveyCarousel } from "../../src/components/survey/SurveyCarousel"
 import * as Icon from "react-bootstrap-icons"
@@ -34,6 +37,7 @@ import {
   EPDS_SAVE_RESPONSES_FOR_WIDGET,
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,
 } from "@socialgouv/nos1000jours-lib"
+import { updateInfoDemographic } from "../ab-testing/demographic-data-survey"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -92,9 +96,25 @@ export default function EpdsSurvey() {
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
 
+      updateInfoDemographic(
+        updateEpdsIdInInfosQuery,
+        data.createReponsesEpdsWidget.id
+      )
       goToResults()
     },
   })
+
+  const [updateEpdsIdInInfosQuery] = useMutation(
+    UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
+    {
+      client: client,
+      onCompleted: () => {
+        // TODO:
+        console.log("OK")
+      },
+      onError: (err) => console.error(err),
+    }
+  )
 
   const goToResults = async (event) => {
     router.push({

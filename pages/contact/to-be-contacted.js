@@ -23,6 +23,7 @@ import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
   getLocaleInLocalStorage,
   readSourceInUrl,
+  updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
 import {
   ACTION,
@@ -140,14 +141,6 @@ export default function ToBeContacted() {
     </ButtonGroup>
   )
 
-  const updateItemSelected = (list, itemSelected) =>
-    list.map((item) => {
-      if (item.id === itemSelected.id)
-        return { ...item, isChecked: !itemSelected.isChecked }
-
-      return item
-    })
-
   const buttonGroupHours = () => (
     <ToggleButtonGroup
       type="checkbox"
@@ -162,7 +155,7 @@ export default function ToBeContacted() {
           name="checkbox-hours"
           value={type.id}
           onChange={(e) =>
-            setContactHours(updateItemSelected(contactHours, type))
+            setContactHours(updateRadioButtonSelectedInList(contactHours, type))
           }
         >
           <Row className="card-center-img">

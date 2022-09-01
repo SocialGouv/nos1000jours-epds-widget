@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
-import { convertStringWithfirstPartInBold } from "../../../utils/main.utils"
 import {
-  saveIsIntentionVersQuiSeTourner,
   trackerForIntentions,
-} from "../../../utils/measuring-intentions.utils"
+  saveIsIntentionVersQuiSeTourner,
+} from "../../../utils/ab-testing/measuring-intentions.utils"
+import { convertStringWithfirstPartInBold } from "../../../utils/main.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_MEDIUM,
 } from "../../../utils/score-level.utils"
-import { ContactMamanBlues } from "../ContactMamanBlues"
+import { ContactMamanBlues } from "../../results/ContactMamanBlues"
 import { FormToSendMail } from "./FormToSendMail"
 import { TextAreaToSendDetails } from "./TextAreaToSendDetails"
 
