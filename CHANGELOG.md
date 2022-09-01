@@ -1,3 +1,19 @@
+# [1.26.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.25.1...v1.26.0) (2022-09-01)
+
+
+### Features
+
+* **bouton group:** refacto ([9ce2ebd](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/9ce2ebd3927e8826c1927ea6b670435d2bcaf06f))
+* **demographie:** autocomplete + refacto style ([26b57d5](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/26b57d59268b0641d1f06c461932609e26a01a93))
+* **demographie:** envoi du quesitonnaire ([d7f5181](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d7f518179b62f737f21d7bb656f47a0d22c78672))
+* **demographie:** envoie des réponses ([03bbd8b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/03bbd8be34199a582ec94909f591e869174425be))
+* **demographie:** maj ID ([f72e8db](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f72e8dba3a13b29e7df1ff6cce6f9e1e9d22b210))
+* **démographie:** création de l'écran ([eda5465](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/eda54659d7f459cbfa2d7fa60af212f3ca86adbc))
+* **démographie:** débloquage du bouton envoyé ([2c31f28](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2c31f286c51a7c7808b7240b665e55bafcd6b429))
+* **démographie:** utilisation des data utilisateur ([5fc6914](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5fc6914459cde3e03a9ab7edf6d343af4122706c))
+* **intentions:** refacto ([03d4fce](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/03d4fcea2aa23a1d5aa622e61c7fcdcecfc3e129))
+* **intentions:** refacto ([7e511b5](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7e511b5778f82d0b29ffd68dfc19cab741a6c898))
+
 ## [1.25.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.25.0...v1.25.1) (2022-08-09)
 
 
