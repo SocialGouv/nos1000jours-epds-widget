@@ -165,9 +165,6 @@ describe("Utils", () => {
 
         expect(nextButton).toBeInTheDocument()
         fireEvent.click(nextButton)
-        // expect(router.push).toHaveBeenCalledWith({
-        //   pathname: resultsPath,
-        // })
       })
     })
   })
