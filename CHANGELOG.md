@@ -1,3 +1,16 @@
+# [1.27.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.26.0...v1.27.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* **demographie:** sonarcloud ([a072adf](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a072adf635599ae15b731125277515d86b4c304c))
+
+
+### Features
+
+* **test:** intent test C par défaut ([0b58d61](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0b58d616c5182795cdb665917eabcc27bbfb2c75))
+* **test:** refacto et suppression intentions ([3bd79a1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3bd79a16a2875d1953a0fc69cf04509bf8694093))
+
 # [1.26.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.25.1...v1.26.0) (2022-09-01)
 
 
