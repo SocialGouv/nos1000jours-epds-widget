@@ -15,12 +15,11 @@ import {
   getLocaleInLocalStorage,
 } from "../src/utils/main.utils"
 import { useState } from "react"
-//import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
+import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
 
 export default function Results() {
   const router = useRouter()
-  //const [testId, setTestId] = useState(null)
-  //const [isTestStarted, setTestStarted] = useState(false)
+  const [isTestStarted, setTestStarted] = useState(false)
 
   const localeSelected = getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
@@ -57,14 +56,11 @@ export default function Results() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
-      {/* <MeasuringIntentions
+      <MeasuringIntentions
         scoreLevel={scoreLevelForMood}
-        setTestId={setTestId}
         setTestStarted={setTestStarted}
-      /> 
+      />
       {!isTestStarted && <DescriptionAndConclusion />}
-      */}
-      <DescriptionAndConclusion />
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
 
       <button

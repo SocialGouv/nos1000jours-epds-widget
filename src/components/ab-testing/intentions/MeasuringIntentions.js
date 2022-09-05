@@ -11,23 +11,19 @@ import { STORAGE_TEST_ABC } from "../../../constants/constants"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
-export const MeasuringIntentions = ({
-  scoreLevel,
-  setTestId,
-  setTestStarted,
-}) => {
-  const [test, setTest] = useState()
+export const MeasuringIntentions = ({ scoreLevel, setTestStarted }) => {
+  // Test C visible par défaut si l'on utilise pas l'AB testing
+  const [test, setTest] = useState(TEST.C)
   const [component, setComponent] = useState()
   const [showBackButton, setShowBackButton] = useState(false)
 
-  useEffect(() => {
-    const id = getInLocalStorage(STORAGE_TEST_ABC) ?? generateRandomTest()
-    setTestId(id)
-    setTest(id)
-    localStorage.setItem(STORAGE_TEST_ABC, id)
-
-    trackerClick(CATEG.test, `${ACTION.parcours}${id}`)
-  }, [])
+  // Utile uniquement lors de l'AB testing
+  // useEffect(() => {
+  //   const id = getInLocalStorage(STORAGE_TEST_ABC) ?? generateRandomTest()
+  //   setTest(id)
+  //   localStorage.setItem(STORAGE_TEST_ABC, id)
+  //   trackerClick(CATEG.test, `${ACTION.parcours}${id}`)
+  // }, [])
 
   useEffect(() => {
     clearIntentionsData()
@@ -61,12 +57,10 @@ export const MeasuringIntentions = ({
     setShowBackButton(false)
   }
 
-  return (
-    <div className="measure">
-      {TEST_NUMBER_ENABLED === "true" ? <div>Test {test}</div> : null}
-      {component}
-    </div>
-  )
+  const showTestNumber = () =>
+    TEST_NUMBER_ENABLED === "true" ? <div>Test {test}</div> : null
+
+  return <div className="measure">{component}</div>
 }
 
 const getRandomInt = (max) => {
