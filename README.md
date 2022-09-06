@@ -40,3 +40,16 @@ Voici la liste :
 ## Utilisation du chat
 
 Pastek utilise Zammad chat : https://admin-docs.zammad.org/en/latest/channels/chat.html
+
+## AB testing
+
+Dans le cas où l'on souhaite avoir l'AB testing sur les intentions, il faut ajoute un `useEffect` dans `MeasuringIntentions.js`
+```
+  // Utile uniquement lors de l'AB testing
+  useEffect(() => {
+    const id = getInLocalStorage(STORAGE_TEST_ABC) ?? generateRandomTest()
+    setTest(id)
+    localStorage.setItem(STORAGE_TEST_ABC, id)
+    trackerClick(CATEG.test, `${ACTION.parcours}${id}`)
+  }, [])
+```

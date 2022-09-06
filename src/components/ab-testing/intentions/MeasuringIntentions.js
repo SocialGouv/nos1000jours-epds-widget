@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { clearIntentionsData } from "../../../utils/ab-testing/measuring-intentions.utils"
-import { ACTION, CATEG, trackerClick } from "../../../utils/tracker.utils"
 import { BeCloseToRealityQuestion } from "./BeCloseToRealityQuestion"
 import * as Icon from "react-bootstrap-icons"
-import { STORAGE_TEST_ABC } from "../../../constants/constants"
-import {
-  generateRandomTest,
-  TEST,
-} from "../../../utils/ab-testing/ab-testing.utils"
-import * as StorageUtils from "../../../utils/storage.utils"
+import { TEST } from "../../../utils/ab-testing/ab-testing.utils"
 
 const TEST_NUMBER_ENABLED = process.env.NEXT_PUBLIC_TEST_NUMBER_ENABLED
 
@@ -17,14 +11,6 @@ export const MeasuringIntentions = ({ scoreLevel, setTestStarted }) => {
   const [test, setTest] = useState(TEST.C)
   const [component, setComponent] = useState()
   const [showBackButton, setShowBackButton] = useState(false)
-
-  // Utile uniquement lors de l'AB testing
-  // useEffect(() => {
-  //   const id = getInLocalStorage(STORAGE_TEST_ABC) ?? generateRandomTest()
-  //   setTest(id)
-  //   localStorage.setItem(STORAGE_TEST_ABC, id)
-  //   trackerClick(CATEG.test, `${ACTION.parcours}${id}`)
-  // }, [])
 
   useEffect(() => {
     clearIntentionsData()
