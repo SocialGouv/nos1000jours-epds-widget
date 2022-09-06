@@ -1,3 +1,21 @@
+# [1.28.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.27.0...v1.28.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* **demographie:** retours PR ([a164c1c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a164c1c8897e6f2dd72006f855b4c4783d991c85))
+
+
+### Features
+
+* **demographie:** ajout trackers ([f174221](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f1742216be99b620eabeffdbdc56af86674f40de))
+* **demographie:** amerliorations ([d512590](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d512590dfc1ce93af40866ecdbfdde8bfd51c6cc))
+* **demographie:** retours PR ([a59b5af](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a59b5afea93ab044643d911adb1185d65f01e870))
+* **demographie:** test B ([2dd73a6](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2dd73a6f3fc81fab97a4ef1711c2aceecf311708))
+* **demographie:** test C ([5d4c0d1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5d4c0d1bc51d7d3e45090769e5e404f9559205c6))
+* **demographie:** todo ([497966d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/497966d82ebcf675a6f0435805cec2e67799e124))
+* **refacto:** fichiers utils ([e1c6aba](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e1c6aba7f04ae5a3e37c3c47fe75aacd5e190021))
+
 # [1.27.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.26.0...v1.27.0) (2022-09-05)
 
 
