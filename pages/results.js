@@ -13,6 +13,10 @@ import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
 import { useState } from "react"
 import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
+import {
+  SCORE_LEVEL_BAD,
+  SCORE_LEVEL_MEDIUM,
+} from "../src/utils/score-level.utils"
 
 export default function Results() {
   const router = useRouter()
@@ -53,10 +57,13 @@ export default function Results() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
-      <MeasuringIntentions
-        scoreLevel={scoreLevelForMood}
-        setTestStarted={setTestStarted}
-      />
+      {scoreLevelForTexts == SCORE_LEVEL_MEDIUM ||
+        scoreLevelForTexts == SCORE_LEVEL_BAD ? (
+        <MeasuringIntentions
+          scoreLevel={scoreLevelForMood}
+          setTestStarted={setTestStarted}
+        />
+      ) : null}
       {!isTestStarted && <DescriptionAndConclusion />}
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
 
