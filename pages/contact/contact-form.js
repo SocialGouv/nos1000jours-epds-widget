@@ -11,13 +11,12 @@ import {
   STORAGE_SOURCE,
 } from "../../src/constants/constants"
 import {
-  getInLocalStorage,
-  getLocaleInLocalStorage,
   stringIsNotNullNorEmpty,
   phoneNumberFormatting,
   convertDateToString,
   LoaderFoButton,
 } from "../../src/utils/main.utils"
+import * as StorageUtils from "../../src/utils/storage.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
 import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"
@@ -35,10 +34,10 @@ export default function ContactForm() {
   const [numberOfChildren, setNumberOfChildren] = useState(0)
   const [isLoading, setLoading] = useState(false)
 
-  const contactType = getInLocalStorage(STORAGE_CONTACT_TYPE)
-  const contactHours = getInLocalStorage(STORAGE_CONTACT_HOURS)
-  const websiteSource = getInLocalStorage(STORAGE_SOURCE)
-  const localeSelected = getLocaleInLocalStorage()
+  const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
+  const contactHours = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
+  const websiteSource = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+  const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
   const requiredField = <p className="required-field">{Form.required}</p>
 

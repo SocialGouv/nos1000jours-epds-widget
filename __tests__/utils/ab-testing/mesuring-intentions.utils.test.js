@@ -1,7 +1,5 @@
-import {
-  showContactMamanBlues,
-  TEST,
-} from "../../../src/utils/ab-testing/measuring-intentions.utils"
+import { TEST } from "../../../src/utils/ab-testing/ab-testing.utils"
+import { showContactMamanBlues } from "../../../src/utils/ab-testing/measuring-intentions.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,

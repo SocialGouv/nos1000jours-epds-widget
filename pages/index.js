@@ -22,6 +22,8 @@ import {
 } from "@socialgouv/nos1000jours-lib"
 import { LocaleButton } from "../src/components/LocaleButton"
 import { CarouselCustom } from "../src/components/CarouselCustom"
+import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
+import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
 
 export default function Home() {
   const router = useRouter()
@@ -64,9 +66,10 @@ export default function Home() {
 
   const startSurvey = () => {
     trackerClick(CATEG.home, EVENT_CLICK, `Commencer le test - ${source}`)
+    DemographicDataUtils.trackerForDemographie("Home - Commencer")
     localStorage.setItem(STORAGE_SOURCE, source)
-    localStorage.removeItem(STORAGE_TEST_ABC)
 
+    localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
     goToBeforeSurvey()
   }
 

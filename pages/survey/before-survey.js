@@ -4,7 +4,8 @@ import { useEffect, useState } from "react"
 import { client, GET_RESUTLATS_COUNT } from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
-import { getLocaleInLocalStorage } from "../../src/utils/main.utils"
+import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
+import * as StorageUtils from "../../src/utils/storage.utils"
 
 export default function BeforeSurvey() {
   const router = useRouter()
@@ -18,7 +19,8 @@ export default function BeforeSurvey() {
     TOTAL_RESULTS_COUNT_DEFAULT
   )
 
-  const localeSelected = getLocaleInLocalStorage()
+  const localeSelected = StorageUtils.getLocaleInLocalStorage()
+  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   useEffect(() => {
     const resultatsCountQuery = async () => {
@@ -27,10 +29,21 @@ export default function BeforeSurvey() {
     resultatsCountQuery()
   }, [])
 
-  const goToEpdseSurvey = async (event) => {
+  const goToEpdsSurvey = async () => {
+    DemographicDataUtils.trackerForDemographie(
+      "Informations avant EPDS - Commencer le questionnaire"
+    )
+
     router.push({
       pathname: "/survey/epds-survey",
     })
+  }
+
+  const goToDemographicSurvey = async () => {
+    DemographicDataUtils.trackerForDemographie(
+      `Informations avant EPDS - ${demographicData?.buttonLabelInBeforeSurvey}`
+    )
+    DemographicDataUtils.goToDemographicSurvey(router)
   }
 
   const [getResultatsCountInDatabase] = useLazyQuery(GET_RESUTLATS_COUNT, {
@@ -87,8 +100,16 @@ export default function BeforeSurvey() {
         </div>
 
         <div className="button-start-survey">
-          <button className="fr-btn fr-btn--lg" onClick={goToEpdseSurvey}>
-            Commencer le questionnaire
+          <button
+            className="fr-btn fr-btn--lg"
+            onClick={
+              demographicData?.buttonLabelInBeforeSurvey
+                ? goToDemographicSurvey
+                : goToEpdsSurvey
+            }
+          >
+            {demographicData?.buttonLabelInBeforeSurvey ??
+              "Commencer le questionnaire"}
           </button>
         </div>
       </div>

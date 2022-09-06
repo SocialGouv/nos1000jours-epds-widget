@@ -1,3 +1,8 @@
+import { STORAGE_TEST_ABC, STORAGE_RESULTS_ID } from "../../constants/constants"
+import { TEST } from "./ab-testing.utils"
+import { ACTION, CATEG, trackerClick } from "../tracker.utils"
+import * as StorageUtils from "../storage.utils"
+
 export const genderValues = [
   {
     id: "femme",
@@ -97,4 +102,39 @@ export const convertArraySituationsToString = (situations) => {
   })
 
   return situationsString
+}
+
+/**
+ * @returns renvoie les nouveaux labels des boutons
+ */
+export const uiAdaptationForInfoDemographic = () => {
+  const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
+  if (test === TEST.B) {
+    return {
+      isBeforeEpds: true,
+      buttonLabelInBeforeSurvey: "Suivant",
+      buttonLabelInInfoDemographicSurvey:
+        "Envoyer et commencer le questionnaire",
+    }
+  }
+  if (test === TEST.C) {
+    return {
+      isAfterEpds: true,
+      buttonLabelInInfoDemographicSurvey:
+        "Envoyer et afficher le résultat du questionnaire",
+    }
+  }
+
+  return null
+}
+
+export const goToDemographicSurvey = async (router, epdsTestID) => {
+  if (epdsTestID) localStorage.setItem(STORAGE_RESULTS_ID, epdsTestID)
+
+  router.push({ pathname: "/ab-testing/demographic-data-survey" })
+}
+
+export const trackerForDemographie = (label) => {
+  const testId = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
+  trackerClick(CATEG.test, `${ACTION.parcours}${testId}`, label)
 }

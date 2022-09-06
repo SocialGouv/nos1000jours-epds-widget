@@ -6,7 +6,10 @@ import { client, SAVE_INFORMATION_DEMOGRAPHIQUES } from "../../apollo-client"
 import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
-import { STORAGE_TEST_DEMOGRAPHIC_ID } from "../../src/constants/constants"
+import {
+  STORAGE_RESULTS_ID,
+  STORAGE_TEST_DEMOGRAPHIC_ID,
+} from "../../src/constants/constants"
 import {
   ageValues,
   convertArraySituationsToString,
@@ -15,15 +18,16 @@ import {
   situationValues,
 } from "../../src/utils/ab-testing/demographic-data.utils"
 import {
-  getLocaleInLocalStorage,
   LoaderFoButton,
-  updateRadioButtonSelectedInList as updateButtonSelectedInList,
+  updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
+import * as StorageUtils from "../../src/utils/storage.utils"
+import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 
-export default function DemographicDataSurvey({ epdsTestID }) {
+export default function DemographicDataSurvey() {
   const router = useRouter()
 
-  const localeSelected = getLocaleInLocalStorage()
+  const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const [showDataDetails, setShowDataDetails] = useState(false)
   const [isValudateButtonEnabled, setValudateButtonEnabled] = useState(true)
   const [isLoading, setLoading] = useState(false)
@@ -33,6 +37,9 @@ export default function DemographicDataSurvey({ epdsTestID }) {
   const [situationItems, setSituationItems] = useState(situationValues)
   const [entourageItems, setEntourageItems] = useState(entourageValues)
   const [residenceValue, setResidenceValue] = useState()
+
+  const epdsTestID = StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
+  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   useEffect(() => {
     const isCompleted = checkIsFormCompleted(
@@ -54,7 +61,7 @@ export default function DemographicDataSurvey({ epdsTestID }) {
           id={`radio-${item.id}`}
           value={item.value}
           onChange={() =>
-            setItems(updateButtonSelectedInList(defaultData, item))
+            setItems(updateRadioButtonSelectedInList(defaultData, item))
           }
         >
           {item.text}
@@ -126,6 +133,18 @@ export default function DemographicDataSurvey({ epdsTestID }) {
     setShowDataDetails(!showDataDetails)
   }
 
+  const goToEpdsSurvey = async () => {
+    router.push({
+      pathname: "/survey/epds-survey",
+    })
+  }
+
+  const goToResults = async () => {
+    router.push({
+      pathname: "/results",
+    })
+  }
+
   const [sendInfosQuery] = useMutation(SAVE_INFORMATION_DEMOGRAPHIQUES, {
     client: client,
     onCompleted: (data) => {
@@ -134,6 +153,9 @@ export default function DemographicDataSurvey({ epdsTestID }) {
       const id =
         data.createInformationsDemographique.informationsDemographique.id
       if (!epdsTestID) localStorage.setItem(STORAGE_TEST_DEMOGRAPHIC_ID, id)
+
+      if (demographicData?.isAfterEpds) goToResults()
+      else goToEpdsSurvey()
     },
     onError: (err) => {
       console.error(err)
@@ -162,6 +184,13 @@ export default function DemographicDataSurvey({ epdsTestID }) {
         reponsesEpds: epdsTestID,
       },
     })
+
+    const trackerLabel = demographicData?.isAfterEpds
+      ? demographicData?.buttonLabelInInfoDemographicSurvey
+      : "Envoyer"
+    DemographicDataUtils.trackerForDemographie(
+      `Questionnaire démographique - ${trackerLabel}`
+    )
   }
 
   return (
@@ -207,7 +236,7 @@ export default function DemographicDataSurvey({ epdsTestID }) {
             disabled={!isValudateButtonEnabled}
             onClick={sendData}
           >
-            Envoyer
+            {demographicData?.buttonLabelInInfoDemographicSurvey ?? "Envoyer"}
           </button>
           {isLoading ? <LoaderFoButton /> : null}
         </div>
@@ -247,7 +276,9 @@ export const updateInfoDemographic = (
   updateEpdsIdInInfosQuery,
   reponsesEpdsID
 ) => {
-  const infoDemographicID = localStorage.getItem(STORAGE_TEST_DEMOGRAPHIC_ID)
+  const infoDemographicID = StorageUtils.getInLocalStorage(
+    STORAGE_TEST_DEMOGRAPHIC_ID
+  )
 
   const updateId = async () => {
     await updateEpdsIdInInfosQuery({
@@ -258,6 +289,7 @@ export const updateInfoDemographic = (
     })
   }
 
+  localStorage.removeItem(STORAGE_RESULTS_ID)
   if (infoDemographicID) {
     updateId()
     localStorage.removeItem(STORAGE_TEST_DEMOGRAPHIC_ID)

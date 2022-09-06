@@ -13,7 +13,6 @@ import { Form } from "../../../constants/specificLabels"
 import {
   convertDateToString,
   getColorIconAndTextByMood,
-  getInLocalStorage,
   jsonParse,
   LoaderFoButton,
 } from "../../../utils/main.utils"
@@ -22,6 +21,7 @@ import {
   trackerForIntentions,
 } from "../../../utils/ab-testing/measuring-intentions.utils"
 import { ContactMamanBlues } from "../../results/ContactMamanBlues"
+import * as StorageUtils from "../../../utils/storage.utils"
 
 /**
  * @param {number} scoreLevel Niveau du score (1, 2, 3) obtenu lors du passage de l'EPDS
@@ -41,7 +41,9 @@ export const FormToSendMail = ({
   const [isLoading, setLoading] = useState(false)
   const [queryShareResponses, setQueryShareResponses] = useState()
 
-  const resultsBoard = jsonParse(getInLocalStorage(STORAGE_RESULTS_BOARD))
+  const resultsBoard = jsonParse(
+    StorageUtils.getInLocalStorage(STORAGE_RESULTS_BOARD)
+  )
   const queryForPartage = forHimself
     ? EPDS_SEND_MAIL_HIMSELF
     : EPDS_SEND_MAIL_ENTOURAGE
