@@ -1,3 +1,10 @@
+## [1.28.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.28.0...v1.28.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* **intentions:** bloc si score < 11 ([99edbcc](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/99edbcc30cbc7827a9b046aeb931bcd22351c8f4))
+
 # [1.28.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.27.0...v1.28.0) (2022-09-06)
 
 
