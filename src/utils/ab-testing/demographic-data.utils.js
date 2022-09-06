@@ -105,7 +105,7 @@ export const convertArraySituationsToString = (situations) => {
 }
 
 /**
- * @returns renvoi les nouveaux labels des boutons
+ * @returns renvoie les nouveaux labels des boutons
  */
 export const uiAdaptationForInfoDemographic = () => {
   const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
