@@ -1,3 +1,10 @@
+## [1.28.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.28.1...v1.28.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @dataesr/react-dsfr to v3 ([47d22d5](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/47d22d5650f95efb8e60b76d1e78bfb486294b76))
+
 ## [1.28.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.28.0...v1.28.1) (2022-09-06)
 
 
