@@ -1,3 +1,17 @@
+# [1.29.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.28.2...v1.29.0) (2022-09-07)
+
+
+### Bug Fixes
+
+* **chat:** retours PR ([85c9bfb](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/85c9bfbed960858fe3ba009b2bb29859a0ea7e4a))
+* **dependencies:** maj ([f8f0749](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f8f0749b5a8fe53ea05926f56feed8eea7499c02))
+* **dependencies:** revert update ([a126936](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a126936c97d1d02df08f0c978482faaed419dbfe))
+
+
+### Features
+
+* **chat:** activation chat ([92420da](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/92420da2f96cb63dab1624ce8808f2cb155f008f))
+
 ## [1.28.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.28.1...v1.28.2) (2022-09-07)
 
 
