@@ -1362,7 +1362,7 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@dataesr/react-dsfr@^3.1.6":
+"@dataesr/react-dsfr@^3.0.0":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/@dataesr/react-dsfr/-/react-dsfr-3.1.6.tgz#11181b87461e314fd183bb02d1f469b48b0a8def"
   integrity sha512-xNv2UkFBpMj9Rd4BVADyV6YiJ0chEsmj8B1wTRBHXZGWUSZrLik1JABxYRSIhF6cXgsFD/qRoc9uypSiVf/Avg==
