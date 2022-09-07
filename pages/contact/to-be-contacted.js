@@ -49,9 +49,9 @@ export default function ToBeContacted() {
 
   const [websiteSource, setWebsiteSource] = useState(false)
 
-  //const [showChatModal, setShowChatModal] = useState(false)
-  //const handleCloseChatModal = () => setShowChatModal(false)
-  //const handleShowChatModal = () => setShowChatModal(true)
+  const [showChatModal, setShowChatModal] = useState(false)
+  const handleCloseChatModal = () => setShowChatModal(false)
+  const handleShowChatModal = () => setShowChatModal(true)
 
   const [showEliseAbsentModal, setShowEliseAbsentModal] = useState(false)
   const handleCloseEliseAbsentModal = () => setShowEliseAbsentModal(false)
@@ -93,7 +93,7 @@ export default function ToBeContacted() {
 
     if (itemValueType == RequestContact.type.chat) {
       const isChatInactive = chatButtonElement.classList.contains("is-inactive")
-      isChatInactive ? handleShowEliseAbsentModal() : activeChat() //handleShowChatModal()
+      isChatInactive ? handleShowEliseAbsentModal() : handleShowChatModal()
     } else goToContactForm()
   }
 
@@ -123,14 +123,14 @@ export default function ToBeContacted() {
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
       <Col>
-        {/* Cacher le bouton Chat en attendant de résoudre le problème du chat
+        Cacher le bouton Chat en attendant de résoudre le problème du chat
         Maintenant par :
         <Row>
           {defaultContactTypes.byNow.map((type) => (
             <Col key={type.id}>{customToggleButton(type)}</Col>
           ))}
         </Row>
-        <br /> */}
+        <br />
         Selon mes disponibilités, par :
         <Row>
           {defaultContactTypes.byAvailabilities.map((type) => (
@@ -241,7 +241,6 @@ export default function ToBeContacted() {
       <Chat />
       {hideChatButton(setChatButtonElement)}
 
-      {/* Mis en commentaire pour démarrer le chat dès la validation du choix au lieux de passer par la modale de confirmation
       <Modal
         show={showChatModal}
         onHide={handleCloseChatModal}
@@ -253,7 +252,8 @@ export default function ToBeContacted() {
         </Modal.Header>
         <Modal.Body>
           Vous pouvez converser avec Elise entre 09h et 17h30 du Lundi au
-          Vendredi. Le chat va s'ouvrir une fois que vous validez votre choix.
+          Vendredi. Le chat va s'ouvrir une fois que vous aurez validé votre
+          choix.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseChatModal}>
@@ -263,7 +263,7 @@ export default function ToBeContacted() {
             Valider
           </Button>
         </Modal.Footer>
-      </Modal> */}
+      </Modal>
 
       <Modal
         show={showEliseAbsentModal}
@@ -276,8 +276,9 @@ export default function ToBeContacted() {
         </Modal.Header>
         <Modal.Body>
           Vous pouvez converser avec Elise entre 09h et 17h30 du Lundi au
-          Vendredi. Elle n'est pas joignable en ce moment. Vous pouvez lui laisser un
-          message par SMS ou par mail, elle vous répondra dès que possible.
+          Vendredi. Elle n'est pas joignable en ce moment. Vous pouvez lui
+          laisser un message par SMS ou par mail, elle vous répondra dès que
+          possible.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={closeInactiveChat}>
@@ -369,7 +370,9 @@ export const isValidButtonEnabled = (itemValueType, contactHours) => {
   const isHoursSelected =
     contactHours?.find((item) => item.isChecked) != undefined
 
-  return itemValueType == RequestContact.type.email ||
+  return (
+    itemValueType == RequestContact.type.email ||
     itemValueType == RequestContact.type.chat ||
     (itemValueType == RequestContact.type.sms && isHoursSelected)
+  )
 }
