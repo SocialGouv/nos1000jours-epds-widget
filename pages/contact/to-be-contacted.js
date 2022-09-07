@@ -241,7 +241,6 @@ export default function ToBeContacted() {
       <Chat />
       {hideChatButton(setChatButtonElement)}
 
-      {/* Mis en commentaire pour démarrer le chat dès la validation du choix au lieux de passer par la modale de confirmation */}
       <Modal
         show={showChatModal}
         onHide={handleCloseChatModal}
@@ -253,7 +252,8 @@ export default function ToBeContacted() {
         </Modal.Header>
         <Modal.Body>
           Vous pouvez converser avec Elise entre 09h et 17h30 du Lundi au
-          Vendredi. Le chat va s'ouvrir une fois que vous validez votre choix.
+          Vendredi. Le chat va s'ouvrir une fois que vous aurez validé votre
+          choix.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseChatModal}>
