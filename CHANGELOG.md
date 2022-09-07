@@ -1,3 +1,10 @@
+## [1.29.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.29.0...v1.29.1) (2022-09-07)
+
+
+### Bug Fixes
+
+* **intentions:** bloc intentions ([f9afc26](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f9afc26ba211984dab313959e5824f21d11cad11))
+
 # [1.29.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.28.2...v1.29.0) (2022-09-07)
 
 
