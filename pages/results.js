@@ -57,8 +57,8 @@ export default function Results() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
-      {scoreLevelForTexts == SCORE_LEVEL_MEDIUM ||
-        scoreLevelForTexts == SCORE_LEVEL_BAD ? (
+      {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
+        scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
         <MeasuringIntentions
           scoreLevel={scoreLevelForMood}
           setTestStarted={setTestStarted}
