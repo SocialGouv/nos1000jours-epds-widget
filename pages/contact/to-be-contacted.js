@@ -49,9 +49,10 @@ export default function ToBeContacted() {
 
   const [websiteSource, setWebsiteSource] = useState(false)
 
-  const [showChatModal, setShowChatModal] = useState(false)
-  const handleCloseChatModal = () => setShowChatModal(false)
-  const handleShowChatModal = () => setShowChatModal(true)
+  // TODO: supprimer complètement le chat
+  // const [showChatModal, setShowChatModal] = useState(false)
+  // const handleCloseChatModal = () => setShowChatModal(false)
+  // const handleShowChatModal = () => setShowChatModal(true)
 
   const [showEliseAbsentModal, setShowEliseAbsentModal] = useState(false)
   const handleCloseEliseAbsentModal = () => setShowEliseAbsentModal(false)
@@ -93,7 +94,7 @@ export default function ToBeContacted() {
 
     if (itemValueType == RequestContact.type.chat) {
       const isChatInactive = chatButtonElement.classList.contains("is-inactive")
-      isChatInactive ? handleShowEliseAbsentModal() : handleShowChatModal()
+      isChatInactive ? handleShowEliseAbsentModal() : activeChat() //handleShowChatModal()
     } else goToContactForm()
   }
 
@@ -123,14 +124,14 @@ export default function ToBeContacted() {
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
       <Col>
-        Cacher le bouton Chat en attendant de résoudre le problème du chat
+        {/* Cacher le bouton Chat en attendant de résoudre le problème du chat
         Maintenant par :
         <Row>
           {defaultContactTypes.byNow.map((type) => (
             <Col key={type.id}>{customToggleButton(type)}</Col>
           ))}
         </Row>
-        <br />
+        <br /> */}
         Selon mes disponibilités, par :
         <Row>
           {defaultContactTypes.byAvailabilities.map((type) => (
@@ -238,9 +239,10 @@ export default function ToBeContacted() {
         </button>
       </Col>
 
-      <Chat />
+      {/* <Chat /> */}
       {hideChatButton(setChatButtonElement)}
 
+      {/* Mis en commentaire pour démarrer le chat dès la validation du choix au lieux de passer par la modale de confirmation
       <Modal
         show={showChatModal}
         onHide={handleCloseChatModal}
@@ -263,7 +265,7 @@ export default function ToBeContacted() {
             Valider
           </Button>
         </Modal.Footer>
-      </Modal>
+        </Modal>*/}
 
       <Modal
         show={showEliseAbsentModal}
