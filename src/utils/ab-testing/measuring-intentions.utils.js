@@ -1,16 +1,12 @@
-import {
-  STORAGE_TEST_ABC,
-  STORAGE_TEST_VERS_QUI_SE_TOURNER,
-} from "../../constants/constants"
+import { STORAGE_TEST_VERS_QUI_SE_TOURNER } from "../../constants/constants"
 import { getColorIconAndTextByMood } from "../main.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,
   SCORE_LEVEL_MEDIUM,
 } from "../score-level.utils"
-import { ACTION, CATEG, trackerClick } from "../tracker.utils"
+import { CATEG, trackerClick } from "../tracker.utils"
 import { TEST } from "./ab-testing.utils"
-import * as StorageUtils from "../storage.utils"
 
 export const contacterAToutMoment =
   "Sachez qu’à tout moment vous pouvez contacter Elise."
