@@ -147,14 +147,8 @@ export const estProcheDeLaRealiteCommentaireByScoreLevel = (scoreLevel) => {
 }
 
 export const trackerForIntentions = (scoreLevel, label) => {
-  const testId = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
   const moodLevel = getColorIconAndTextByMood(scoreLevel).moodText
-
-  trackerClick(
-    CATEG.test,
-    `${ACTION.parcours}${testId}`,
-    `${moodLevel} - ${label}`
-  )
+  trackerClick(CATEG.intentions, moodLevel, label)
 }
 
 export const saveIsIntentionVersQuiSeTourner = (label) => {
