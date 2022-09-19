@@ -1,3 +1,12 @@
+## [1.29.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.29.1...v1.29.2) (2022-09-19)
+
+
+### Bug Fixes
+
+* **matomo:** parcours null ([c8f54ae](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c8f54aed4c24dc1d186735aa723184cd03d81a7d))
+* **matomo:** refacto ([1213ddb](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1213ddb866114ad6650a8a040b37d6e60912647d))
+* **matomo:** trackers intentions ([49aecd7](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/49aecd7d815d6d5f2239ac36b06432353f7c5b8c))
+
 ## [1.29.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.29.0...v1.29.1) (2022-09-07)
 
 
