@@ -66,14 +66,14 @@ export default function BeforeSurvey() {
         <div>Quelques informations à propos du questionnaire :</div>
 
         <div className="item-information">
-          <img src={IMG_PRO} alt="Icon profressionnel de santé" />
+          <img src={IMG_PRO} alt="" />
           <div>
             Ce questionnaire est utilisé par les <b>professionnels de santé.</b>
           </div>
         </div>
 
         <div className="item-information">
-          <img src={IMG_PARENTS} alt="Icone parent" />
+          <img src={IMG_PARENTS} alt="" />
           <div>
             Depuis son lancement en juillet 2021, les parents ont complété
             <b> {totalResultsCount.toLocaleString()} questionnaires </b>sur leur
@@ -82,7 +82,7 @@ export default function BeforeSurvey() {
         </div>
 
         <div className="item-information">
-          <img src={IMG_ACCOMPAGNEMENT} alt="Icon accompagnement" />
+          <img src={IMG_ACCOMPAGNEMENT} alt="" />
           <div>
             Grâce à ce questionnaire,
             <b> 41 personnes par mois sont accompagnées et orientées</b> vers

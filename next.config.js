@@ -1,5 +1,9 @@
 module.exports = {
   reactStrictMode: true,
+  i18n: {
+    locales: ["fr-FR"],
+    defaultLocale: "fr-FR",
+  },
   images: {
     domains: [
       "backoffice-env-1000jours-develop-91uqrt.dev.fabrique.social.gouv.fr",

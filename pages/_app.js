@@ -5,6 +5,7 @@ import { init } from "@socialgouv/matomo-next"
 import App from "next/app"
 import React from "react"
 import { ThemeProvider } from "react-bootstrap"
+import Head from "next/head"
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID
@@ -24,6 +25,14 @@ class MyApp extends App {
     return (
       <React.Fragment>
         <ThemeProvider theme={theme}>
+          <Head>
+            <title>1000 premiers jours</title>
+            <meta
+              property="og:title"
+              content="1000 premiers jours"
+              key="title"
+            />
+          </Head>
           <Component {...pageProps} />
         </ThemeProvider>
       </React.Fragment>
