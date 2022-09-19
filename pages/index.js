@@ -66,10 +66,10 @@ export default function Home() {
 
   const startSurvey = () => {
     trackerClick(CATEG.home, EVENT_CLICK, `Commencer le test - ${source}`)
-    DemographicDataUtils.trackerForDemographie("Home - Commencer")
     localStorage.setItem(STORAGE_SOURCE, source)
 
     localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
+    DemographicDataUtils.trackerForDemographie("Home - Commencer")
     goToBeforeSurvey()
   }
 

@@ -5,6 +5,7 @@ export const CATEG = {
   home: "Home",
   survey: "Questionnaire",
   test: "Test",
+  intentions: "Intentions",
 }
 
 export const ACTION = {
