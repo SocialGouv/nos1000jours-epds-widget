@@ -35,12 +35,12 @@ describe("Utils", () => {
         },
         {
           id: "avezDesEnfantsDePlusDe2ans",
-          text: "Vous avez un ou plusieurs enfant de plus de 2 ans",
+          text: "Vous avez un ou plusieurs enfants de plus de 2 ans",
           isChecked: true,
         },
       ]
       const expected =
-        "Vous avez un enfant de moins de 2 ans / Vous avez un ou plusieurs enfant de plus de 2 ans"
+        "Vous avez un enfant de moins de 2 ans / Vous avez un ou plusieurs enfants de plus de 2 ans"
 
       expect(convertArraySituationsToString(situations)).toEqual(expected)
     })

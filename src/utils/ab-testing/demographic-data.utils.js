@@ -72,7 +72,7 @@ export const situationValues = [
   },
   {
     id: "vousAvezDesEnfantsDePlusDe2ans",
-    text: "Vous avez un ou plusieurs enfant de plus de 2 ans",
+    text: "Vous avez un ou plusieurs enfants de plus de 2 ans",
     isChecked: false,
   },
 ]
