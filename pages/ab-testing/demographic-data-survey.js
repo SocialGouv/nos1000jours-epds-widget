@@ -192,6 +192,8 @@ export default function DemographicDataSurvey() {
         departement: residenceValue.departmentNumber,
         region: residenceValue.region,
         reponsesEpds: epdsTestID,
+        cspCode: jobValue.code,
+        cspLibelle: jobValue.libelle,
       },
     })
 
