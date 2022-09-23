@@ -1,7 +1,7 @@
 import path from "path"
 import { promises as fs } from "fs"
 
-export default async function handler(_req, res) {
+export default async function staticCspData(_req, res) {
   //Find the absolute path of the csv directory
   const jsonDirectory = path.join(process.cwd(), "csv")
 
