@@ -1,3 +1,17 @@
+# [1.30.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.29.3...v1.30.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **demographie:** rename ([e48eac6](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e48eac6afc7aa9b999225d8c998ede6752ad8fc6))
+* **demographie:** rename ([b758936](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b758936c2159b8cd5d290650c689af1326ff94d1))
+* **demographie:** test ([284e0fd](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/284e0fd81d58d6a9e6a126b86c6daf2cf3168e2c))
+
+
+### Features
+
+* **demographie:** ajout de la csp ([0516983](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0516983621152fcfd74b4cb81afc16b515387058))
+
 ## [1.29.3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.29.2...v1.29.3) (2022-09-19)
 
 
