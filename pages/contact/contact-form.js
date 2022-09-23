@@ -112,7 +112,7 @@ export default function ContactForm() {
       className={`form-group fr-input-group ${isEmailValid ? "fr-input-group--valid" : ""
         }`}
     >
-      <label>Votre email {isRequired ? "*" : null} :</label>
+      <label htmlFor="inputEmail">Votre email {isRequired ? "*" : null} :</label>
       <input
         type="email"
         className={`form-control fr-input ${isEmailValid ? "custom-input-valid" : ""
@@ -135,7 +135,7 @@ export default function ContactForm() {
       className={`form-group fr-input-group ${isPhoneValid ? "fr-input-group--valid" : ""
         }`}
     >
-      <label>Votre numéro de téléphone {isRequired ? "*" : null} :</label>
+      <label htmlFor="inputPhone">Votre numéro de téléphone {isRequired ? "*" : null} :</label>
       <input
         type="tel"
         className={`form-control fr-input ${isPhoneValid ? "custom-input-valid" : ""
@@ -206,7 +206,7 @@ export default function ContactForm() {
 
       <form className="contact-form" onSubmit={sendForm}>
         <div className={`form-group fr-input-group`}>
-          <label>Votre prénom :</label>
+          <label htmlFor="inputName">Votre prénom :</label>
           <input
             type="text"
             className={`form-control fr-input`}
