@@ -66,6 +66,8 @@ export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
     $departement: String
     $region: String
     $reponsesEpds: ID
+    $cspCode: String
+    $cspLibelle: String
   ) {
     createInformationsDemographique(
       input: {
@@ -79,6 +81,8 @@ export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
           departement: $departement
           region: $region
           reponses_epds: $reponsesEpds
+          csp_code: $cspCode
+          csp_libelle: $cspLibelle
         }
       }
     ) {
