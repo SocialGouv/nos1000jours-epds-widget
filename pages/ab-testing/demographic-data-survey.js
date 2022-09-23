@@ -23,6 +23,7 @@ import {
 } from "../../src/utils/main.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
+import { JobSelector } from "../../src/components/JobSelector"
 
 export default function DemographicDataSurvey() {
   const router = useRouter()
@@ -37,6 +38,7 @@ export default function DemographicDataSurvey() {
   const [situationItems, setSituationItems] = useState(situationValues)
   const [entourageItems, setEntourageItems] = useState(entourageValues)
   const [residenceValue, setResidenceValue] = useState()
+  const [jobValue, setJobValue] = useState()
 
   const epdsTestID = StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
   const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
@@ -45,12 +47,20 @@ export default function DemographicDataSurvey() {
     const isCompleted = checkIsFormCompleted(
       genderItems,
       ageItems,
+      jobValue,
       residenceValue,
       situationItems,
       entourageItems
     )
     setValudateButtonEnabled(isCompleted)
-  }, [genderItems, ageItems, situationItems, entourageItems, residenceValue])
+  }, [
+    genderItems,
+    ageItems,
+    jobValue,
+    situationItems,
+    entourageItems,
+    residenceValue,
+  ])
 
   const RadioButtonGroup = ({ groupName, data, defaultData, setItems }) => (
     <ToggleButtonGroup type="radio" name={groupName}>
@@ -222,6 +232,13 @@ export default function DemographicDataSurvey() {
         <AgeBloc />
 
         <div>
+          <div className="bloc-name">
+            Votre catégories socio-professionnelle :
+          </div>
+          <JobSelector setJobSelected={setJobValue} />
+        </div>
+
+        <div>
           <div className="bloc-name">Code postal de résidence :</div>
           <AutoCompleteZipCode setCitySelected={setResidenceValue} />
         </div>
@@ -248,12 +265,14 @@ export default function DemographicDataSurvey() {
 export const checkIsFormCompleted = (
   genderData,
   ageData,
+  jobData,
   residenceData,
   situationData,
   entourageData
 ) => {
   const isGenderCompeleted = genderData?.find((item) => item.isChecked)
   const isAgeCompeleted = ageData?.find((item) => item.isChecked)
+  const isJobSelected = jobData != undefined
   const isResidenceCompeleted = residenceData != undefined
   const isSituationCompeleted = situationData?.find((item) => item.isChecked)
   const isEntourageCompeleted = entourageData?.find((item) => item.isChecked)
@@ -261,6 +280,7 @@ export const checkIsFormCompleted = (
   return (
     isGenderCompeleted &&
     isAgeCompeleted &&
+    isJobSelected &&
     isResidenceCompeleted &&
     isSituationCompeleted &&
     isEntourageCompeleted
