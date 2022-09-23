@@ -111,7 +111,9 @@ export default function DemographicDataSurvey() {
   const SituationBloc = () => {
     return (
       <div>
-        <div className="bloc-name">Votre situation :</div>
+        <div className="bloc-name">
+          Votre situation : (plusieurs choix possibles)
+        </div>
         <RadioButtonGroup
           groupName="radio-situation"
           data={situationItems}
@@ -218,7 +220,7 @@ export default function DemographicDataSurvey() {
               Les données récoltées sont <b>anonymes</b>. Elles permettront aux
               chercheurs qui accompagnent le programme des
               <b> 1 000 Premiers Jours</b> lancé par le Ministère des
-              solidarités et de la santé d'initier une cartigraphie.
+              solidarités et de la santé d'initier une cartographie.
             </p>
             <p>
               <i>
