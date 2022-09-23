@@ -166,6 +166,8 @@ describe("Questionnaire démographique", () => {
         },
       ]
 
+      const jobValues = { code: "10", libelle: "job" }
+
       const situationValues = [
         {
           id: "attendez1Enfant",
@@ -206,6 +208,7 @@ describe("Questionnaire démographique", () => {
         checkIsFormCompleted(
           genderValues,
           ageValues,
+          jobValues,
           residenceValue,
           situationValues,
           entourageValues
