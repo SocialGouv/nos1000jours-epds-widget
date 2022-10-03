@@ -210,7 +210,7 @@ export default function EpdsSurvey() {
           style={{ display: showPrevious ? "block" : "none" }}
           disabled={isLoading}
         >
-          <img alt="Flèche précédente" src="/img/icone-precedent.svg" />
+          <img alt="" src="/img/icone-precedent.svg" />
           Précédent
         </button>
 
@@ -220,7 +220,7 @@ export default function EpdsSurvey() {
           disabled={!isEnabledNextButton}
           style={{ display: showNext ? "block" : "none" }}
         >
-          <img alt="Flèche suivante" src="/img/icone-suivant.svg" />
+          <img alt="" src="/img/icone-suivant.svg" />
           Suivant
         </button>
 
