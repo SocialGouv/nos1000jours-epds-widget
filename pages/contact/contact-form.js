@@ -182,6 +182,8 @@ export default function ContactForm() {
       <div className="margin-start-10">
         <button
           className="counter-sign"
+          aria-label="enlever 1"
+          aria-controls="number_children"
           onClick={() => {
             setNumberOfChildren(numberOfChildren - 1)
           }}
@@ -189,9 +191,11 @@ export default function ContactForm() {
         >
           -
         </button>
-        {numberOfChildren}
+        <div id="number_children" aria-live="polite">{numberOfChildren}</div>
         <button
           className="counter-sign"
+          aria-label="ajouter 1"
+          aria-controls="number_children"
           onClick={() => setNumberOfChildren(numberOfChildren + 1)}
         >
           +
