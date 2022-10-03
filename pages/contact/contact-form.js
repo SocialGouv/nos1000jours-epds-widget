@@ -191,7 +191,7 @@ export default function ContactForm() {
         >
           -
         </button>
-        <div id="number_children" aria-live="polite">{numberOfChildren}</div>
+        <span id="number_children" aria-live="polite">{numberOfChildren}</span>
         <button
           className="counter-sign"
           aria-label="ajouter 1"
