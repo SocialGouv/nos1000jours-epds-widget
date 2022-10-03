@@ -65,33 +65,35 @@ export default function BeforeSurvey() {
       <div className="before-survey">
         <div>Quelques informations à propos du questionnaire :</div>
 
-        <div className="item-information">
-          <img src={IMG_PRO} alt="" />
-          <div>
-            Ce questionnaire est utilisé par les <b>professionnels de santé.</b>
-          </div>
-        </div>
+        <ul>
+          <li className="item-information">
+            <img src={IMG_PRO} alt="" />
+            <div>
+              Ce questionnaire est utilisé par les <b>professionnels de santé.</b>
+            </div>
+          </li>
 
-        <div className="item-information">
-          <img src={IMG_PARENTS} alt="" />
-          <div>
-            Depuis son lancement en juillet 2021, les parents ont complété
-            <b> {totalResultsCount.toLocaleString()} questionnaires </b>sur leur
-            état émotionnel.
-          </div>
-        </div>
+          <li className="item-information">
+            <img src={IMG_PARENTS} alt="" />
+            <div>
+              Depuis son lancement en juillet 2021, les parents ont complété
+              <b> {totalResultsCount.toLocaleString()} questionnaires </b>sur leur
+              état émotionnel.
+            </div>
+          </li>
 
-        <div className="item-information">
-          <img src={IMG_ACCOMPAGNEMENT} alt="" />
-          <div>
-            Grâce à ce questionnaire,
-            <b> 41 personnes par mois sont accompagnées et orientées</b> vers
-            les professionnels de santé formés.
-          </div>
-        </div>
+          <li className="item-information">
+            <img src={IMG_ACCOMPAGNEMENT} alt="" />
+            <div>
+              Grâce à ce questionnaire,
+              <b> 41 personnes par mois sont accompagnées et orientées</b> vers
+              les professionnels de santé formés.
+            </div>
+          </li>
+        </ul>
 
         <div className="contact-maman-blues">
-          <img alt="Portrait d'Elise" src="../img/portrait-elise.jpg" />
+          <img alt="" src="../img/portrait-elise.jpg" />
           <div className="mamanblues-description">
             En fonction du résultat à la fin du questionnaire,{" "}
             <b>vous pourrez contacter Elise de l’association Maman Blues.</b>{" "}

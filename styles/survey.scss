@@ -85,6 +85,10 @@
   color: var(--bleuFranceSun);
   margin-bottom: $mmd;
 
+  ul {
+    padding-left: 0;
+  }
+
   .item-information {
     display: flex;
     flex-direction: row;
