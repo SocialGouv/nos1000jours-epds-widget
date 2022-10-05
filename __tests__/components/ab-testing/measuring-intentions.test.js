@@ -27,7 +27,9 @@ describe("UI de MeasuringIntentions", () => {
   // Bloc Elise
   const mamanBluesBlocToBeInTheDocument = () => {
     expect(
-      screen.getByRole("img", { name: "Portrait d'Elise" })
+      screen.getByRole("img", {
+        name: "Portrait d'Elise : présidente de l'association Maman Blues",
+      })
     ).toBeInTheDocument()
     expect(
       screen.getByRole("button", { name: "être contacté(e)" })
