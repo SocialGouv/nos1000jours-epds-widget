@@ -5,7 +5,7 @@ export function SurveyProgressBar({ indexNow, size }) {
   const progress = `Question ${indexNow} sur ${size}`
   return (
     <div className="survey-progressbar">
-      {progress}
+      <span aria-label={`Progression : ${progress}`}>{progress}</span>
       <ProgressBar aria-hidden max={size} now={indexNow} />
       <div className="progress-number" aria-hidden>
         <span>1</span>
