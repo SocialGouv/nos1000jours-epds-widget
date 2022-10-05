@@ -124,3 +124,28 @@
     text-align: center;
   }
 }
+
+.consignes {
+  .accordion-item {
+    border: none;
+    background-color: transparent;
+  }
+
+  .accordion-button {
+    padding: 0;
+    color: black;
+    text-decoration: underline;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .accordion-button::after {
+    order: -1;
+    margin-left: 0;
+    margin-right: 0.5em;
+  }
+
+  .accordion-body {
+    padding: 0;
+  }
+}

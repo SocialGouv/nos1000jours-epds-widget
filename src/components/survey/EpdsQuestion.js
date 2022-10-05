@@ -49,13 +49,19 @@ export function EpdsQuestion({
       <form className="fr-form-group">
         <fieldset className="fr-fieldset">
           <legend id="radio-legend">
-            <div className="question-number">{question.ordre}</div>
+            <div
+              className="question-number"
+              aria-label={`Question ${question.ordre}`}
+            >
+              {question.ordre}
+            </div>
             <div className={`question ${isRTL ? "font-size-rtl" : ""}`}>
               {question.libelle}
             </div>
           </legend>
           <div
-            className={`fr-fieldset__content epds-response ${isRTL ? "input-revert" : ""}`}
+            className={`fr-fieldset__content epds-response ${isRTL ? "input-revert" : ""
+              }`}
             onChange={handleChange}
           >
             {itemRadio(radio1Id, question.reponse_1_libelle)}
