@@ -3,10 +3,8 @@ import { ContentLayout } from "../../src/components/Layout"
 import { } from "@dataesr/react-dsfr"
 import {
   Badge,
-  Button,
   ButtonGroup,
   Col,
-  Modal,
   Row,
   ToggleButton,
   ToggleButtonGroup,
@@ -31,32 +29,17 @@ import {
   CONTACT_SENT,
   trackerClick,
 } from "../../src/utils/tracker.utils"
-import {
-  hideChatButton,
-  zammadChatParameters,
-} from "../../src/utils/chat.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
-  const [chatButtonElement, setChatButtonElement] = useState()
-  const [chatLoaded, setChatLoaded] = useState(false)
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   const [websiteSource, setWebsiteSource] = useState(false)
-
-  // TODO: supprimer complètement le chat
-  // const [showChatModal, setShowChatModal] = useState(false)
-  // const handleCloseChatModal = () => setShowChatModal(false)
-  // const handleShowChatModal = () => setShowChatModal(true)
-
-  const [showEliseAbsentModal, setShowEliseAbsentModal] = useState(false)
-  const handleCloseEliseAbsentModal = () => setShowEliseAbsentModal(false)
-  const handleShowEliseAbsentModal = () => setShowEliseAbsentModal(true)
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -92,10 +75,8 @@ export default function ToBeContacted() {
   const onValidate = async (event) => {
     trackerClick(CATEG.contact, ACTION.contact_type, itemValueType)
 
-    if (itemValueType == RequestContact.type.chat) {
-      const isChatInactive = chatButtonElement.classList.contains("is-inactive")
-      isChatInactive ? handleShowEliseAbsentModal() : activeChat() //handleShowChatModal()
-    } else goToContactForm()
+    if (itemValueType == RequestContact.type.chat) activeChat()
+    else goToContactForm()
   }
 
   const customToggleButton = (type) => (
@@ -124,14 +105,13 @@ export default function ToBeContacted() {
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
       <Col>
-        {/* Cacher le bouton Chat en attendant de résoudre le problème du chat
         Maintenant par :
         <Row>
           {defaultContactTypes.byNow.map((type) => (
             <Col key={type.id}>{customToggleButton(type)}</Col>
           ))}
         </Row>
-        <br /> */}
+        <br />
         Selon mes disponibilités, par :
         <Row>
           {defaultContactTypes.byAvailabilities.map((type) => (
@@ -174,34 +154,7 @@ export default function ToBeContacted() {
 
   const activeChat = () => {
     trackerClick(CATEG.contact, ACTION.contact_confirm_sent, CONTACT_SENT.chat)
-    chatButtonElement.click()
-    router.back()
-  }
-
-  const closeInactiveChat = () => {
-    trackerClick(
-      CATEG.contact,
-      ACTION.contact_confirm_sent,
-      CONTACT_SENT.no_chat
-    )
-    handleCloseEliseAbsentModal()
-  }
-
-  const Chat = () => {
-    useEffect(() => {
-      if (chatLoaded) return
-
-      try {
-        //@ts-ignore
-        new ZammadChat(zammadChatParameters)
-      } catch (e) {
-        console.error(`Erreur ZammadChat : ${e}`)
-      }
-
-      setChatLoaded(true)
-    }, [])
-
-    return <></>
+    // TODO:
   }
 
   return (
@@ -238,56 +191,6 @@ export default function ToBeContacted() {
           Valider
         </button>
       </Col>
-
-      {/* <Chat /> */}
-      {hideChatButton(setChatButtonElement)}
-
-      {/* Mis en commentaire pour démarrer le chat dès la validation du choix au lieux de passer par la modale de confirmation
-      <Modal
-        show={showChatModal}
-        onHide={handleCloseChatModal}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Être contacté(e) par chat</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Vous pouvez converser avec Elise entre 09h et 17h30 du Lundi au
-          Vendredi. Le chat va s'ouvrir une fois que vous aurez validé votre
-          choix.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseChatModal}>
-            Annuler
-          </Button>
-          <Button variant="primary" onClick={activeChat}>
-            Valider
-          </Button>
-        </Modal.Footer>
-        </Modal>*/}
-
-      <Modal
-        show={showEliseAbsentModal}
-        onHide={handleCloseEliseAbsentModal}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Être contacté(e) par chat</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Vous pouvez converser avec Elise entre 09h et 17h30 du Lundi au
-          Vendredi. Elle n'est pas joignable en ce moment. Vous pouvez lui
-          laisser un message par SMS ou par mail, elle vous répondra dès que
-          possible.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={closeInactiveChat}>
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </ContentLayout>
   )
 }

@@ -37,10 +37,6 @@ Voici la liste :
 - `bouton_commencer` : texte du bouton *Commencer* sur le 1er écran 
 - `consigne` : explications située au-dessus des questions pour aider à bien compléter le questionnaire
 
-## Utilisation du chat
-
-Pastek utilise Zammad chat : https://admin-docs.zammad.org/en/latest/channels/chat.html
-
 ## AB testing
 
 Dans le cas où l'on souhaite avoir l'AB testing sur les intentions, il faut ajoute un `useEffect` dans `MeasuringIntentions.js`

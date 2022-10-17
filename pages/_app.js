@@ -5,7 +5,6 @@ import { init } from "@socialgouv/matomo-next"
 import App from "next/app"
 import React from "react"
 import { ThemeProvider } from "react-bootstrap"
-import Script from "next/script"
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID
@@ -24,15 +23,6 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <React.Fragment>
-        <Script
-          strategy="beforeInteractive"
-          src="https://code.jquery.com/jquery-3.6.0.min.js"
-        />
-        <Script
-          strategy="beforeInteractive"
-          src="https://pastek.fabrique.social.gouv.fr/assets/chat/chat.min.js"
-        />
-
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>
