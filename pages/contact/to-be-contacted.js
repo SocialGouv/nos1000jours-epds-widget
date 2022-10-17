@@ -76,7 +76,7 @@ export default function ToBeContacted() {
   const onValidate = async (event) => {
     trackerClick(CATEG.contact, ACTION.contact_type, itemValueType)
 
-    if (itemValueType == RequestContact.type.chat) activeChat()
+    if (itemValueType == RequestContact.type.chat) activateChat()
     else goToContactForm()
   }
 
@@ -153,7 +153,7 @@ export default function ToBeContacted() {
     </ToggleButtonGroup>
   )
 
-  const activeChat = () => {
+  const activateChat = () => {
     trackerClick(CATEG.contact, ACTION.contact_confirm_sent, CONTACT_SENT.chat)
     window.open(URL_CHAT_WHATSAPP, "_blank")
   }
