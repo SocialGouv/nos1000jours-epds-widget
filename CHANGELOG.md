@@ -1,3 +1,12 @@
+# [1.31.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.30.1...v1.31.0) (2022-10-17)
+
+
+### Features
+
+* **chat:** puverture whatsapp ([d24a838](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d24a838208dc3e8ad5113b7619ed0c96af568fa9))
+* **chat:** retours PR ([e1f1be2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e1f1be288d9305600f3b8e45e3ea8f792d3c4fe0))
+* **chat:** supprimer zammad ([0a36d66](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0a36d66a2413aae04bcd8395ec82476a6130d080))
+
 ## [1.30.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.30.0...v1.30.1) (2022-09-23)
 
 
