@@ -215,7 +215,7 @@ export default function DemographicDataSurvey() {
         <img
           src="../img/icone-aide.svg"
           role="button"
-          alt="Afficher l'explication d'A quoi servent ces données"
+          alt="Afficher l'explication du bloc : a quoi servent ces données"
           onClick={openDataDetail}
         />
 
