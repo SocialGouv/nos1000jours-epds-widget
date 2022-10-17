@@ -16,6 +16,7 @@ import {
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
+  URL_CHAT_WHATSAPP,
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
@@ -154,7 +155,7 @@ export default function ToBeContacted() {
 
   const activeChat = () => {
     trackerClick(CATEG.contact, ACTION.contact_confirm_sent, CONTACT_SENT.chat)
-    // TODO:
+    window.open(URL_CHAT_WHATSAPP, "_blank")
   }
 
   return (
