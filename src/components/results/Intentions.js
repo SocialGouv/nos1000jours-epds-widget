@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import { trackerForIntentions } from "../../utils/ab-testing/measuring-intentions.utils"
 import * as PdfUtils from "../../utils/pdf.utils"
 
-export const Intentions = (epdsResults) => {
+export const Intentions = (moodLevel) => {
   const [question1Response, setQuestion1Response] = useState()
   const [question2Response, setQuestion2Response] = useState()
 
@@ -20,6 +21,7 @@ export const Intentions = (epdsResults) => {
   const onToggleButon = (idQuestion, item) => {
     if (idQuestion == 1) setQuestion1Response(item)
     if (idQuestion == 2) setQuestion2Response(item)
+    trackerForIntentions(moodLevel, item)
   }
 
   const questionBloc = (questionValues) => {
@@ -60,6 +62,7 @@ export const Intentions = (epdsResults) => {
 
   const downloadEpdsResponses = () => {
     PdfUtils.generateEpdsResultsPdf()
+    trackerForIntentions(moodLevel, "Télécharger mes réponses")
   }
 
   const showQuestion1 = () => !question1Response

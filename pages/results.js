@@ -89,7 +89,7 @@ export default function Results() {
       <ResultsMood scoreLevel={scoreLevelForMood} />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
         scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
-        <Intentions />
+        <Intentions moodLevel={scoreLevelForMood} />
       ) : null}
       {!isTestStarted && <DescriptionAndConclusion />}
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
