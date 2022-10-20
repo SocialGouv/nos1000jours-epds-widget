@@ -18,6 +18,7 @@ import {
   SCORE_LEVEL_MEDIUM,
 } from "../src/utils/score-level.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
+import { Intentions } from "../src/components/results/Intentions"
 
 export default function Results() {
   const router = useRouter()
@@ -88,10 +89,7 @@ export default function Results() {
       <ResultsMood scoreLevel={scoreLevelForMood} />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
         scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
-        <MeasuringIntentions
-          scoreLevel={scoreLevelForMood}
-          setTestStarted={setTestStarted}
-        />
+        <Intentions />
       ) : null}
       {!isTestStarted && <DescriptionAndConclusion />}
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
