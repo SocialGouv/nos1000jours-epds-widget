@@ -55,7 +55,7 @@ export const Intentions = (moodLevel) => {
         type="submit"
         onClick={downloadEpdsResponses}
       >
-        Télécharger mes réponses au quesitonnaire EPDS
+        Télécharger mes réponses au questionnaire EPDS
       </button>
     )
   }
