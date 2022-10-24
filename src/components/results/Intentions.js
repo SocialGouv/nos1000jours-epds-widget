@@ -16,7 +16,7 @@ export const Intentions = ({ moodLevel }) => {
 
   const ToggleResponseBt = ({ response, idQuestion }) => (
     <ToggleButton
-      className="measure-button"
+      className="intentions-button fr-btn--tertiary"
       value={response}
       aria-label={response}
       onClick={() => onToggleButon(idQuestion, response)}
@@ -95,8 +95,8 @@ export const Intentions = ({ moodLevel }) => {
   const showDownloadEpdsResponsesBt = () => question2Response
 
   return (
-    <div className="measure toto">
-      <div className="measure-card">
+    <div className="intentions">
+      <div className="intentions-card">
         {showQuestion1() && questionBloc(questions[0])}
         {showQuestion2() && questionBloc(questions[1])}
         {showDownloadEpdsResponsesBt() && <DownloadEpdsResponsesBt />}
