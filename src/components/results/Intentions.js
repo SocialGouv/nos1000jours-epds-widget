@@ -1,9 +1,16 @@
+import { useRouter } from "next/router"
 import React, { useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
 import { trackerForIntentions } from "../../utils/ab-testing/measuring-intentions.utils"
 import * as PdfUtils from "../../utils/pdf.utils"
 
-export const Intentions = (moodLevel) => {
+/**
+ * @param {number} moodLevel
+ * @returns Bloc des intentions
+ */
+export const Intentions = ({ moodLevel }) => {
+  const router = useRouter()
+
   const [question1Response, setQuestion1Response] = useState()
   const [question2Response, setQuestion2Response] = useState()
 
@@ -18,9 +25,21 @@ export const Intentions = (moodLevel) => {
     </ToggleButton>
   )
 
+  const openContact = (idQuestion, item) => {
+    if (questions.find((q) => q.id == idQuestion).reponseA == item) {
+      router.push({
+        pathname: "/contact/to-be-contacted",
+      })
+    }
+  }
+
   const onToggleButon = (idQuestion, item) => {
     if (idQuestion == 1) setQuestion1Response(item)
-    if (idQuestion == 2) setQuestion2Response(item)
+    if (idQuestion == 2) {
+      setQuestion2Response(item)
+      openContact(idQuestion, item)
+    }
+
     trackerForIntentions(moodLevel, item)
   }
 
@@ -43,6 +62,12 @@ export const Intentions = (moodLevel) => {
             idQuestion={questionValues.id}
             response={questionValues.reponseC}
           />
+          {questionValues.reponseD && (
+            <ToggleResponseBt
+              idQuestion={questionValues.id}
+              response={questionValues.reponseD}
+            />
+          )}
         </ToggleButtonGroup>
       </div>
     )
@@ -90,9 +115,10 @@ const questions = [
   },
   {
     id: 2,
-    question: "A qui allez-vous parler de votre score ?",
-    reponseA: "Mon professionnel de santé",
+    question: "À qui allez-vous parler de votre score ?",
+    reponseA: "À Élise, présidente de l'association Maman Blues",
     reponseB: "Mon entourage",
-    reponseC: "Je le garde pour moi",
+    reponseC: "Mon professionnel de santé",
+    reponseD: "Je le garde pour moi",
   },
 ]
