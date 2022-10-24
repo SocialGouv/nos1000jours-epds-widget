@@ -53,6 +53,27 @@ export default function Results() {
     </Row>
   )
 
+  const GiveOpinion = () => {
+    return (
+      <div className="give-opinion">
+        <div>
+          Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela
+          ne prend que 2 minutes.
+        </div>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://jedonnemonavis.numerique.gouv.fr/Demarches/3483?&view-mode=formulaire-avis&nd_source=button&key=9a76fb7d40d8cf4bb6036779de4d92c9"
+        >
+          <img
+            src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg"
+            alt="Je donne mon avis"
+          />
+        </a>
+      </div>
+    )
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
@@ -66,7 +87,7 @@ export default function Results() {
       ) : null}
       {!isTestStarted && <DescriptionAndConclusion />}
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
-
+      <GiveOpinion />
       <button
         className="fr-btn fr-btn--secondary result-return-bt"
         onClick={goToSurvey}
