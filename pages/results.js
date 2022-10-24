@@ -17,6 +17,7 @@ import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_MEDIUM,
 } from "../src/utils/score-level.utils"
+import * as TrackerUtils from "../src/utils/tracker.utils"
 
 export default function Results() {
   const router = useRouter()
@@ -64,6 +65,13 @@ export default function Results() {
           target="_blank"
           rel="noreferrer"
           href="https://jedonnemonavis.numerique.gouv.fr/Demarches/3483?&view-mode=formulaire-avis&nd_source=button&key=9a76fb7d40d8cf4bb6036779de4d92c9"
+          onClick={() =>
+            TrackerUtils.trackerClick(
+              TrackerUtils.CATEG.results,
+              TrackerUtils.EVENT_CLICK,
+              "Je donne mon avis"
+            )
+          }
         >
           <img
             src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg"
