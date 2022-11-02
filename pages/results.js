@@ -57,7 +57,7 @@ export default function Results() {
   const GiveOpinion = () => {
     return (
       <div className="give-opinion">
-        <div>
+        <div className="instructions">
           Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela
           ne prend que 2 minutes.
         </div>
