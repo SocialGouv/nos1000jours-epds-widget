@@ -200,10 +200,19 @@
   .intentions-button:hover {
     color: white;
   }
+
+  .intention-download {
+    padding-top: 1rem;
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (max-width: 770px) {
-  .measure .buttons-bloc .btn-group {
-    display: inherit;
+
+  .measure .buttons-bloc,
+  .intentions {
+    .btn-group {
+      display: inherit;
+    }
   }
 }

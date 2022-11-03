@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
-import React, { useState } from "react"
-import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
+import React, { useEffect, useState } from "react"
+import { ButtonGroup, ToggleButton } from "react-bootstrap"
 import { trackerForIntentions } from "../../utils/ab-testing/measuring-intentions.utils"
 import * as PdfUtils from "../../utils/pdf.utils"
 
@@ -11,77 +11,69 @@ import * as PdfUtils from "../../utils/pdf.utils"
 export const Intentions = ({ moodLevel }) => {
   const router = useRouter()
 
-  const [question1Response, setQuestion1Response] = useState()
-  const [question2Response, setQuestion2Response] = useState()
-
-  const ToggleResponseBt = ({ response, idQuestion }) => (
-    <ToggleButton
-      className="intentions-button fr-btn--tertiary"
-      value={response}
-      aria-label={response}
-      onClick={() => onToggleButon(idQuestion, response)}
-    >
-      {response}
-    </ToggleButton>
-  )
-
-  const openContact = (idQuestion, item) => {
-    if (questions.find((q) => q.id == idQuestion).reponseA == item) {
-      router.push({
-        pathname: "/contact/to-be-contacted",
-      })
-    }
+  const [radioValue, setRadioValue] = useState()
+  const question = {
+    question: "À qui allez-vous parler de votre score ?",
+    responses: [
+      { name: "À Élise, présidente de l'association Maman Blues", id: 1 },
+      { name: "Mon entourage", id: 2 },
+      { name: "Mon professionnel de santé", id: 3 },
+      { name: "Je le garde pour moi", id: 4 },
+    ],
   }
 
-  const onToggleButon = (idQuestion, item) => {
-    if (idQuestion == 1) setQuestion1Response(item)
-    if (idQuestion == 2) {
-      setQuestion2Response(item)
-      openContact(idQuestion, item)
-    }
+  useEffect(() => {
+    openContact()
+  }, [openContact, radioValue])
 
-    trackerForIntentions(moodLevel, item)
+  const openContact = () => {
+    const itemToElise = question.responses.find((item) => item.id == 1)
+    if (itemToElise.name === radioValue)
+      router.push({ pathname: "/contact/to-be-contacted" })
   }
 
-  const questionBloc = (questionValues) => {
+  const onToggleButon = (value) => {
+    setRadioValue(value)
+    trackerForIntentions(moodLevel, value)
+  }
+
+  const questionBloc = (question) => {
     return (
       <div className="buttons-bloc">
         <div>
-          <b>{questionValues.question}</b>
+          <b>{question.question}</b>
         </div>
-        <ToggleButtonGroup type="radio" name="radio-reality">
-          <ToggleResponseBt
-            idQuestion={questionValues.id}
-            response={questionValues.reponseA}
-          />
-          <ToggleResponseBt
-            idQuestion={questionValues.id}
-            response={questionValues.reponseB}
-          />
-          <ToggleResponseBt
-            idQuestion={questionValues.id}
-            response={questionValues.reponseC}
-          />
-          {questionValues.reponseD && (
-            <ToggleResponseBt
-              idQuestion={questionValues.id}
-              response={questionValues.reponseD}
-            />
-          )}
-        </ToggleButtonGroup>
+        <ButtonGroup>
+          {question.responses.map((radio, idx) => (
+            <ToggleButton
+              className="intentions-button fr-btn--tertiary"
+              key={radio.id}
+              id={`radio-${radio.id}`}
+              type="radio"
+              name="radio"
+              value={radio.name}
+              checked={radioValue === radio.name}
+              onChange={(e) => onToggleButon(e.currentTarget.value)}
+            >
+              {radio.name}
+            </ToggleButton>
+          ))}
+        </ButtonGroup>
       </div>
     )
   }
 
   const DownloadEpdsResponsesBt = () => {
     return (
-      <button
-        className="fr-btn margin-bottom-12"
-        type="submit"
+      <div
+        className="fr-download intention-download"
         onClick={downloadEpdsResponses}
       >
-        Télécharger mes réponses au questionnaire EPDS
-      </button>
+        <span className="fr-download__link">
+          <u>Télécharger mes réponses au questionnaire EPDS</u>
+        </span>
+        <span className="fr-download__detail">PDF</span>
+      </div>
     )
   }
 
@@ -90,35 +82,12 @@ export const Intentions = ({ moodLevel }) => {
     trackerForIntentions(moodLevel, "Télécharger mes réponses")
   }
 
-  const showQuestion1 = () => !question1Response
-  const showQuestion2 = () => question1Response && !question2Response
-  const showDownloadEpdsResponsesBt = () => question2Response
-
   return (
     <div className="intentions">
       <div className="intentions-card">
-        {showQuestion1() && questionBloc(questions[0])}
-        {showQuestion2() && questionBloc(questions[1])}
-        {showDownloadEpdsResponsesBt() && <DownloadEpdsResponsesBt />}
+        {questionBloc(question)}
+        <DownloadEpdsResponsesBt />
       </div>
     </div>
   )
 }
-
-const questions = [
-  {
-    id: 1,
-    question: "Pourquoi avez-vous passé ce test ?",
-    reponseA: "Par curiosité",
-    reponseB: "Parce que je me pose des questions",
-    reponseC: "Parce que je me sens mal",
-  },
-  {
-    id: 2,
-    question: "À qui allez-vous parler de votre score ?",
-    reponseA: "À Élise, présidente de l'association Maman Blues",
-    reponseB: "Mon entourage",
-    reponseC: "Mon professionnel de santé",
-    reponseD: "Je le garde pour moi",
-  },
-]
