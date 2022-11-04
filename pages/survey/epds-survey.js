@@ -7,7 +7,6 @@ import {
 } from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { SurveyCarousel } from "../../src/components/survey/SurveyCarousel"
-import * as Icon from "react-bootstrap-icons"
 import { SurveyProgressBar } from "../../src/components/survey/SurveyProgressBar"
 import {
   EpdsGender,
@@ -33,7 +32,6 @@ import {
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,
 } from "@socialgouv/nos1000jours-lib"
 import { updateInfoDemographic } from "../ab-testing/demographic-data-survey"
-import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
 
 export default function EpdsSurvey() {
@@ -52,7 +50,6 @@ export default function EpdsSurvey() {
   const [isLoading, setLoading] = useState(false)
 
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
-  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
 
   const [getEpdsSurveyQuery] = useLazyQuery(
     gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
@@ -94,16 +91,12 @@ export default function EpdsSurvey() {
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
 
-      if (demographicData?.isAfterEpds)
-        goToDemographicSurvey(data.createReponsesEpdsWidget.id)
-      else {
-        updateInfoDemographic(
-          updateEpdsIdInInfosQuery,
-          data.createReponsesEpdsWidget.id
-        )
+      updateInfoDemographic(
+        updateEpdsIdInInfosQuery,
+        data.createReponsesEpdsWidget.id
+      )
 
-        goToResults()
-      }
+      goToResults()
     },
   })
 
@@ -119,10 +112,6 @@ export default function EpdsSurvey() {
     router.push({
       pathname: "/results",
     })
-  }
-
-  const goToDemographicSurvey = async (epdsTestID) => {
-    DemographicDataUtils.goToDemographicSurvey(router, epdsTestID)
   }
 
   useEffect(() => {
@@ -231,9 +220,6 @@ export default function EpdsSurvey() {
               setSendScore(true)
               setLoading(true)
               trackerClick(CATEG.survey, EVENT_CLICK, `Terminer - ${source}`)
-              DemographicDataUtils.trackerForDemographie(
-                "Questionnaire EPDS - Terminer"
-              )
             }}
             disabled={!isEnabledNextButton || isLoading}
           >

@@ -128,6 +128,13 @@ export const uiAdaptationForInfoDemographic = () => {
   return null
 }
 
+export const opensInfoDemographicBeforeEpds = () => {
+  return {
+    buttonLabelInBeforeSurvey: "Suivant",
+    buttonLabelInInfoDemographicSurvey: "Envoyer et commencer le questionnaire",
+  }
+}
+
 export const goToDemographicSurvey = async (router, epdsTestID) => {
   if (epdsTestID) localStorage.setItem(STORAGE_RESULTS_ID, epdsTestID)
 
