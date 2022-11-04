@@ -95,6 +95,19 @@
   }
 }
 
+.give-opinion {
+  text-align: center;
+  margin-top: $xxs;
+  margin-bottom: $md;
+
+  .instructions {
+    background-color: var(--grey925);
+    border-radius: 0.7rem;
+    margin-bottom: $xxs;
+    padding: $xxxs
+  }
+}
+
 .results-mood {
   display: flex;
   margin-bottom: $xxxxs;
