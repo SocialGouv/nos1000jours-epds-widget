@@ -1,6 +1,6 @@
 import { STORAGE_TEST_ABC, STORAGE_RESULTS_ID } from "../../constants/constants"
 import { TEST } from "./ab-testing.utils"
-import { ACTION, CATEG, trackerClick } from "../tracker.utils"
+import { CATEG, trackerClick } from "../tracker.utils"
 import * as StorageUtils from "../storage.utils"
 
 export const genderValues = [
@@ -142,6 +142,5 @@ export const goToDemographicSurvey = async (router, epdsTestID) => {
 }
 
 export const trackerForDemographie = (label) => {
-  const testId = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-  trackerClick(CATEG.test, `${ACTION.parcours}${testId}`, label)
+  trackerClick(CATEG.demographie, label)
 }

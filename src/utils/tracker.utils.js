@@ -6,6 +6,7 @@ export const CATEG = {
   survey: "Questionnaire",
   test: "Test",
   intentions: "Intentions",
+  demographie: "Démographie",
   results: "Résultats",
 }
 
