@@ -113,12 +113,14 @@ export default function ToBeContacted() {
           ))}
         </Row>
         <br />
-        Selon mes disponibilités, par :
-        <Row>
-          {defaultContactTypes.byAvailabilities.map((type) => (
-            <Col key={type.id}>{customToggleButton(type)}</Col>
-          ))}
-        </Row>
+        <fieldset>
+          <legend>Selon mes disponibilités, par :</legend>
+          <Row>
+            {defaultContactTypes.byAvailabilities.map((type) => (
+              <Col key={type.id}>{customToggleButton(type)}</Col>
+            ))}
+          </Row>
+        </fieldset>
       </Col>
     </ButtonGroup>
   )

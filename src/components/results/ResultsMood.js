@@ -12,7 +12,12 @@ export function ResultsMood({ scoreLevel }) {
   return (
     <div className="results-mood">
       <img alt="" src={`../img/${moodInfos?.moodIcon}`} />
-      <div className={`${moodInfos?.moodColor}`}>{moodInfos?.moodText}</div>
+      <div
+        className={`${moodInfos?.moodColor}`}
+        aria-label={`Résultat : ${moodInfos?.moodText}`}
+      >
+        {moodInfos?.moodText}
+      </div>
     </div>
   )
 }

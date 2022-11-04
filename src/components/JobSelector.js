@@ -24,7 +24,7 @@ export function JobSelector({ setJobSelected }) {
 
     return (
       <Form.Select
-        class="fr-select"
+        className="fr-select"
         id="select_job"
         name="select_job"
         aria-label="Sélectionner votre catégories socio-professionnelle"

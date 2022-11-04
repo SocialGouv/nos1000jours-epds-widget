@@ -19,7 +19,7 @@ export function WidgetHeader({ title, locale }) {
           />
           <LocaleButton locale={locale} />
         </div>
-        <h5 className="title-ddp">{title}</h5>
+        {title && <h5 className="title-ddp">{title}</h5>}
       </Row>
     </div>
   )

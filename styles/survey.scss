@@ -85,6 +85,10 @@
   color: var(--bleuFranceSun);
   margin-bottom: $mmd;
 
+  ul {
+    padding-left: 0;
+  }
+
   .item-information {
     display: flex;
     flex-direction: row;
@@ -118,5 +122,30 @@
 
   .button-start-survey {
     text-align: center;
+  }
+}
+
+.consignes {
+  .accordion-item {
+    border: none;
+    background-color: transparent;
+  }
+
+  .accordion-button {
+    padding: 0;
+    color: black;
+    text-decoration: underline;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .accordion-button::after {
+    order: -1;
+    margin-left: 0;
+    margin-right: 0.5em;
+  }
+
+  .accordion-body {
+    padding: 0;
   }
 }

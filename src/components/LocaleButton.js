@@ -20,7 +20,7 @@ export function LocaleButton({ hasText, locale, setLocaleSelected }) {
       >
         {locale?.drapeau.url && (
           <img
-            alt="Drapeau de la langue"
+            alt={`Drapeau ${locale.libelle_langue}`}
             src={`${API_URL}${locale?.drapeau.url}`}
             height={20}
             width={20}

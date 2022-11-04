@@ -20,7 +20,7 @@ import {
   STORAGE_SOURCE,
 } from "../../src/constants/constants"
 import { CATEG, EVENT_CLICK, trackerClick } from "../../src/utils/tracker.utils"
-import { Spinner } from "react-bootstrap"
+import { Accordion, Spinner } from "react-bootstrap"
 import {
   scoreLevelForMacaron,
   scoreLevelForMood,
@@ -210,7 +210,7 @@ export default function EpdsSurvey() {
           style={{ display: showPrevious ? "block" : "none" }}
           disabled={isLoading}
         >
-          <img alt="Flèche précédente" src="/img/icone-precedent.svg" />
+          <img alt="" src="/img/icone-precedent.svg" />
           Précédent
         </button>
 
@@ -220,7 +220,7 @@ export default function EpdsSurvey() {
           disabled={!isEnabledNextButton}
           style={{ display: showNext ? "block" : "none" }}
         >
-          <img alt="Flèche suivante" src="/img/icone-suivant.svg" />
+          <img alt="" src="/img/icone-suivant.svg" />
           Suivant
         </button>
 
@@ -256,23 +256,15 @@ export default function EpdsSurvey() {
 
   const Consigne = () => {
     return (
-      <div>
-        <div className="cursor-pointer" onClick={onConsigneClick}>
-          {showConsigne ? (
-            <Icon.ChevronUp className="margin-right-8" />
-          ) : (
-            <Icon.ChevronDown className="margin-right-8" />
-          )}
-          <u>Consignes</u>
-        </div>
-        {showConsigne && (
-          <div
-            dir={isRTL ? "rtl" : "ltr"}
-            className={isRTL ? "font-size-rtl" : ""}
-          >
-            <i>{getExplanations()}</i>
-          </div>
-        )}
+      <div className="consignes">
+        <Accordion defaultActiveKey={showConsigne ? "0" : null}>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Consignes</Accordion.Header>
+            <Accordion.Body>
+              <i>{getExplanations()}</i>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </div>
     )
   }

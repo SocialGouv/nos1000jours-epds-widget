@@ -82,62 +82,62 @@ export default function DemographicDataSurvey() {
 
   const GenderBloc = () => {
     return (
-      <div>
-        <div className="bloc-name">Votre genre :</div>
+      <fieldset>
+        <legend className="bloc-name">Votre genre :</legend>
         <RadioButtonGroup
           groupName="radio-gender"
           data={genderItems}
           defaultData={genderValues}
           setItems={setGenderItems}
         />
-      </div>
+      </fieldset>
     )
   }
 
   const AgeBloc = () => {
     return (
-      <div>
-        <div className="bloc-name">Votre tranche d’âge :</div>
+      <fieldset>
+        <legend className="bloc-name">Votre tranche d’âge :</legend>
         <RadioButtonGroup
           groupName="radio-age"
           data={ageItems}
           defaultData={ageValues}
           setItems={setAgeItems}
         />
-      </div>
+      </fieldset>
     )
   }
 
   const SituationBloc = () => {
     return (
-      <div>
-        <div className="bloc-name">
+      <fieldset>
+        <legend className="bloc-name">
           Votre situation : (plusieurs choix possibles)
-        </div>
+        </legend>
         <RadioButtonGroup
           groupName="radio-situation"
           data={situationItems}
           defaultData={situationItems}
           setItems={setSituationItems}
         />
-      </div>
+      </fieldset>
     )
   }
 
   const EntourageBloc = () => {
     return (
-      <div>
-        <div className="bloc-name">
+      <fieldset>
+        <legend className="bloc-name">
           Pouvez-vous compter sur une personne de votre entourage pour s'occuper
           de vous quoi qu'il arrive ?
-        </div>
+        </legend>
         <RadioButtonGroup
           groupName="radio-entourage"
           data={entourageItems}
           defaultData={entourageValues}
           setItems={setEntourageItems}
         />
-      </div>
+      </fieldset>
     )
   }
 
@@ -212,7 +212,12 @@ export default function DemographicDataSurvey() {
       <WidgetHeader locale={localeSelected} />
       <div className="demographic-data">
         <u>À quoi servent ces données ?</u>
-        <img src="../img/icone-aide.svg" onClick={openDataDetail} />
+        <img
+          src="../img/icone-aide.svg"
+          role="button"
+          alt="Afficher l'explication du bloc : a quoi servent ces données"
+          onClick={openDataDetail}
+        />
 
         {showDataDetails && (
           <div className="data-details">

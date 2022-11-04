@@ -43,7 +43,7 @@ export function ChooseEpdsLocale({ show, setShow, setLocaleSelected }) {
       onChange={(e) => handleClick(e.currentTarget.value)}
     >
       <img
-        alt="Drapeau"
+        alt=""
         src={API_URL + locale.drapeau.url}
         height={26}
         style={{ marginRight: 10, borderRadius: 5 }}

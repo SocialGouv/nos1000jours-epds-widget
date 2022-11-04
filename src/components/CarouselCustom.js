@@ -32,8 +32,8 @@ export function CarouselCustom({ data }) {
               <div className="blue-dark-bloc">
                 <div className="apostrophe-bloc">
                   <div>
-                    <img src="../img/apostrophe.svg" />
-                    <img src="../img/apostrophe.svg" />
+                    <img src="../img/apostrophe.svg" alt="" />
+                    <img src="../img/apostrophe.svg" alt="" />
                   </div>
                 </div>
                 <CaptionBloc item={item} />

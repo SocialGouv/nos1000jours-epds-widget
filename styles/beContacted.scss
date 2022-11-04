@@ -13,11 +13,12 @@
 }
 
 .be-contacted-button-group-checkbox {
-  .btn-check:focus + .btn-primary {
+  .btn-check:focus+.btn-primary {
     background-color: transparent;
     color: var(--primaryBlueDark);
   }
-  .btn-check:checked + .btn-primary {
+
+  .btn-check:checked+.btn-primary {
     color: white
   }
 }
@@ -49,6 +50,7 @@
   background-color: var(--primaryBlueDark);
   box-shadow: none;
 }
+
 .contact-card:hover {
   background-color: var(--primaryBlueDark);
 }
@@ -63,10 +65,10 @@
   }
 
   .custom-input-valid {
-    box-shadow: inset 0 -2px 0 0 var(--primaryGreen) !important; 
+    box-shadow: inset 0 -2px 0 0 var(--primaryGreen) !important;
   }
 
-  .required-field{
+  .required-field {
     font-size: small;
     color: grey;
   }
@@ -97,7 +99,7 @@
 
 .date-picker {
   .input-date-picker-block {
-    display: flex; 
+    display: flex;
     justify-content: center;
   }
 
