@@ -1,3 +1,12 @@
+# [1.33.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.32.0...v1.33.0) (2022-11-04)
+
+
+### Features
+
+* **avis:** ajout opinion ([591bbc1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/591bbc143246a67c3899db380dc402dba77e83d7))
+* **avis:** maj UI ([2f19ff5](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2f19ff53c5580ab2921a53892c60723b0727075c))
+* **avis:** tracker ([dcadc8c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/dcadc8c71d43d7068f16ff43a9a083409fe467cd))
+
 # [1.32.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.31.0...v1.32.0) (2022-11-04)
 
 
