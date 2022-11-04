@@ -1,3 +1,26 @@
+# [1.32.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.31.0...v1.32.0) (2022-11-04)
+
+
+### Bug Fixes
+
+* **accessibiliite:** progression question ([1a46b63](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1a46b635afec480f1536f6fa16dfdab084775418))
+* **accessibilite:** class ([3af4a1b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3af4a1bfd5ebf938c7a309b41d8ec548e8e47ebc))
+* **accessibilite:** compteur enfants ([1d68c94](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1d68c9436c74a5461a8ad20bf540966786f12c7d))
+* **accessibilite:** groupe de boutons ([bf94f5d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/bf94f5df82f17e26c1a79a41a520cbb31038e56e))
+* **accessibilite:** retours PR ([e178da2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e178da2b1ae8b15b70e87a94943915802e34ea14))
+* **accessibilite:** test ([21ed755](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/21ed7556aa4da3a5e0be65f45082ff978d8cac74))
+
+
+### Features
+
+* **accessibilite:** compteur enfants ([16c51dc](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/16c51dc218c8ed4bc19a5575e4c6c0969860b849))
+* **accessibilite:** erreurs générales + images décoratives ([fadd4de](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/fadd4dead4bc8bc89205f497e04cd99277387aa8))
+* **accessibilite:** groupe de checkbox ([2ac6d0a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2ac6d0ab5b37ccdbfcd2400324419baf1f2f0781))
+* **accessibilite:** ignorer img ou renommer ([372448c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/372448cf0f6f11ba85181d39605c6cb3c0b85214))
+* **accessibilite:** page avant questionnnaire ([fcfe993](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/fcfe9939a5480462508f341b19d6376a1562cd21))
+* **accessibilite:** questionnaire epds ([c5ad130](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c5ad13004798d785ca5ca98e011183e81ff50f84))
+* **accessibilité:** groupe de boutons ([180307c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/180307cf8fc9a588f4514f0e8b700b4a6094f9fd))
+
 # [1.31.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.30.1...v1.31.0) (2022-10-17)
 
 
