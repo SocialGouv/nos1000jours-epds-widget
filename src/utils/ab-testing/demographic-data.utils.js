@@ -130,6 +130,7 @@ export const uiAdaptationForInfoDemographic = () => {
 
 export const opensInfoDemographicBeforeEpds = () => {
   return {
+    isBeforeEpds: true,
     buttonLabelInBeforeSurvey: "Suivant",
     buttonLabelInInfoDemographicSurvey: "Envoyer et commencer le questionnaire",
   }

@@ -41,7 +41,7 @@ export default function DemographicDataSurvey() {
   const [jobValue, setJobValue] = useState()
 
   const epdsTestID = StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
-  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
+  const demographicData = DemographicDataUtils.opensInfoDemographicBeforeEpds()
 
   useEffect(() => {
     const isCompleted = checkIsFormCompleted(
