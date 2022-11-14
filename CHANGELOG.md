@@ -1,3 +1,24 @@
+# [1.36.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.35.0...v1.36.0) (2022-11-14)
+
+
+### Bug Fixes
+
+* **intentions:** retours de PR ([986d382](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/986d382e3e62f7b754ef7a187352812aedfe3020))
+* **intentions:** retours de PR ([d5ed1de](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d5ed1de0dff327b85e50346c17d3a82f568cbfba))
+* **intentions:** sonar erreurs ([8b68128](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8b68128fb6c718423c6048050d173f86c1aaad81))
+* **intentions:** sonar erreurs ([40dda8f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/40dda8fa23c224cf93e67279d27da3b08446997f))
+* **intentions:** style ([1a401a1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1a401a1aeb6bd460540e638b5ff6e6648afa3dd1))
+* **intentions:** wording ([5124a67](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5124a67448be70469b5a51e35b9f8cec585dcac4))
+
+
+### Features
+
+* **intentions:** ajout trackers ([c90d61b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c90d61b7d7aad18f4cda025056aa094d621cb846))
+* **intentions:** créaiton bloc intentions v2 ([23c6665](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/23c66659b7145469370c12b62ded4d471c288723))
+* **intentions:** maj question ([d72b1b1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d72b1b196ace77ba10ff67403b583a619ee7d224))
+* **intentions:** maj réponses ([1e41c9b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1e41c9bc9de180f1d2d4b86d37ec8444c351d935))
+* **intentions:** style des boutons ([93d4a08](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/93d4a084ff349599cad47d86e8d462e28b19fffd))
+
 # [1.35.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.34.0...v1.35.0) (2022-11-14)
 
 
