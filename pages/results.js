@@ -11,7 +11,6 @@ import {
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
-import { useState } from "react"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_MEDIUM,
