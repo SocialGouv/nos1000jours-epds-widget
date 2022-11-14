@@ -53,7 +53,7 @@ export const Intentions = ({ moodLevel }) => {
               name="radio"
               value={radio.name}
               checked={radioValue === radio.name}
-              onChange={(e) => onToggleButon(e.currentTarget.value)}
+              onChange={(event) => onToggleButon(event.currentTarget.value)}
             >
               {radio.name}
             </ToggleButton>
