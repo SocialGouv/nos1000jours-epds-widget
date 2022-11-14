@@ -31,7 +31,7 @@ import {
   EPDS_SAVE_RESPONSES_FOR_WIDGET,
   EPDS_SURVEY_TRANSLATION_BY_LOCALE,
 } from "@socialgouv/nos1000jours-lib"
-import { updateInfoDemographic } from "../ab-testing/demographic-data-survey"
+import { updateDemographicData } from "../ab-testing/demographic-data-survey"
 import * as StorageUtils from "../../src/utils/storage.utils"
 
 export default function EpdsSurvey() {
@@ -91,7 +91,7 @@ export default function EpdsSurvey() {
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
 
-      updateInfoDemographic(
+      updateDemographicData(
         updateEpdsIdInInfosQuery,
         data.createReponsesEpdsWidget.id
       )

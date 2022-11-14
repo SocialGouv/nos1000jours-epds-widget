@@ -128,7 +128,7 @@ export const uiAdaptationForInfoDemographic = () => {
   return null
 }
 
-export const opensInfoDemographicBeforeEpds = () => {
+export const getDemographicBeforeEpds = () => {
   return {
     isBeforeEpds: true,
     buttonLabelInBeforeSurvey: "Suivant",
@@ -143,5 +143,5 @@ export const goToDemographicSurvey = async (router, epdsTestID) => {
 }
 
 export const trackerForDemographie = (label) => {
-  trackerClick(CATEG.demographie, label)
+  trackerClick(CATEG.demography, label)
 }
