@@ -32,6 +32,8 @@ export default function DemographicDataSurvey() {
   const [showDataDetails, setShowDataDetails] = useState(false)
   const [isValudateButtonEnabled, setValudateButtonEnabled] = useState(true)
   const [isLoading, setLoading] = useState(false)
+  const [isAutoCompleteZipCodeValid, setIsAutoCompleteZipCodeValid] =
+    useState(false)
 
   const [genderItems, setGenderItems] = useState(genderValues)
   const [ageItems, setAgeItems] = useState(ageValues)
@@ -48,7 +50,7 @@ export default function DemographicDataSurvey() {
       genderItems,
       ageItems,
       jobValue,
-      residenceValue,
+      isAutoCompleteZipCodeValid,
       situationItems,
       entourageItems
     )
@@ -59,7 +61,7 @@ export default function DemographicDataSurvey() {
     jobValue,
     situationItems,
     entourageItems,
-    residenceValue,
+    isAutoCompleteZipCodeValid,
   ])
 
   const RadioButtonGroup = ({ groupName, data, defaultData, setItems }) => (
@@ -250,7 +252,10 @@ export default function DemographicDataSurvey() {
 
         <div>
           <div className="bloc-name">Code postal de résidence :</div>
-          <AutoCompleteZipCode setCitySelected={setResidenceValue} />
+          <AutoCompleteZipCode
+            setCitySelected={setResidenceValue}
+            setIsAutoCompleteZipCodeValid={setIsAutoCompleteZipCodeValid}
+          />
         </div>
 
         <SituationBloc />
@@ -283,7 +288,7 @@ export const checkIsFormCompleted = (
   const isGenderCompeleted = genderData?.find((item) => item.isChecked)
   const isAgeCompeleted = ageData?.find((item) => item.isChecked)
   const isJobSelected = jobData != undefined
-  const isResidenceCompeleted = residenceData != undefined
+  const isResidenceCompeleted = residenceData != undefined && residenceData
   const isSituationCompeleted = situationData?.find((item) => item.isChecked)
   const isEntourageCompeleted = entourageData?.find((item) => item.isChecked)
 

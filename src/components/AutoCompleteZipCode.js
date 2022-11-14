@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react"
-import { cityInformation } from "../utils/components/auto-complete-zipcode.utils"
+import {
+  cityInformation,
+  isValidZipcode,
+} from "../utils/components/auto-complete-zipcode.utils"
 import { LoaderFoButton } from "../utils/main.utils"
 
-export function AutoCompleteZipCode({ setCitySelected }) {
+/**
+ * @param {void} setCitySelected
+ * @param {void} setIsAutoCompleteZipCodeValid
+ * @returns zipCode (ex : "44000") or object (city, departmentName, departmentNumber, label1Bold, label2, region, zipcode)
+ */
+export function AutoCompleteZipCode({
+  setCitySelected,
+  setIsAutoCompleteZipCodeValid,
+}) {
   const API_ADRESSE_GOUV_URL = "https://api-adresse.data.gouv.fr"
 
   const [citySuggestions, setCitySuggestions] = useState([])
@@ -36,13 +47,21 @@ export function AutoCompleteZipCode({ setCitySelected }) {
     if (citySuggestions?.length > 0) {
       setActive(0)
       setFiltered(citySuggestions)
-      setIsShow(true)
+    } else {
+      console.warn("Aucune donnée correspondante")
+
+      const isValidZipcodeValid = isValidZipcode(input)
+      setIsAutoCompleteZipCodeValid(isValidZipcodeValid)
+      if (isValidZipcodeValid) setCitySelected({ zipcode: input })
     }
+
+    setIsShow(citySuggestions?.length > 0)
   }, [citySuggestions])
 
   const onChange = (e) => {
     const inputValue = e.currentTarget.value
     if (inputValue.length >= 5) callAPI(inputValue)
+    else setIsAutoCompleteZipCodeValid(false)
     setInput(inputValue)
   }
 
@@ -50,6 +69,7 @@ export function AutoCompleteZipCode({ setCitySelected }) {
     const clickValue = e.currentTarget.attributes["value"].value
     const itemSelected = filtered.find((item) => item.label1Bold === clickValue)
     setCitySelected(itemSelected)
+    setIsAutoCompleteZipCodeValid(true)
 
     setActive(0)
     setFiltered([])
