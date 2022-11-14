@@ -21,16 +21,16 @@ describe("Result Utils", () => {
       }
     })
 
-    test("LocalStorage vide", () => {
+    test("Should return null results when local storage is empty", () => {
       const expected = {
         detailQuestions: null,
-        detailReponses: null,
+        detailResponses: null,
         moodLabel: undefined,
       }
       expect(getEpdsResultsAndMoodInStorage()).toEqual(expected)
     })
 
-    test("mood et tableau stocké dans le LocalStorage", () => {
+    test("Should return matching questions, responses and mood label when mood and table are stored in local storage", () => {
       const resultsBoard = [
         {
           order: 1,
@@ -116,7 +116,7 @@ describe("Result Utils", () => {
           "Je me suis senti(e) si malheureux(se) que j’en ai pleuré",
           "Il m’est arrivé de penser à me faire du mal",
         ],
-        detailReponses: [
+        detailResponses: [
           "Absolument pas",
           "Pratiquement pas",
           "Non, jamais",
@@ -135,13 +135,13 @@ describe("Result Utils", () => {
   })
 
   describe("convertResultsInStorageToContentTable", () => {
-    test("Avoir le bon objet de retour", () => {
+    test("Should map results to corresponding table", () => {
       const initalData = {
         detailQuestions: [
           "J’ai pu rire et prendre les choses du bon côté",
           "Je me suis senti(e) confiant(e) et joyeux(se), en pensant à l’avenir",
         ],
-        detailReponses: ["Absolument pas", "Pratiquement pas"],
+        detailResponses: ["Absolument pas", "Pratiquement pas"],
         moodLabel: null,
       }
 

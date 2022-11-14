@@ -13,22 +13,24 @@ export const getEpdsResultsAndMoodInStorage = () => {
     StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
   )
 
-  return {
+  const getDetailQuestionsOrResponses = {
     detailQuestions: resultsBoard
       ? resultsBoard.map((data) => data.question)
       : null,
-    detailReponses: resultsBoard
+    detailResponses: resultsBoard
       ? resultsBoard.map((data) => data.response)
       : null,
     moodLabel: getColorIconAndTextByMood(moodId).moodText,
   }
+
+  return getDetailQuestionsOrResponses
 }
 
 export const convertResultsInStorageToContentTable = (resultsBoard) => {
   return resultsBoard.detailQuestions.map((questionItem, index) => {
     return {
       question: questionItem,
-      reponse: resultsBoard.detailReponses[index],
+      reponse: resultsBoard.detailResponses[index],
     }
   })
 }

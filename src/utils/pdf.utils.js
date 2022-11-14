@@ -23,24 +23,25 @@ export const generateEpdsResultsPdf = () => {
   doc.text(`Fait le ${today}`, MARGIN_10, 50)
   doc.text(data.moodLabel, MARGIN_10, 64)
 
-  const headers = [
-    {
-      name: "question",
-      prompt: "Question",
-      align: "left",
-      padding: MARGIN_10,
-      width: CELL_WIDTH,
-    },
-    {
-      name: "reponse",
-      prompt: "Réponse",
-      align: "left",
-      padding: MARGIN_10,
-      width: CELL_WIDTH,
-    },
-  ]
   const contentTable = convertResultsInStorageToContentTable(data)
-  doc.table(MARGIN_10, 68, contentTable, headers)
+  doc.table(MARGIN_10, 68, contentTable, getPdfHeaders)
 
   doc.save(`resultats-epds-${today}.pdf`)
 }
+
+const getPdfHeaders = [
+  {
+    name: "question",
+    prompt: "Question",
+    align: "left",
+    padding: MARGIN_10,
+    width: CELL_WIDTH,
+  },
+  {
+    name: "reponse",
+    prompt: "Réponse",
+    align: "left",
+    padding: MARGIN_10,
+    width: CELL_WIDTH,
+  },
+]

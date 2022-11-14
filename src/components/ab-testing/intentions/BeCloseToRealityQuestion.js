@@ -78,7 +78,7 @@ export const BeCloseToRealityQuestion = ({
     <div>
       {!displayItemSelected && <b>{estProcheDeLaRealite.question}</b>}
       {!displayItemSelected && (
-        <div className="buttons-bloc">
+        <div className="buttons-block">
           <ToggleButtonGroup type="radio" name="radio-reality">
             {estProcheDeLaRealite.reponses.map((item, index) => (
               <ToggleButton

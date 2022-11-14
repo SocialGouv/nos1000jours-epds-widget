@@ -37,9 +37,9 @@ export const Intentions = ({ moodLevel }) => {
     trackerForIntentions(moodLevel, value)
   }
 
-  const questionBloc = (question) => {
+  const questionBlock = (question) => {
     return (
-      <div className="buttons-bloc">
+      <div className="buttons-block">
         <div>
           <b>{question.question}</b>
         </div>
@@ -63,7 +63,7 @@ export const Intentions = ({ moodLevel }) => {
     )
   }
 
-  const DownloadEpdsResponsesBt = () => {
+  const DownloadEpdsResponsesBtn = () => {
     return (
       <div
         className="fr-download intention-download"
@@ -85,8 +85,8 @@ export const Intentions = ({ moodLevel }) => {
   return (
     <div className="intentions">
       <div className="intentions-card">
-        {questionBloc(question)}
-        <DownloadEpdsResponsesBt />
+        {questionBlock(question)}
+        <DownloadEpdsResponsesBtn />
       </div>
     </div>
   )
