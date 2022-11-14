@@ -41,7 +41,7 @@ export default function DemographicDataSurvey() {
   const [jobValue, setJobValue] = useState()
 
   const epdsTestID = StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
-  const demographicData = DemographicDataUtils.uiAdaptationForInfoDemographic()
+  const demographicData = DemographicDataUtils.getDemographicBeforeEpds()
 
   useEffect(() => {
     const isCompleted = checkIsFormCompleted(
@@ -298,11 +298,12 @@ export const checkIsFormCompleted = (
 }
 
 /**
- * MAJ de l'ID du questionnaire EPDS dans le questionnaire Démographique
+ * MAJ de l'ID du questionnaire EPDS dans le questionnaire Démographique.
+ * Important lorsque le quesitonnaire est réalisé avant l'EPDS.
  * @param {*} updateEpdsIdInInfosQuery query UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES
  * @param {String} reponsesEpdsID ID du questionnaire EPDS
  */
-export const updateInfoDemographic = (
+export const updateDemographicData = (
   updateEpdsIdInInfosQuery,
   reponsesEpdsID
 ) => {

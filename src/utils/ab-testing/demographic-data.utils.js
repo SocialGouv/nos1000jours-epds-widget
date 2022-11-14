@@ -1,6 +1,6 @@
 import { STORAGE_TEST_ABC, STORAGE_RESULTS_ID } from "../../constants/constants"
 import { TEST } from "./ab-testing.utils"
-import { ACTION, CATEG, trackerClick } from "../tracker.utils"
+import { CATEG, trackerClick } from "../tracker.utils"
 import * as StorageUtils from "../storage.utils"
 
 export const genderValues = [
@@ -128,6 +128,14 @@ export const uiAdaptationForInfoDemographic = () => {
   return null
 }
 
+export const getDemographicBeforeEpds = () => {
+  return {
+    isBeforeEpds: true,
+    buttonLabelInBeforeSurvey: "Suivant",
+    buttonLabelInInfoDemographicSurvey: "Envoyer et commencer le questionnaire",
+  }
+}
+
 export const goToDemographicSurvey = async (router, epdsTestID) => {
   if (epdsTestID) localStorage.setItem(STORAGE_RESULTS_ID, epdsTestID)
 
@@ -135,6 +143,5 @@ export const goToDemographicSurvey = async (router, epdsTestID) => {
 }
 
 export const trackerForDemographie = (label) => {
-  const testId = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-  trackerClick(CATEG.test, `${ACTION.parcours}${testId}`, label)
+  trackerClick(CATEG.demography, label)
 }

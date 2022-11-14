@@ -93,78 +93,26 @@ describe("Utils", () => {
     const demographicSurveyPath = "/ab-testing/demographic-data-survey"
 
     describe("Ecran pré questionnaire EPDS", () => {
-      test("Test A", async () => {
-        mockLocalStorageForTest("A")
+      test("Rentrer dans le questionnaire", async () => {
         await act(async () => render(<BeforeSurvey />))
 
-        const nextButton = screen.getByRole("button", {
-          name: "Commencer le questionnaire",
-        })
+        const nextButton = screen.getByRole("button", { name: "Suivant" })
 
         expect(nextButton).toBeInTheDocument()
         fireEvent.click(nextButton)
         expect(router.push).toHaveBeenCalledWith({
-          pathname: epdsSurveyPath,
+          pathname: demographicSurveyPath,
         })
       })
 
-      describe("Test B", () => {
-
-        beforeAll(() => mockLocalStorageForTest("B"))
-
-        test("Rentrer dans le questionnaire", async () => {
-          await act(async () => render(<BeforeSurvey />))
-
-          const nextButton = screen.getByRole("button", { name: "Suivant" })
-
-          expect(nextButton).toBeInTheDocument()
-          fireEvent.click(nextButton)
-          expect(router.push).toHaveBeenCalledWith({
-            pathname: demographicSurveyPath,
-          })
-        })
-        test("Sortir du questionnaire", async () => {
-          await act(async () => render(<DemographicDataSurvey />))
-
-          const nextButton = screen.getByRole("button", {
-            name: "Envoyer et commencer le questionnaire",
-          })
-
-          expect(nextButton).toBeInTheDocument()
-          fireEvent.click(nextButton)
-          expect(router.push).toHaveBeenCalledWith({
-            pathname: epdsSurveyPath,
-          })
-        })
-      })
-
-      test("Test C", async () => {
-        mockLocalStorageForTest("C")
-        await act(async () => render(<BeforeSurvey />))
-
-        const nextButton = screen.getByRole("button", {
-          name: "Commencer le questionnaire",
-        })
-
-        expect(nextButton).toBeInTheDocument()
-        fireEvent.click(nextButton)
-        expect(router.push).toHaveBeenCalledWith({
-          pathname: epdsSurveyPath,
-        })
-      })
-    })
-
-    describe("Ecran post questionnaire EPDS", () => {
-      test("Test C", async () => {
-        mockLocalStorageForTest("C")
+      test("Sortir du questionnaire", async () => {
         await act(async () => render(<DemographicDataSurvey />))
 
         const nextButton = screen.getByRole("button", {
-          name: "Envoyer et afficher le résultat du questionnaire",
+          name: "Envoyer et commencer le questionnaire",
         })
 
         expect(nextButton).toBeInTheDocument()
-        fireEvent.click(nextButton)
       })
     })
   })
