@@ -12,7 +12,7 @@ export const Intentions = ({ moodLevel }) => {
   const router = useRouter()
 
   const [radioValue, setRadioValue] = useState()
-  const question = {
+  const questionAboutScore = {
     question: "À qui allez-vous parler de votre score ?",
     responses: [
       { name: "À Élise, présidente de l'association Maman Blues", id: 1 },
@@ -27,7 +27,7 @@ export const Intentions = ({ moodLevel }) => {
   }, [openContact, radioValue])
 
   const openContact = () => {
-    const itemToElise = question.responses.find((item) => item.id == 1)
+    const itemToElise = questionAboutScore.responses.find((item) => item.id == 1)
     if (itemToElise.name === radioValue)
       router.push({ pathname: "/contact/to-be-contacted" })
   }
@@ -44,7 +44,7 @@ export const Intentions = ({ moodLevel }) => {
           <b>{question.question}</b>
         </div>
         <ButtonGroup>
-          {question.responses.map((radio, idx) => (
+          {question.responses.map((radio) => (
             <ToggleButton
               className="intentions-button fr-btn--tertiary"
               key={radio.id}
@@ -85,7 +85,7 @@ export const Intentions = ({ moodLevel }) => {
   return (
     <div className="intentions">
       <div className="intentions-card">
-        {questionBlock(question)}
+        {questionBlock(questionAboutScore)}
         <DownloadEpdsResponsesBtn />
       </div>
     </div>

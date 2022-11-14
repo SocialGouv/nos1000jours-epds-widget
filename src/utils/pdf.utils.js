@@ -14,7 +14,7 @@ export const generateEpdsResultsPdf = () => {
   const data = getEpdsResultsAndMoodInStorage()
   const doc = new jsPDF({ orientation: "portrait" })
 
-  var img = new Image()
+  let img = new Image()
   img.src = LOG_URL
   doc.addImage(img, "png", MARGIN_10, MARGIN_10, 20, 20)
   doc.text("Résultats du test EPDS", MARGIN_10, 40)
