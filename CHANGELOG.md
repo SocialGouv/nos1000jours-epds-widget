@@ -1,3 +1,16 @@
+# [1.35.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.34.0...v1.35.0) (2022-11-14)
+
+
+### Bug Fixes
+
+* **demographis:** retours de PR ([5e49b8d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5e49b8d5bb541d66918cbd9d09696311c32d54d8))
+
+
+### Features
+
+* **demographie:** maj des trackers ([f092c0f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f092c0f49dfee3826b61e9ee86deab9b4cc316d2))
+* **demographie:** supression de l'ab testing ([88d1661](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/88d1661a4d05d19445e48896bde93c410fd92e86))
+
 # [1.34.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.33.0...v1.34.0) (2022-11-14)
 
 
