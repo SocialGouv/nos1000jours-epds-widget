@@ -39,6 +39,10 @@ a {
   text-decoration: none;
 }
 
+[href] {
+  background-image: none !important;
+}
+
 .container {
   padding: 0 2rem;
 }
@@ -156,7 +160,7 @@ a {
 }
 
 .font-size-rtl {
-  font-size: $md  !important;
+  font-size: $md !important;
 }
 
 .rep-francaise-img {
@@ -244,7 +248,7 @@ a {
 
 .carousel-custom {
   margin-bottom: $lg;
-  margin-top: $xxxxxs  !important;
+  margin-top: $xxxxxs !important;
   width: 100%;
 
   .carousel-indicators {
@@ -313,10 +317,6 @@ a {
       height: 20px;
     }
   }
-}
-
-[href] {
-  background-image: none !important;
 }
 
 @media screen and (max-width: 991px) {

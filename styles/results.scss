@@ -137,7 +137,7 @@
     border-left: 5px solid var(--primaryBlueDark);
   }
 
-  .buttons-bloc {
+  .buttons-block {
     margin-block: 5px;
 
     label {
@@ -178,8 +178,42 @@
   }
 }
 
+
+.intentions {
+  margin-block: $xs;
+
+  .intentions-card {
+    padding-inline: $xxl;
+    padding-block: $mmd;
+    background-color: var(--primaryGrey);
+    border-left: 5px solid var(--primaryBlueDark);
+  }
+
+  .intentions-button {
+    display: flex;
+    color: var(--primaryBlueDark);
+    border-color: var(--primaryBlueDark);
+    border-radius: 0;
+    margin: $xxxs;
+    text-align: start;
+  }
+
+  .intentions-button:hover {
+    color: white;
+  }
+
+  .intention-download {
+    padding-top: 1rem;
+    margin-bottom: 0;
+  }
+}
+
 @media screen and (max-width: 770px) {
-  .measure .buttons-bloc .btn-group {
-    display: inherit;
+
+  .measure .buttons-block,
+  .intentions {
+    .btn-group {
+      display: inherit;
+    }
   }
 }

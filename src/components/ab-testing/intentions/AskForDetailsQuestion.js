@@ -106,7 +106,7 @@ export const AskForDetailsQuestion = ({
       {!displayItemSelected &&
         convertStringWithfirstPartInBold("?", data.question)}
       {!displayItemSelected && (
-        <div className="buttons-bloc">
+        <div className="buttons-block">
           <ToggleButtonGroup type="radio" name="radio-details">
             {data.reponses.map((item, index) => (
               <ToggleButton

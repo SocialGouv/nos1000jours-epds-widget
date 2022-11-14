@@ -11,17 +11,15 @@ import {
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
-import { useState } from "react"
-import { MeasuringIntentions } from "../src/components/ab-testing/intentions/MeasuringIntentions"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_MEDIUM,
 } from "../src/utils/score-level.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
+import { Intentions } from "../src/components/results/Intentions"
 
 export default function Results() {
   const router = useRouter()
-  const [isTestStarted, setTestStarted] = useState(false)
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
@@ -88,12 +86,9 @@ export default function Results() {
       <ResultsMood scoreLevel={scoreLevelForMood} />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
         scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
-        <MeasuringIntentions
-          scoreLevel={scoreLevelForMood}
-          setTestStarted={setTestStarted}
-        />
+        <Intentions moodLevel={scoreLevelForMood} />
       ) : null}
-      {!isTestStarted && <DescriptionAndConclusion />}
+      <DescriptionAndConclusion />
       <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
       <GiveOpinion />
       <button
