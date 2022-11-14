@@ -1,3 +1,10 @@
+# [1.34.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.33.0...v1.34.0) (2022-11-14)
+
+
+### Features
+
+* **demographie:** ajout nom du département ([a58d130](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a58d13033f9dd1ba60d5acfc2e9ce553a3fe0eaf))
+
 # [1.33.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.32.0...v1.33.0) (2022-11-04)
 
 
