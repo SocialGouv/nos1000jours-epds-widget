@@ -64,6 +64,7 @@ export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
     $codePostal: String
     $ville: String
     $departement: String
+    $departementLibelle: String
     $region: String
     $reponsesEpds: ID
     $cspCode: String
@@ -79,6 +80,7 @@ export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
           code_postal: $codePostal
           ville: $ville
           departement: $departement
+          departement_libelle: $departementLibelle
           region: $region
           reponses_epds: $reponsesEpds
           csp_code: $cspCode
