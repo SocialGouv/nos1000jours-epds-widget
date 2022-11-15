@@ -1,8 +1,8 @@
 import { checkIsFormCompleted } from "../../../pages/ab-testing/demographic-data-survey"
 
 describe("Questionnaire démographique", () => {
-  describe("Vérification que toutes les questions sont remplies", () => {
-    const genderValuesCompleted = [
+  describe("Should return all questions are completed", () => {
+    const completedGenderValues = [
       {
         id: "femme",
         text: "Femme",
@@ -15,7 +15,7 @@ describe("Questionnaire démographique", () => {
       },
     ]
 
-    const ageValuesCompleted = [
+    const completedAgeValues = [
       {
         id: "-18ans",
         text: "-18 ans",
@@ -28,7 +28,7 @@ describe("Questionnaire démographique", () => {
       },
     ]
 
-    const residenceValueCompleted = {
+    const completedResidenceValue = {
       zipcode: "49000",
       city: "Écouflant",
       departmentName: "Maine-et-Loire",
@@ -38,7 +38,7 @@ describe("Questionnaire démographique", () => {
       label2: "49, Maine-et-Loire, Pays de la Loire",
     }
 
-    const situationValuesCompleted = [
+    const completedSituationValues = [
       {
         id: "attendez1Enfant",
         text: "Vous attendez un enfant",
@@ -51,7 +51,7 @@ describe("Questionnaire démographique", () => {
       },
     ]
 
-    const entourageValuesCompleted = [
+    const completedEntourageValues = [
       {
         id: "oui",
         text: "Oui",
@@ -64,7 +64,7 @@ describe("Questionnaire démographique", () => {
       },
     ]
 
-    const jobValuesCompleted = { code: "10", libelle: "job" }
+    const completedJobValues = { code: "10", libelle: "job" }
 
     test("Les données sont `undefined` => false", () => {
       expect(
@@ -184,7 +184,7 @@ describe("Questionnaire démographique", () => {
 
       expect(
         checkIsFormCompleted(
-          genderValuesCompleted,
+          completedGenderValues,
           ageValues,
           undefined,
           situationValues,
@@ -196,12 +196,12 @@ describe("Questionnaire démographique", () => {
     test("Should return true when all form is completed and zip code is an object", () => {
       expect(
         checkIsFormCompleted(
-          genderValuesCompleted,
-          ageValuesCompleted,
-          jobValuesCompleted,
-          residenceValueCompleted,
-          situationValuesCompleted,
-          entourageValuesCompleted
+          completedGenderValues,
+          completedAgeValues,
+          completedJobValues,
+          completedResidenceValue,
+          completedSituationValues,
+          completedEntourageValues
         )
       ).toBeTruthy()
     })
@@ -209,12 +209,12 @@ describe("Questionnaire démographique", () => {
     test("Should return true when all form is completed and zip code is true", () => {
       expect(
         checkIsFormCompleted(
-          genderValuesCompleted,
-          ageValuesCompleted,
-          jobValuesCompleted,
+          completedGenderValues,
+          completedAgeValues,
+          completedJobValues,
           true,
-          situationValuesCompleted,
-          entourageValuesCompleted
+          completedSituationValues,
+          completedEntourageValues
         )
       ).toBeTruthy()
     })
@@ -222,12 +222,12 @@ describe("Questionnaire démographique", () => {
     test("Should return false when all form is completed and zip code is false", () => {
       expect(
         checkIsFormCompleted(
-          genderValuesCompleted,
-          ageValuesCompleted,
-          jobValuesCompleted,
+          completedGenderValues,
+          completedAgeValues,
+          completedJobValues,
           false,
-          situationValuesCompleted,
-          entourageValuesCompleted
+          completedSituationValues,
+          completedEntourageValues
         )
       ).toBeFalsy()
     })

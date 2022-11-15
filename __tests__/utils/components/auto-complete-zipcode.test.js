@@ -88,19 +88,19 @@ describe("AutoCompleteZipcode Utils", () => {
   })
 
   describe("isValidZipcode", () => {
-    test("Should return true when 44000", () => {
+    test("Should return true when zip code has 5 digits", () => {
       expect(isValidZipcode("44000")).toBeTruthy()
     })
-    test("Should return false when 44 (too short)", () => {
+    test("Should return false when zip code has less than 5 digits", () => {
       expect(isValidZipcode("44")).toBeFalsy()
     })
-    test("Should return false when 440000 (too long)", () => {
+    test("Should return false when zip code has more than 5 digits", () => {
       expect(isValidZipcode("440000")).toBeFalsy()
     })
-    test("Should return false when aaaaa (not number)", () => {
+    test("Should return false when zip code is not a number and has 5 characters", () => {
       expect(isValidZipcode("aaaaa")).toBeFalsy()
     })
-    test("Should return trfalseue when aa (too short and not number)", () => {
+    test("Should return trfalseue when zip code is not a number and has less than 5 characters", () => {
       expect(isValidZipcode("aa")).toBeFalsy()
     })
   })

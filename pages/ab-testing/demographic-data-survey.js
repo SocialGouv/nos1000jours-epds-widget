@@ -253,7 +253,7 @@ export default function DemographicDataSurvey() {
         <div>
           <div className="bloc-name">Code postal de résidence :</div>
           <AutoCompleteZipCode
-            setCitySelected={setResidenceValue}
+            setSelectedCity={setResidenceValue}
             setIsAutoCompleteZipCodeValid={setIsAutoCompleteZipCodeValid}
           />
         </div>

@@ -6,12 +6,12 @@ import {
 import { LoaderFoButton } from "../utils/main.utils"
 
 /**
- * @param {void} setCitySelected
+ * @param {void} setSelectedCity
  * @param {void} setIsAutoCompleteZipCodeValid
  * @returns zipCode (ex : "44000") or object (city, departmentName, departmentNumber, label1Bold, label2, region, zipcode)
  */
 export function AutoCompleteZipCode({
-  setCitySelected,
+  setSelectedCity,
   setIsAutoCompleteZipCodeValid,
 }) {
   const API_ADRESSE_GOUV_URL = "https://api-adresse.data.gouv.fr"
@@ -21,7 +21,7 @@ export function AutoCompleteZipCode({
 
   const [active, setActive] = useState(0)
   const [filtered, setFiltered] = useState([])
-  const [isShow, setIsShow] = useState(false)
+  const [isShown, setIsShown] = useState(false)
   const [input, setInput] = useState("")
 
   const callAPI = async (zipCode) => {
@@ -52,10 +52,10 @@ export function AutoCompleteZipCode({
 
       const isValidZipcodeValid = isValidZipcode(input)
       setIsAutoCompleteZipCodeValid(isValidZipcodeValid)
-      if (isValidZipcodeValid) setCitySelected({ zipcode: input })
+      if (isValidZipcodeValid) setSelectedCity({ zipcode: input })
     }
 
-    setIsShow(citySuggestions?.length > 0)
+    setIsShown(citySuggestions?.length > 0)
   }, [citySuggestions])
 
   const onChange = (e) => {
@@ -68,12 +68,12 @@ export function AutoCompleteZipCode({
   const onClick = (e) => {
     const clickValue = e.currentTarget.attributes["value"].value
     const itemSelected = filtered.find((item) => item.label1Bold === clickValue)
-    setCitySelected(itemSelected)
+    setSelectedCity(itemSelected)
     setIsAutoCompleteZipCodeValid(true)
 
     setActive(0)
     setFiltered([])
-    setIsShow(false)
+    setIsShown(false)
     setInput(e.currentTarget.innerText)
   }
 
@@ -81,7 +81,7 @@ export function AutoCompleteZipCode({
     if (e.keyCode === 13) {
       // enter key
       setActive(0)
-      setIsShow(false)
+      setIsShown(false)
       setInput(filtered[active])
     } else if (e.keyCode === 38) {
       // up arrow
@@ -93,7 +93,7 @@ export function AutoCompleteZipCode({
   }
 
   const renderAutocomplete = () => {
-    if (isShow && input) {
+    if (isShown && input) {
       if (filtered.length) {
         return (
           <ul className="autocomplete">
