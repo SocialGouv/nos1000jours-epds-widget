@@ -13,7 +13,7 @@ import {
 import {
   ageValues,
   convertArraySituationsToString,
-  entourageValues,
+  availableRelativesValues,
   genderValues,
   situationValues,
 } from "../../src/utils/ab-testing/demographic-data.utils"
@@ -30,7 +30,7 @@ export default function DemographicDataSurvey() {
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const [showDataDetails, setShowDataDetails] = useState(false)
-  const [isValudateButtonEnabled, setValudateButtonEnabled] = useState(true)
+  const [isValidateButtonEnabled, setValidateButtonEnabled] = useState(true)
   const [isLoading, setLoading] = useState(false)
   const [isAutoCompleteZipCodeValid, setIsAutoCompleteZipCodeValid] =
     useState(false)
@@ -38,7 +38,7 @@ export default function DemographicDataSurvey() {
   const [genderItems, setGenderItems] = useState(genderValues)
   const [ageItems, setAgeItems] = useState(ageValues)
   const [situationItems, setSituationItems] = useState(situationValues)
-  const [entourageItems, setEntourageItems] = useState(entourageValues)
+  const [entourageItems, setEntourageItems] = useState(availableRelativesValues)
   const [residenceValue, setResidenceValue] = useState()
   const [jobValue, setJobValue] = useState()
 
@@ -54,7 +54,7 @@ export default function DemographicDataSurvey() {
       situationItems,
       entourageItems
     )
-    setValudateButtonEnabled(isCompleted)
+    setValidateButtonEnabled(isCompleted)
   }, [
     genderItems,
     ageItems,
@@ -136,7 +136,7 @@ export default function DemographicDataSurvey() {
         <RadioButtonGroup
           groupName="radio-entourage"
           data={entourageItems}
-          defaultData={entourageValues}
+          defaultData={availableRelativesValues}
           setItems={setEntourageItems}
         />
       </fieldset>
@@ -265,7 +265,7 @@ export default function DemographicDataSurvey() {
         <div className="button-validation">
           <button
             className="fr-btn fr-btn--lg"
-            disabled={!isValudateButtonEnabled}
+            disabled={!isValidateButtonEnabled}
             onClick={sendData}
           >
             {demographicData?.buttonLabelInInfoDemographicSurvey ?? "Envoyer"}
@@ -281,14 +281,13 @@ export const checkIsFormCompleted = (
   genderData,
   ageData,
   jobData,
-  residenceData,
+  isResidenceDataValid,
   situationData,
   entourageData
 ) => {
   const isGenderCompeleted = genderData?.find((item) => item.isChecked)
   const isAgeCompeleted = ageData?.find((item) => item.isChecked)
   const isJobSelected = jobData != undefined
-  const isResidenceCompeleted = residenceData != undefined && residenceData
   const isSituationCompeleted = situationData?.find((item) => item.isChecked)
   const isEntourageCompeleted = entourageData?.find((item) => item.isChecked)
 
@@ -296,7 +295,7 @@ export const checkIsFormCompleted = (
     isGenderCompeleted &&
     isAgeCompeleted &&
     isJobSelected &&
-    isResidenceCompeleted &&
+    isResidenceDataValid &&
     isSituationCompeleted &&
     isEntourageCompeleted
   )

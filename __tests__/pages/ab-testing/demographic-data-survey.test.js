@@ -51,7 +51,7 @@ describe("Questionnaire démographique", () => {
       },
     ]
 
-    const completedEntourageValues = [
+    const completedAvailableRelativesValues = [
       {
         id: "oui",
         text: "Oui",
@@ -66,7 +66,7 @@ describe("Questionnaire démographique", () => {
 
     const completedJobValues = { code: "10", libelle: "job" }
 
-    test("Les données sont `undefined` => false", () => {
+    test("Should return false when data are `undefined` ", () => {
       expect(
         checkIsFormCompleted(
           undefined,
@@ -78,7 +78,7 @@ describe("Questionnaire démographique", () => {
       ).toBeFalsy()
     })
 
-    test("Aucune question remplie => false", () => {
+    test("Should return false when form is not completed", () => {
       const genderValues = [
         {
           id: "femme",
@@ -118,7 +118,7 @@ describe("Questionnaire démographique", () => {
         },
       ]
 
-      const entourageValues = [
+      const availableRelativesValues = [
         {
           id: "oui",
           text: "Oui",
@@ -137,12 +137,12 @@ describe("Questionnaire démographique", () => {
           ageValues,
           undefined,
           situationValues,
-          entourageValues
+          availableRelativesValues
         )
       ).toBeFalsy()
     })
 
-    test("une partie des questions seulement est complété => false", () => {
+    test("Should return false when form is only partially completed", () => {
       const ageValues = [
         {
           id: "-18ans",
@@ -169,7 +169,7 @@ describe("Questionnaire démographique", () => {
         },
       ]
 
-      const entourageValues = [
+      const availableRelativesValues = [
         {
           id: "oui",
           text: "Oui",
@@ -188,7 +188,7 @@ describe("Questionnaire démographique", () => {
           ageValues,
           undefined,
           situationValues,
-          entourageValues
+          availableRelativesValues
         )
       ).toBeFalsy()
     })
@@ -201,7 +201,7 @@ describe("Questionnaire démographique", () => {
           completedJobValues,
           completedResidenceValue,
           completedSituationValues,
-          completedEntourageValues
+          completedAvailableRelativesValues
         )
       ).toBeTruthy()
     })
@@ -214,7 +214,7 @@ describe("Questionnaire démographique", () => {
           completedJobValues,
           true,
           completedSituationValues,
-          completedEntourageValues
+          completedAvailableRelativesValues
         )
       ).toBeTruthy()
     })
@@ -227,7 +227,7 @@ describe("Questionnaire démographique", () => {
           completedJobValues,
           false,
           completedSituationValues,
-          completedEntourageValues
+          completedAvailableRelativesValues
         )
       ).toBeFalsy()
     })
