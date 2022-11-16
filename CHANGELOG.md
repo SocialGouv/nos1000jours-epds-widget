@@ -1,3 +1,12 @@
+## [1.36.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.0...v1.36.1) (2022-11-16)
+
+
+### Bug Fixes
+
+* **demographie:** rentrer un CP non reconnu mais valide ([7953e05](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7953e05cd8a0da1aff75d411a0a63a4e67b8fa65))
+* **demographie:** retours de PR ([26d8516](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/26d8516f0c49321d396544d7ed07d25cc4649a57))
+* **demographie:** retours de PR ([d62a9cf](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d62a9cf60b62f4ffcac3617c333676d4eecf4c41))
+
 # [1.36.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.35.0...v1.36.0) (2022-11-14)
 
 
