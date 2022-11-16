@@ -1,8 +1,72 @@
 import { checkIsFormCompleted } from "../../../pages/ab-testing/demographic-data-survey"
 
 describe("Questionnaire démographique", () => {
-  describe("Vérification que toutes les questions sont remplies", () => {
-    test("Les données sont `undefined` => false", () => {
+  describe("Should return all questions are completed", () => {
+    const completedGenderValues = [
+      {
+        id: "femme",
+        text: "Femme",
+        isChecked: true,
+      },
+      {
+        id: "homme",
+        text: "Homme",
+        isChecked: false,
+      },
+    ]
+
+    const completedAgeValues = [
+      {
+        id: "-18ans",
+        text: "-18 ans",
+        isChecked: true,
+      },
+      {
+        id: "18-25ans",
+        text: "18 - 25 ans",
+        isChecked: false,
+      },
+    ]
+
+    const completedResidenceValue = {
+      zipcode: "49000",
+      city: "Écouflant",
+      departmentName: "Maine-et-Loire",
+      departmentNumber: "49",
+      region: "Pays de la Loire",
+      label1Bold: "Écouflant",
+      label2: "49, Maine-et-Loire, Pays de la Loire",
+    }
+
+    const completedSituationValues = [
+      {
+        id: "attendez1Enfant",
+        text: "Vous attendez un enfant",
+        isChecked: true,
+      },
+      {
+        id: "avezEnfantDeMoinsDe2ans",
+        text: "Vous avez un enfant de moins de 2 ans",
+        isChecked: false,
+      },
+    ]
+
+    const completedAvailableRelativesValues = [
+      {
+        id: "oui",
+        text: "Oui",
+        isChecked: true,
+      },
+      {
+        id: "non",
+        text: "Non",
+        isChecked: false,
+      },
+    ]
+
+    const completedJobValues = { code: "10", libelle: "job" }
+
+    test("Should return false when data are `undefined` ", () => {
       expect(
         checkIsFormCompleted(
           undefined,
@@ -13,7 +77,8 @@ describe("Questionnaire démographique", () => {
         )
       ).toBeFalsy()
     })
-    test("Aucune question remplie => false", () => {
+
+    test("Should return false when form is not completed", () => {
       const genderValues = [
         {
           id: "femme",
@@ -53,7 +118,7 @@ describe("Questionnaire démographique", () => {
         },
       ]
 
-      const entourageValues = [
+      const availableRelativesValues = [
         {
           id: "oui",
           text: "Oui",
@@ -72,24 +137,12 @@ describe("Questionnaire démographique", () => {
           ageValues,
           undefined,
           situationValues,
-          entourageValues
+          availableRelativesValues
         )
       ).toBeFalsy()
     })
-    test("une partie des questions seulement est complété => false", () => {
-      const genderValues = [
-        {
-          id: "femme",
-          text: "Femme",
-          isChecked: true,
-        },
-        {
-          id: "homme",
-          text: "Homme",
-          isChecked: false,
-        },
-      ]
 
+    test("Should return false when form is only partially completed", () => {
       const ageValues = [
         {
           id: "-18ans",
@@ -116,7 +169,7 @@ describe("Questionnaire démographique", () => {
         },
       ]
 
-      const entourageValues = [
+      const availableRelativesValues = [
         {
           id: "oui",
           text: "Oui",
@@ -131,89 +184,52 @@ describe("Questionnaire démographique", () => {
 
       expect(
         checkIsFormCompleted(
-          genderValues,
+          completedGenderValues,
           ageValues,
           undefined,
           situationValues,
-          entourageValues
+          availableRelativesValues
         )
       ).toBeFalsy()
     })
-    test("Genre + Age + CP + situation + entourage complétés => true", () => {
-      const genderValues = [
-        {
-          id: "femme",
-          text: "Femme",
-          isChecked: true,
-        },
-        {
-          id: "homme",
-          text: "Homme",
-          isChecked: false,
-        },
-      ]
 
-      const ageValues = [
-        {
-          id: "-18ans",
-          text: "-18 ans",
-          isChecked: true,
-        },
-        {
-          id: "18-25ans",
-          text: "18 - 25 ans",
-          isChecked: false,
-        },
-      ]
-
-      const jobValues = { code: "10", libelle: "job" }
-
-      const situationValues = [
-        {
-          id: "attendez1Enfant",
-          text: "Vous attendez un enfant",
-          isChecked: true,
-        },
-        {
-          id: "avezEnfantDeMoinsDe2ans",
-          text: "Vous avez un enfant de moins de 2 ans",
-          isChecked: false,
-        },
-      ]
-
-      const entourageValues = [
-        {
-          id: "oui",
-          text: "Oui",
-          isChecked: true,
-        },
-        {
-          id: "non",
-          text: "Non",
-          isChecked: false,
-        },
-      ]
-
-      const residenceValue = {
-        zipcode: "49000",
-        city: "Écouflant",
-        departmentName: "Maine-et-Loire",
-        departmentNumber: "49",
-        region: "Pays de la Loire",
-        label1Bold: "Écouflant",
-        label2: "49, Maine-et-Loire, Pays de la Loire",
-      }
-
+    test("Should return true when all form is completed and zip code is an object", () => {
       expect(
         checkIsFormCompleted(
-          genderValues,
-          ageValues,
-          jobValues,
-          residenceValue,
-          situationValues,
-          entourageValues
+          completedGenderValues,
+          completedAgeValues,
+          completedJobValues,
+          completedResidenceValue,
+          completedSituationValues,
+          completedAvailableRelativesValues
         )
       ).toBeTruthy()
+    })
+
+    test("Should return true when all form is completed and zip code is true", () => {
+      expect(
+        checkIsFormCompleted(
+          completedGenderValues,
+          completedAgeValues,
+          completedJobValues,
+          true,
+          completedSituationValues,
+          completedAvailableRelativesValues
+        )
+      ).toBeTruthy()
+    })
+
+    test("Should return false when all form is completed and zip code is false", () => {
+      expect(
+        checkIsFormCompleted(
+          completedGenderValues,
+          completedAgeValues,
+          completedJobValues,
+          false,
+          completedSituationValues,
+          completedAvailableRelativesValues
+        )
+      ).toBeFalsy()
     })
   })
 })

@@ -77,7 +77,7 @@ export const situationValues = [
   },
 ]
 
-export const entourageValues = [
+export const availableRelativesValues = [
   {
     id: "oui",
     text: "Oui",

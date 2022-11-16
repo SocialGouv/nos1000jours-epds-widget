@@ -1,4 +1,7 @@
-import { cityInformation } from "../../../src/utils/components/auto-complete-zipcode.utils"
+import {
+  cityInformation,
+  isValidZipcode,
+} from "../../../src/utils/components/auto-complete-zipcode.utils"
 
 describe("AutoCompleteZipcode Utils", () => {
   describe("CityInformation", () => {
@@ -81,6 +84,24 @@ describe("AutoCompleteZipcode Utils", () => {
         },
       ]
       expect(result).toEqual(expected)
+    })
+  })
+
+  describe("isValidZipcode", () => {
+    test("Should return true when zip code has 5 digits", () => {
+      expect(isValidZipcode("44000")).toBeTruthy()
+    })
+    test("Should return false when zip code has less than 5 digits", () => {
+      expect(isValidZipcode("44")).toBeFalsy()
+    })
+    test("Should return false when zip code has more than 5 digits", () => {
+      expect(isValidZipcode("440000")).toBeFalsy()
+    })
+    test("Should return false when zip code is not a number and has 5 characters", () => {
+      expect(isValidZipcode("aaaaa")).toBeFalsy()
+    })
+    test("Should return trfalseue when zip code is not a number and has less than 5 characters", () => {
+      expect(isValidZipcode("aa")).toBeFalsy()
     })
   })
 })

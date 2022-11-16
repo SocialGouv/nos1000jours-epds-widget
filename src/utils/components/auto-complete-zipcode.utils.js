@@ -15,3 +15,7 @@ export const cityInformation = (properties) => {
     label2: properties.context,
   }
 }
+
+export const isValidZipcode = (zipcode) => {
+  return zipcode.length == 5 && !isNaN(zipcode)
+}
