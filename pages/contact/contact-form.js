@@ -23,6 +23,7 @@ import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"
 import { useRouter } from "next/router"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
+import * as ContactUtils from "../../src/utils/contact.utils"
 
 export default function ContactForm() {
   const router = useRouter()
@@ -44,6 +45,7 @@ export default function ContactForm() {
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
     client: client,
     onCompleted: () => {
+      ContactUtils.sendTrackerContactConfirmed(contactType)
       setLoading(false)
       goToConfirmation()
     },

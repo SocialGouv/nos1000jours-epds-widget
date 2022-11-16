@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import React, { useEffect } from "react"
+import React from "react"
 import { ContentLayout } from "../../src/components/Layout"
 import {
   OPEN_CONTACT_FROM_EMAIL,
@@ -10,8 +10,6 @@ import {
 import { } from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import * as StorageUtils from "../../src/utils/storage.utils"
-import * as TrackerUtils from "../../src/utils/tracker.utils"
-import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 
 export default function ContactConfirmed() {
   const router = useRouter()
@@ -37,27 +35,6 @@ export default function ContactConfirmed() {
       pathname: "/results",
     })
   }
-
-  useEffect(() => {
-    let name
-    switch (contactType) {
-      case RequestContact.type.email:
-        name = TrackerUtils.CONTACT_SENT.mail
-        break
-      case RequestContact.type.sms:
-        name = TrackerUtils.CONTACT_SENT.sms
-        break
-    }
-
-    TrackerUtils.trackerClick(
-      TrackerUtils.CATEG.contact,
-      TrackerUtils.ACTION.contact_confirm_sent,
-      name
-    )
-    DemographicDataUtils.trackerForDemographie(
-      `${TrackerUtils.ACTION.contact_confirm_sent} par ${name}`
-    )
-  }, [])
 
   return (
     <ContentLayout>
