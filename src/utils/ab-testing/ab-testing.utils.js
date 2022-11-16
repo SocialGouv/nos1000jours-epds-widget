@@ -2,6 +2,7 @@ export const TEST = {
   A: "A",
   B: "B",
   C: "C",
+  D: "D",
 }
 
 /**
@@ -9,14 +10,16 @@ export const TEST = {
  * @returns A, B ou C
  */
 export const generateRandomTest = () => {
-  // expected output: 0, 1 or 2
-  switch (getRandomInt(3)) {
+  // expected output: 0, 1, 2 or 3
+  switch (getRandomInt(4)) {
     case 0:
       return TEST.A
     case 1:
       return TEST.B
     case 2:
       return TEST.C
+    case 3:
+      return TEST.D
   }
 }
 

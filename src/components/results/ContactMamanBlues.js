@@ -3,6 +3,7 @@ import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import * as TrackerUtils from "../../utils/tracker.utils"
+import * as ContactButtonLabelAbTesting from "../../utils/ab-testing/contact-button-label.utils"
 
 export function ContactMamanBlues({ scoreLevel }) {
   const router = useRouter()
@@ -49,7 +50,7 @@ export function ContactMamanBlues({ scoreLevel }) {
           </div>
         </div>
         <button className="fr-btn" onClick={goToBeContacted}>
-          être contacté(e)
+          {ContactButtonLabelAbTesting.getContactButtonLabelByTest()}
         </button>
       </Row>
     </div>
