@@ -12,6 +12,7 @@ export const Intentions = ({ moodLevel }) => {
   const router = useRouter()
 
   const [radioValue, setRadioValue] = useState()
+  const [itemSelected, setItemSelected] = useState(false)
   const questionAboutScore = {
     question: "À qui allez-vous parler de votre score ?",
     responses: [
@@ -27,13 +28,16 @@ export const Intentions = ({ moodLevel }) => {
   }, [openContact, radioValue])
 
   const openContact = () => {
-    const itemToElise = questionAboutScore.responses.find((item) => item.id == 1)
+    const itemToElise = questionAboutScore.responses.find(
+      (item) => item.id == 1
+    )
     if (itemToElise.name === radioValue)
       router.push({ pathname: "/contact/to-be-contacted" })
   }
 
   const onToggleButon = (value) => {
     setRadioValue(value)
+    setItemSelected(true)
     trackerForIntentions(moodLevel, value)
   }
 
@@ -54,11 +58,13 @@ export const Intentions = ({ moodLevel }) => {
               value={radio.name}
               checked={radioValue === radio.name}
               onChange={(event) => onToggleButon(event.currentTarget.value)}
+              disabled={itemSelected}
             >
               {radio.name}
             </ToggleButton>
           ))}
         </ButtonGroup>
+        <div>{itemSelected && "Merci pour votre réponse"}</div>
       </div>
     )
   }

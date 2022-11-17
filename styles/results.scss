@@ -206,6 +206,10 @@
     padding-top: 1rem;
     margin-bottom: 0;
   }
+
+  .btn-primary.disabled {
+    background-color: transparent;
+  }
 }
 
 @media screen and (max-width: 770px) {
