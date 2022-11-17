@@ -196,6 +196,17 @@
     border-radius: 0;
     margin: $xxxs;
     text-align: start;
+    align-items: center;
+
+    img {
+      align-self: center;
+      border-radius: 50%;
+      height: 50px;
+      width: auto;
+      padding: 0;
+      margin-inline: $xxxxxxs;
+      border: 3px solid var(--primaryBlueDark);
+    }
   }
 
   .intentions-button:hover {

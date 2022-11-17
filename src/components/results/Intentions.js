@@ -61,6 +61,7 @@ export const Intentions = ({ moodLevel }) => {
               disabled={itemSelected}
             >
               {radio.name}
+              {radio.id == 1 && <img alt="" src="../img/portrait-elise.jpg" />}
             </ToggleButton>
           ))}
         </ButtonGroup>
