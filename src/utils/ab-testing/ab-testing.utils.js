@@ -1,3 +1,7 @@
+import * as TrackerUtils from "../../utils/tracker.utils"
+import * as StorageUtils from "../../utils/storage.utils"
+import { STORAGE_TEST_ABC } from "../../constants/constants"
+
 export const TEST = {
   A: "A",
   B: "B",
@@ -29,4 +33,13 @@ const getRandomInt = (max) => {
     const randomVal = randomArray[0]
     return randomVal % max
   }
+}
+
+export const trackerForAbTesting = (label) => {
+  const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
+  TrackerUtils.trackerClick(
+    TrackerUtils.CATEG.test,
+    `${TrackerUtils.ACTION.parcours}${id}`,
+    label
+  )
 }
