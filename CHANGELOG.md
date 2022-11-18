@@ -1,3 +1,13 @@
+## [1.36.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.1...v1.36.2) (2022-11-18)
+
+
+### Bug Fixes
+
+* **intention:** ajout de la photo d'élise ([7eb122f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7eb122fac25cae7ce5dd579dafe9e7d6bd63696c))
+* **intention:** remerciements + boutons ([004fff1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/004fff1e2bee7d50067825c8d412f9d5d5368255))
+* **intentions:** retours de PR ([e18f2d3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e18f2d3ca768229f34fa6e62f5ea6e2ab70f4252))
+* **resultats:** ordre des blocs ([b95246c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b95246ce598f95b89a165f4ce2811c81c83d7370))
+
 ## [1.36.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.0...v1.36.1) (2022-11-16)
 
 
