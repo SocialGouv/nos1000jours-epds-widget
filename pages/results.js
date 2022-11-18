@@ -84,12 +84,12 @@ export default function Results() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
+      <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+      <DescriptionAndConclusion />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
         scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
         <Intentions moodLevel={scoreLevelForMood} />
       ) : null}
-      <DescriptionAndConclusion />
-      <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
       <GiveOpinion />
       <button
         className="fr-btn fr-btn--secondary result-return-bt"
