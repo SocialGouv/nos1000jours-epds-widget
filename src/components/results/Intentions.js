@@ -13,6 +13,7 @@ export const Intentions = ({ moodLevel }) => {
 
   const [radioValue, setRadioValue] = useState()
   const [itemSelected, setItemSelected] = useState(false)
+
   const questionAboutScore = {
     question: "À qui allez-vous parler de votre score ?",
     responses: [
@@ -22,6 +23,7 @@ export const Intentions = ({ moodLevel }) => {
       { name: "Je le garde pour moi", id: 4 },
     ],
   }
+  const DISPLAY_IMAGE_FOR_RESPONSE_ID = 1
 
   useEffect(() => {
     openContact()
@@ -29,7 +31,7 @@ export const Intentions = ({ moodLevel }) => {
 
   const openContact = () => {
     const itemToElise = questionAboutScore.responses.find(
-      (item) => item.id == 1
+      (item) => item.id == DISPLAY_IMAGE_FOR_RESPONSE_ID
     )
     if (itemToElise.name === radioValue)
       router.push({ pathname: "/contact/to-be-contacted" })
