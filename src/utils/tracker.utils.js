@@ -7,6 +7,7 @@ export const CATEG = {
   test: "Test",
   intentions: "Intentions",
   demography: "Démographie",
+  recruit: "Recrutement",
   results: "Résultats",
 }
 

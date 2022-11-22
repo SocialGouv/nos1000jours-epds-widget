@@ -1,6 +1,7 @@
 import { Button } from "@dataesr/react-dsfr"
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
+import * as  TrackerUtils from "../../utils/tracker.utils"
 
 export function RecruitParents() {
   const [show, setShow] = useState()
@@ -10,7 +11,15 @@ export function RecruitParents() {
 
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
-  const openUrl = (url) => window.open(url, "_blank")
+
+  const onClickParticipate = (url, label) => {
+    window.open(url, "_blank")
+    TrackerUtils.trackerClick(
+      TrackerUtils.CATEG.recruit,
+      TrackerUtils.EVENT_CLICK,
+      label
+    )
+  }
 
   return (
     <div className="recruit-parents">
@@ -43,7 +52,7 @@ export function RecruitParents() {
             En groupe, avec d'autres parents
             <Button
               className="participate-modal-btn"
-              onClick={() => openUrl(GROUP_URL)}
+              onClick={() => onClickParticipate(GROUP_URL, "Voir l'évènement")}
             >
               Voir l'évènement
             </Button>
@@ -52,7 +61,9 @@ export function RecruitParents() {
             En individuel, avec un membre de l'équipe
             <Button
               className="participate-modal-btn"
-              onClick={() => openUrl(INDUVIDUAL_URL)}
+              onClick={() =>
+                onClickParticipate(INDUVIDUAL_URL, "Choisir un créneau")
+              }
             >
               Choisir un créneau
             </Button>
