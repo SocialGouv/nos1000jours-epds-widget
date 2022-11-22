@@ -116,3 +116,13 @@ export const UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES = gql`
     }
   }
 `
+
+export const SAVE_DEMANDE_DE_CONTACT = gql`
+  mutation ($typeDeContact: String, $widgetEpdsSource: ID, $reponsesEpds: ID) {
+    createDemandeDeContact(
+      type_de_contact: $typeDeContact
+      widget_epds_source: $widgetEpdsSource
+      reponses_epds: $reponsesEpds
+    )
+  }
+`
