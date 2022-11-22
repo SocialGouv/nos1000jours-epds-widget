@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { ButtonGroup, ToggleButton } from "react-bootstrap"
 import { trackerForIntentions } from "../../utils/ab-testing/measuring-intentions.utils"
 import * as PdfUtils from "../../utils/pdf.utils"
+import { RecruitParents } from "./RecruitParents"
 
 /**
  * @param {number} moodLevel
@@ -96,6 +97,7 @@ export const Intentions = ({ moodLevel }) => {
       <div className="intentions-card">
         {questionBlock(questionAboutScore)}
         <DownloadEpdsResponsesBtn />
+        <RecruitParents />
       </div>
     </div>
   )
