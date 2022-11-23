@@ -1,3 +1,11 @@
+## [1.36.3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.2...v1.36.3) (2022-11-23)
+
+
+### Bug Fixes
+
+* **matomo:** doublons pour la confirmation de contact ([2f82750](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2f82750b7c58d31fae2387759f6799eda6af8b3b))
+* **matomo:** retouurs de PR ([192bba4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/192bba4b0990975a8e7dff562a0290d1de1575f8))
+
 ## [1.36.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.1...v1.36.2) (2022-11-18)
 
 
