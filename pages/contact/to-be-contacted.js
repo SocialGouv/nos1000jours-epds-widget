@@ -24,12 +24,8 @@ import {
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
-import {
-  ACTION,
-  CATEG,
-  CONTACT_SENT,
-  trackerClick,
-} from "../../src/utils/tracker.utils"
+import { ACTION, CATEG, trackerClick } from "../../src/utils/tracker.utils"
+import * as ContactUtils from "../../src/utils/contact.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -156,7 +152,7 @@ export default function ToBeContacted() {
   )
 
   const activateChat = () => {
-    trackerClick(CATEG.contact, ACTION.contact_confirm_sent, CONTACT_SENT.chat)
+    ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
     window.open(URL_CHAT_WHATSAPP, "_blank")
   }
 
