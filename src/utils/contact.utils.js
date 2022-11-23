@@ -1,5 +1,10 @@
 import * as TrackerUtils from "./tracker.utils"
-import { RequestContact } from "../constants/constants"
+import * as StorageUtils from "./storage.utils"
+import {
+  RequestContact,
+  STORAGE_RESULTS_ID,
+  STORAGE_SOURCE,
+} from "../constants/constants"
 
 /**
  * @param {RequestContact.type} contactType
@@ -21,4 +26,22 @@ const trackerContactName = (contactType) => {
     case RequestContact.type.chat:
       return TrackerUtils.CONTACT_SENT.chat
   }
+}
+
+/**
+ * Enregistrer la demande de contact avec l'id du questionnaire EPDS
+ * @param {RequestContact.type} contactType
+ * @param {*} sendContactQuery Query SAVE_DEMANDE_DE_CONTACT
+ */
+export const saveDemande2contact = async (contactType, sendContactQuery) => {
+  const epdsTestID = await StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
+  const source = await StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+
+  await sendContactQuery({
+    variables: {
+      reponsesEpds: epdsTestID,
+      typeDeContact: contactType,
+      widgetEpdsSource: source,
+    },
+  })
 }
