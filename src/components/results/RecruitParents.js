@@ -24,7 +24,7 @@ export function RecruitParents() {
   return (
     <div className="recruit-parents">
       <div>
-        Participez à l'amélioration de cet outil afin que le pls grand nombre de
+        Participez à l'amélioration de cet outil afin que le plus grand nombre de
         parents soient aidés
       </div>
       <Button className="participate-btn" onClick={openModal}>
