@@ -161,7 +161,7 @@ export default function ToBeContacted() {
   })
 
   const activateChat = async () => {
-    ContactUtils.saveDemande2contact(RequestContact.type.chat, sendContactQuery)
+    ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
     ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
     window.open(URL_CHAT_WHATSAPP, "_blank")
   }

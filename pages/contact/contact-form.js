@@ -46,7 +46,7 @@ export default function ContactForm() {
     client: client,
     onCompleted: () => {
       ContactUtils.sendTrackerContactConfirmed(contactType)
-      ContactUtils.saveDemande2contact(contactType, sendContactQuery)
+      ContactUtils.saveContactRequest(contactType, sendContactQuery)
       setLoading(false)
       goToConfirmation()
     },
