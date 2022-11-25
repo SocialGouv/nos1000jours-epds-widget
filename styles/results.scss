@@ -223,6 +223,29 @@
   }
 }
 
+.recruit-parents {
+  margin-top: $xxxs;
+  display: flex;
+  flex-direction: column;
+
+  .participate-btn {
+    align-self: center;
+    margin-block: $xxxxs;
+  }
+}
+
+.recruit-modale-response {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+
+  .participate-modal-btn {
+    align-self: center;
+    margin-block: $xxxxs;
+  }
+}
+
 @media screen and (max-width: 770px) {
 
   .measure .buttons-block,
