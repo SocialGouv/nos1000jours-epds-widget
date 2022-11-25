@@ -1,3 +1,16 @@
+# [1.38.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.37.0...v1.38.0) (2022-11-25)
+
+
+### Bug Fixes
+
+* **matomo:** import ([5c1c06c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5c1c06cd01bdb47adad9d8d5931365ffcb8c18b1))
+
+
+### Features
+
+* **contact:** ab testing sur le bonton de contact ([8dcc6e2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8dcc6e2a489cd9115fa1b029415d6d840ce4efe9))
+* **matomo:** ajout trackers sur ab testing de contact ([2897f06](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2897f06cc6613b5cb188cf0ff8e7a3549afb7087))
+
 # [1.37.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.3...v1.37.0) (2022-11-25)
 
 
