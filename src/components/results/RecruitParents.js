@@ -1,13 +1,13 @@
 import { Button } from "@dataesr/react-dsfr"
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
-import * as  TrackerUtils from "../../utils/tracker.utils"
+import * as TrackerUtils from "../../utils/tracker.utils"
 
 export function RecruitParents() {
   const [show, setShow] = useState()
 
   const INDUVIDUAL_URL = "https://calendly.com/1000-jours-blues/30min"
-  const GROUP_URL = "" // TODO:
+  const GROUP_URL = undefined
 
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
@@ -24,8 +24,8 @@ export function RecruitParents() {
   return (
     <div className="recruit-parents">
       <div>
-        Participez à l'amélioration de cet outil afin que le plus grand nombre de
-        parents soient aidés
+        Participez à l'amélioration de cet outil afin que le plus grand nombre
+        de parents soient aidés
       </div>
       <Button className="participate-btn" onClick={openModal}>
         Je participe
@@ -48,15 +48,19 @@ export function RecruitParents() {
         </Modal.Body>
 
         <Modal.Footer>
-          <div className="recruit-modale-response">
-            En groupe, avec d'autres parents
-            <Button
-              className="participate-modal-btn"
-              onClick={() => onClickParticipate(GROUP_URL, "Voir l'évènement")}
-            >
-              Voir l'évènement
-            </Button>
-          </div>
+          {GROUP_URL && (
+            <div className="recruit-modale-response">
+              En groupe, avec d'autres parents
+              <Button
+                className="participate-modal-btn"
+                onClick={() =>
+                  onClickParticipate(GROUP_URL, "Voir l'évènement")
+                }
+              >
+                Voir l'évènement
+              </Button>
+            </div>
+          )}
           <div className="recruit-modale-response">
             En individuel, avec un membre de l'équipe
             <Button
