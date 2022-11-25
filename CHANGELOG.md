@@ -1,3 +1,19 @@
+# [1.37.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.3...v1.37.0) (2022-11-25)
+
+
+### Bug Fixes
+
+* **recrutement:** import ([6ca6a22](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/6ca6a22b9fbb93abf7b9bd46aeef62543bd57744))
+* **recrutement:** typo ([734da8b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/734da8b033eeb658d7938c15c2b12dc577d35f1c))
+
+
+### Features
+
+* **recrutement:** ajout trackers ([fa2e8b8](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/fa2e8b826a3028638f405511c3a0abe41852c1d3))
+* **recrutement:** désactiver réunion groupe ([b3efb57](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b3efb576dca44d1f8e8f81767fcd23861f61aede))
+* **recrutement:** modal ([af388dd](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/af388dd7fa88789c914372244a04f0a9410e55a1))
+* **recrutement:** retours de PR ([5ab2722](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5ab272243c99229a04d60ebf6e2221a30b268415))
+
 ## [1.36.3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.36.2...v1.36.3) (2022-11-23)
 
 
