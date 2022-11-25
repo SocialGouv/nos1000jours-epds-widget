@@ -2,11 +2,12 @@ import { Button } from "@dataesr/react-dsfr"
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
 import * as TrackerUtils from "../../utils/tracker.utils"
+import { } from "@dataesr/react-dsfr"
 
 export function RecruitParents() {
   const [show, setShow] = useState()
 
-  const INDUVIDUAL_URL = "https://calendly.com/1000-jours-blues/30min"
+  const INDIVIDUAL_URL = "https://calendly.com/1000-jours-blues/30min"
   const GROUP_URL = undefined
 
   const openModal = () => setShow(true)
@@ -66,7 +67,7 @@ export function RecruitParents() {
             <Button
               className="participate-modal-btn"
               onClick={() =>
-                onClickParticipate(INDUVIDUAL_URL, "Choisir un créneau")
+                onClickParticipate(INDIVIDUAL_URL, "Choisir un créneau")
               }
             >
               Choisir un créneau
