@@ -2,7 +2,6 @@ import { Button } from "@dataesr/react-dsfr"
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
 import * as TrackerUtils from "../../utils/tracker.utils"
-import { } from "@dataesr/react-dsfr"
 
 export function RecruitParents() {
   const [show, setShow] = useState()
