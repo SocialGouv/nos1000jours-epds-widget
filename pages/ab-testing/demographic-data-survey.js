@@ -245,7 +245,7 @@ export default function DemographicDataSurvey() {
 
         <div>
           <div className="bloc-name">
-            Votre catégories socio-professionnelle :
+            Votre catégorie socio-professionnelle :
           </div>
           <JobSelector setJobSelected={setJobValue} />
         </div>
