@@ -19,7 +19,7 @@ import {
 import * as StorageUtils from "../../src/utils/storage.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
-import { client, EPDS_CONTACT_INFORMATION } from "../../apollo-client"
+import { client, EPDS_CONTACT_INFORMATION, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 import { useRouter } from "next/router"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
@@ -46,12 +46,20 @@ export default function ContactForm() {
     client: client,
     onCompleted: () => {
       ContactUtils.sendTrackerContactConfirmed(contactType)
+      ContactUtils.saveContactRequest(contactType, sendContactQuery)
       setLoading(false)
       goToConfirmation()
     },
     onError: (err) => {
       console.error(err)
       setLoading(false)
+    },
+  })
+
+  const [sendContactQuery] = useMutation(SAVE_DEMANDE_DE_CONTACT, {
+    client: client,
+    onError: (err) => {
+      console.error(err)
     },
   })
 

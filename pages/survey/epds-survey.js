@@ -12,6 +12,7 @@ import {
   EpdsGender,
   EPDS_SOURCE,
   STORAGE_RESULTS_BOARD,
+  STORAGE_RESULTS_ID,
   STORAGE_SCORE,
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
@@ -90,6 +91,7 @@ export default function EpdsSurvey() {
         STORAGE_SCORE_LEVEL_MACARON,
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
+      localStorage.setItem(STORAGE_RESULTS_ID, data.createReponsesEpdsWidget.id)
 
       updateDemographicData(
         updateEpdsIdInInfosQuery,

@@ -26,6 +26,8 @@ import {
 import * as StorageUtils from "../../src/utils/storage.utils"
 import { ACTION, CATEG, trackerClick } from "../../src/utils/tracker.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
+import { useMutation } from "@apollo/client"
+import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -151,7 +153,15 @@ export default function ToBeContacted() {
     </ToggleButtonGroup>
   )
 
-  const activateChat = () => {
+  const [sendContactQuery] = useMutation(SAVE_DEMANDE_DE_CONTACT, {
+    client: client,
+    onError: (err) => {
+      console.error(err)
+    },
+  })
+
+  const activateChat = async () => {
+    ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
     ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
     window.open(URL_CHAT_WHATSAPP, "_blank")
   }

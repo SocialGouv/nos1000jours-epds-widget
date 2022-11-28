@@ -324,7 +324,6 @@ export const updateDemographicData = (
     })
   }
 
-  localStorage.removeItem(STORAGE_RESULTS_ID)
   if (infoDemographicID) {
     updateId()
     localStorage.removeItem(STORAGE_TEST_DEMOGRAPHIC_ID)
