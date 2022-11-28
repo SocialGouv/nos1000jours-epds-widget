@@ -1,3 +1,13 @@
+# [1.39.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.38.0...v1.39.0) (2022-11-28)
+
+
+### Features
+
+* **contact:** ajout query ([d04557b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d04557b6c825b79b4b6a665cc3d4801eabd51006))
+* **contact:** branchement de la query ([ea056af](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ea056af62ab93d43c053cd058a5e08cb31c5d15d))
+* **contact:** maj query ([a961887](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a961887eea4fe3c0921d07b97647192783f4daf3))
+* **contact:** retours de PR ([e789047](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e78904727afef342a32d724bb25ec118fe739e1e))
+
 # [1.38.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.37.0...v1.38.0) (2022-11-25)
 
 
