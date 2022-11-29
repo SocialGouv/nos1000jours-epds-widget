@@ -211,7 +211,7 @@ const defaultContactTypes = {
       iconSelected: "../img/contact/chat-selected.svg",
       id: RequestContact.type.chat,
       isChecked: false,
-      text: "Par chat",
+      text: "Par chat (sur WhatsApp)",
       badge: (
         <Badge pill bg="primary">
           MAINTENANT DISPONIBLE
