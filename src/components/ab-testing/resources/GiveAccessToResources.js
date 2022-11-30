@@ -4,6 +4,7 @@ import { Modal } from "react-bootstrap"
 import { STORAGE_TEST_ABC } from "../../../constants/constants"
 import { TEST } from "../../../utils/ab-testing/ab-testing.utils"
 import * as StorageUtils from "../../../utils/storage.utils"
+import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
 
 export const GiveAccessToResources = () => {
   const RESOURCES_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES
@@ -15,13 +16,28 @@ export const GiveAccessToResources = () => {
   const closeModal = () => setShow(false)
   const openUrl = (url) => window.open(url, "_blank")
 
-  const componentForRedirection = () => (
-    <Button onClick={() => openUrl(RESOURCES_URL)}>
-      Afficher les ressources disponibles
-    </Button>
-  )
+  const componentForRedirection = () => {
+    AbTestingUtils.trackerForAbTesting("Afficher les ressources disponibles")
+
+    return (
+      <Button onClick={() => openUrl(RESOURCES_URL)}>
+        Afficher les ressources disponibles
+      </Button>
+    )
+  }
+
+  const sendMail = () => {
+    AbTestingUtils.trackerForAbTesting(
+      "Je souhaite recevoir les ressources par mail - Envoie du mail"
+    )
+    // TODO: branchement
+  }
 
   const componentToSendMail = () => {
+    AbTestingUtils.trackerForAbTesting(
+      "Je souhaite recevoir les ressources par mail"
+    )
+
     return (
       <div>
         <Button onClick={() => openModal()}>
@@ -58,17 +74,24 @@ export const GiveAccessToResources = () => {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button>Envoyer</Button>
+            <Button onClick={() => sendMail()}>Envoyer</Button>
           </Modal.Footer>
         </Modal>
       </div>
     )
   }
 
-  const sendingMethodByTest =
-    test === TEST.A || test === TEST.B
-      ? componentToSendMail()
-      : componentForRedirection()
+  const sendingMethodByTest = () => {
+    switch (test) {
+      case TEST.A:
+      case TEST.B:
+        return componentToSendMail()
+      case TEST.C:
+      case TEST.D:
+      default:
+        return componentForRedirection()
+    }
+  }
 
-  return <div>{sendingMethodByTest}</div>
+  return <div>{sendingMethodByTest()}</div>
 }
