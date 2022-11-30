@@ -1,3 +1,12 @@
+## [1.39.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.39.1...v1.39.2) (2022-11-30)
+
+
+### Bug Fixes
+
+* favicon ([3d8fa07](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3d8fa076aa1b1c1afe89008ff18a3348c598872a))
+* typo ([fbc675e](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/fbc675ed113434b9fb17a65d7c75ded996be7888))
+* typo ([ad8bcc1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ad8bcc1d5ca2b9fbdf6492c3ded58805b2fcc39e))
+
 ## [1.39.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.39.0...v1.39.1) (2022-11-29)
 
 
