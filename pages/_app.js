@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css"
 import "../styles/index.scss"
+import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css"
 
 import { init } from "@socialgouv/matomo-next"
 import App from "next/app"
