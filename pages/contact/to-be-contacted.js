@@ -33,7 +33,7 @@ export default function ToBeContacted() {
   const router = useRouter()
 
   // Mettre à true pour rendre visible le bloc du chat
-  const IS_CHAT_ENABLED = true
+  const IS_CHAT_ENABLED = false
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
