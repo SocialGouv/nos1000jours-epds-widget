@@ -32,6 +32,9 @@ import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 export default function ToBeContacted() {
   const router = useRouter()
 
+  // Mettre à true pour rendre visible le bloc du chat
+  const IS_CHAT_ENABLED = true
+
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
@@ -104,13 +107,17 @@ export default function ToBeContacted() {
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
       <Col>
-        Maintenant par :
-        <Row>
-          {defaultContactTypes.byNow.map((type) => (
-            <Col key={type.id}>{customToggleButton(type)}</Col>
-          ))}
-        </Row>
-        <br />
+        {IS_CHAT_ENABLED && (
+          <>
+            Maintenant par :
+            <Row>
+              {defaultContactTypes.byNow.map((type) => (
+                <Col key={type.id}>{customToggleButton(type)}</Col>
+              ))}
+            </Row>
+            <br />
+          </>
+        )}
         <fieldset>
           <legend>Selon mes disponibilités, par :</legend>
           <Row>
