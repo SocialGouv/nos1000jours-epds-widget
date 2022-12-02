@@ -37,7 +37,7 @@ const getRandomInt = (max) => {
 
 export const trackerForAbTesting = (label) => {
   const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-  TrackerUtils.trackerClick(
+  TrackerUtils.tracker(
     TrackerUtils.CATEG.test,
     `${TrackerUtils.ACTION.parcours}${id}`,
     label

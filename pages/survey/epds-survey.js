@@ -19,7 +19,6 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
 } from "../../src/constants/constants"
-import { CATEG, EVENT_CLICK, trackerClick } from "../../src/utils/tracker.utils"
 import { Accordion, Spinner } from "react-bootstrap"
 import {
   scoreLevelForMacaron,
@@ -34,6 +33,7 @@ import {
 } from "@socialgouv/nos1000jours-lib"
 import { updateDemographicData } from "../ab-testing/demographic-data-survey"
 import * as StorageUtils from "../../src/utils/storage.utils"
+import * as TrackerUtils from "../../src/utils/tracker.utils"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -221,7 +221,11 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
-              trackerClick(CATEG.survey, EVENT_CLICK, `Terminer - ${source}`)
+              TrackerUtils.tracker(
+                TrackerUtils.CATEG.survey,
+                TrackerUtils.EVENT_CLICK,
+                `Terminer - ${source}`
+              )
             }}
             disabled={!isEnabledNextButton || isLoading}
           >

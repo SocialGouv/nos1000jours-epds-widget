@@ -8,7 +8,6 @@ import {
   STORAGE_SOURCE,
   STORAGE_TEST_ABC,
 } from "../src/constants/constants"
-import { CATEG, EVENT_CLICK, trackerClick } from "../src/utils/tracker.utils"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
 import { client, GET_TEMOIGNAGES_CHIFFRES } from "../apollo-client"
@@ -24,6 +23,7 @@ import { LocaleButton } from "../src/components/LocaleButton"
 import { CarouselCustom } from "../src/components/CarouselCustom"
 import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
+import * as TrackerUtils from "../src/utils/tracker.utils"
 
 export default function Home() {
   const router = useRouter()
@@ -65,7 +65,11 @@ export default function Home() {
   }, [localeSelected])
 
   const startSurvey = () => {
-    trackerClick(CATEG.home, EVENT_CLICK, `Commencer le test - ${source}`)
+    TrackerUtils.tracker(
+      TrackerUtils.CATEG.home,
+      TrackerUtils.EVENT_CLICK,
+      `Commencer le test - ${source}`
+    )
     localStorage.setItem(STORAGE_SOURCE, source)
 
     localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())

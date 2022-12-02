@@ -14,7 +14,7 @@ export function RecruitParents() {
 
   const onClickParticipate = (url, label) => {
     window.open(url, "_blank")
-    TrackerUtils.trackerClick(
+    TrackerUtils.tracker(
       TrackerUtils.CATEG.recruit,
       TrackerUtils.EVENT_CLICK,
       label
