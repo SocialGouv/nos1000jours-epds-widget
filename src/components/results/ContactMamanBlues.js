@@ -24,6 +24,7 @@ export function ContactMamanBlues({ scoreLevel }) {
     default:
       break
   }
+  AbTestingUtils.trackerForAbTesting(`Macaron Elise - ${colorsByLevel}`)
 
   const goToBeContacted = async (event) => {
     TrackerUtils.tracker(
