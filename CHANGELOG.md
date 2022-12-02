@@ -1,3 +1,11 @@
+# [1.40.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.39.2...v1.40.0) (2022-12-02)
+
+
+### Features
+
+* **chat:** enabled variable ([b3c3f68](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b3c3f68984e8cf6cea4208bac82710401b089973))
+* **chat:** mettre a false ([2a8575a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2a8575ad025d691249087a2e317c23c89fc5c95c))
+
 ## [1.39.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.39.1...v1.39.2) (2022-11-30)
 
 
