@@ -76,7 +76,7 @@ export default function ToBeContacted() {
   }
 
   const onValidate = async (event) => {
-    TrackerUtils.tracker(
+    TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       TrackerUtils.ACTION.contact_type,
       itemValueType

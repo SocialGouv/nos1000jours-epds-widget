@@ -143,7 +143,7 @@ export const goToDemographicSurvey = async (router, epdsTestID) => {
 }
 
 export const trackerForDemographie = (label) => {
-  TrackerUtils.tracker(
+  TrackerUtils.track(
     TrackerUtils.CATEG.demography,
     TrackerUtils.EVENT_CLICK,
     label

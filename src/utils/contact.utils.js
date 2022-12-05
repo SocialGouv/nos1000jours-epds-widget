@@ -10,7 +10,7 @@ import {
  * @param {RequestContact.type} contactType
  */
 export const sendTrackerContactConfirmed = (contactType) => {
-  TrackerUtils.tracker(
+  TrackerUtils.track(
     TrackerUtils.CATEG.contact,
     TrackerUtils.ACTION.contact_confirm_sent,
     trackerContactName(contactType)

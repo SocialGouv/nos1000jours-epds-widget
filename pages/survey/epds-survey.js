@@ -221,7 +221,7 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
-              TrackerUtils.tracker(
+              TrackerUtils.track(
                 TrackerUtils.CATEG.survey,
                 TrackerUtils.EVENT_CLICK,
                 `Terminer - ${source}`

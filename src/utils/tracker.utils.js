@@ -24,7 +24,7 @@ export const CONTACT_SENT = {
   sms: "confirmation_sms",
 }
 
-export const tracker = (categ, action, name) => {
+export const track = (categ, action, name) => {
   if (process.env.NEXT_PUBLIC_MATOMO_ENABLED === "true")
     _paq.push(["trackEvent", categ, action, name])
 }

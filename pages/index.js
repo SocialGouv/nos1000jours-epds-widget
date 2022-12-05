@@ -65,7 +65,7 @@ export default function Home() {
   }, [localeSelected])
 
   const startSurvey = () => {
-    TrackerUtils.tracker(
+    TrackerUtils.track(
       TrackerUtils.CATEG.home,
       TrackerUtils.EVENT_CLICK,
       `Commencer le test - ${source}`
