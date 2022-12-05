@@ -1,3 +1,10 @@
+## [1.40.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.40.0...v1.40.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* **matomo:** fix dependence ([5ebf887](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5ebf88731ac3e6fe74464d804ce59c625eb74056))
+
 # [1.40.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.39.2...v1.40.0) (2022-12-02)
 
 
