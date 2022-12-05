@@ -5,16 +5,22 @@ import { STORAGE_TEST_ABC } from "../../../constants/constants"
 import { TEST } from "../../../utils/ab-testing/ab-testing.utils"
 import * as StorageUtils from "../../../utils/storage.utils"
 import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
+import { client, DEMANDE_RESSOURCES } from "../../../../apollo-client"
+import { useMutation } from "@apollo/client"
+import { LoaderFoButton } from "../../../utils/main.utils"
 
 export const GiveAccessToResources = () => {
   const RESOURCES_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES
   const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
 
   const [show, setShow] = useState()
+  const [isLoading, setLoading] = useState(false)
+  const [mailValue, setMailValue] = useState()
 
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
   const openUrl = (url) => window.open(url, "_blank")
+  const handleChange = (event) => setMailValue(event.target.value)
 
   const componentForRedirection = () => {
     AbTestingUtils.trackerForAbTesting("Afficher les ressources disponibles")
@@ -26,11 +32,30 @@ export const GiveAccessToResources = () => {
     )
   }
 
-  const sendMail = () => {
+  const [sendResourcesQuery] = useMutation(DEMANDE_RESSOURCES, {
+    client: client,
+    onCompleted: () => {
+      setLoading(false)
+      closeModal()
+    },
+    onError: (err) => {
+      console.error(err)
+      setLoading(false)
+    },
+  })
+
+  const sendMail = async () => {
+    setLoading(false)
     AbTestingUtils.trackerForAbTesting(
       "Je souhaite recevoir les ressources par mail - Envoie du mail"
     )
-    // TODO: branchement
+
+    setLoading(true)
+    await sendResourcesQuery({
+      variables: {
+        email: mailValue,
+      },
+    })
   }
 
   const componentToSendMail = () => {
@@ -69,12 +94,17 @@ export const GiveAccessToResources = () => {
                 autoComplete="email"
                 id="email-resources"
                 type="email"
+                onChange={handleChange}
+                value={mailValue}
               />
             </div>
           </Modal.Body>
 
           <Modal.Footer>
-            <Button onClick={() => sendMail()}>Envoyer</Button>
+            <Button onClick={() => sendMail()} disabled={isLoading}>
+              Envoyer
+              {isLoading ? <LoaderFoButton /> : null}
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
