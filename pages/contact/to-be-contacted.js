@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap"
 import { useRouter } from "next/router"
 import {
+  CRISP_CHAT_ID,
   OPEN_CONTACT_FROM_EMAIL,
   RequestContact,
   STORAGE_CONTACT_HOURS,
@@ -174,9 +175,24 @@ export default function ToBeContacted() {
   })
 
   const activateChat = async () => {
-    ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
-    ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
-    MainUtils.openUrl(URL_CHAT_WHATSAPP)
+    // WhatsApp
+    // ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
+    // ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
+    // window.open(URL_CHAT_WHATSAPP, "_blank")
+
+    // Crisp
+    crisp()
+  }
+
+  const crisp = () => {
+    window.$crisp = []
+    window.CRISP_WEBSITE_ID = CRISP_CHAT_ID
+
+    const d = document
+    const s = d.createElement("script")
+    s.src = "https://client.crisp.chat/l.js"
+    s.async = 1
+    d.getElementsByTagName("body")[0].appendChild(s)
   }
 
   return (
