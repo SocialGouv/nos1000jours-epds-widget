@@ -23,11 +23,12 @@ import {
   readSourceInUrl,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
-import * as StorageUtils from "../../src/utils/storage.utils"
-import { ACTION, CATEG, trackerClick } from "../../src/utils/tracker.utils"
-import * as ContactUtils from "../../src/utils/contact.utils"
+
 import { useMutation } from "@apollo/client"
 import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
+import * as StorageUtils from "../../src/utils/storage.utils"
+import * as ContactUtils from "../../src/utils/contact.utils"
+import * as TrackerUtils from "../../src/utils/tracker.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -75,7 +76,11 @@ export default function ToBeContacted() {
   }
 
   const onValidate = async (event) => {
-    trackerClick(CATEG.contact, ACTION.contact_type, itemValueType)
+    TrackerUtils.track(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.ACTION.contact_type,
+      itemValueType
+    )
 
     if (itemValueType == RequestContact.type.chat) activateChat()
     else goToContactForm()

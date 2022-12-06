@@ -47,7 +47,7 @@ Dans le cas où l'on souhaite avoir l'AB testing sur les intentions, il faut ajo
     const id = getInLocalStorage(STORAGE_TEST_ABC) ?? generateRandomTest()
     setTest(id)
     localStorage.setItem(STORAGE_TEST_ABC, id)
-    trackerClick(CATEG.test, `${ACTION.parcours}${id}`)
+    track(CATEG.test, `${ACTION.parcours}${id}`)
   }, [])
 ```
 

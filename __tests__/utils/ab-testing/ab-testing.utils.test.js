@@ -21,7 +21,7 @@ describe("Utils", () => {
     let trackerSpy
 
     beforeEach(() => {
-      trackerSpy = jest.spyOn(TrackerUtils, "trackerClick")
+      trackerSpy = jest.spyOn(TrackerUtils, "track")
     })
 
     test("Should return tracker with CATEG.test, course name and label", () => {

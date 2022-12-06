@@ -5,7 +5,7 @@ import {
   SCORE_LEVEL_GOOD,
   SCORE_LEVEL_MEDIUM,
 } from "../score-level.utils"
-import { CATEG, trackerClick } from "../tracker.utils"
+import * as TrackerUtils from "../tracker.utils"
 import { TEST } from "./ab-testing.utils"
 
 export const contacterAToutMoment =
@@ -144,7 +144,7 @@ export const estProcheDeLaRealiteCommentaireByScoreLevel = (scoreLevel) => {
 
 export const trackerForIntentions = (scoreLevel, label) => {
   const moodLevel = getColorIconAndTextByMood(scoreLevel).moodText
-  trackerClick(CATEG.intentions, moodLevel, label)
+  TrackerUtils.track(TrackerUtils.CATEG.intentions, moodLevel, label)
 }
 
 export const saveIsIntentionVersQuiSeTourner = (label) => {

@@ -7,7 +7,7 @@ describe("Contact Utils", () => {
     let trackerSpy
 
     beforeEach(() => {
-      trackerSpy = jest.spyOn(TrackerUtils, "trackerClick")
+      trackerSpy = jest.spyOn(TrackerUtils, "track")
     })
 
     afterEach(() => {

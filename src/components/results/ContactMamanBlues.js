@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
@@ -26,7 +26,7 @@ export function ContactMamanBlues({ scoreLevel }) {
   }
 
   const goToBeContacted = async (event) => {
-    TrackerUtils.trackerClick(
+    TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       `Macaron d'Elise ${TrackerUtils.EVENT_CLICK}`,
       "Être contacté(e)"
@@ -37,6 +37,10 @@ export function ContactMamanBlues({ scoreLevel }) {
       pathname: "/contact/to-be-contacted",
     })
   }
+
+  useEffect(() => {
+    AbTestingUtils.trackerForAbTesting(`Macaron Elise - ${colorsByLevel}`)
+  }, [])
 
   return (
     <div className="contact-mamanblues">
