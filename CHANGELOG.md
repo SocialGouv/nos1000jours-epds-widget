@@ -1,3 +1,15 @@
+## [1.40.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.40.1...v1.40.2) (2022-12-06)
+
+
+### Bug Fixes
+
+* **matomo:**  ajout tracker maman blues ([327f3af](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/327f3af646305ad1fd427ea1fb821d331ff51046))
+* **matomo:**  retours de PR ([e7896e3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e7896e385468aa82564e4ac266a84f6e4bf49dd3))
+* **matomo:**  retours de PR ([2b32b59](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2b32b590750bf6dac6fbaca258adfa864e9b92fe))
+* **matomo:** ajout de l'action Click sur des trackers ([d964c13](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/d964c136903a01f037cf1b0378f207d645001b2d))
+* **matomo:** bug tracker ([e49ec5e](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e49ec5e47f2aaa3efb33771fae5fb37447abc638))
+* **matomo:** refacto trackerUtils ([e25046c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e25046cf48d24a74683ebac98caa79d7bc23d396))
+
 ## [1.40.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.40.0...v1.40.1) (2022-12-05)
 
 
