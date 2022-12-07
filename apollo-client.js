@@ -142,6 +142,6 @@ export const SAVE_DEMANDE_DE_CONTACT = gql`
 
 export const DEMANDE_RESSOURCES = gql`
   mutation ($email: String) {
-    partageRessourcesByMail(email: $email)
+    partageRessourcesParMail(email: $email)
   }
 `
