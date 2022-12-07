@@ -2,6 +2,7 @@ import { Button } from "@dataesr/react-dsfr"
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
 import * as TrackerUtils from "../../utils/tracker.utils"
+import * as MainUtils from "../../utils/main.utils"
 
 export function RecruitParents() {
   const [show, setShow] = useState()
@@ -13,7 +14,7 @@ export function RecruitParents() {
   const closeModal = () => setShow(false)
 
   const onClickParticipate = (url, label) => {
-    window.open(url, "_blank")
+    MainUtils.openUrl(url)
     TrackerUtils.track(
       TrackerUtils.CATEG.recruit,
       TrackerUtils.EVENT_CLICK,

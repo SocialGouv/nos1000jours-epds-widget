@@ -29,6 +29,7 @@ import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
+import * as MainUtils from "../../src/utils/main.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -175,7 +176,7 @@ export default function ToBeContacted() {
   const activateChat = async () => {
     ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
     ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
-    window.open(URL_CHAT_WHATSAPP, "_blank")
+    MainUtils.openUrl(URL_CHAT_WHATSAPP)
   }
 
   return (
