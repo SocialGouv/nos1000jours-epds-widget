@@ -248,12 +248,36 @@
 
 .download-app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-block: $xxxxs;
+  justify-content: center;
+  padding-inline: 0;
+  margin-bottom: $xxs;
+
+  background-image: url('../public/img/download-app/background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+
+  .download-app-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $xxs;
+    color: white;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .store-title {
+    font-weight: bold;
+  }
+
+  .store-subtitle {
+    margin-block: $xs;
+  }
 
   .store-content {
     display: flex;
+    margin-block: $xxxxs;
   }
 
   .store-item {
