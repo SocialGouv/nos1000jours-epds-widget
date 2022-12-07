@@ -5,6 +5,7 @@ import { ContentLayout } from "../src/components/Layout"
 import { ContactMamanBlues } from "../src/components/results/ContactMamanBlues"
 import { ResultsMood } from "../src/components/results/ResultsMood"
 import {
+  STORAGE_SCORE,
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
@@ -17,10 +18,12 @@ import {
 } from "../src/utils/score-level.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
 import { Intentions } from "../src/components/results/Intentions"
+import { DownloadApp } from "../src/components/results/DownloadApp"
 
 export default function Results() {
   const router = useRouter()
 
+  const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const scoreLevelForMood = parseInt(
     StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
@@ -84,12 +87,20 @@ export default function Results() {
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
-      <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+
+      {scoreValue < 9 ? (
+        <DownloadApp />
+      ) : (
+        <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
+      )}
+
       <DescriptionAndConclusion />
+
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
         scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
         <Intentions moodLevel={scoreLevelForMood} />
       ) : null}
+
       <GiveOpinion />
       <button
         className="fr-btn fr-btn--secondary result-return-bt"
