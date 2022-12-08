@@ -23,8 +23,6 @@ export const GiveAccessToResources = () => {
 
   const shouldSendEmail = () =>
     test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
-      ? true
-      : false
 
   useEffect(() => {
     shouldSendEmail()
