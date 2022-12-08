@@ -1,8 +1,7 @@
 import { Button } from "@dataesr/react-dsfr"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Modal } from "react-bootstrap"
 import { STORAGE_TEST_ABC } from "../../../constants/constants"
-import { TEST } from "../../../utils/ab-testing/ab-testing.utils"
 import * as StorageUtils from "../../../utils/storage.utils"
 import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
 import { client, DEMANDE_RESSOURCES } from "../../../../apollo-client"
@@ -16,11 +15,24 @@ export const GiveAccessToResources = () => {
   const [show, setShow] = useState()
   const [isLoading, setLoading] = useState(false)
   const [mailValue, setMailValue] = useState()
+  const [resourcesComponent, setResourcesComponent] = useState()
 
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
   const openUrl = (url) => window.open(url, "_blank")
   const handleChange = (event) => setMailValue(event.target.value)
+
+  useEffect(() => {
+    if (test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B) {
+      AbTestingUtils.trackerForAbTesting(
+        "Je souhaite recevoir les ressources par mail"
+      )
+      setResourcesComponent(componentToSendMail())
+    } else {
+      AbTestingUtils.trackerForAbTesting("Afficher les ressources disponibles")
+      setResourcesComponent(componentForRedirection())
+    }
+  }, [])
 
   const componentForRedirection = () => {
     return (
@@ -57,10 +69,6 @@ export const GiveAccessToResources = () => {
   }
 
   const componentToSendMail = () => {
-    AbTestingUtils.trackerForAbTesting(
-      "Je souhaite recevoir les ressources par mail"
-    )
-
     return (
       <div>
         <Button onClick={() => openModal()}>
@@ -110,20 +118,5 @@ export const GiveAccessToResources = () => {
     )
   }
 
-  const sendingMethodByTest = () => {
-    switch (test) {
-      case TEST.A:
-      case TEST.B:
-        return componentToSendMail()
-      case TEST.C:
-      case TEST.D:
-      default:
-        AbTestingUtils.trackerForAbTesting(
-          "Afficher les ressources disponibles"
-        )
-        return componentForRedirection()
-    }
-  }
-
-  return <div>{sendingMethodByTest()}</div>
+  return <div>{resourcesComponent}</div>
 }

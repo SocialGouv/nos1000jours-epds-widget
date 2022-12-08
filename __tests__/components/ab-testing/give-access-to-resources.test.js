@@ -10,7 +10,7 @@ describe("UI de GiveAccessToResources", () => {
 
     test("Should return modal with email when test is A", async () => {
       localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.TEST.A)
-      const { container } = render(<GiveAccessToResources />)
+      render(<GiveAccessToResources />)
 
       const button = screen.getByRole("button", { name: mailBtnText })
       expect(button).toBeInTheDocument()
@@ -18,7 +18,7 @@ describe("UI de GiveAccessToResources", () => {
 
     test("Should return modal with email when test is B", async () => {
       localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.TEST.B)
-      const { container } = render(<GiveAccessToResources />)
+      render(<GiveAccessToResources />)
 
       const button = screen.getByRole("button", { name: mailBtnText })
       expect(button).toBeInTheDocument()
@@ -26,7 +26,7 @@ describe("UI de GiveAccessToResources", () => {
 
     test("Should return link when test is C", async () => {
       localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.TEST.C)
-      const { container } = render(<GiveAccessToResources />)
+      render(<GiveAccessToResources />)
 
       const button = screen.getByRole("button", { name: linkBtnText })
       expect(button).toBeInTheDocument()
@@ -34,7 +34,7 @@ describe("UI de GiveAccessToResources", () => {
 
     test("Should return link when test is D", async () => {
       localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.TEST.D)
-      const { container } = render(<GiveAccessToResources />)
+      render(<GiveAccessToResources />)
 
       const button = screen.getByRole("button", { name: linkBtnText })
       expect(button).toBeInTheDocument()
