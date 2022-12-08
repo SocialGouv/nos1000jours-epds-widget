@@ -21,13 +21,13 @@ export const GiveAccessToResources = () => {
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
 
-  const isSendEmail = () =>
+  const shouldSendEmail = () =>
     test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
       ? true
       : false
 
   useEffect(() => {
-    isSendEmail
+    shouldSendEmail()
       ? AbTestingUtils.trackerForAbTesting(
         "Je souhaite recevoir les ressources par mail"
       )
@@ -122,7 +122,7 @@ export const GiveAccessToResources = () => {
 
   return (
     <div>
-      {isSendEmail() ? componentToSendMail() : componentForRedirection()}
+      {shouldSendEmail() ? componentToSendMail() : componentForRedirection()}
     </div>
   )
 }
