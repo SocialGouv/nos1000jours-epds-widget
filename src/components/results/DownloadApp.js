@@ -1,7 +1,6 @@
 import { Image } from "react-bootstrap"
 import { openUrl } from "../../utils/main.utils"
 
-
 export function DownloadApp() {
   const QR_CODE_HEIGHT = 100
   const STORE_WIDTH = 120
@@ -39,11 +38,12 @@ export function DownloadApp() {
     <div className="download-app">
       <div className="download-app-content">
         <div className="store-title">
-          Continuez à prendre soin de vous grâce à l'application des 1000 premiers
-          jours
+          Continuez à prendre soin de vous grâce à l'application des 1000
+          premiers jours
         </div>
         <div className="store-subtitle">
-          Un service proposé par le ministère de le Santé et des Solidarités en collaboration avec les professionnels de santé et les parents
+          Un service proposé par le ministère de le Santé et des Solidarités en
+          collaboration avec les professionnels de santé et les parents
         </div>
         <div className="store-content">
           <StoreItem

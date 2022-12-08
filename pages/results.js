@@ -22,6 +22,7 @@ import { DownloadApp } from "../src/components/results/DownloadApp"
 
 export default function Results() {
   const router = useRouter()
+  const SCORE_TO_SHOW_CONTACT_BLOC = 9
 
   const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
@@ -88,7 +89,7 @@ export default function Results() {
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
       <ResultsMood scoreLevel={scoreLevelForMood} />
 
-      {scoreValue < 9 ? (
+      {scoreValue < SCORE_TO_SHOW_CONTACT_BLOC ? (
         <DownloadApp />
       ) : (
         <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
