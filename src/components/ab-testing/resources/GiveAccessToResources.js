@@ -12,26 +12,28 @@ export const GiveAccessToResources = () => {
   const RESOURCES_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES
   const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
 
-  const [show, setShow] = useState()
+  const [show, setShow] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [mailValue, setMailValue] = useState()
-  const [resourcesComponent, setResourcesComponent] = useState()
 
-  const openModal = () => setShow(true)
-  const closeModal = () => setShow(false)
   const openUrl = (url) => window.open(url, "_blank")
   const handleChange = (event) => setMailValue(event.target.value)
+  const openModal = () => setShow(true)
+  const closeModal = () => setShow(false)
+
+  const isSendEmail = () =>
+    test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
+      ? true
+      : false
 
   useEffect(() => {
-    if (test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B) {
-      AbTestingUtils.trackerForAbTesting(
+    isSendEmail
+      ? AbTestingUtils.trackerForAbTesting(
         "Je souhaite recevoir les ressources par mail"
       )
-      setResourcesComponent(componentToSendMail())
-    } else {
-      AbTestingUtils.trackerForAbTesting("Afficher les ressources disponibles")
-      setResourcesComponent(componentForRedirection())
-    }
+      : AbTestingUtils.trackerForAbTesting(
+        "Afficher les ressources disponibles"
+      )
   }, [])
 
   const componentForRedirection = () => {
@@ -118,5 +120,9 @@ export const GiveAccessToResources = () => {
     )
   }
 
-  return <div>{resourcesComponent}</div>
+  return (
+    <div>
+      {isSendEmail() ? componentToSendMail() : componentForRedirection()}
+    </div>
+  )
 }

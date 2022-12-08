@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { GiveAccessToResources } from "../../../src/components/ab-testing/resources/GiveAccessToResources"
 import { STORAGE_TEST_ABC } from "../../../src/constants/constants"
 import * as AbTestingUtils from "../../../src/utils/ab-testing/ab-testing.utils"
@@ -14,6 +14,9 @@ describe("UI de GiveAccessToResources", () => {
 
       const button = screen.getByRole("button", { name: mailBtnText })
       expect(button).toBeInTheDocument()
+
+      fireEvent.click(button)
+      expect(await screen.queryByText("Fermer")).toBeInTheDocument()
     })
 
     test("Should return modal with email when test is B", async () => {
@@ -22,6 +25,9 @@ describe("UI de GiveAccessToResources", () => {
 
       const button = screen.getByRole("button", { name: mailBtnText })
       expect(button).toBeInTheDocument()
+
+      fireEvent.click(button)
+      expect(await screen.queryByText("Fermer")).toBeInTheDocument()
     })
 
     test("Should return link when test is C", async () => {
