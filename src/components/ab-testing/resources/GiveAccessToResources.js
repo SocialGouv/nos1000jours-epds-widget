@@ -23,8 +23,6 @@ export const GiveAccessToResources = () => {
   const handleChange = (event) => setMailValue(event.target.value)
 
   const componentForRedirection = () => {
-    AbTestingUtils.trackerForAbTesting("Afficher les ressources disponibles")
-
     return (
       <Button onClick={() => openUrl(RESOURCES_URL)}>
         Afficher les ressources disponibles
@@ -83,7 +81,8 @@ export const GiveAccessToResources = () => {
           <Modal.Body>
             <div className="fr-input-group">
               <label className="fr-label" htmlFor="email-resources">
-                Recevez nos ressources orientées sur les difficultés maternelles dans votre boite mail
+                Recevez nos ressources orientées sur les difficultés maternelles
+                dans votre boite mail
                 <span className="fr-hint-text">
                   Format attendu : nom@domaine.fr
                 </span>
@@ -119,6 +118,9 @@ export const GiveAccessToResources = () => {
       case TEST.C:
       case TEST.D:
       default:
+        AbTestingUtils.trackerForAbTesting(
+          "Afficher les ressources disponibles"
+        )
         return componentForRedirection()
     }
   }
