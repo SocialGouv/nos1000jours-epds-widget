@@ -3,7 +3,6 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
 import { client, SAVE_INFORMATION_DEMOGRAPHIQUES } from "../../apollo-client"
-import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {

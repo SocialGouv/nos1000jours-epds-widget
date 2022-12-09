@@ -187,6 +187,7 @@ describe("Questionnaire démographique", () => {
           completedGenderValues,
           ageValues,
           undefined,
+          undefined,
           situationValues,
           availableRelativesValues
         )
@@ -204,32 +205,6 @@ describe("Questionnaire démographique", () => {
           completedAvailableRelativesValues
         )
       ).toBeTruthy()
-    })
-
-    test("Should return true when all form is completed and zip code is true", () => {
-      expect(
-        checkIsFormCompleted(
-          completedGenderValues,
-          completedAgeValues,
-          completedJobValues,
-          true,
-          completedSituationValues,
-          completedAvailableRelativesValues
-        )
-      ).toBeTruthy()
-    })
-
-    test("Should return false when all form is completed and zip code is false", () => {
-      expect(
-        checkIsFormCompleted(
-          completedGenderValues,
-          completedAgeValues,
-          completedJobValues,
-          false,
-          completedSituationValues,
-          completedAvailableRelativesValues
-        )
-      ).toBeFalsy()
     })
   })
 })

@@ -8,7 +8,6 @@ import {
   uiAdaptationForInfoDemographic,
 } from "../../../src/utils/ab-testing/demographic-data.utils"
 import { useRouter } from "next/router"
-import DemographicDataSurvey from "../../../pages/ab-testing/demographic-data-survey"
 
 describe("Utils", () => {
   const mockJest = jest.fn()
@@ -103,16 +102,6 @@ describe("Utils", () => {
         expect(router.push).toHaveBeenCalledWith({
           pathname: demographicSurveyPath,
         })
-      })
-
-      test("Sortir du questionnaire", async () => {
-        await act(async () => render(<DemographicDataSurvey />))
-
-        const nextButton = screen.getByRole("button", {
-          name: "Envoyer et commencer le questionnaire",
-        })
-
-        expect(nextButton).toBeInTheDocument()
       })
     })
   })
