@@ -23,7 +23,7 @@ import {
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import { JobSelector } from "../../src/components/JobSelector"
-import { DeptCodeSelector } from "../../src/components/DeptCodeSelector"
+import { DepartmentCodeSelector } from "../../src/components/DepartmentCodeSelector"
 
 export default function DemographicDataSurvey() {
   const router = useRouter()
@@ -247,7 +247,7 @@ export default function DemographicDataSurvey() {
 
         <div>
           <div className="bloc-name">Département de résidence :</div>
-          <DeptCodeSelector setDeptSelected={setResidenceValue} />
+          <DepartmentCodeSelector setSelectedDepartment={setResidenceValue} />
         </div>
 
         <SituationBloc />

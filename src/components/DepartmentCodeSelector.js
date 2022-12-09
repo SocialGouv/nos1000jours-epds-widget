@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
 
-export function DeptCodeSelector({ setDeptSelected }) {
+export function DepartmentCodeSelector({ setSelectedDepartment }) {
   const API_DEPT_GOUV_URL = "https://geo.api.gouv.fr/departements"
-  const [depts, setDepts] = useState([])
+  const [departments, setDepartments] = useState([])
 
   useEffect(() => {
     const callAPI = async () => {
@@ -13,16 +13,18 @@ export function DeptCodeSelector({ setDeptSelected }) {
       data.map((item) => {
         return { nom: item.nom, code: item.code }
       })
-      setDepts(data)
+      setDepartments(data)
     }
 
     callAPI()
   }, [])
 
-  const handleChangeDept = (e, depts) => {
-    const deptCode = e.target.value
-    const deptSelected = depts.find((item) => item.code === deptCode)
-    setDeptSelected(deptSelected)
+  const handleChangeDepartment = (event, depts) => {
+    const departmentCode = event.target.value
+    const selectedDepartment = depts.find(
+      (item) => item.code === departmentCode
+    )
+    setSelectedDepartment(selectedDepartment)
   }
 
   return (
@@ -31,12 +33,12 @@ export function DeptCodeSelector({ setDeptSelected }) {
       id="select_dept"
       name="select_dept"
       aria-label="Sélectionner votre département"
-      onChange={(e) => handleChangeDept(e, depts)}
+      onChange={(e) => handleChangeDepartment(e, departments)}
     >
       <option selected disabled hidden>
         Sélectionner votre département
       </option>
-      {depts.map((item) => (
+      {departments.map((item) => (
         <option value={item.code} key={item.code}>
           {item.code} - {item.nom}
         </option>
