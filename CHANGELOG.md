@@ -1,3 +1,10 @@
+# [1.43.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.42.0...v1.43.0) (2022-12-12)
+
+
+### Features
+
+* **demographie:** maj csp ([ac4fafe](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ac4fafe387fab79b3d9e621d8d364e73e5d4d5aa))
+
 # [1.42.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.41.0...v1.42.0) (2022-12-12)
 
 
