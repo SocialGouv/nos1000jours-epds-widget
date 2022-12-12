@@ -1,3 +1,13 @@
+# [1.42.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.41.0...v1.42.0) (2022-12-12)
+
+
+### Features
+
+* **app:** maj style et wording ([82bee42](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/82bee42d90d9841056bdc66496edbaed6d24ebae))
+* **app:** qrcode et store ([c89497f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c89497f5160818a82950c58ad0750a46101e4cb5))
+* **app:** refacto ([4c94b01](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4c94b01bfb2772fa5960e4cd3b0b070b32db295e))
+* **app:** refacto ([9a45270](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/9a45270a2a58154986d2e1f661d4150b322cef19))
+
 # [1.41.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.40.2...v1.41.0) (2022-12-12)
 
 
