@@ -31,6 +31,7 @@ import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 import * as MainUtils from "../../src/utils/main.utils"
+import { Crisp } from "crisp-sdk-web"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -185,14 +186,8 @@ export default function ToBeContacted() {
   }
 
   const crisp = () => {
-    window.$crisp = []
-    window.CRISP_WEBSITE_ID = CRISP_CHAT_ID
-
-    const d = document
-    const s = d.createElement("script")
-    s.src = "https://client.crisp.chat/l.js"
-    s.async = 1
-    d.getElementsByTagName("body")[0].appendChild(s)
+    Crisp.configure(CRISP_CHAT_ID)
+    Crisp.chat.open()
   }
 
   return (
