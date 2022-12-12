@@ -3,7 +3,6 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap"
 import { client, SAVE_INFORMATION_DEMOGRAPHIQUES } from "../../apollo-client"
-import { AutoCompleteZipCode } from "../../src/components/AutoCompleteZipCode"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
@@ -24,6 +23,7 @@ import {
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import { JobSelector } from "../../src/components/JobSelector"
+import { DepartmentCodeSelector } from "../../src/components/DepartmentCodeSelector"
 
 export default function DemographicDataSurvey() {
   const router = useRouter()
@@ -32,8 +32,6 @@ export default function DemographicDataSurvey() {
   const [showDataDetails, setShowDataDetails] = useState(false)
   const [isValidateButtonEnabled, setValidateButtonEnabled] = useState(true)
   const [isLoading, setLoading] = useState(false)
-  const [isAutoCompleteZipCodeValid, setIsAutoCompleteZipCodeValid] =
-    useState(false)
 
   const [genderItems, setGenderItems] = useState(genderValues)
   const [ageItems, setAgeItems] = useState(ageValues)
@@ -50,7 +48,7 @@ export default function DemographicDataSurvey() {
       genderItems,
       ageItems,
       jobValue,
-      isAutoCompleteZipCodeValid,
+      residenceValue,
       situationItems,
       entourageItems
     )
@@ -59,9 +57,9 @@ export default function DemographicDataSurvey() {
     genderItems,
     ageItems,
     jobValue,
+    residenceValue,
     situationItems,
     entourageItems,
-    isAutoCompleteZipCodeValid,
   ])
 
   const RadioButtonGroup = ({ groupName, data, defaultData, setItems }) => (
@@ -191,11 +189,9 @@ export default function DemographicDataSurvey() {
         age: age.id,
         situation: convertArraySituationsToString(situations),
         entourageDispo: entourage.id,
-        codePostal: residenceValue.zipcode,
-        ville: residenceValue.city,
-        departement: residenceValue.departmentNumber,
-        departementLibelle: residenceValue.departmentName,
-        region: residenceValue.region,
+        departement: residenceValue.code,
+        departementLibelle: residenceValue.nom,
+        region: residenceValue.nomRegion,
         reponsesEpds: epdsTestID,
         cspCode: jobValue.code,
         cspLibelle: jobValue.libelle,
@@ -251,11 +247,8 @@ export default function DemographicDataSurvey() {
         </div>
 
         <div>
-          <div className="bloc-name">Code postal de résidence :</div>
-          <AutoCompleteZipCode
-            setSelectedCity={setResidenceValue}
-            setIsAutoCompleteZipCodeValid={setIsAutoCompleteZipCodeValid}
-          />
+          <div className="bloc-name">Département de résidence :</div>
+          <DepartmentCodeSelector setSelectedDepartment={setResidenceValue} />
         </div>
 
         <SituationBloc />
@@ -281,13 +274,14 @@ export const checkIsFormCompleted = (
   genderData,
   ageData,
   jobData,
-  isResidenceDataValid,
+  residenceData,
   situationData,
   entourageData
 ) => {
   const isGenderCompeleted = genderData?.find((item) => item.isChecked)
   const isAgeCompeleted = ageData?.find((item) => item.isChecked)
   const isJobSelected = jobData != undefined
+  const isResidenceSelected = residenceData != undefined
   const isSituationCompeleted = situationData?.find((item) => item.isChecked)
   const isEntourageCompeleted = entourageData?.find((item) => item.isChecked)
 
@@ -295,7 +289,7 @@ export const checkIsFormCompleted = (
     isGenderCompeleted &&
     isAgeCompeleted &&
     isJobSelected &&
-    isResidenceDataValid &&
+    isResidenceSelected &&
     isSituationCompeleted &&
     isEntourageCompeleted
   )
