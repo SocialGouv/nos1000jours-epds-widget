@@ -1,0 +1,17 @@
+import path from "path"
+import { promises as fs } from "fs"
+
+export default async function staticDepartmentComData(_req, res) {
+  //Find the absolute path of the csv directory
+  const jsonDirectory = path.join(process.cwd(), "csv")
+
+  //Read the csv data file data.csv
+  const fileContents = await fs.readFile(
+    jsonDirectory + "/departments-com.csv",
+    "utf8"
+  )
+  console.log(fileContents)
+
+  //Return the content of the data file in json format
+  res.status(200).json(fileContents)
+}

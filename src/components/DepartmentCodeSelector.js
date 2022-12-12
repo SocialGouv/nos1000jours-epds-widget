@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
+import useSWR from "swr"
+import Papa from "papaparse"
 
 /**
  * Departments selector component
@@ -10,13 +12,31 @@ export function DepartmentCodeSelector({ setSelectedDepartment }) {
   const API_DEPT_GOUV_URL = "https://geo.api.gouv.fr/departements"
   const API_REGION_GOUV_URL = "https://geo.api.gouv.fr/regions"
 
+  const fetcher = (url) => fetch(url).then((res) => res.json())
+  const { data, error } = useSWR("/api/staticDepartmentComData", fetcher)
+  if (error) console.warn(error)
+
   const [departments, setDepartments] = useState([])
+  const [departmentsCom, setDepartmentsCom] = useState([])
   const [regions, setRegions] = useState([])
 
   useEffect(() => {
     callDepartmentsAPI()
     callRegionsAPI()
   }, [])
+
+  useEffect(() => {
+    callDepartmentsComCsv()
+  }, [data])
+
+  useEffect(() => {
+    if (departments && departments.length < 105) {
+      const departmentsWithCom = departmentsCom.forEach((item) =>
+        departments.push(item)
+      )
+      if (departmentsWithCom) setDepartments(departmentsWithCom)
+    }
+  }, [departments])
 
   const callDepartmentsAPI = async () => {
     const res = await fetch(API_DEPT_GOUV_URL)
@@ -26,6 +46,19 @@ export function DepartmentCodeSelector({ setSelectedDepartment }) {
       return { nom: item.nom, code: item.code, codeRegion: item.codeRegion }
     })
     setDepartments(data)
+  }
+
+  const callDepartmentsComCsv = () => {
+    if (data) {
+      let com = []
+      Papa.parse(data, {
+        header: true,
+        complete: (results) => {
+          com = results.data
+        },
+      })
+      setDepartmentsCom(com)
+    }
   }
 
   const callRegionsAPI = async () => {
