@@ -1,3 +1,16 @@
+# [1.41.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.40.2...v1.41.0) (2022-12-12)
+
+
+### Bug Fixes
+
+* **demographie:** retours de PR ([0f53aa9](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0f53aa9471abfde7b404e8ad629d7dd530c4c11d))
+
+
+### Features
+
+* **demographie:** ajout region ([77e7170](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/77e7170a28f958fe70e8f806a41ddfac5109d98f))
+* **demographie:** simplifier saisie dept ([22ea939](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/22ea939f649e2ebc7b6344eb8183fd238908d288))
+
 ## [1.40.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.40.1...v1.40.2) (2022-12-06)
 
 
