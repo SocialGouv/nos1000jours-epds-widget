@@ -191,6 +191,7 @@ export default function DemographicDataSurvey() {
         entourageDispo: entourage.id,
         departement: residenceValue.code,
         departementLibelle: residenceValue.nom,
+        region: residenceValue.nomRegion,
         reponsesEpds: epdsTestID,
         cspCode: jobValue.code,
         cspLibelle: jobValue.libelle,

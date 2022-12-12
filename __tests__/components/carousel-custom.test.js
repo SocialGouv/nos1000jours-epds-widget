@@ -1,6 +1,6 @@
 import { replacePbyDiv } from "../../src/components/CarouselCustom"
 
-describe("TU du component CarouselBuutton", () => {
+describe("TU du component CarouselButton", () => {
   test("Remplacer les balises <p></p> par <div></div> (si présente une seule fois)", async () => {
     const result = replacePbyDiv(
       "<p>J'ai tout pour être heureuse,<strong> alors pourquoi suis-je dans cet état ?</strong></p>"
