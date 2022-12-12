@@ -102,3 +102,7 @@ export const updateRadioButtonSelectedInList = (list, itemSelected) =>
 
     return item
   })
+
+export const openUrl = (url) => {
+  window.open(url, "_blank")
+}

@@ -246,6 +246,53 @@
   }
 }
 
+.download-app {
+  display: flex;
+  justify-content: center;
+  padding-inline: 0;
+  margin-bottom: $xxs;
+
+  background-image: url('../public/img/download-app/background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+
+  .download-app-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $xxs;
+    color: white;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .store-title {
+    font-weight: bold;
+  }
+
+  .store-subtitle {
+    margin-block: $xs;
+  }
+
+  .store-content {
+    display: flex;
+    margin-block: $xxxxs;
+  }
+
+  .store-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $xxxxs;
+    cursor: pointer;
+
+    .store-qr-code {
+      margin-top: $xxxxs;
+    }
+  }
+}
+
 @media screen and (max-width: 770px) {
 
   .measure .buttons-block,
