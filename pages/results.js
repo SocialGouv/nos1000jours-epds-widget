@@ -1,4 +1,3 @@
-import { useRouter } from "next/router"
 import { Row } from "react-bootstrap"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"
@@ -23,7 +22,6 @@ import { DownloadApp } from "../src/components/results/DownloadApp"
 import { RecruitParents } from "../src/components/results/RecruitParents"
 
 export default function Results() {
-  const router = useRouter()
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
 
   const randomForParentsFeedback = MainUtils.getRandomInt(2)
