@@ -1,17 +1,9 @@
 import { Button } from "@dataesr/react-dsfr"
-import { useState } from "react"
-import { Modal } from "react-bootstrap"
 import * as TrackerUtils from "../../utils/tracker.utils"
 import * as MainUtils from "../../utils/main.utils"
 
 export function RecruitParents() {
-  const [show, setShow] = useState()
-
   const INDIVIDUAL_URL = "https://calendly.com/1000-jours-blues/30min"
-  const GROUP_URL = undefined
-
-  const openModal = () => setShow(true)
-  const closeModal = () => setShow(false)
 
   const onClickParticipate = (url, label) => {
     MainUtils.openUrl(url)
@@ -24,57 +16,21 @@ export function RecruitParents() {
 
   return (
     <div className="recruit-parents">
-      <div>
-        Participez à l'amélioration de cet outil afin que le plus grand nombre
-        de parents soient aidés
+      <div className="content">
+        <div>
+          Aidez-nous à améliorer ce service public ! Choisissez un créneau dans
+          notre calendrier pour échanger avec un membre de notre équipe.
+        </div>
+
+        <Button
+          className="participate-btn"
+          onClick={() =>
+            onClickParticipate(INDIVIDUAL_URL, "Choisir mon créneau")
+          }
+        >
+          Choisir mon créneau
+        </Button>
       </div>
-      <Button className="participate-btn" onClick={openModal}>
-        Je participe
-      </Button>
-
-      <Modal show={show} centered size="lg">
-        <Modal.Header className="fr-modal__header">
-          <button
-            className="fr-btn--close fr-btn"
-            aria-controls="fr-modal-2"
-            onClick={closeModal}
-          >
-            Fermer
-          </button>
-        </Modal.Header>
-
-        <Modal.Body>
-          Merci pour votre soutien. <br />
-          Comment souhaitez-vous participer ?
-        </Modal.Body>
-
-        <Modal.Footer>
-          {GROUP_URL && (
-            <div className="recruit-modale-response">
-              En groupe, avec d'autres parents
-              <Button
-                className="participate-modal-btn"
-                onClick={() =>
-                  onClickParticipate(GROUP_URL, "Voir l'évènement")
-                }
-              >
-                Voir l'évènement
-              </Button>
-            </div>
-          )}
-          <div className="recruit-modale-response">
-            En individuel, avec un membre de l'équipe
-            <Button
-              className="participate-modal-btn"
-              onClick={() =>
-                onClickParticipate(INDIVIDUAL_URL, "Choisir un créneau")
-              }
-            >
-              Choisir un créneau
-            </Button>
-          </div>
-        </Modal.Footer>
-      </Modal>
     </div>
   )
 }

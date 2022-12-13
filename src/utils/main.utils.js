@@ -106,3 +106,15 @@ export const updateRadioButtonSelectedInList = (list, itemSelected) =>
 export const openUrl = (url) => {
   window.open(url, "_blank")
 }
+
+/**
+ * @param {number} max
+ * @returns between 0 and max-1
+ */
+export const getRandomInt = (max) => {
+  if (typeof window !== "undefined") {
+    const randomArray = window.crypto.getRandomValues(new Uint16Array(1))
+    const randomVal = randomArray[0]
+    return randomVal % max
+  }
+}

@@ -95,19 +95,6 @@
   }
 }
 
-.give-opinion {
-  text-align: center;
-  margin-top: $xxs;
-  margin-bottom: $md;
-
-  .instructions {
-    background-color: var(--grey925);
-    border-radius: 0.7rem;
-    margin-bottom: $xxs;
-    padding: $xxxs
-  }
-}
-
 .results-mood {
   display: flex;
   margin-bottom: $xxxxs;
@@ -223,26 +210,35 @@
   }
 }
 
+//  {
+//   text-align: center;
+//   margin-top: $xxs;
+//   margin-bottom: $md;
+
+//   .instructions {
+//     background-color: var(--grey925);
+//     border-radius: 0.7rem;
+//     margin-bottom: $xxs;
+//     padding: $xxxs
+//   }
+// }
+
+.give-opinion,
 .recruit-parents {
   margin-top: $xxxs;
   display: flex;
   flex-direction: column;
 
-  .participate-btn {
-    align-self: center;
-    margin-block: $xxxxs;
+  .content {
+    background-color: var(--grey925);
+    border-radius: 0.7rem;
+    margin-bottom: $xxs;
+    padding: $xxxs;
+    text-align: center;
   }
-}
 
-.recruit-modale-response {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  text-align: center;
-
-  .participate-modal-btn {
-    align-self: center;
-    margin-block: $xxxxs;
+  .participate-btn {
+    margin-block: $xxs;
   }
 }
 
