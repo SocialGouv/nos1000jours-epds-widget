@@ -40,12 +40,12 @@ export function DepartmentCodeSelector({ setSelectedDepartment }) {
 
   const callDepartmentsAPI = async () => {
     const res = await fetch(API_DEPT_GOUV_URL)
-    const data = await res.json()
+    const dataDepartments = await res.json()
 
-    data.map((item) => {
+    dataDepartments.map((item) => {
       return { nom: item.nom, code: item.code, codeRegion: item.codeRegion }
     })
-    setDepartments(data)
+    setDepartments(dataDepartments)
   }
 
   const callDepartmentsComCsv = () => {
@@ -63,12 +63,12 @@ export function DepartmentCodeSelector({ setSelectedDepartment }) {
 
   const callRegionsAPI = async () => {
     const res = await fetch(API_REGION_GOUV_URL)
-    const data = await res.json()
+    const dataRegions = await res.json()
 
-    data.map((item) => {
+    dataRegions.map((item) => {
       return { nom: item.nom, code: item.code }
     })
-    setRegions(data)
+    setRegions(dataRegions)
   }
 
   const handleChangeDepartment = (event, depts) => {
