@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
+import useSWR from "swr"
+import Papa from "papaparse"
 
 /**
  * Departments selector component
@@ -10,7 +12,12 @@ export function DepartmentCodeSelector({ setSelectedDepartment }) {
   const API_DEPT_GOUV_URL = "https://geo.api.gouv.fr/departements"
   const API_REGION_GOUV_URL = "https://geo.api.gouv.fr/regions"
 
+  const fetcher = (url) => fetch(url).then((res) => res.json())
+  const { data, error } = useSWR("/api/staticDepartmentComData", fetcher)
+  if (error) console.warn(error)
+
   const [departments, setDepartments] = useState([])
+  const [departmentsCom, setDepartmentsCom] = useState([])
   const [regions, setRegions] = useState([])
 
   useEffect(() => {
@@ -18,24 +25,50 @@ export function DepartmentCodeSelector({ setSelectedDepartment }) {
     callRegionsAPI()
   }, [])
 
+  useEffect(() => {
+    callDepartmentsComCsv()
+  }, [data])
+
+  useEffect(() => {
+    if (departments && departments.length < 105) {
+      const departmentsWithCom = departmentsCom.forEach((item) =>
+        departments.push(item)
+      )
+      if (departmentsWithCom) setDepartments(departmentsWithCom)
+    }
+  }, [departments])
+
   const callDepartmentsAPI = async () => {
     const res = await fetch(API_DEPT_GOUV_URL)
-    const data = await res.json()
+    const dataDepartments = await res.json()
 
-    data.map((item) => {
+    dataDepartments.map((item) => {
       return { nom: item.nom, code: item.code, codeRegion: item.codeRegion }
     })
-    setDepartments(data)
+    setDepartments(dataDepartments)
+  }
+
+  const callDepartmentsComCsv = () => {
+    if (data) {
+      let com = []
+      Papa.parse(data, {
+        header: true,
+        complete: (results) => {
+          com = results.data
+        },
+      })
+      setDepartmentsCom(com)
+    }
   }
 
   const callRegionsAPI = async () => {
     const res = await fetch(API_REGION_GOUV_URL)
-    const data = await res.json()
+    const dataRegions = await res.json()
 
-    data.map((item) => {
+    dataRegions.map((item) => {
       return { nom: item.nom, code: item.code }
     })
-    setRegions(data)
+    setRegions(dataRegions)
   }
 
   const handleChangeDepartment = (event, depts) => {
