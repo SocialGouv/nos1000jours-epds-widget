@@ -23,6 +23,10 @@ import { RecruitParents } from "../src/components/results/RecruitParents"
 
 export default function Results() {
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
+  const OPINION_GOUV_URL =
+    "https://jedonnemonavis.numerique.gouv.fr/Demarches/3483?&view-mode=formulaire-avis&nd_source=button&key=9a76fb7d40d8cf4bb6036779de4d92c9"
+  const OPINION_GOUV_IMG =
+    "https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg"
 
   const randomForParentsFeedback = MainUtils.getRandomInt(2)
 
@@ -63,7 +67,7 @@ export default function Results() {
           <a
             target="_blank"
             rel="noreferrer"
-            href="https://jedonnemonavis.numerique.gouv.fr/Demarches/3483?&view-mode=formulaire-avis&nd_source=button&key=9a76fb7d40d8cf4bb6036779de4d92c9"
+            href={OPINION_GOUV_URL}
             onClick={() =>
               TrackerUtils.track(
                 TrackerUtils.CATEG.results,
@@ -74,7 +78,7 @@ export default function Results() {
           >
             <img
               className="participate-btn"
-              src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg"
+              src={OPINION_GOUV_IMG}
               alt="Je donne mon avis"
             />
           </a>
