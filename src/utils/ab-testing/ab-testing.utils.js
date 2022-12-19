@@ -1,5 +1,6 @@
 import * as TrackerUtils from "../../utils/tracker.utils"
 import * as StorageUtils from "../../utils/storage.utils"
+import * as MainUtils from "../../utils/main.utils"
 import { STORAGE_TEST_ABC } from "../../constants/constants"
 
 export const TEST = {
@@ -15,7 +16,7 @@ export const TEST = {
  */
 export const generateRandomTest = () => {
   // expected output: 0, 1, 2 or 3
-  switch (getRandomInt(4)) {
+  switch (MainUtils.getRandomInt(4)) {
     case 0:
       return TEST.A
     case 1:
@@ -24,14 +25,6 @@ export const generateRandomTest = () => {
       return TEST.C
     case 3:
       return TEST.D
-  }
-}
-
-const getRandomInt = (max) => {
-  if (typeof window !== "undefined") {
-    const randomArray = window.crypto.getRandomValues(new Uint16Array(1))
-    const randomVal = randomArray[0]
-    return randomVal % max
   }
 }
 
