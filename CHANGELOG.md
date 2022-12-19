@@ -1,3 +1,11 @@
+## [1.44.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.44.0...v1.44.1) (2022-12-19)
+
+
+### Bug Fixes
+
+* **resultats:** retours de PR ([9472047](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/9472047cc73b1eb98cafac9f5414c0ac236939dd))
+* **resultats:** retours sonarcloud ([6a70254](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/6a70254155cf3992522140f1b594a668a6287eda))
+
 # [1.44.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.43.0...v1.44.0) (2022-12-13)
 
 
