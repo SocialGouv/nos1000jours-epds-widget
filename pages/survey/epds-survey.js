@@ -9,6 +9,7 @@ import { ContentLayout } from "../../src/components/Layout"
 import { SurveyCarousel } from "../../src/components/survey/SurveyCarousel"
 import { SurveyProgressBar } from "../../src/components/survey/SurveyProgressBar"
 import {
+  CRISP_CHAT_ID,
   EpdsGender,
   EPDS_SOURCE,
   STORAGE_RESULTS_BOARD,
@@ -34,6 +35,7 @@ import {
 import { updateDemographicData } from "../ab-testing/demographic-data-survey"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
+import { Crisp } from "crisp-sdk-web"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -117,6 +119,7 @@ export default function EpdsSurvey() {
   }
 
   useEffect(() => {
+    Crisp.configure(CRISP_CHAT_ID)
     setLocaleSelected(StorageUtils.getLocaleInLocalStorage())
   }, [])
 
