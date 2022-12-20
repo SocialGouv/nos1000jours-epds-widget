@@ -1,3 +1,10 @@
+# [1.45.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.44.1...v1.45.0) (2022-12-20)
+
+
+### Features
+
+* **epds:** ajours crisp ([aa436fb](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/aa436fbc7bcdf75b34fbd4879755e3063c647501))
+
 ## [1.44.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.44.0...v1.44.1) (2022-12-19)
 
 
