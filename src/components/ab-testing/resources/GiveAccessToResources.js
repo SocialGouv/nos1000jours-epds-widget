@@ -36,7 +36,10 @@ export const GiveAccessToResources = () => {
 
   const componentForRedirection = () => {
     return (
-      <Button onClick={() => openUrl(RESOURCES_URL)}>
+      <Button
+        className="fr-btn--secondary"
+        onClick={() => openUrl(RESOURCES_URL)}
+      >
         Afficher les ressources disponibles
       </Button>
     )
@@ -71,7 +74,7 @@ export const GiveAccessToResources = () => {
   const componentToSendMail = () => {
     return (
       <div>
-        <Button onClick={() => openModal()}>
+        <Button className="fr-btn--secondary" onClick={() => openModal()}>
           Je souhaite recevoir les ressources par mail
         </Button>
 

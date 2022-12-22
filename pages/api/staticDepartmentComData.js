@@ -10,7 +10,6 @@ export default async function staticDepartmentComData(_req, res) {
     jsonDirectory + "/departments-com.csv",
     "utf8"
   )
-  console.log(fileContents)
 
   //Return the content of the data file in json format
   res.status(200).json(fileContents)

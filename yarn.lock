@@ -1210,9 +1210,9 @@
   integrity sha512-hPNtz+gHcc8m7ZPANxSOFMz4Ap+M9FHOudqoMR/+Kjl5FCOqwA6u/aoYnMJ8KqedS1k5XThFMp7jiktr53qXYw==
 
 "@gouvfr/dsfr@^1.8.1":
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/@gouvfr/dsfr/-/dsfr-1.8.1.tgz#2484eb8ad9a73b5f01c5f41f49146d1aa8a71b7b"
-  integrity sha512-XpVFdvhtalA5jSAhzzNaMd+/Hvf8Ef9jCdAZhuukEEMo2/cWvCgzz9tfbE+9QTJDIVP+EwJ7aCGWcXUSWkOHJg==
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/@gouvfr/dsfr/-/dsfr-1.8.5.tgz#e99d095e99debcce0c41db18989637290d588b78"
+  integrity sha512-29L+THvWmYJXztPa0Os5TS9yD2WQbrH7VnCKxkyUXQZQ+6lsGebtz0GdCnLexOWDfCn1y53Mh7+/ihxI/z0Vjw==
 
 "@graphql-typed-document-node/core@^3.0.0":
   version "3.1.1"
