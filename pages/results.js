@@ -20,6 +20,7 @@ import * as MainUtils from "../src/utils/main.utils"
 import { Intentions } from "../src/components/results/Intentions"
 import { DownloadApp } from "../src/components/results/DownloadApp"
 import { RecruitParents } from "../src/components/results/RecruitParents"
+import { GiveAccessToResources } from "../src/components/ab-testing/resources/GiveAccessToResources"
 
 export default function Results() {
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
@@ -99,7 +100,7 @@ export default function Results() {
       )}
 
       <DescriptionAndConclusion />
-
+      <GiveAccessToResources />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
         scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
         <Intentions moodLevel={scoreLevelForMood} />
