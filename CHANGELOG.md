@@ -1,3 +1,24 @@
+# [1.46.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.45.0...v1.46.0) (2022-12-22)
+
+
+### Bug Fixes
+
+* **ressources:** erreur build ([7eed4c1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7eed4c1795c62a1a310f75c2a531792a54bacbc7))
+* **ressources:** modification UI ([31ad6ee](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/31ad6eeef615b4a18b6b4f2c5a91e5a26e54cb45))
+* **ressources:** pb de build ([2900a97](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2900a97ec9a50657d91b11a3c214e328e15bde4b))
+* **ressources:** pb ouverture modale ([ea88ac1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ea88ac1eb7c1f394ce6086fd931e645eb67bbab2))
+* **ressources:** retours de PR ([966b142](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/966b142dbc7914790fd505bb9609e0f7882cef63))
+* **ressources:** retours de PR ([9f3c634](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/9f3c6348e52000bd2515480cc800de830f9b520a))
+
+
+### Features
+
+* **ressources:** ajout de la var d'env ([f657701](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f65770138421361172782ba6d5be5b08575a8363))
+* **ressources:** branchemant strapi ([7bf4cab](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7bf4cab68d4bc2be33d7130bd8655571bb142602))
+* **ressources:** congif ([ca6740f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ca6740f0b38099a0a23810b39e11479748509fab))
+* **ressources:** création du composant ([2d48b57](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2d48b57a94369da342794b271144367ed7f95d6f))
+* **ressources:** trackers et refacto ([4a799f8](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/4a799f803464ed809cc651ab5b5db5f98f9258d7))
+
 # [1.45.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.44.1...v1.45.0) (2022-12-20)
 
 
