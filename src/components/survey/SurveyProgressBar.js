@@ -1,16 +1,16 @@
-import { ProgressBar } from "react-bootstrap"
 import React from "react"
+import { Stepper } from "@codegouvfr/react-dsfr/Stepper"
 
 export function SurveyProgressBar({ indexNow, size }) {
-  const progress = `Question ${indexNow} sur ${size}`
+  // TODO: bug sur le composant : https://gouvfr.atlassian.net/servicedesk/customer/portal/1/DSFR-1125
+
   return (
     <div className="survey-progressbar">
-      <span aria-label={`Progression : ${progress}`}>{progress}</span>
-      <ProgressBar aria-hidden max={size} now={indexNow} />
-      <div className="progress-number" aria-hidden>
-        <span>1</span>
-        <span>{size}</span>
-      </div>
+      <Stepper
+        currentStep={indexNow}
+        stepCount={size}
+        title={`Question ${indexNow}`}
+      />
     </div>
   )
 }
