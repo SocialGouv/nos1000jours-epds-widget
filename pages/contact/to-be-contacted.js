@@ -33,11 +33,16 @@ import * as TrackerUtils from "../../src/utils/tracker.utils"
 import * as MainUtils from "../../src/utils/main.utils"
 import { Crisp } from "crisp-sdk-web"
 
+const CHAT_TYPE = {
+  whatsapp: "Whats App",
+  crisp: "Crisp",
+}
+
+// A modifier lorsque l'on veut modifier le chat utilisé (crisp, whats app)
+const chatNameUsed = CHAT_TYPE.crisp
+
 export default function ToBeContacted() {
   const router = useRouter()
-
-  // Mettre à true pour rendre visible le bloc du chat
-  const IS_CHAT_ENABLED = true
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
@@ -46,6 +51,7 @@ export default function ToBeContacted() {
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   const [websiteSource, setWebsiteSource] = useState(false)
+  const [isChatEnabled, setChatEnabled] = useState(false)
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -53,6 +59,8 @@ export default function ToBeContacted() {
       localStorage.setItem(STORAGE_SOURCE, source)
       setWebsiteSource(source)
     }
+
+    initChat()
   }, [])
 
   useEffect(() => {
@@ -115,7 +123,7 @@ export default function ToBeContacted() {
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
       <Col>
-        {IS_CHAT_ENABLED && (
+        {isChatEnabled && (
           <>
             Maintenant par :
             <Row>
@@ -175,18 +183,31 @@ export default function ToBeContacted() {
     },
   })
 
-  const activateChat = async () => {
-    // WhatsApp
-    // ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
-    // ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
-    // window.open(URL_CHAT_WHATSAPP, "_blank")
+  const initChat = () => {
+    if (chatNameUsed === CHAT_TYPE.crisp) {
+      Crisp.configure(CRISP_CHAT_ID)
+      Crisp.chat.hide()
 
-    // Crisp
-    crisp()
+      window.CRISP_READY_TRIGGER = function () {
+        const isAvailable = $crisp.is("website:available")
+        setChatEnabled(isAvailable)
+      }
+    }
   }
 
-  const crisp = () => {
-    Crisp.configure(CRISP_CHAT_ID)
+  const activateChat = () => {
+    if (chatNameUsed === CHAT_TYPE.whatsapp) openWhatsapp()
+    if (chatNameUsed === CHAT_TYPE.crisp) openCrisp()
+  }
+
+  const openWhatsapp = async () => {
+    ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
+    ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
+    window.open(URL_CHAT_WHATSAPP, "_blank")
+  }
+
+  const openCrisp = () => {
+    Crisp.chat.show()
     Crisp.chat.open()
   }
 
@@ -235,7 +256,7 @@ const defaultContactTypes = {
       iconSelected: "../img/contact/chat-selected.svg",
       id: RequestContact.type.chat,
       isChecked: false,
-      text: "Par chat (sur WhatsApp)",
+      text: `Par chat (sur ${chatNameUsed})`,
       badge: (
         <Badge pill bg="primary">
           MAINTENANT DISPONIBLE
