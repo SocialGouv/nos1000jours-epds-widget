@@ -39,6 +39,7 @@ const CHAT_TYPE = {
 
 // A modifier lorsque l'on veut modifier le chat utilisé (crisp, whats app)
 const chatNameUsed = CHAT_TYPE.crisp
+let crispReadTriggerAvailable = false
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -50,7 +51,7 @@ export default function ToBeContacted() {
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   const [websiteSource, setWebsiteSource] = useState(false)
-  const [isChatEnabled, setChatEnabled] = useState(false)
+  const [isChatEnabled, setChatEnabled] = useState()
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -190,7 +191,10 @@ export default function ToBeContacted() {
       window.CRISP_READY_TRIGGER = function () {
         const isAvailable = $crisp.is("website:available")
         setChatEnabled(isAvailable)
+        crispReadTriggerAvailable = isAvailable
       }
+
+      if (isChatEnabled === undefined) setChatEnabled(crispReadTriggerAvailable)
     }
   }
 
