@@ -30,7 +30,6 @@ import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
-import * as MainUtils from "../../src/utils/main.utils"
 import { Crisp } from "crisp-sdk-web"
 
 const CHAT_TYPE = {
