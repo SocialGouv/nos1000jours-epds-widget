@@ -17,6 +17,12 @@ Cloner le repo, puis :
 yarn test
 ```
 
+## Lib
+Utilisation de la lib du DSFR pour l'UI
+- https://react-dsfr-components.etalab.studio
+- https://react-dsfr.etalab.studio/mui
+
+
 ## Comment intégrer le widget
 
 L’équipe de 1000jours Blues vous propose d’intégrer son questionnaire EPDS sur votre site grâce à un module (widget).

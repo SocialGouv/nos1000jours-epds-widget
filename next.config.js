@@ -1,5 +1,8 @@
-module.exports = {
+const withTM = require("next-transpile-modules")(["@codegouvfr/react-dsfr"])
+
+module.exports = withTM({
   reactStrictMode: true,
+  swcMinify: true,
   i18n: {
     locales: ["fr-FR"],
     defaultLocale: "fr-FR",
@@ -19,6 +22,11 @@ module.exports = {
       }
     }
 
+    config.module.rules.push({
+      test: /\.woff2$/,
+      type: "asset/resource",
+    })
+
     return config
   },
-}
+})
