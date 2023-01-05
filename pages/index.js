@@ -1,5 +1,4 @@
 import { Row } from "react-bootstrap"
-import { } from "@dataesr/react-dsfr"
 import { useEffect, useState } from "react"
 import {
   DEFAULT_LOCAL,
@@ -24,6 +23,7 @@ import { CarouselCustom } from "../src/components/CarouselCustom"
 import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
+import { Button } from "@codegouvfr/react-dsfr/Button"
 
 export default function Home() {
   const router = useRouter()
@@ -178,14 +178,14 @@ export default function Home() {
         </a>
         <Row className="slogan">{getSlogan(source, labelsTranslated)}</Row>
         <br />
-        <button
-          className="fr-btn fr-btn--lg"
+        <Button
           onClick={startSurvey}
           disabled={!source}
+          size="large"
           style={{ marginBottom: "5%" }}
         >
           {getStartButtonText(labelsTranslated)}
-        </button>
+        </Button>
         <CarouselsTemoignagesEtChiffres />
         <LocaleButton
           locale={localeSelected}
