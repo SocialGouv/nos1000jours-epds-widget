@@ -1,4 +1,3 @@
-import { Button } from "@dataesr/react-dsfr"
 import { useEffect, useState } from "react"
 import { Modal } from "react-bootstrap"
 import { STORAGE_TEST_ABC } from "../../../constants/constants"
@@ -7,6 +6,7 @@ import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
 import { client, DEMANDE_RESSOURCES } from "../../../../apollo-client"
 import { useMutation } from "@apollo/client"
 import { LoaderFoButton } from "../../../utils/main.utils"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export const GiveAccessToResources = () => {
   const RESOURCES_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES
@@ -74,19 +74,20 @@ export const GiveAccessToResources = () => {
   const componentToSendMail = () => {
     return (
       <div>
-        <Button className="fr-btn--secondary" onClick={() => openModal()}>
+        <Button priority="secondary" onClick={() => openModal()}>
           Je souhaite recevoir les ressources par mail
         </Button>
 
         <Modal show={show} centered size="lg">
           <Modal.Header className="fr-modal__header">
-            <button
-              className="fr-btn--close fr-btn"
+            <Button
+              priority="tertiary no outline"
+              className="fr-btn--close"
               aria-controls="fr-modal-2"
               onClick={closeModal}
             >
               Fermer
-            </button>
+            </Button>
           </Modal.Header>
 
           <Modal.Body>

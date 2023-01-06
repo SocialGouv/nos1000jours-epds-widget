@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { ContentLayout } from "../../src/components/Layout"
-import { } from "@dataesr/react-dsfr"
 import {
   Badge,
   ButtonGroup,
@@ -30,6 +29,7 @@ import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 import * as MainUtils from "../../src/utils/main.utils"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -201,17 +201,16 @@ export default function ToBeContacted() {
 
       <Col className="be-contacted-bottom-buttons">
         {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
-          <button className="fr-btn fr-btn--secondary" onClick={cancel}>
+          <Button priority="secondary" onClick={cancel}>
             Annuler
-          </button>
+          </Button>
         )}
-        <button
-          className="fr-btn"
+        <Button
           disabled={!isValidButtonEnabled(itemValueType, contactHours)}
           onClick={onValidate}
         >
           Valider
-        </button>
+        </Button>
       </Col>
     </ContentLayout>
   )

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { ChooseEpdsLocale } from "./ChooseEpdsLocale"
 import { API_URL } from "../constants/constants"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 /**
  * @param {Boolean} hasText Affichage du texte : Changer la langue
@@ -13,8 +14,8 @@ export function LocaleButton({ hasText, locale, setLocaleSelected }) {
 
   return (
     <div className="header-flag">
-      <button
-        className="fr-btn fr-btn--secondary"
+      <Button
+        priority="secondary"
         disabled={!hasText}
         onClick={() => (locale ? setShowSelectLocal(true) : null)}
       >
@@ -28,7 +29,7 @@ export function LocaleButton({ hasText, locale, setLocaleSelected }) {
         )}
 
         {hasText && "Changer la langue"}
-      </button>
+      </Button>
 
       <ChooseEpdsLocale
         show={showSelectLocal}

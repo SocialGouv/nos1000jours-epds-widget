@@ -21,6 +21,7 @@ yarn test
 Utilisation de la lib du DSFR pour l'UI
 - https://react-dsfr-components.etalab.studio
 - https://react-dsfr.etalab.studio/mui
+- Liste de icons : https://remixicon.com/ (si un carré apparaît à la place de l'icon, relancer l'app : `yarn dev`)
 
 
 ## Comment intégrer le widget

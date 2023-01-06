@@ -1,6 +1,6 @@
-import { Button } from "@dataesr/react-dsfr"
 import * as TrackerUtils from "../../utils/tracker.utils"
 import * as MainUtils from "../../utils/main.utils"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export function RecruitParents() {
   const INDIVIDUAL_URL = "https://calendly.com/1000-jours-blues/30min"

@@ -1,4 +1,5 @@
 import { useLazyQuery } from "@apollo/client"
+import Button from "@codegouvfr/react-dsfr/Button"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { client, GET_RESUTLATS_COUNT } from "../../apollo-client"
@@ -102,8 +103,8 @@ export default function BeforeSurvey() {
         </div>
 
         <div className="button-start-survey">
-          <button
-            className="fr-btn fr-btn--lg"
+          <Button
+            size="large"
             onClick={
               demographicData?.buttonLabelInBeforeSurvey
                 ? goToDemographicSurvey
@@ -112,7 +113,7 @@ export default function BeforeSurvey() {
           >
             {demographicData?.buttonLabelInBeforeSurvey ??
               "Commencer le questionnaire"}
-          </button>
+          </Button>
         </div>
       </div>
     </ContentLayout>

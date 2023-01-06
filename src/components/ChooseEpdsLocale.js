@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client"
+import Button from "@codegouvfr/react-dsfr/Button"
 import { GET_LOCALES } from "@socialgouv/nos1000jours-lib"
 import React, { useState } from "react"
 import {
@@ -89,13 +90,11 @@ export function ChooseEpdsLocale({ show, setShow, setLocaleSelected }) {
         <Modal.Footer
           style={{ alignSelf: "center", borderTop: "none", margin: 20 }}
         >
-          <button className="fr-btn fr-btn--secondary" onClick={onCancel}>
+          <Button priority="secondary" onClick={onCancel}>
             Annuler
-          </button>
+          </Button>
           <div style={{ width: 20 }} />
-          <button className="fr-btn" onClick={onValidate}>
-            Valider
-          </button>
+          <Button onClick={onValidate}>Valider</Button>
         </Modal.Footer>
       </Modal>
     </>

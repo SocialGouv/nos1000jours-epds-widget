@@ -36,6 +36,7 @@ import { updateDemographicData } from "../ab-testing/demographic-data-survey"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 import { Crisp } from "crisp-sdk-web"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -198,29 +199,27 @@ export default function EpdsSurvey() {
           justifyContent: showPrevious ? "space-between" : "flex-end",
         }}
       >
-        <button
-          className="fr-btn fr-btn--secondary"
+        <Button
+          iconId="ri-skip-back-line"
           onClick={onPreviousQuestion}
-          style={{ display: showPrevious ? "block" : "none" }}
+          priority="secondary"
           disabled={isLoading}
+          style={{ display: showPrevious ? "block" : "none" }}
         >
-          <img alt="" src="/img/icone-precedent.svg" />
           Précédent
-        </button>
-
-        <button
-          className="fr-btn fr-btn--secondary"
+        </Button>
+        <Button
+          iconId="ri-skip-forward-line"
           onClick={onNextQuestion}
+          priority="secondary"
           disabled={!isEnabledNextButton}
           style={{ display: showNext ? "block" : "none" }}
         >
-          <img alt="" src="/img/icone-suivant.svg" />
           Suivant
-        </button>
+        </Button>
 
         <div style={{ display: showNext ? "none" : "flex" }}>
-          <button
-            className="fr-btn"
+          <Button
             onClick={() => {
               setSendScore(true)
               setLoading(true)
@@ -238,7 +237,7 @@ export default function EpdsSurvey() {
             disabled={!isEnabledNextButton || isLoading}
           >
             Terminer
-          </button>
+          </Button>
           <Spinner animation="border" hidden={!isLoading} />
         </div>
       </div>

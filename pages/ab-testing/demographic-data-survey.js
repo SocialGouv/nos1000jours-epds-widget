@@ -24,6 +24,7 @@ import * as StorageUtils from "../../src/utils/storage.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import { JobSelector } from "../../src/components/JobSelector"
 import { DepartmentCodeSelector } from "../../src/components/DepartmentCodeSelector"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export default function DemographicDataSurvey() {
   const router = useRouter()
@@ -256,13 +257,13 @@ export default function DemographicDataSurvey() {
 
         <i className="required-field">Tous les champs sont obligatoires</i>
         <div className="button-validation">
-          <button
-            className="fr-btn fr-btn--lg"
+          <Button
+            size="large"
             disabled={!isValidateButtonEnabled}
             onClick={sendData}
           >
             {demographicData?.buttonLabelInInfoDemographicSurvey ?? "Envoyer"}
-          </button>
+          </Button>
           {isLoading ? <LoaderFoButton /> : null}
         </div>
       </div>

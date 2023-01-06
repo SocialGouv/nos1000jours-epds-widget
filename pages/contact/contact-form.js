@@ -24,6 +24,7 @@ import { useRouter } from "next/router"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
 import * as ContactUtils from "../../src/utils/contact.utils"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export default function ContactForm() {
   const router = useRouter()
@@ -237,17 +238,16 @@ export default function ContactForm() {
         ) : null}
 
         <Col className="be-contacted-bottom-buttons">
-          <button className="fr-btn fr-btn--secondary" onClick={cancel}>
+          <Button priority="secondary" onClick={cancel}>
             Annuler
-          </button>
-          <button
-            className="fr-btn"
+          </Button>
+          <Button
             type="submit"
             disabled={!canSend || isLoading}
           >
             Valider
             {isLoading ? <LoaderFoButton /> : null}
-          </button>
+          </Button>
         </Col>
       </form>
     </ContentLayout>

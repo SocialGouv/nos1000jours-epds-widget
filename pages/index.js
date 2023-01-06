@@ -23,7 +23,7 @@ import { CarouselCustom } from "../src/components/CarouselCustom"
 import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
-import { Button } from "@codegouvfr/react-dsfr/Button"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export default function Home() {
   const router = useRouter()
