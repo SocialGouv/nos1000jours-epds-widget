@@ -13,7 +13,6 @@
   "dependencies": {
     "@apollo/client": "^3.5.7",
     "@codegouvfr/react-dsfr": "^0.21.4",
-    "@dataesr/react-dsfr": "^3.3.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.3",

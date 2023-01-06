@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css"
 import "../styles/index.scss"
-import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css"
 
 import App from "next/app"
 import Head from "next/head"
