@@ -1,4 +1,4 @@
-const withTM = require("next-transpile-modules")(["@codegouvfr/react-dsfr"])
+const withTM = require('next-transpile-modules')(['@codegouvfr/react-dsfr'])
 
 module.exports = withTM({
   reactStrictMode: true,
