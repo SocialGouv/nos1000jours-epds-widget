@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react"
 import { Col } from "react-bootstrap"
 import { ContentLayout } from "../../src/components/Layout"
-import { } from "@dataesr/react-dsfr"
 import {
   PATTERN_EMAIL,
   RequestContact,
