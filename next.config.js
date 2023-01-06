@@ -1,6 +1,7 @@
 const withTM = require("next-transpile-modules")(["@codegouvfr/react-dsfr"])
 
-module.exports = withTM({
+/** @type {import('next').NextConfig} */
+const nextConfig = withTM({
   reactStrictMode: true,
   i18n: {
     locales: ["fr-FR"],
@@ -29,3 +30,5 @@ module.exports = withTM({
     return config
   },
 })
+
+module.exports = nextConfig
