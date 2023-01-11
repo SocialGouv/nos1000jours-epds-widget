@@ -1,5 +1,6 @@
 import { Row } from "react-bootstrap"
 import { LocaleButton } from "./LocaleButton"
+import * as MainUtils from "../utils/main.utils"
 
 /**
  * @param {Sting} title (Not required)
@@ -7,8 +8,9 @@ import { LocaleButton } from "./LocaleButton"
  * @returns Header
  */
 export function WidgetHeader({ title, locale }) {
+  const show = !MainUtils.isUiForApp()
 
-  return (
+  return show ? (
     <div className="widget-header">
       <Row>
         <div className="header-block-icons">
@@ -22,5 +24,5 @@ export function WidgetHeader({ title, locale }) {
         {title && <h5 className="title-ddp">{title}</h5>}
       </Row>
     </div>
-  )
+  ) : null
 }
