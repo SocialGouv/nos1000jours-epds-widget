@@ -12,10 +12,6 @@ import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
 import { client, GET_TEMOIGNAGES_CHIFFRES } from "../apollo-client"
 import {
-  convertArrayLabelsToObject,
-  readSourceInUrl,
-} from "../src/utils/main.utils"
-import {
   EPDS_LABELS_TRANSLATION_BY_LOCALE,
   GET_LOCALES,
 } from "@socialgouv/nos1000jours-lib"
@@ -24,6 +20,7 @@ import { CarouselCustom } from "../src/components/CarouselCustom"
 import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
+import * as MainUtils from "../src/utils/main.utils"
 
 export default function Home() {
   const router = useRouter()
@@ -37,7 +34,7 @@ export default function Home() {
   const [chiffresChoc, setChiffresChoc] = useState()
 
   useEffect(() => {
-    const paramSource = readSourceInUrl()
+    const paramSource = MainUtils.readSourceInUrl()
     setSource(paramSource)
 
     const localesQuery = async () => {
@@ -89,7 +86,7 @@ export default function Home() {
       client: client,
       onCompleted: (data) => {
         const labelsData = data.labelsEpdsTraductions[0]?.labels
-        const labels = convertArrayLabelsToObject(labelsData)
+        const labels = MainUtils.convertArrayLabelsToObject(labelsData)
         setLabelsTranslated(labels)
         localStorage.setItem(STORAGE_LABELS, JSON.stringify(labels))
       },
@@ -150,9 +147,9 @@ export default function Home() {
     </>
   )
 
-  return (
-    <div className="container">
-      <div className="main">
+  const ImagesRfAndLogo = () => {
+    return (
+      <>
         <img
           src="/img/logo-republique-francaise.png"
           alt="Logo république française"
@@ -172,8 +169,21 @@ export default function Home() {
             width={130}
           />
         </a>
-        <Row className="slogan">{getSlogan(source, labelsTranslated)}</Row>
-        <br />
+      </>
+    )
+  }
+
+  return (
+    <div className="container">
+      <div className="main">
+        {!MainUtils.isUiForApp(source) ? (
+          <>
+            <ImagesRfAndLogo />
+            <Row className="slogan">{getSlogan(source, labelsTranslated)}</Row>
+            <br />
+          </>
+        ) : null}
+
         <button
           className="fr-btn fr-btn--lg"
           onClick={startSurvey}
