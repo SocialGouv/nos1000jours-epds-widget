@@ -5,9 +5,10 @@ import { useRouter } from "next/router"
 import * as TrackerUtils from "../../utils/tracker.utils"
 import * as AbTestingUtils from "../../utils/ab-testing/ab-testing.utils"
 
+export const buttonLabel = "Je veux être accompagné.e"
+
 export function ContactMamanBlues({ scoreLevel }) {
   const router = useRouter()
-  const buttonLabel = "Je veux être accompagné.e"
   let colorsByLevel
 
   switch (scoreLevel) {
