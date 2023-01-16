@@ -1,3 +1,11 @@
+# [1.48.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.47.0...v1.48.0) (2023-01-16)
+
+
+### Features
+
+* **abtesting:** suppression sur le bt contacter ([eecb12d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/eecb12dccc37e48730fc910b42b496a46410a8f1))
+* **abtesting:** suppression tag ([e009165](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e0091659ebc3b3569a9b4d89682c428373b7f084))
+
 # [1.47.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.46.0...v1.47.0) (2023-01-16)
 
 
