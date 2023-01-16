@@ -12,6 +12,7 @@ import {
   seRapprocheDeLaRealite,
 } from "../../../src/utils/ab-testing/measuring-intentions.utils"
 import { displayComponentsByTest } from "../../../src/components/ab-testing/intentions/MeasuringIntentions"
+import * as ContactMamanBlues from "../../../src/components/results/ContactMamanBlues"
 
 describe("UI de MeasuringIntentions", () => {
   const findLabelEstLePlusAdapte = (value) =>
@@ -32,7 +33,7 @@ describe("UI de MeasuringIntentions", () => {
       })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole("button", { name: "être contacté(e)" })
+      screen.getByRole("button", { name: ContactMamanBlues.buttonLabel })
     ).toBeInTheDocument()
   }
 
@@ -391,7 +392,9 @@ describe("UI de MeasuringIntentions", () => {
           expect(yesButton).not.toBeInTheDocument()
           expect(await screen.queryByText("Oui")).not.toBeInTheDocument()
 
-          expect(await screen.findByText("Prenez une des actions suivantes.")).toBeVisible()
+          expect(
+            await screen.findByText("Prenez une des actions suivantes.")
+          ).toBeVisible()
 
           // Nouveaux boutons
           expect(

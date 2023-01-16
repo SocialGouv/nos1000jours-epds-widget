@@ -1,15 +1,14 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Row } from "react-bootstrap"
 import { } from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import * as TrackerUtils from "../../utils/tracker.utils"
-import * as ContactButtonLabelAbTesting from "../../utils/ab-testing/contact-button-label.utils"
-import * as AbTestingUtils from "../../utils/ab-testing/ab-testing.utils"
+
+export const buttonLabel = "Je veux être accompagné.e"
 
 export function ContactMamanBlues({ scoreLevel }) {
   const router = useRouter()
   let colorsByLevel
-  const buttonLabel = ContactButtonLabelAbTesting.getContactButtonLabelByTest()
 
   switch (scoreLevel) {
     case 1:
@@ -29,18 +28,13 @@ export function ContactMamanBlues({ scoreLevel }) {
     TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       `Macaron d'Elise ${TrackerUtils.EVENT_CLICK}`,
-      "Être contacté(e)"
+      { buttonLabel }
     )
-    AbTestingUtils.trackerForAbTesting(buttonLabel)
 
     router.push({
       pathname: "/contact/to-be-contacted",
     })
   }
-
-  useEffect(() => {
-    AbTestingUtils.trackerForAbTesting(`Macaron Elise - ${colorsByLevel}`)
-  }, [])
 
   return (
     <div className="contact-mamanblues">
