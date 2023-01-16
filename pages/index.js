@@ -65,15 +65,19 @@ export default function Home() {
   }, [localeSelected])
 
   const startSurvey = () => {
+    TrackerUtils.genericTracker(
+      TrackerUtils.CATEG.home,
+      TrackerUtils.NAME.start
+    )
     TrackerUtils.track(
       TrackerUtils.CATEG.home,
       TrackerUtils.EVENT_CLICK,
       `Commencer le test - ${source}`
     )
-    localStorage.setItem(STORAGE_SOURCE, source)
-
-    localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
     DemographicDataUtils.trackerForDemographie("Home - Commencer")
+
+    localStorage.setItem(STORAGE_SOURCE, source)
+    localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
     goToBeforeSurvey()
   }
 

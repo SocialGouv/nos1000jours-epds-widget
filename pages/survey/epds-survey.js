@@ -224,6 +224,11 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
+
+              TrackerUtils.genericTracker(
+                TrackerUtils.CATEG.survey,
+                TrackerUtils.NAME.end
+              )
               TrackerUtils.track(
                 TrackerUtils.CATEG.survey,
                 TrackerUtils.EVENT_CLICK,
