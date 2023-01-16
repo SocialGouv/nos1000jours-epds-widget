@@ -24,6 +24,7 @@ import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import Button from "@codegouvfr/react-dsfr/Button"
+import Input from "@codegouvfr/react-dsfr/Input"
 
 export default function ContactForm() {
   const router = useRouter()
@@ -117,53 +118,59 @@ export default function ContactForm() {
     })
   }
 
-  const emailInput = (isRequired) => (
-    <div
-      className={`form-group fr-input-group ${isEmailValid ? "fr-input-group--valid" : ""
-        }`}
-    >
-      <label htmlFor="inputEmail">Votre email {isRequired ? "*" : null} :</label>
-      <input
-        type="email"
-        className={`form-control fr-input ${isEmailValid ? "custom-input-valid" : ""
-          }`}
-        id="inputEmail"
-        name="inputEmail"
-        pattern={PATTERN_EMAIL}
-        onChange={(e) => setEmailValid(e.target.validity.valid)}
-        placeholder={Form.placeholder.email}
-        required={isRequired}
-      />
+  const emailInput = (isRequired) => {
+    const emailLabel = `Votre email ${isRequired ? "*" : ""} :`
+    const emailState = getInputState(isEmailValid)
+    const emailStateMsg = isEmailValid === false ? Form.error.email : ""
 
-      {isEmailValid === false && <InputError error={Form.error.email} />}
-      {isRequired && requiredField}
-    </div>
-  )
+    return (
+      <div style={{ marginBottom: "1.5rem" }}>
+        <Input
+          label={emailLabel}
+          hintText={isRequired ? requiredField : ""}
+          state={emailState}
+          stateRelatedMessage={emailStateMsg}
+          onChange={(e) => setEmailValid(e.target.validity.valid)}
+          nativeInputProps={{
+            placeholder: Form.placeholder.email,
+            type: "email",
+            required: isRequired,
+            pattern: PATTERN_EMAIL,
+          }}
+        />
+      </div>
+    )
+  }
 
-  const phoneInput = (isRequired) => (
-    <div
-      className={`form-group fr-input-group ${isPhoneValid ? "fr-input-group--valid" : ""
-        }`}
-    >
-      <label htmlFor="inputPhone">Votre numéro de téléphone {isRequired ? "*" : null} :</label>
-      <input
-        type="tel"
-        className={`form-control fr-input ${isPhoneValid ? "custom-input-valid" : ""
-          }`}
-        id="inputPhone"
-        name="inputPhone"
-        pattern="[0-9]{10}"
-        onChange={(e) => setPhoneValid(e.target.validity.valid)}
-        placeholder="Écrivez ici le numéro pour vous contacter"
-        required={isRequired}
-      />
+  const getInputState = (param) => {
+    if (param === false) return "error"
+    if (param === true) return "default"
+    else "default"
+  }
 
-      {isPhoneValid === false && (
-        <InputError error="Le numéro de téléphone n'est pas au bon format" />
-      )}
-      {isRequired ? requiredField : null}
-    </div>
-  )
+  const phoneInput = (isRequired) => {
+    const phoneLabel = `Votre numéro de téléphone ${isRequired ? "*" : ""} :`
+    const phoneState = getInputState(isPhoneValid)
+    const phoneStateMsg = isPhoneValid === false ? Form.error.phone : ""
+
+    return (
+      <div style={{ marginBottom: "1.5rem" }}>
+        <Input
+          label={phoneLabel}
+          hintText={isRequired ? requiredField : ""}
+          state={phoneState}
+          stateRelatedMessage={phoneStateMsg}
+          onChange={(e) => setPhoneValid(e.target.validity.valid)}
+          nativeInputProps={{
+            placeholder: Form.placeholder.phone,
+            type: "tel",
+            isRequired: isRequired,
+            pattern: "[0-9]{10}",
+          }}
+        />
+      </div>
+    )
+  }
 
   const setOrderPhoneAndEmailInputs = () => {
     if (contactType == RequestContact.type.email) {
@@ -219,16 +226,12 @@ export default function ContactForm() {
       <WidgetHeader title="être contacté(e)" locale={localeSelected} />
 
       <form className="contact-form" onSubmit={sendForm}>
-        <div className={`form-group fr-input-group`}>
-          <label htmlFor="inputName">Votre prénom :</label>
-          <input
-            type="text"
-            className={`form-control fr-input`}
-            id="inputName"
-            name="inputName"
-            placeholder={Form.placeholder.name}
-          />
-        </div>
+        <Input
+          label="Votre prénom :"
+          nativeInputProps={{
+            placeholder: Form.placeholder.name
+          }}
+        />
 
         {setOrderPhoneAndEmailInputs()}
         <ChildCounter />
@@ -252,12 +255,6 @@ export default function ContactForm() {
     </ContentLayout>
   )
 }
-
-const InputError = ({ error }) => (
-  <p id="text-input-error-desc-error" className="fr-error-text">
-    {error}
-  </p>
-)
 
 /**
  * Vérifie la validité du formulaire en fonction des informations complétées
