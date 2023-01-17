@@ -23,6 +23,7 @@ import { useRouter } from "next/router"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
 import * as ContactUtils from "../../src/utils/contact.utils"
+import * as DsfrUtils from "../../src/utils/dsfr-components.utils"
 import Button from "@codegouvfr/react-dsfr/Button"
 import Input from "@codegouvfr/react-dsfr/Input"
 
@@ -120,7 +121,7 @@ export default function ContactForm() {
 
   const emailInput = (isRequired) => {
     const emailLabel = `Votre email ${isRequired ? "*" : ""} :`
-    const emailState = getInputState(isEmailValid)
+    const emailState = DsfrUtils.getInputState(isEmailValid)
     const emailStateMsg = isEmailValid === false ? Form.error.email : ""
 
     return (
@@ -142,15 +143,9 @@ export default function ContactForm() {
     )
   }
 
-  const getInputState = (param) => {
-    if (param === false) return "error"
-    if (param === true) return "default"
-    else "default"
-  }
-
   const phoneInput = (isRequired) => {
     const phoneLabel = `Votre numéro de téléphone ${isRequired ? "*" : ""} :`
-    const phoneState = getInputState(isPhoneValid)
+    const phoneState = DsfrUtils.getInputState(isPhoneValid)
     const phoneStateMsg = isPhoneValid === false ? Form.error.phone : ""
 
     return (
