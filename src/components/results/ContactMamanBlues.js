@@ -2,8 +2,6 @@ import React from "react"
 import { Row } from "react-bootstrap"
 import { useRouter } from "next/router"
 import * as TrackerUtils from "../../utils/tracker.utils"
-import * as ContactButtonLabelAbTesting from "../../utils/ab-testing/contact-button-label.utils"
-import * as AbTestingUtils from "../../utils/ab-testing/ab-testing.utils"
 import Button from "@codegouvfr/react-dsfr/Button"
 
 export const buttonLabel = "Je veux être accompagné.e"
