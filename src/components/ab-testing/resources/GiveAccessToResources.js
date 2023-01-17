@@ -1,12 +1,15 @@
-import { Button } from "@dataesr/react-dsfr"
 import { useEffect, useState } from "react"
 import { Modal } from "react-bootstrap"
-import { STORAGE_TEST_ABC } from "../../../constants/constants"
+import { PATTERN_EMAIL, STORAGE_TEST_ABC } from "../../../constants/constants"
 import * as StorageUtils from "../../../utils/storage.utils"
 import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
+import * as DsfrUtils from "../../../utils/dsfr-components.utils"
 import { client, DEMANDE_RESSOURCES } from "../../../../apollo-client"
 import { useMutation } from "@apollo/client"
 import { LoaderFoButton } from "../../../utils/main.utils"
+import Button from "@codegouvfr/react-dsfr/Button"
+import Input from "@codegouvfr/react-dsfr/Input"
+import { Form } from "../../../constants/specificLabels"
 
 export const GiveAccessToResources = () => {
   const RESOURCES_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES
@@ -15,11 +18,17 @@ export const GiveAccessToResources = () => {
   const [show, setShow] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [mailValue, setMailValue] = useState()
+  const [isMailValid, setMailValid] = useState(true)
 
   const openUrl = (url) => window.open(url, "_blank")
-  const handleChange = (event) => setMailValue(event.target.value)
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
+
+  const handleChange = (event) => {
+    const targetMail = event.target
+    setMailValue(targetMail.value)
+    setMailValid(targetMail.validity.valid && targetMail.value.length > 0)
+  }
 
   const shouldSendEmail = () =>
     test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
@@ -74,44 +83,42 @@ export const GiveAccessToResources = () => {
   const componentToSendMail = () => {
     return (
       <div>
-        <Button className="fr-btn--secondary" onClick={() => openModal()}>
+        <Button priority="secondary" onClick={() => openModal()}>
           Je souhaite recevoir les ressources par mail
         </Button>
 
         <Modal show={show} centered size="lg">
           <Modal.Header className="fr-modal__header">
-            <button
-              className="fr-btn--close fr-btn"
+            <Button
+              priority="tertiary no outline"
+              className="fr-btn--close"
               aria-controls="fr-modal-2"
               onClick={closeModal}
             >
               Fermer
-            </button>
+            </Button>
           </Modal.Header>
 
           <Modal.Body>
-            <div className="fr-input-group">
-              <label className="fr-label" htmlFor="email-resources">
-                Recevez nos ressources orientées sur les difficultés maternelles
-                dans votre boite mail
-                <span className="fr-hint-text">
-                  Format attendu : nom@domaine.fr
-                </span>
-              </label>
-              <input
-                className="fr-input"
-                name="email"
-                autoComplete="email"
-                id="email-resources"
-                type="email"
-                onChange={handleChange}
-                value={mailValue}
-              />
-            </div>
+            <Input
+              label="Recevez nos ressources orientées sur les difficultés maternelles dans votre boite mail"
+              hintText="Format attendu : nom@domaine.fr"
+              state={DsfrUtils.getInputState(isMailValid)}
+              stateRelatedMessage={Form.error.email}
+              onChange={handleChange}
+              nativeInputProps={{
+                type: "email",
+                value: mailValue,
+                pattern: PATTERN_EMAIL,
+              }}
+            />
           </Modal.Body>
 
           <Modal.Footer>
-            <Button onClick={() => sendMail()} disabled={isLoading}>
+            <Button
+              onClick={() => sendMail()}
+              disabled={isLoading || !isMailValid}
+            >
               Envoyer
               {isLoading ? <LoaderFoButton /> : null}
             </Button>

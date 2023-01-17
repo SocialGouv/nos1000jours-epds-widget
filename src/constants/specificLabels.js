@@ -32,9 +32,11 @@ export const Form = {
   placeholder: {
     name: "Écrivez ici votre prénom",
     email: "Écrivez ici l’adresse mail",
+    phone: "Écrivez ici le numéro pour vous contacter",
   },
   error: {
     email: "L'adresse mail n'est pas au bon format",
+    phone: "Le numéro de téléphone n'est pas au bon format",
   },
   required: "*Champs obligatoire",
 }

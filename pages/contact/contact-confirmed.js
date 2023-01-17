@@ -7,9 +7,9 @@ import {
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
 } from "../../src/constants/constants"
-import { } from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import * as StorageUtils from "../../src/utils/storage.utils"
+import Button from "@codegouvfr/react-dsfr/Button"
 
 export default function ContactConfirmed() {
   const router = useRouter()
@@ -52,9 +52,7 @@ export default function ContactConfirmed() {
         </p>
 
         {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
-          <button className="fr-btn" onClick={goToResults}>
-            Retour à mon résultat
-          </button>
+          <Button onClick={goToResults}>Retour à mon résultat</Button>
         )}
       </div>
     </ContentLayout>

@@ -1,20 +1,37 @@
 import "bootstrap/dist/css/bootstrap.css"
 import "../styles/index.scss"
-import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css"
 
-import { init } from "@socialgouv/matomo-next"
 import App from "next/app"
-import React from "react"
-import { ThemeProvider } from "react-bootstrap"
 import Head from "next/head"
+import Link from "next/link"
+import React from "react"
+import { init } from "@socialgouv/matomo-next"
+import { MuiDsfrThemeProvider } from "@codegouvfr/react-dsfr/mui"
+import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir"
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID
 const MATOMO_ENABLED = process.env.NEXT_PUBLIC_MATOMO_ENABLED
 
-const theme = {
-  font: "Marianne",
-}
+const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
+  defaultColorScheme: "system",
+  Link,
+  preloadFonts: [
+    "Marianne-Light",
+    "Marianne-Light_Italic",
+    "Marianne-Regular",
+    "Marianne-Regular_Italic",
+    "Marianne-Medium",
+    "Marianne-Medium_Italic",
+    "Marianne-Bold",
+    "Marianne-Bold_Italic",
+    "Spectral-Regular",
+    "Spectral-ExtraBold",
+  ],
+})
+
+export { dsfrDocumentApi }
+
 class MyApp extends App {
   componentDidMount() {
     if (MATOMO_ENABLED === "true")
@@ -25,7 +42,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <React.Fragment>
-        <ThemeProvider theme={theme}>
+        <MuiDsfrThemeProvider>
           <Head>
             <title>1000 premiers jours</title>
             <meta
@@ -35,10 +52,10 @@ class MyApp extends App {
             />
           </Head>
           <Component {...pageProps} />
-        </ThemeProvider>
+        </MuiDsfrThemeProvider>
       </React.Fragment>
     )
   }
 }
 
-export default MyApp
+export default withDsfr(MyApp)
