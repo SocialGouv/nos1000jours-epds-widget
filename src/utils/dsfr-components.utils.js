@@ -6,5 +6,5 @@
 export const getInputState = (param) => {
   if (param === false) return "error"
   if (param === true) return "default"
-  else return "default"
+  return "default"
 }

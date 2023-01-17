@@ -15,13 +15,13 @@ import {
   convertDateToString,
   LoaderFoButton,
 } from "../../src/utils/main.utils"
-import * as StorageUtils from "../../src/utils/storage.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
 import { client, EPDS_CONTACT_INFORMATION, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 import { useRouter } from "next/router"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
+import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as DsfrUtils from "../../src/utils/dsfr-components.utils"
 import Button from "@codegouvfr/react-dsfr/Button"
