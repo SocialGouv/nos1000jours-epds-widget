@@ -1,3 +1,10 @@
+## [1.48.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.48.0...v1.48.1) (2023-01-18)
+
+
+### Bug Fixes
+
+* **epds:** ui numéro de question ([a3909ad](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a3909ad6574a470f0826bf280abee7326e9a00f4))
+
 # [1.48.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.47.0...v1.48.0) (2023-01-16)
 
 
