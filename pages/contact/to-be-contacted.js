@@ -187,14 +187,7 @@ export default function ToBeContacted() {
     if (chatNameUsed === CHAT_TYPE.crisp) {
       Crisp.configure(CRISP_CHAT_ID)
       Crisp.chat.hide()
-
-      window.CRISP_READY_TRIGGER = function () {
-        const isAvailable = $crisp.is("website:available")
-        setChatEnabled(isAvailable)
-        crispReadTriggerAvailable = isAvailable
-      }
-
-      if (isChatEnabled === undefined) setChatEnabled(crispReadTriggerAvailable)
+      setChatEnabled(true)
     }
   }
 
