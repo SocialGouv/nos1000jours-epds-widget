@@ -1,3 +1,11 @@
+# [1.50.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.49.0...v1.50.0) (2023-02-06)
+
+
+### Features
+
+* **chat:** renommage bouton ([7820a49](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7820a49660419dfbad47b9cd9f87bf98322fb09b))
+* **chat:** supprimer sur l'epds ([983ff68](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/983ff68bc6b6fbc9797c06bac7d50bf959562222))
+
 # [1.49.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.48.1...v1.49.0) (2023-02-06)
 
 
