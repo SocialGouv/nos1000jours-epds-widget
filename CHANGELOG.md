@@ -1,3 +1,20 @@
+# [1.49.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.48.1...v1.49.0) (2023-02-06)
+
+
+### Bug Fixes
+
+* **chat:** correction trigger ([085ec35](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/085ec35ab9cdd7552d9fe8f59e48ace0ea50816a))
+
+
+### Features
+
+* **chat:** activation ([e8ead93](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e8ead9319154e7fd8be05f3b507537bf84e37d3c))
+* **chat:** affichage permanent ([9138540](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/913854055bbf6835881515245d10581a1091dd16))
+* **chat:** ajout sdk crisp et ouverture automatique ([0d0ab92](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0d0ab9299547e7dc80dae6b5222d691411ab70f5))
+* **chat:** import ([a0bfc86](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a0bfc869b2c4d32cf3d7757ba37817d6cd8b6f3d))
+* **chat:** poc crisp ([34bc82e](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/34bc82eac1c25d85021825f1a105b33bf56bcdc8))
+* **chat:** proposer crisp si opérateur actif ([551555b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/551555b1d9115841737b4b479cc291e8aa72a960))
+
 ## [1.48.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.48.0...v1.48.1) (2023-01-18)
 
 
