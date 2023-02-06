@@ -252,7 +252,7 @@ const defaultContactTypes = {
       iconSelected: "../img/contact/chat-selected.svg",
       id: RequestContact.type.chat,
       isChecked: false,
-      text: `Par chat (sur ${chatNameUsed})`,
+      text: `Par chat`,
       badge: (
         <Badge pill bg="primary">
           MAINTENANT DISPONIBLE
