@@ -1,3 +1,10 @@
+# [1.51.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.50.0...v1.51.0) (2023-02-10)
+
+
+### Features
+
+* **chat:** ajout horaires ([dd2bcff](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/dd2bcff974f25aa0e04f6c70665ac9596caed0a8))
+
 # [1.50.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.49.0...v1.50.0) (2023-02-06)
 
 
