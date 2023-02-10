@@ -187,7 +187,7 @@ export default function ToBeContacted() {
     if (chatNameUsed === CHAT_TYPE.crisp) {
       Crisp.configure(CRISP_CHAT_ID)
       Crisp.chat.hide()
-      setChatEnabled(true)
+      setChatEnabled(ContactUtils.isMamanBluesAvailableHours())
     }
   }
 
