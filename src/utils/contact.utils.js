@@ -51,13 +51,16 @@ export const saveContactRequest = async (contactType, sendContactQuery) => {
 }
 
 /**
- * Return un boolean si on durant les horaires de dispo de MamanBlues (9h-17h30)
+ * Les horaires de dispo de MamanBlues (lun-vend 9h-17h30)
  * @returns Boolean
  */
 export const isMamanBluesAvailableHours = () => {
   const date = new Date()
 
-  if (date.getHours() >= 9 && date.getHours() < 17) return true
-  if (date.getHours() == 17 && date.getMinutes() <= 30) return true
+  // Days
+  if (date.getDay() == 0 || date.getDay() == 6) return false
+  // Hours
+  else if (date.getHours() >= 9 && date.getHours() < 17) return true
+  else if (date.getHours() == 17 && date.getMinutes() <= 30) return true
   else return false
 }
