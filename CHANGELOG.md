@@ -1,3 +1,10 @@
+# [1.52.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.51.0...v1.52.0) (2023-02-13)
+
+
+### Features
+
+* **chat:** jour de dispo ([b26791b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b26791ba48f2ddf151ee95bd0c43e22f93430705))
+
 # [1.51.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.50.0...v1.51.0) (2023-02-10)
 
 
