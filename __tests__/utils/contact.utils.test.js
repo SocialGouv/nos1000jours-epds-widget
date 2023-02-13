@@ -45,42 +45,49 @@ describe("Contact Utils", () => {
 
   describe("isMamanBluesAvailableHours", () => {
     test("Should return false with 8h", () => {
-      const date = new Date("2016-09-10 08:50:05")
+      const date = new Date("2023-02-13 08:50:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
     })
 
     test("Should return true with 9h", () => {
-      const date = new Date("2016-09-10 09:50:05")
+      const date = new Date("2023-02-13 09:50:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeTruthy()
     })
 
     test("Should return true with 10h", () => {
-      const date = new Date("2016-09-10 10:50:05")
+      const date = new Date("2023-02-13 10:50:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeTruthy()
     })
 
     test("Should return true with 17h30", () => {
-      const date = new Date("2016-09-10 17:30:05")
+      const date = new Date("2023-02-13 17:30:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeTruthy()
     })
 
     test("Should return false with 17h55", () => {
-      const date = new Date("2016-09-10 17:55:05")
+      const date = new Date("2023-02-13 17:55:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
     })
 
     test("Should return false with 18h00", () => {
-      const date = new Date("2016-09-10 18:00:05")
+      const date = new Date("2023-02-13 18:00:05")
+      jest.useFakeTimers().setSystemTime(date)
+
+      expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
+    })
+
+    test("Should return false with sunday", () => {
+      const date = new Date("2023-02-12 14:00:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
