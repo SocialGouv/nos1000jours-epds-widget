@@ -1,5 +1,7 @@
 import { Spinner } from "react-bootstrap"
 import { Labels } from "../constants/specificLabels"
+import { EPDS_APP_SOURCE, STORAGE_SOURCE } from "../constants/constants"
+import * as StorageUtils from "../utils/storage.utils"
 import Moment from "moment"
 import "moment/locale/fr"
 
@@ -117,4 +119,14 @@ export const getRandomInt = (max) => {
     const randomVal = randomArray[0]
     return randomVal % max
   }
+}
+
+/**
+ * S'il n'y a pas de source en paramètre, on regarde le localStorage
+ * @param {*} source
+ * @returns Boolean
+ */
+export const isUiForApp = (source) => {
+  if (source) return source === EPDS_APP_SOURCE
+  else return StorageUtils.getInLocalStorage(STORAGE_SOURCE) === EPDS_APP_SOURCE
 }

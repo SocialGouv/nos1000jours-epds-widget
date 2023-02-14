@@ -1,5 +1,7 @@
+import { STORAGE_SOURCE } from "../../src/constants/constants"
 import {
   getColorIconAndTextByMood,
+  isUiForApp,
   phoneNumberFormatting,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
@@ -110,6 +112,34 @@ describe("Utils", () => {
       ]
       const result = updateRadioButtonSelectedInList(list, list[0])
       expect(result).toEqual(expected)
+    })
+  })
+
+  describe("Retourne si le widget est intégré dans l'application 1000jours en particulier ou non", () => {
+    beforeEach(() => {
+      localStorage.clear()
+    })
+
+    test("Retourne True avec la source en paramètre est `1000j-application`", () => {
+      expect(isUiForApp("1000j-application")).toBeTruthy()
+    })
+
+    test("Retourne False avec la source en paramètre est `1000jblues-integration`", () => {
+      expect(isUiForApp("1000jblues-integration")).toBeFalsy()
+    })
+
+    test("Retourne False avec aucune source en paramètre et dans le localStorage", () => {
+      expect(isUiForApp()).toBeFalsy()
+    })
+
+    test("Retourne True avec la source `1000j-application` dans le localStorage", () => {
+      localStorage.setItem(STORAGE_SOURCE, "1000j-application")
+      expect(isUiForApp()).toBeTruthy()
+    })
+
+    test("Retourne False avec la source `1000jblues-integration` dans le localStorage", () => {
+      localStorage.setItem(STORAGE_SOURCE, "1000jblues-integration")
+      expect(isUiForApp()).toBeFalsy()
     })
   })
 })

@@ -18,6 +18,7 @@ export const STORAGE_CONTACT_HOURS = "contactHours"
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const EPDS_SOURCE = "SitePartenaire"
+export const EPDS_APP_SOURCE = "1000j-application"
 export const DEFAULT_LOCAL = "FR"
 export const OPEN_CONTACT_FROM_EMAIL = "fromEmail"
 
