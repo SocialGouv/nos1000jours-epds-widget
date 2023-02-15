@@ -117,6 +117,10 @@ export const UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES = gql`
   }
 `
 
+/**
+ * Enregistre la demande de contact dans la collection "Demande de contacts"
+ * ENUM_DEMANDEDECONTACT_TYPE_DE_CONTACT { sms, email, chat }
+ */
 export const SAVE_DEMANDE_DE_CONTACT = gql`
   mutation (
     $typeDeContact: ENUM_DEMANDEDECONTACT_TYPE_DE_CONTACT
@@ -135,6 +139,48 @@ export const SAVE_DEMANDE_DE_CONTACT = gql`
       demandeDeContact {
         id
         created_at
+      }
+    }
+  }
+`
+
+/**
+ * Enregistre le contact dans la collection "Contacts"
+ * ENUM_CONTACTS_TYPE_DE_CONTACT { sms, email, chat }
+ * ENUM_CONTACTS_PERSONNE_ACCOMPAGNEE { orientee, aidee, echange_initial, non_accompagnee, nouveau }
+ */
+export const SAVE_CONTACT = gql`
+  mutation (
+    $prenom: String
+    $nombreEnfants: Int
+    $naissanceDernierEnfant: Date
+    $departementCode: String
+    $departementLibelle: String
+    $datePriseContact: Date
+    $typeDeContact: ENUM_CONTACTS_TYPE_DE_CONTACT
+    $personneAccompagnee: ENUM_CONTACTS_PERSONNE_ACCOMPAGNEE
+    $commentaire: String
+    $widgetEpdsSource: ID
+  ) {
+    createContact(
+      input: {
+        data: {
+          prenom: $prenom
+          nombre_enfants: $nombreEnfants
+          date_naissance_dernier_enfant: $naissanceDernierEnfant
+          departement_code: $departementCode
+          departement_libelle: $departementLibelle
+          date_prise_contact: $datePriseContact
+          type_de_contact: $typeDeContact
+          personne_accompagnee: $personneAccompagnee
+          commentaire: $commentaire
+          widget_epds_source: $widgetEpdsSource
+        }
+      }
+    ) {
+      contact {
+        id
+        prenom
       }
     }
   }

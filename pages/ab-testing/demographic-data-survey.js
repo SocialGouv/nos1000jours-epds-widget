@@ -7,6 +7,8 @@ import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
   STORAGE_RESULTS_ID,
+  STORAGE_TEST_DEMOGRAPHIC_DPT_CODE,
+  STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE,
   STORAGE_TEST_DEMOGRAPHIC_ID,
 } from "../../src/constants/constants"
 import {
@@ -180,6 +182,12 @@ export default function DemographicDataSurvey() {
     const age = ageItems?.find((item) => item.isChecked)
     const situations = situationItems?.filter((item) => item.isChecked)
     const entourage = entourageItems?.find((item) => item.isChecked)
+
+    localStorage.setItem(STORAGE_TEST_DEMOGRAPHIC_DPT_CODE, residenceValue.code)
+    localStorage.setItem(
+      STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE,
+      residenceValue.nom
+    )
 
     setLoading(true)
 

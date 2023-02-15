@@ -5,6 +5,8 @@ export const STORAGE_SOURCE = "source"
 export const STORAGE_TEST_ABC = "testABC"
 export const STORAGE_TEST_VERS_QUI_SE_TOURNER = "testVersQuiSeTourner"
 export const STORAGE_TEST_DEMOGRAPHIC_ID = "testDemographicId"
+export const STORAGE_TEST_DEMOGRAPHIC_DPT_CODE = "testDemographicDptCode"
+export const STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE = "testDemographicDptLibelle"
 
 export const STORAGE_SCORE = "score"
 export const STORAGE_SCORE_LEVEL_MACARON = "scoreLevelForMacaron"
