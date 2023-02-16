@@ -9,6 +9,8 @@ import {
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
+  STORAGE_TEST_DEMOGRAPHIC_DPT_CODE,
+  STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE,
 } from "../../src/constants/constants"
 import {
   stringIsNotNullNorEmpty,
@@ -19,7 +21,7 @@ import {
 import * as StorageUtils from "../../src/utils/storage.utils"
 import { DatePickerLastChild } from "../../src/components/contact/DatePickerLastChild"
 import { useMutation } from "@apollo/client"
-import { client, EPDS_CONTACT_INFORMATION, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
+import { client, EPDS_CONTACT_INFORMATION, SAVE_CONTACT, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 import { useRouter } from "next/router"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
@@ -38,6 +40,8 @@ export default function ContactForm() {
   const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
   const contactHours = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
   const websiteSource = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+  const dptCode = StorageUtils.getInLocalStorage(STORAGE_TEST_DEMOGRAPHIC_DPT_CODE)
+  const dptLibelle = StorageUtils.getInLocalStorage(STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
   const requiredField = <p className="required-field">{Form.required}</p>
@@ -47,6 +51,7 @@ export default function ContactForm() {
     onCompleted: () => {
       ContactUtils.sendTrackerContactConfirmed(contactType)
       ContactUtils.saveContactRequest(contactType, sendContactQuery)
+
       setLoading(false)
       goToConfirmation()
     },
@@ -57,6 +62,13 @@ export default function ContactForm() {
   })
 
   const [sendContactQuery] = useMutation(SAVE_DEMANDE_DE_CONTACT, {
+    client: client,
+    onError: (err) => {
+      console.error(err)
+    },
+  })
+
+  const [sendContactMamanBluesQuery] = useMutation(SAVE_CONTACT, {
     client: client,
     onError: (err) => {
       console.error(err)
@@ -76,17 +88,20 @@ export default function ContactForm() {
     )
   }, [isEmailValid, isPhoneValid, numberOfChildren, childBirthDate])
 
-  const sendContactRequest = async (inputs) => {
-    if (!canSend) return
-
-    const name = `${inputs.inputName.value} [${websiteSource}]`
-    const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
-
+  const getChildBirthDateInString = () => {
     let dateAsString = null
     if (stringIsNotNullNorEmpty(childBirthDate)) {
       const date = new Date(childBirthDate)
       dateAsString = convertDateToString(date, "-")
     }
+    return dateAsString
+  }
+
+  const sendContactRequest = async (inputs) => {
+    if (!canSend) return
+
+    const name = `${inputs.inputName.value} [${websiteSource}]`
+    const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
 
     setLoading(true)
     await sendEmailContactQuery({
@@ -95,9 +110,30 @@ export default function ContactForm() {
         email: inputs.inputEmail.value,
         telephone: phoneNumber,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: dateAsString,
+        naissanceDernierEnfant: getChildBirthDateInString(),
         moyen: contactType,
         horaires: contactHours,
+      },
+    })
+  }
+
+  const sendContactMamanBluesRequest = async (inputs) => {
+    if (!canSend) return
+
+    const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
+
+    await sendContactMamanBluesQuery({
+      variables: {
+        prenom: inputs.inputName.value,
+        nombreEnfants: numberOfChildren,
+        naissanceDernierEnfant: getChildBirthDateInString(),
+        mode: contactType,
+        departementCode: dptCode,
+        departementLibelle: dptLibelle,
+        datePriseContact: null,
+        personneAccompagnee: "nouveau",
+        commentaire: `Numéro de télephone : ${phoneNumber}`,
+        widgetEpdsSource: websiteSource,
       },
     })
   }
@@ -105,6 +141,7 @@ export default function ContactForm() {
   const sendForm = async (event) => {
     event.preventDefault()
     sendContactRequest(event.target)
+    sendContactMamanBluesRequest(event.target)
   }
 
   const cancel = () => {
