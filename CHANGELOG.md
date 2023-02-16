@@ -1,3 +1,10 @@
+# [1.53.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.52.0...v1.53.0) (2023-02-16)
+
+
+### Features
+
+* **contact:** envoi de la demande au BO ([57419b4](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/57419b424f067103b8615c01f989eab60cf5164d))
+
 # [1.52.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.51.0...v1.52.0) (2023-02-13)
 
 
