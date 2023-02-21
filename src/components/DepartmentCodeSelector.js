@@ -91,7 +91,7 @@ export function DepartmentCodeSelector({ setSelectedDepartment }) {
       aria-label="Sélectionner votre département"
       onChange={(e) => handleChangeDepartment(e, departments)}
     >
-      <option defaultValue disabled hidden>
+      <option defaultValue hidden>
         Sélectionner votre département
       </option>
       {departments.map((item) => (

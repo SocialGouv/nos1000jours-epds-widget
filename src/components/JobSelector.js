@@ -30,7 +30,7 @@ export function JobSelector({ setJobSelected }) {
         aria-label="Sélectionner votre catégorie socio-professionnelle"
         onChange={(e) => handleChangeJob(e, jobs)}
       >
-        <option defaultValue disabled hidden>
+        <option defaultValue hidden>
           Sélectionner votre catégorie socio-professionnelle
         </option>
         {jobs.map((item) => (
