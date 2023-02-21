@@ -190,7 +190,7 @@ export default function ToBeContacted() {
         </Row>
       </ToggleButton>
       <PopupModal
-        url="https://calendly.com/rdv-nos1000jours"
+        url="https://calendly.com/rdv-nos1000jours/30min"
         onModalClose={() => setCalendlyModalOpen(false)}
         open={isCalendlyModalOpen}
         rootElement={document.documentElement}
