@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react"
-import { ContentLayout } from "../../src/components/Layout"
-import { } from "@dataesr/react-dsfr"
+import {} from "@dataesr/react-dsfr"
+import { useRouter } from "next/router"
+import { Crisp } from "crisp-sdk-web"
+import { useCalendlyEventListener, PopupModal } from "react-calendly"
+import { useMutation } from "@apollo/client"
 import {
-  Badge,
   ButtonGroup,
   Col,
   Row,
   ToggleButton,
   ToggleButtonGroup,
 } from "react-bootstrap"
-import { useRouter } from "next/router"
+
+import { ContentLayout } from "../../src/components/Layout"
 import {
   CRISP_CHAT_ID,
   OPEN_CONTACT_FROM_EMAIL,
@@ -17,6 +20,7 @@ import {
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
+  STORAGE_TEST_ABC,
   URL_CHAT_WHATSAPP,
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
@@ -24,13 +28,11 @@ import {
   readSourceInUrl,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
-
-import { useMutation } from "@apollo/client"
 import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
-import { Crisp } from "crisp-sdk-web"
+import * as AbTestingUtils from "../../src/utils/ab-testing/ab-testing.utils.js"
 
 const CHAT_TYPE = {
   whatsapp: "Whats App",
@@ -39,12 +41,12 @@ const CHAT_TYPE = {
 
 // A modifier lorsque l'on veut modifier le chat utilisé (crisp, whats app)
 const chatNameUsed = CHAT_TYPE.crisp
-let crispReadTriggerAvailable = false
 
 export default function ToBeContacted() {
   const router = useRouter()
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
+  const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
@@ -52,6 +54,8 @@ export default function ToBeContacted() {
 
   const [websiteSource, setWebsiteSource] = useState(false)
   const [isChatEnabled, setChatEnabled] = useState()
+  const [isCalendlyValide, setCalendlyValide] = useState(false)
+  const [isCalendlyModalOpen, setCalendlyModalOpen] = useState(false)
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -59,9 +63,53 @@ export default function ToBeContacted() {
       localStorage.setItem(STORAGE_SOURCE, source)
       setWebsiteSource(source)
     }
-
     initChat()
   }, [])
+
+  useCalendlyEventListener({
+    onEventScheduled: (e) => {
+      trackerForAbTestingContact("Entretien téléphonique")
+      setCalendlyValide(true)
+    },
+  })
+  const trackerForAbTesting = (label) => {
+    const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
+    TrackerUtils.track(
+      TrackerUtils.CATEG.test,
+      `${TrackerUtils.ACTION.parcours}${id}`,
+      label
+    )
+  }
+  const trackerForAbTestingContact = (label) => {
+    const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
+    TrackerUtils.track(
+      TrackerUtils.CATEG.contact,
+      `${TrackerUtils.ACTION.parcours}${id}`,
+      label
+    )
+  }
+
+  useEffect(() => {
+    switch (test) {
+      case AbTestingUtils.TEST.A:
+      case AbTestingUtils.TEST.D:
+        trackerForAbTesting("Chat")
+        trackerForAbTesting("SMS")
+        trackerForAbTesting("Email")
+        break
+      case AbTestingUtils.TEST.B:
+        trackerForAbTesting("Chat")
+        trackerForAbTesting("Entretien téléphonique")
+        break
+      case AbTestingUtils.TEST.C:
+        trackerForAbTesting("SMS")
+        trackerForAbTesting("Email")
+        trackerForAbTesting("Entretien téléphonique")
+        break
+      default:
+        break
+    }
+  })
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
@@ -97,7 +145,7 @@ export default function ToBeContacted() {
     else goToContactForm()
   }
 
-  const customToggleButton = (type) => (
+  const CustomToggleButton = (type) => (
     <ToggleButton
       className="contact-card"
       key={type.id}
@@ -109,7 +157,6 @@ export default function ToBeContacted() {
       onChange={(e) => setItemValueType(e.currentTarget.value)}
     >
       <Row className="card-center-img">
-        {type.badge}
         <img
           alt=""
           src={itemValueType === type.id ? type.iconSelected : type.icon}
@@ -120,32 +167,102 @@ export default function ToBeContacted() {
     </ToggleButton>
   )
 
+  const CustomCalendlyButton = (type) => (
+    <div>
+      <ToggleButton
+        className="contact-card"
+        key={type.id}
+        id={`radio-type-${type.id}`}
+        type="radio"
+        name="radio-type"
+        value={type.id}
+        checked={itemValueType === type.id}
+        onChange={(e) => setItemValueType(e.currentTarget.value)}
+        onClick={() => setCalendlyModalOpen(true)}
+      >
+        <Row className="card-center-img">
+          <img
+            alt=""
+            src={itemValueType === type.id ? type.iconSelected : type.icon}
+            height={50}
+          />
+          {type.text}
+        </Row>
+      </ToggleButton>
+      <PopupModal
+        url="https://calendly.com/rdv-nos1000jours"
+        onModalClose={() => setCalendlyModalOpen(false)}
+        open={isCalendlyModalOpen}
+        rootElement={document.documentElement}
+      />
+    </div>
+  )
+  if (isCalendlyValide) goToContactForm()
+
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
-      <Col>
+      {(test === "A" || test === "D") && (
+        <Col>
+          <ChatComponent />
+          <MailAndSmsComponent isChat={true} />
+        </Col>
+      )}
+      {test === "B" && (
+        <Col>
+          <CalendlyComponent />
+          <ChatComponent />
+        </Col>
+      )}
+      {test === "C" && (
+        <Col>
+          <CalendlyComponent />
+          <MailAndSmsComponent isChat={false} />
+        </Col>
+      )}
+    </ButtonGroup>
+  )
+
+  const ChatComponent = () => {
+    return (
+      <>
         {isChatEnabled && (
           <>
             Maintenant par :
             <Row>
               {defaultContactTypes.byNow.map((type) => (
-                <Col key={type.id}>{customToggleButton(type)}</Col>
+                <Col key={type.id}>{CustomToggleButton(type)}</Col>
               ))}
             </Row>
             <br />
           </>
         )}
-        <fieldset>
-          <legend>Selon mes disponibilités, par :</legend>
-          <Row>
-            {defaultContactTypes.byAvailabilities.map((type) => (
-              <Col key={type.id}>{customToggleButton(type)}</Col>
-            ))}
-          </Row>
-        </fieldset>
-      </Col>
-    </ButtonGroup>
+      </>
+    )
+  }
+
+  const MailAndSmsComponent = (isChat) => (
+    <fieldset>
+      {isChat && <legend>Selon mes disponibilités, par :</legend>}
+      <Row>
+        {defaultContactTypes.byAvailabilities.map((type) => (
+          <Col key={type.id}>{CustomToggleButton(type)}</Col>
+        ))}
+      </Row>
+    </fieldset>
   )
 
+  const CalendlyComponent = () => {
+    return (
+      <>
+        <legend>Selon mes disponibilités, par :</legend>
+        <Row>
+          {defaultContactTypes.byAppointment.map((type) => (
+            <Col key={type.id}>{CustomCalendlyButton(type)}</Col>
+          ))}
+        </Row>
+      </>
+    )
+  }
   const buttonGroupHours = () => (
     <ToggleButtonGroup
       type="checkbox"
@@ -221,7 +338,8 @@ export default function ToBeContacted() {
       {isSmsSelected ? (
         <>
           <div className="margin-bottom-8">
-            Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au vendredi)
+            Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au
+            vendredi)
           </div>
           {buttonGroupHours()}
         </>
@@ -252,12 +370,7 @@ const defaultContactTypes = {
       iconSelected: "../img/contact/chat-selected.svg",
       id: RequestContact.type.chat,
       isChecked: false,
-      text: `Par chat`,
-      badge: (
-        <Badge pill bg="primary">
-          MAINTENANT DISPONIBLE
-        </Badge>
-      ),
+      text: `Chat`,
     },
   ],
   byAvailabilities: [
@@ -266,14 +379,21 @@ const defaultContactTypes = {
       iconSelected: "../img/contact/sms-selected.svg",
       id: RequestContact.type.sms,
       isChecked: false,
-      text: "Par SMS",
+      text: "SMS",
     },
     {
       icon: "../img/contact/email-contact.svg",
       iconSelected: "../img/contact/email-contact-selected.svg",
       id: RequestContact.type.email,
       isChecked: false,
-      text: "Par email",
+      text: "Email",
+    },
+  ],
+  byAppointment: [
+    {
+      icon: "../img/contact/icone-appel.svg",
+      id: RequestContact.type.rendezvous,
+      text: "Entretien téléphonique",
     },
   ],
 }
@@ -328,6 +448,7 @@ export const isValidButtonEnabled = (itemValueType, contactHours) => {
   return (
     itemValueType == RequestContact.type.email ||
     itemValueType == RequestContact.type.chat ||
+    itemValueType == RequestContact.type.rendezvous ||
     (itemValueType == RequestContact.type.sms && isHoursSelected)
   )
 }

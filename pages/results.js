@@ -102,7 +102,7 @@ export default function Results() {
       <DescriptionAndConclusion />
       <GiveAccessToResources />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
-        scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
+      scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
         <Intentions moodLevel={scoreLevelForMood} />
       ) : null}
 

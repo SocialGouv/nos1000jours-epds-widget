@@ -1,5 +1,5 @@
 import { Row } from "react-bootstrap"
-import { } from "@dataesr/react-dsfr"
+import {} from "@dataesr/react-dsfr"
 import { useEffect, useState } from "react"
 import {
   DEFAULT_LOCAL,

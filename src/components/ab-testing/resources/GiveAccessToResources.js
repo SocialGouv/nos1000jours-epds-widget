@@ -27,11 +27,11 @@ export const GiveAccessToResources = () => {
   useEffect(() => {
     shouldSendEmail()
       ? AbTestingUtils.trackerForAbTesting(
-        "Je souhaite recevoir les ressources par mail"
-      )
+          "Je souhaite recevoir les ressources par mail"
+        )
       : AbTestingUtils.trackerForAbTesting(
-        "Afficher les ressources disponibles"
-      )
+          "Afficher les ressources disponibles"
+        )
   }, [])
 
   const componentForRedirection = () => {
