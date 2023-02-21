@@ -29,6 +29,8 @@ const trackerContactName = (contactType) => {
       return TrackerUtils.CONTACT_SENT.sms
     case RequestContact.type.chat:
       return TrackerUtils.CONTACT_SENT.chat
+    case RequestContact.type.rendezvous:
+      return TrackerUtils.CONTACT_SENT.rendezvous
   }
 }
 

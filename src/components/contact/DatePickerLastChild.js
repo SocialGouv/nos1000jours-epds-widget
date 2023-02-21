@@ -5,7 +5,9 @@ export function DatePickerLastChild({ onChange }) {
   return (
     <div className="date-picker">
       <Form.Group controlId="input-date">
-        <Form.Label>Date de naissance de votre enfant le plus jeune :</Form.Label>
+        <Form.Label>
+          Date de naissance de votre enfant le plus jeune :
+        </Form.Label>
         <div className="input-date-picker-block">
           <Form.Control
             className="input-date-picker"

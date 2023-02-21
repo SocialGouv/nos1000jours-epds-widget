@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { ContentLayout } from "../../src/components/Layout"
 import {} from "@dataesr/react-dsfr"
+import { useRouter } from "next/router"
+import { Crisp } from "crisp-sdk-web"
+import { useMutation } from "@apollo/client"
 import {
   ButtonGroup,
   Col,
@@ -8,7 +10,8 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "react-bootstrap"
-import { useRouter } from "next/router"
+
+import { ContentLayout } from "../../src/components/Layout"
 import {
   CRISP_CHAT_ID,
   OPEN_CONTACT_FROM_EMAIL,
@@ -16,6 +19,7 @@ import {
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
+  STORAGE_TEST_ABC,
   URL_CHAT_WHATSAPP,
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
@@ -23,13 +27,11 @@ import {
   readSourceInUrl,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
-
-import { useMutation } from "@apollo/client"
 import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
-import { Crisp } from "crisp-sdk-web"
+import * as AbTestingUtils from "../../src/utils/ab-testing/ab-testing.utils"
 
 const CHAT_TYPE = {
   whatsapp: "Whats App",
@@ -38,12 +40,12 @@ const CHAT_TYPE = {
 
 // A modifier lorsque l'on veut modifier le chat utilisé (crisp, whats app)
 const chatNameUsed = CHAT_TYPE.crisp
-let crispReadTriggerAvailable = false
 
 export default function ToBeContacted() {
   const router = useRouter()
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
+  const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
@@ -58,7 +60,6 @@ export default function ToBeContacted() {
       localStorage.setItem(STORAGE_SOURCE, source)
       setWebsiteSource(source)
     }
-
     initChat()
   }, [])
 
@@ -71,6 +72,36 @@ export default function ToBeContacted() {
 
   const cancel = () => {
     router.back()
+  }
+  const [sendContactQuery] = useMutation(SAVE_DEMANDE_DE_CONTACT, {
+    client: client,
+    onError: (err) => {
+      console.error(err)
+    },
+  })
+
+  const initChat = () => {
+    if (chatNameUsed === CHAT_TYPE.crisp) {
+      Crisp.configure(CRISP_CHAT_ID)
+      Crisp.chat.hide()
+      setChatEnabled(ContactUtils.isMamanBluesAvailableHours())
+    }
+  }
+
+  const activateChat = () => {
+    if (chatNameUsed === CHAT_TYPE.whatsapp) openWhatsapp()
+    if (chatNameUsed === CHAT_TYPE.crisp) openCrisp()
+  }
+
+  const openWhatsapp = async () => {
+    ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
+    ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
+    window.open(URL_CHAT_WHATSAPP, "_blank")
+  }
+
+  const openCrisp = () => {
+    Crisp.chat.show()
+    Crisp.chat.open()
   }
 
   const goToContactForm = () => {
@@ -85,18 +116,23 @@ export default function ToBeContacted() {
     })
   }
 
-  const onValidate = async (event) => {
+  const onValidate = async (_event) => {
+    TrackerUtils.genericTracker(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.NAME.contact_type
+    )
     TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       TrackerUtils.ACTION.contact_type,
       itemValueType
     )
+    AbTestingUtils.trackerForAbTesting(itemValueType)
 
     if (itemValueType == RequestContact.type.chat) activateChat()
     else goToContactForm()
   }
 
-  const customToggleButton = (type) => (
+  const CustomToggleButton = (type) => (
     <ToggleButton
       className="contact-card"
       key={type.id}
@@ -118,29 +154,69 @@ export default function ToBeContacted() {
     </ToggleButton>
   )
 
-  const ButtonGroupType = () => (
-    <ButtonGroup className="be-contacted-button-group">
-      <Col>
+  const ChatComponent = () => {
+    return (
+      <>
         {isChatEnabled && (
           <>
             Maintenant par :
             <Row>
               {defaultContactTypes.byNow.map((type) => (
-                <Col key={type.id}>{customToggleButton(type)}</Col>
+                <Col key={type.id}>{CustomToggleButton(type)}</Col>
               ))}
             </Row>
             <br />
           </>
         )}
-        <fieldset>
+      </>
+    )
+  }
+
+  const MailAndSmsComponent = () => (
+    <fieldset>
+      <Row>
+        {defaultContactTypes.byAvailabilities.map((type) => (
+          <Col key={type.id}>{CustomToggleButton(type)}</Col>
+        ))}
+      </Row>
+    </fieldset>
+  )
+
+  const CalendlyComponent = () => {
+    return (
+      <>
+        <Row>
+          {defaultContactTypes.byAppointment.map((type) => (
+            <Col key={type.id}>{CustomToggleButton(type)}</Col>
+          ))}
+        </Row>
+      </>
+    )
+  }
+
+  const ButtonGroupType = () => (
+    <ButtonGroup className="be-contacted-button-group">
+      {test === "A" && (
+        <Col>
+          <ChatComponent />
           <legend>Selon mes disponibilités, par :</legend>
-          <Row>
-            {defaultContactTypes.byAvailabilities.map((type) => (
-              <Col key={type.id}>{customToggleButton(type)}</Col>
-            ))}
-          </Row>
-        </fieldset>
-      </Col>
+          <MailAndSmsComponent />
+        </Col>
+      )}
+      {test === "B" && (
+        <Col>
+          <legend>Selon mes disponibilités, par :</legend>
+          <CalendlyComponent />
+          <ChatComponent />
+        </Col>
+      )}
+      {test === "C" && (
+        <Col>
+          <legend>Selon mes disponibilités, par :</legend>
+          <CalendlyComponent />
+          <MailAndSmsComponent />
+        </Col>
+      )}
     </ButtonGroup>
   )
 
@@ -173,37 +249,6 @@ export default function ToBeContacted() {
       ))}
     </ToggleButtonGroup>
   )
-
-  const [sendContactQuery] = useMutation(SAVE_DEMANDE_DE_CONTACT, {
-    client: client,
-    onError: (err) => {
-      console.error(err)
-    },
-  })
-
-  const initChat = () => {
-    if (chatNameUsed === CHAT_TYPE.crisp) {
-      Crisp.configure(CRISP_CHAT_ID)
-      Crisp.chat.hide()
-      setChatEnabled(ContactUtils.isMamanBluesAvailableHours())
-    }
-  }
-
-  const activateChat = () => {
-    if (chatNameUsed === CHAT_TYPE.whatsapp) openWhatsapp()
-    if (chatNameUsed === CHAT_TYPE.crisp) openCrisp()
-  }
-
-  const openWhatsapp = async () => {
-    ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
-    ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
-    window.open(URL_CHAT_WHATSAPP, "_blank")
-  }
-
-  const openCrisp = () => {
-    Crisp.chat.show()
-    Crisp.chat.open()
-  }
 
   return (
     <ContentLayout>
@@ -270,6 +315,14 @@ const defaultContactTypes = {
       text: "Email",
     },
   ],
+  byAppointment: [
+    {
+      icon: "../img/contact/appel.svg",
+      iconSelected: "../img/contact/appel-selected.svg",
+      id: RequestContact.type.rendezvous,
+      text: "Entretien téléphonique",
+    },
+  ],
 }
 
 const defaultContactHours = [
@@ -322,6 +375,7 @@ export const isValidButtonEnabled = (itemValueType, contactHours) => {
   return (
     itemValueType == RequestContact.type.email ||
     itemValueType == RequestContact.type.chat ||
+    itemValueType == RequestContact.type.rendezvous ||
     (itemValueType == RequestContact.type.sms && isHoursSelected)
   )
 }
