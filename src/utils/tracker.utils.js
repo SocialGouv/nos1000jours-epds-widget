@@ -32,7 +32,7 @@ export const CONTACT_SENT = {
   no_chat: "chat_non_disponible",
   mail: "confirmation_mail",
   sms: "confirmation_sms",
-  rendezvous: "prise_rdv_calendly",
+  rendezvous: "confirmation_envoi_rendez-vous",
 }
 
 export const track = (categ, action, name) => {
