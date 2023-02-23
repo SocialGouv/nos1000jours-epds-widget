@@ -68,43 +68,44 @@ export default function ToBeContacted() {
 
   useCalendlyEventListener({
     onEventScheduled: (e) => {
-      trackerForAbTestingContact("Entretien téléphonique")
+      trackerForAbTestingContact()
       setCalendlyValide(true)
     },
   })
-  const trackerForAbTesting = (label) => {
-    const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-    TrackerUtils.track(
-      TrackerUtils.CATEG.test,
-      `${TrackerUtils.ACTION.parcours}${id}`,
-      label
-    )
+  const trackerForAbTesting = (label, confirmation) => {
+    TrackerUtils.track(TrackerUtils.CATEG.test, confirmation, label)
   }
-  const trackerForAbTestingContact = (label) => {
-    const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-    TrackerUtils.track(
-      TrackerUtils.CATEG.contact,
-      `${TrackerUtils.ACTION.parcours}${id}`,
-      label
-    )
+
+  const trackerForAbTestingContact = () => {
+    const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
+    ContactUtils.sendTrackerContactConfirmed(contactType)
   }
 
   useEffect(() => {
     switch (test) {
       case AbTestingUtils.TEST.A:
       case AbTestingUtils.TEST.D:
-        trackerForAbTesting("Chat")
-        trackerForAbTesting("SMS")
-        trackerForAbTesting("Email")
+        trackerForAbTesting("Chat", TrackerUtils.CONTACT_SENT.chat)
+        trackerForAbTesting("SMS", TrackerUtils.CONTACT_SENT.sms)
+        trackerForAbTesting("Email", TrackerUtils.CONTACT_SENT.mail)
+        trackerForAbTestingContact()
         break
       case AbTestingUtils.TEST.B:
-        trackerForAbTesting("Chat")
-        trackerForAbTesting("Entretien téléphonique")
+        trackerForAbTesting("Chat", TrackerUtils.CONTACT_SENT.chat)
+        trackerForAbTesting(
+          "Entretien téléphonique",
+          TrackerUtils.CONTACT_SENT.rendezvous
+        )
+        trackerForAbTestingContact()
         break
       case AbTestingUtils.TEST.C:
-        trackerForAbTesting("SMS")
-        trackerForAbTesting("Email")
-        trackerForAbTesting("Entretien téléphonique")
+        trackerForAbTesting("SMS", TrackerUtils.CONTACT_SENT.sms)
+        trackerForAbTesting("Email", TrackerUtils.CONTACT_SENT.mail)
+        trackerForAbTesting(
+          "Entretien téléphonique",
+          TrackerUtils.CONTACT_SENT.rendezvous
+        )
+        trackerForAbTestingContact()
         break
       default:
         break
@@ -144,6 +145,11 @@ export default function ToBeContacted() {
     if (itemValueType == RequestContact.type.chat) activateChat()
     else goToContactForm()
   }
+  if (isCalendlyValide) {
+    router.push({
+      pathname: "/contact/contact-confirmed",
+    })
+  }
 
   const CustomToggleButton = (type) => (
     <ToggleButton
@@ -166,7 +172,6 @@ export default function ToBeContacted() {
       </Row>
     </ToggleButton>
   )
-
   const CustomCalendlyButton = (type) => (
     <div>
       <ToggleButton
@@ -177,15 +182,13 @@ export default function ToBeContacted() {
         name="radio-type"
         value={type.id}
         checked={itemValueType === type.id}
-        onChange={(e) => setItemValueType(e.currentTarget.value)}
-        onClick={() => setCalendlyModalOpen(true)}
+        onClick={() => {
+          setCalendlyModalOpen(true)
+          localStorage.setItem(STORAGE_CONTACT_TYPE, "rendez-vous")
+        }}
       >
         <Row className="card-center-img">
-          <img
-            alt=""
-            src={itemValueType === type.id ? type.iconSelected : type.icon}
-            height={50}
-          />
+          <img alt="" src={type.icon} height={50} />
           {type.text}
         </Row>
       </ToggleButton>
@@ -197,25 +200,27 @@ export default function ToBeContacted() {
       />
     </div>
   )
-  if (isCalendlyValide) goToContactForm()
 
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
       {(test === "A" || test === "D") && (
         <Col>
           <ChatComponent />
+          <legend>Selon mes disponibilités, par :</legend>
           <MailAndSmsComponent isChat={true} />
         </Col>
       )}
       {test === "B" && (
         <Col>
-          <CalendlyComponent />
+          <legend>Selon mes disponibilités, par :</legend>
+          <CalendlyComponent isChat={false} />
           <ChatComponent />
         </Col>
       )}
       {test === "C" && (
         <Col>
-          <CalendlyComponent />
+          <legend>Selon mes disponibilités, par :</legend>
+          <CalendlyComponent isChat={false} />
           <MailAndSmsComponent isChat={false} />
         </Col>
       )}
@@ -240,9 +245,8 @@ export default function ToBeContacted() {
     )
   }
 
-  const MailAndSmsComponent = (isChat) => (
+  const MailAndSmsComponent = () => (
     <fieldset>
-      {isChat && <legend>Selon mes disponibilités, par :</legend>}
       <Row>
         {defaultContactTypes.byAvailabilities.map((type) => (
           <Col key={type.id}>{CustomToggleButton(type)}</Col>
@@ -254,7 +258,6 @@ export default function ToBeContacted() {
   const CalendlyComponent = () => {
     return (
       <>
-        <legend>Selon mes disponibilités, par :</legend>
         <Row>
           {defaultContactTypes.byAppointment.map((type) => (
             <Col key={type.id}>{CustomCalendlyButton(type)}</Col>
