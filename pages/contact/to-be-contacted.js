@@ -72,39 +72,31 @@ export default function ToBeContacted() {
       setCalendlyValide(true)
     },
   })
-  const trackerForAbTesting = (label, confirmation) => {
-    TrackerUtils.track(TrackerUtils.CATEG.test, confirmation, label)
-  }
 
   const trackerForAbTestingContact = () => {
     const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
     ContactUtils.sendTrackerContactConfirmed(contactType)
+    ContactUtils.sendTrackerContactType(contactType)
   }
 
   useEffect(() => {
     switch (test) {
       case AbTestingUtils.TEST.A:
       case AbTestingUtils.TEST.D:
-        trackerForAbTesting("Chat", TrackerUtils.CONTACT_SENT.chat)
-        trackerForAbTesting("SMS", TrackerUtils.CONTACT_SENT.sms)
-        trackerForAbTesting("Email", TrackerUtils.CONTACT_SENT.mail)
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.chat)
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.sms)
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.mail)
         trackerForAbTestingContact()
         break
       case AbTestingUtils.TEST.B:
-        trackerForAbTesting("Chat", TrackerUtils.CONTACT_SENT.chat)
-        trackerForAbTesting(
-          "Entretien téléphonique",
-          TrackerUtils.CONTACT_SENT.rendezvous
-        )
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.chat)
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.rendezvous)
         trackerForAbTestingContact()
         break
       case AbTestingUtils.TEST.C:
-        trackerForAbTesting("SMS", TrackerUtils.CONTACT_SENT.sms)
-        trackerForAbTesting("Email", TrackerUtils.CONTACT_SENT.mail)
-        trackerForAbTesting(
-          "Entretien téléphonique",
-          TrackerUtils.CONTACT_SENT.rendezvous
-        )
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.sms)
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.mail)
+        AbTestingUtils.trackerForAbTesting(TrackerUtils.CONTACT_SENT.rendezvous)
         trackerForAbTestingContact()
         break
       default:

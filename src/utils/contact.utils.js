@@ -21,6 +21,21 @@ export const sendTrackerContactConfirmed = (contactType) => {
   )
 }
 
+/**
+ * @param {RequestContact.type} contactType
+ */
+export const sendTrackerContactType = (contactType) => {
+  TrackerUtils.genericTracker(
+    TrackerUtils.CATEG.contact,
+    TrackerUtils.NAME.contact_type
+  )
+  TrackerUtils.track(
+    TrackerUtils.CATEG.contact,
+    TrackerUtils.ACTION.contact_type,
+    contactType
+  )
+}
+
 const trackerContactName = (contactType) => {
   switch (contactType) {
     case RequestContact.type.email:
