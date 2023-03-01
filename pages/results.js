@@ -1,3 +1,4 @@
+import React, { useEffect } from "react"
 import { Row } from "react-bootstrap"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"
@@ -21,7 +22,7 @@ import { Intentions } from "../src/components/results/Intentions"
 import { DownloadApp } from "../src/components/results/DownloadApp"
 import { RecruitParents } from "../src/components/results/RecruitParents"
 import { GiveAccessToResources } from "../src/components/ab-testing/resources/GiveAccessToResources"
-
+import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 export default function Results() {
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
   const OPINION_GOUV_URL =
@@ -88,6 +89,30 @@ export default function Results() {
     )
   }
 
+  const levelMacaronText = (scoreLevel) => {
+    let colorsByLevel
+    switch (scoreLevel) {
+      case 1:
+        colorsByLevel = "good-mood"
+        break
+      case 2:
+        colorsByLevel = "moderatelygood-mood"
+        break
+      case 3:
+        colorsByLevel = "bad-mood"
+        break
+      default:
+        break
+    }
+    return colorsByLevel
+  }
+
+  useEffect(() => {
+    AbTestingUtils.trackerForAbTesting(
+      `Macaron Elise - ${levelMacaronText(scoreLevelForMood)}`
+    )
+  }, [scoreLevelForMood])
+
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
@@ -102,7 +127,7 @@ export default function Results() {
       <DescriptionAndConclusion />
       <GiveAccessToResources />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
-        scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
+      scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
         <Intentions moodLevel={scoreLevelForMood} />
       ) : null}
 

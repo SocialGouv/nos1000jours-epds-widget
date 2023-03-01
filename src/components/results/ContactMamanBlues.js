@@ -3,7 +3,6 @@ import { Row } from "react-bootstrap"
 import {} from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import * as TrackerUtils from "../../utils/tracker.utils"
-import * as AbTestingUtils from "../../utils/ab-testing/ab-testing.utils"
 
 export const buttonLabel = "Je veux être accompagné.e"
 
@@ -36,10 +35,6 @@ export function ContactMamanBlues({ scoreLevel }) {
       pathname: "/contact/to-be-contacted",
     })
   }
-
-  useEffect(() => {
-    AbTestingUtils.trackerForAbTesting(`Macaron Elise - ${colorsByLevel}`)
-  }, [])
 
   return (
     <div className="contact-mamanblues">
