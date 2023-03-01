@@ -127,7 +127,7 @@ export default function ContactForm() {
         prenom: inputs.inputName.value,
         nombreEnfants: numberOfChildren,
         naissanceDernierEnfant: new Date(childBirthDate).toISOString().split('T')[0],
-        mode: contactType,
+        typeDeContact: contactType,
         departementCode: dptCode,
         departementLibelle: dptLibelle,
         datePriseContact: new Date().toISOString().split('T')[0],
