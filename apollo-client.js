@@ -161,6 +161,8 @@ export const SAVE_CONTACT = gql`
     $personneAccompagnee: ENUM_CONTACTS_PERSONNE_ACCOMPAGNEE
     $commentaire: String
     $widgetEpdsSource: ID
+    $email: String
+    $numero_telephone: String
   ) {
     createContact(
       input: {
@@ -175,6 +177,8 @@ export const SAVE_CONTACT = gql`
           personne_accompagnee: $personneAccompagnee
           commentaire: $commentaire
           widget_epds_source: $widgetEpdsSource
+          email: $email
+          numero_telephone: $numero_telephone
         }
       }
     ) {
