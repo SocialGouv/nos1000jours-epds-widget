@@ -111,7 +111,7 @@ export default function Results() {
     AbTestingUtils.trackerForAbTesting(
       `Macaron Elise - ${levelMacaronText(scoreLevelForMood)}`
     )
-  }, [scoreLevelForMood])
+  }, [])
 
   return (
     <ContentLayout>
