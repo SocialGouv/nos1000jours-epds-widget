@@ -19,7 +19,7 @@ import {
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
-  STORAGE_TEST_ABC,
+  STORAGE_TEST_ABC_CONTACT,
   URL_CHAT_WHATSAPP,
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
@@ -45,7 +45,7 @@ export default function ToBeContacted() {
   const router = useRouter()
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
-  const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
+  const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC_CONTACT)
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
