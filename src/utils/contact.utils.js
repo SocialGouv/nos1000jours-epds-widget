@@ -14,11 +14,13 @@ export const sendTrackerContactConfirmed = (contactType) => {
     TrackerUtils.CATEG.contact,
     TrackerUtils.NAME.contact_confirm_sent
   )
-  TrackerUtils.track(
-    TrackerUtils.CATEG.contact,
-    TrackerUtils.ACTION.contact_confirm_sent,
-    trackerContactName(contactType)
-  )
+  if (contactType) {
+    TrackerUtils.track(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.ACTION.contact_confirm_sent,
+      trackerContactName(contactType)
+    )
+  }
 }
 
 /**
@@ -29,11 +31,13 @@ export const sendTrackerContactType = (contactType) => {
     TrackerUtils.CATEG.contact,
     TrackerUtils.NAME.contact_type
   )
-  TrackerUtils.track(
-    TrackerUtils.CATEG.contact,
-    TrackerUtils.ACTION.contact_type,
-    contactType
-  )
+  if (contactType) {
+    TrackerUtils.track(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.ACTION.contact_type,
+      contactType
+    )
+  }
 }
 
 const trackerContactName = (contactType) => {
