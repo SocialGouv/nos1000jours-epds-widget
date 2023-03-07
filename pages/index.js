@@ -7,7 +7,6 @@ import {
   STORAGE_LOCALE,
   STORAGE_SOURCE,
   STORAGE_TEST_ABC,
-  STORAGE_TEST_ABC_CONTACT,
 } from "../src/constants/constants"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
@@ -79,10 +78,6 @@ export default function Home() {
 
     localStorage.setItem(STORAGE_SOURCE, source)
     localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
-    localStorage.setItem(
-      STORAGE_TEST_ABC_CONTACT,
-      AbTestingUtils.generateRandomTestContact()
-    )
     goToBeforeSurvey()
   }
 

@@ -3,7 +3,6 @@ export const STORAGE_LOCALE = "locale"
 export const STORAGE_SOURCE = "source"
 
 export const STORAGE_TEST_ABC = "testABC"
-export const STORAGE_TEST_ABC_CONTACT = "contactTestABC"
 export const STORAGE_TEST_VERS_QUI_SE_TOURNER = "testVersQuiSeTourner"
 export const STORAGE_TEST_DEMOGRAPHIC_ID = "testDemographicId"
 export const STORAGE_TEST_DEMOGRAPHIC_DPT_CODE = "testDemographicDptCode"

@@ -37,13 +37,5 @@ describe("UI de GiveAccessToResources", () => {
       const button = screen.getByRole("button", { name: linkBtnText })
       expect(button).toBeInTheDocument()
     })
-
-    test("Should return link when test is D", async () => {
-      localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.TEST.D)
-      render(<GiveAccessToResources />)
-
-      const button = screen.getByRole("button", { name: linkBtnText })
-      expect(button).toBeInTheDocument()
-    })
   })
 })

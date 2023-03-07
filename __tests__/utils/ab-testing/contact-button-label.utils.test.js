@@ -27,10 +27,5 @@ describe("Contact button label Utils", () => {
       localStorage.setItem(STORAGE_TEST_ABC, "C")
       expect(getContactButtonLabelByTest()).toEqual("Parler à Élise")
     })
-
-    test("Should return `Obtenir de l'aide` when it's test D", () => {
-      localStorage.setItem(STORAGE_TEST_ABC, "D")
-      expect(getContactButtonLabelByTest()).toEqual("Obtenir de l'aide")
-    })
   })
 })

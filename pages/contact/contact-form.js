@@ -184,6 +184,7 @@ export default function ContactForm() {
         TrackerUtils.ACTION.contact_confirm_sent,
         trackerContactName(typeContact)
       )
+      trackerAbTestingContact(TrackerUtils.ACTION.contact_confirm_sent, trackerContactName(typeContact))
     }
   }
 

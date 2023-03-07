@@ -21,8 +21,9 @@ export const GiveAccessToResources = () => {
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
 
-  const shouldSendEmail = () =>
-    test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
+  //TODO Pensez a remettre l'ABTesting pour les ressources
+  // const shouldSendEmail = () =>
+  //   test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
 
   const componentForRedirection = () => {
     return (
@@ -54,9 +55,10 @@ export const GiveAccessToResources = () => {
 
   const sendMail = async () => {
     setLoading(false)
-    AbTestingUtils.trackerForAbTesting(
-      "Je souhaite recevoir les ressources par mail - Envoie du mail"
-    )
+    //TODO Pensez a remettre l'ABTesting pour les ressources
+    // AbTestingUtils.trackerForAbTesting(
+    //   "Je souhaite recevoir les ressources par mail - Envoie du mail"
+    // )
 
     setLoading(true)
     await sendResourcesQuery({
@@ -73,9 +75,10 @@ export const GiveAccessToResources = () => {
           className="fr-btn--secondary"
           onClick={() => {
             openModal()
-            AbTestingUtils.trackerForAbTesting(
-              "Je souhaite recevoir les ressources par mail"
-            )
+            //TODO Pensez a remettre l'ABTesting pour les ressources
+            // AbTestingUtils.trackerForAbTesting(
+            //   "Je souhaite recevoir les ressources par mail"
+            // )
           }}
         >
           Je souhaite recevoir les ressources par mail
@@ -126,7 +129,8 @@ export const GiveAccessToResources = () => {
 
   return (
     <div>
-      {shouldSendEmail() ? componentToSendMail() : componentForRedirection()}
+      {componentToSendMail()}
+      {/* {shouldSendEmail() ? componentToSendMail() : componentForRedirection()} */}
     </div>
   )
 }
