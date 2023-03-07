@@ -69,7 +69,15 @@ export const GiveAccessToResources = () => {
   const componentToSendMail = () => {
     return (
       <div>
-        <Button className="fr-btn--secondary" onClick={() => openModal()}>
+        <Button
+          className="fr-btn--secondary"
+          onClick={() => {
+            openModal()
+            AbTestingUtils.trackerForAbTesting(
+              "Je souhaite recevoir les ressources par mail"
+            )
+          }}
+        >
           Je souhaite recevoir les ressources par mail
         </Button>
 
