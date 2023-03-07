@@ -29,6 +29,7 @@ import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
+import * as AbTestingUtils from "../../src/utils/ab-testing/ab-testing.utils"
 
 export default function ContactForm() {
   const router = useRouter()
@@ -184,7 +185,7 @@ export default function ContactForm() {
         TrackerUtils.ACTION.contact_confirm_sent,
         trackerContactName(typeContact)
       )
-      trackerAbTestingContact(TrackerUtils.ACTION.contact_confirm_sent, trackerContactName(typeContact))
+      AbTestingUtils.trackerAbTestingContact(TrackerUtils.ACTION.contact_confirm_sent, trackerContactName(typeContact))
     }
   }
 
