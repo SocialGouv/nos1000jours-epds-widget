@@ -160,8 +160,8 @@ export default function ContactForm() {
     })
   }
 
-  const trackerContactName = (contactType) => {
-    switch (contactType) {
+  const trackerContactName = (typeContact) => {
+    switch (typeContact) {
       case RequestContact.type.email:
         return TrackerUtils.CONTACT_SENT.mail
       case RequestContact.type.sms:
@@ -173,22 +173,22 @@ export default function ContactForm() {
     }
   }
 
-  const sendTrackerContactType = (contactType) => {
+  const sendTrackerContactType = (typeContact) => {
     TrackerUtils.genericTracker(
       TrackerUtils.CATEG.contact,
       TrackerUtils.NAME.contact_confirm_sent
     )
-    if (contactType) {
+    if (typeContact) {
       TrackerUtils.track(
         TrackerUtils.CATEG.contact,
         TrackerUtils.ACTION.contact_confirm_sent,
-        trackerContactName(contactType)
+        trackerContactName(typeContact)
       )
     }
   }
 
   useCalendlyEventListener({
-    onEventScheduled: (e) => {
+    onEventScheduled: (_e) => {
       sendTrackerContactType(contactType)
       setCalendlyValide(true)
     },
