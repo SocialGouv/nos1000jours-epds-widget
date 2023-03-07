@@ -54,7 +54,7 @@ export default function ContactForm() {
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
     client: client,
     onCompleted: () => {
-      ContactUtils.sendTrackerContactConfirmed(contactType)
+      // ContactUtils.sendTrackerContactConfirmed(contactType)
       ContactUtils.saveContactRequest(contactType, sendContactQuery)
 
       setLoading(false)
