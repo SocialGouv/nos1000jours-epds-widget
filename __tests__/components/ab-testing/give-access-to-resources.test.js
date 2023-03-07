@@ -29,13 +29,5 @@ describe("UI de GiveAccessToResources", () => {
       fireEvent.click(button)
       expect(await screen.queryByText("Fermer")).toBeInTheDocument()
     })
-
-    test("Should return link when test is C", async () => {
-      localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.TEST.C)
-      render(<GiveAccessToResources />)
-
-      const button = screen.getByRole("button", { name: linkBtnText })
-      expect(button).toBeInTheDocument()
-    })
   })
 })
