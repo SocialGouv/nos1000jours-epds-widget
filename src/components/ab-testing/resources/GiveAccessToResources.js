@@ -1,22 +1,15 @@
 import { Button } from "@dataesr/react-dsfr"
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
-import { STORAGE_TEST_ABC } from "../../../constants/constants"
-import * as StorageUtils from "../../../utils/storage.utils"
-import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
 import { client, DEMANDE_RESSOURCES } from "../../../../apollo-client"
 import { useMutation } from "@apollo/client"
 import { LoaderFoButton } from "../../../utils/main.utils"
 
 export const GiveAccessToResources = () => {
-  const RESOURCES_URL = process.env.NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES
-  const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-
   const [show, setShow] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [mailValue, setMailValue] = useState()
 
-  const openUrl = (url) => window.open(url, "_blank")
   const handleChange = (event) => setMailValue(event.target.value)
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
@@ -55,11 +48,6 @@ export const GiveAccessToResources = () => {
 
   const sendMail = async () => {
     setLoading(false)
-    //TODO Pensez a remettre l'ABTesting pour les ressources
-    // AbTestingUtils.trackerForAbTesting(
-    //   "Je souhaite recevoir les ressources par mail - Envoie du mail"
-    // )
-
     setLoading(true)
     await sendResourcesQuery({
       variables: {
@@ -75,10 +63,6 @@ export const GiveAccessToResources = () => {
           className="fr-btn--secondary"
           onClick={() => {
             openModal()
-            //TODO Pensez a remettre l'ABTesting pour les ressources
-            // AbTestingUtils.trackerForAbTesting(
-            //   "Je souhaite recevoir les ressources par mail"
-            // )
           }}
         >
           Je souhaite recevoir les ressources par mail
@@ -127,10 +111,5 @@ export const GiveAccessToResources = () => {
     )
   }
 
-  return (
-    <div>
-      {componentToSendMail()}
-      {/* {shouldSendEmail() ? componentToSendMail() : componentForRedirection()} */}
-    </div>
-  )
+  return <div>{componentToSendMail()}</div>
 }

@@ -6,7 +6,6 @@ import * as AbTestingUtils from "../../../src/utils/ab-testing/ab-testing.utils"
 describe("UI de GiveAccessToResources", () => {
   describe("TEST A/B/C/D", () => {
     const mailBtnText = "Je souhaite recevoir les ressources par mail"
-    const linkBtnText = "Afficher les ressources disponibles"
 
     test("Should return modal with email when test is A", async () => {
       localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.TEST.A)
