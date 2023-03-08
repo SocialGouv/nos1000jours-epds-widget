@@ -54,7 +54,6 @@ export default function ContactForm() {
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
     client: client,
     onCompleted: () => {
-      // ContactUtils.sendTrackerContactConfirmed(contactType)
       ContactUtils.saveContactRequest(contactType, sendContactQuery)
 
       setLoading(false)
@@ -185,7 +184,7 @@ export default function ContactForm() {
         TrackerUtils.ACTION.contact_confirm_sent,
         trackerContactName(typeContact)
       )
-      AbTestingUtils.trackerAbTestingContact(TrackerUtils.ACTION.contact_confirm_sent, trackerContactName(typeContact))
+      AbTestingUtils.trackerForAbTesting(trackerContactName(typeContact))
     }
   }
 

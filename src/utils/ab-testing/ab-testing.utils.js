@@ -35,8 +35,3 @@ export const trackerForAbTesting = (label) => {
     )
   }
 }
-
-export const trackerAbTestingContact = (action, label) => {
-  const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-  TrackerUtils.track(`${TrackerUtils.ACTION.parcours}${id}`, action, label)
-}
