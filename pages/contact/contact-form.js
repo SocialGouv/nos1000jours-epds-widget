@@ -102,7 +102,6 @@ export default function ContactForm() {
 
     const name = `${inputs.inputName.value} [${websiteSource}]`
     const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
-
     setLoading(true)
     await sendEmailContactQuery({
       variables: {
@@ -121,19 +120,22 @@ export default function ContactForm() {
     if (!canSend) return
 
     const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
+    const email = inputs.inputEmail.value
 
     await sendContactMamanBluesQuery({
       variables: {
         prenom: inputs.inputName.value,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: getChildBirthDateInString(),
-        mode: contactType,
+        naissanceDernierEnfant: new Date(childBirthDate).toISOString().split('T')[0],
+        typeDeContact: contactType,
         departementCode: dptCode,
         departementLibelle: dptLibelle,
-        datePriseContact: null,
+        datePriseContact: new Date().toISOString().split('T')[0],
         personneAccompagnee: "nouveau",
         commentaire: `Numéro de télephone : ${phoneNumber}`,
         widgetEpdsSource: websiteSource,
+        email: email,
+        numero_telephone: phoneNumber
       },
     })
   }

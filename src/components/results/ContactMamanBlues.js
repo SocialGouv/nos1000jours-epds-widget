@@ -1,6 +1,6 @@
 import React from "react"
 import { Row } from "react-bootstrap"
-import { } from "@dataesr/react-dsfr"
+import {} from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import * as TrackerUtils from "../../utils/tracker.utils"
 
