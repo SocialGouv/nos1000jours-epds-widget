@@ -88,10 +88,10 @@ export default function ContactForm() {
     )
   }, [isEmailValid, isPhoneValid, numberOfChildren, childBirthDate])
 
-  const getChildBirthDateInString = () => {
+  const getChildBirthDateInString = (dateToConvert) => {
     let dateAsString = null
-    if (stringIsNotNullNorEmpty(childBirthDate)) {
-      const date = new Date(childBirthDate)
+    if (stringIsNotNullNorEmpty(dateToConvert)) {
+      const date = new Date(dateToConvert)
       dateAsString = convertDateToString(date, "-")
     }
     return dateAsString
@@ -109,7 +109,7 @@ export default function ContactForm() {
         email: inputs.inputEmail.value,
         telephone: phoneNumber,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: getChildBirthDateInString(),
+        naissanceDernierEnfant: getChildBirthDateInString(childBirthDate),
         moyen: contactType,
         horaires: contactHours,
       },
@@ -121,18 +121,19 @@ export default function ContactForm() {
 
     const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
     const email = inputs.inputEmail.value
+    const datePriseContact = new Date()
 
     await sendContactMamanBluesQuery({
       variables: {
         prenom: inputs.inputName.value,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: new Date(childBirthDate).toISOString().split('T')[0],
+        naissanceDernierEnfant: getChildBirthDateInString(childBirthDate),
         typeDeContact: contactType,
         departementCode: dptCode,
         departementLibelle: dptLibelle,
-        datePriseContact: new Date().toISOString().split('T')[0],
+        datePriseContact: getChildBirthDateInString(datePriseContact),
         personneAccompagnee: "nouveau",
-        commentaire: `Numéro de télephone : ${phoneNumber}`,
+        commentaire: "",
         widgetEpdsSource: websiteSource,
         email: email,
         numero_telephone: phoneNumber

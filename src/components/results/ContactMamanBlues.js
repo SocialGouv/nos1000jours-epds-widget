@@ -28,7 +28,7 @@ export function ContactMamanBlues({ scoreLevel }) {
     TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       `Macaron d'Elise ${TrackerUtils.EVENT_CLICK}`,
-      { buttonLabel }
+      buttonLabel
     )
 
     router.push({

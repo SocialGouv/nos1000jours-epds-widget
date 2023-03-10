@@ -3,6 +3,10 @@
     "next",
     "plugin:prettier/recommended"
   ],
+  "rules": {
+    "@next/next/no-img-element": "off",
+    "react/no-unescaped-entities": 0
+  },
   "settings": {
     "next": {
       "rootDir": "src"

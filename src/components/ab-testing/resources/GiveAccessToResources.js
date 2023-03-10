@@ -24,21 +24,16 @@ export const GiveAccessToResources = () => {
   const shouldSendEmail = () =>
     test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
 
-  useEffect(() => {
-    shouldSendEmail()
-      ? AbTestingUtils.trackerForAbTesting(
-        "Je souhaite recevoir les ressources par mail"
-      )
-      : AbTestingUtils.trackerForAbTesting(
-        "Afficher les ressources disponibles"
-      )
-  }, [])
-
   const componentForRedirection = () => {
     return (
       <Button
         className="fr-btn--secondary"
-        onClick={() => openUrl(RESOURCES_URL)}
+        onClick={() => {
+          openUrl(RESOURCES_URL)
+          AbTestingUtils.trackerForAbTesting(
+            "Afficher les ressources disponibles"
+          )
+        }}
       >
         Afficher les ressources disponibles
       </Button>
