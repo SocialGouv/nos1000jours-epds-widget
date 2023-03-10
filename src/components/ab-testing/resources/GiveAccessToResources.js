@@ -1,5 +1,5 @@
 import { Button } from "@dataesr/react-dsfr"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Modal } from "react-bootstrap"
 import { STORAGE_TEST_ABC } from "../../../constants/constants"
 import * as StorageUtils from "../../../utils/storage.utils"
