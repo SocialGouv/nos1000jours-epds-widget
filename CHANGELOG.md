@@ -1,3 +1,10 @@
+## [1.53.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.53.0...v1.53.1) (2023-03-10)
+
+
+### Bug Fixes
+
+* ajout de email et numero de telephone dans la requete pour création de contact ([#136](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/136)) ([065e8ba](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/065e8baf1cb066e6190f9e11bd5aaa33051bd7d6))
+
 # [1.53.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.52.0...v1.53.0) (2023-02-16)
 
 
