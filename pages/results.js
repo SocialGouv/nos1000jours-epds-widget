@@ -108,9 +108,11 @@ export default function Results() {
   }
 
   useEffect(() => {
-    AbTestingUtils.trackerForAbTesting(
-      `Macaron Elise - ${levelMacaronText(scoreLevelForMood)}`
-    )
+    if (levelMacaronText(scoreLevelForMood)) {
+      AbTestingUtils.trackerForAbTesting(
+        `Macaron Elise - ${levelMacaronText(scoreLevelForMood)}`
+      )
+    }
   }, [])
 
   return (
