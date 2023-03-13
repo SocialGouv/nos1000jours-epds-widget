@@ -15,7 +15,7 @@ import {
 import {
   stringIsNotNullNorEmpty,
   phoneNumberFormatting,
-  convertDateToString,
+  convertDateToISO,
   LoaderFoButton,
 } from "../../src/utils/main.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
@@ -92,7 +92,7 @@ export default function ContactForm() {
     let dateAsString = null
     if (stringIsNotNullNorEmpty(childBirthDate)) {
       const date = new Date(childBirthDate)
-      dateAsString = convertDateToString(date, "-")
+      dateAsString = convertDateToISO(date)
     }
     return dateAsString
   }
@@ -126,13 +126,13 @@ export default function ContactForm() {
       variables: {
         prenom: inputs.inputName.value,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: new Date(childBirthDate).toISOString().split('T')[0],
+        naissanceDernierEnfant: getChildBirthDateInString(),
         typeDeContact: contactType,
         departementCode: dptCode,
         departementLibelle: dptLibelle,
-        datePriseContact: new Date().toISOString().split('T')[0],
+        datePriseContact: convertDateToISO(new Date()),
         personneAccompagnee: "nouveau",
-        commentaire: `Numéro de télephone : ${phoneNumber}`,
+        commentaire: "",
         widgetEpdsSource: websiteSource,
         email: email,
         numero_telephone: phoneNumber

@@ -30,9 +30,11 @@ export const generateRandomTest = () => {
 
 export const trackerForAbTesting = (label) => {
   const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
-  TrackerUtils.track(
-    TrackerUtils.CATEG.test,
-    `${TrackerUtils.ACTION.parcours}${id}`,
-    label
-  )
+  if (id) {
+    TrackerUtils.track(
+      TrackerUtils.CATEG.test,
+      `${TrackerUtils.ACTION.parcours}${id}`,
+      label
+    )
+  }
 }
