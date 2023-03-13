@@ -66,7 +66,10 @@ export const convertStringWithfirstPartInBold = (character, label) => {
 
   return result.length > 1 ? (
     <div>
-      <b>{result[0]} {character}</b> {result[1]}
+      <b>
+        {result[0]} {character}
+      </b>{" "}
+      {result[1]}
     </div>
   ) : (
     <div>{label}</div>
@@ -80,6 +83,14 @@ export const convertStringWithfirstPartInBold = (character, label) => {
  */
 export const convertDateToString = (date, separator) => {
   return Moment(date).locale("fr").format("L").replace(/\//g, separator)
+}
+
+/**
+ * @param {Date} date
+ * @returns date in ISO String
+ */
+export const convertDateToISO = (date) => {
+  return Moment(date).locale("fr").format("YYYY-MM-DD")
 }
 
 export const readSourceInUrl = () => {

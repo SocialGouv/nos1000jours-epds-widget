@@ -15,7 +15,7 @@ import {
 import {
   stringIsNotNullNorEmpty,
   phoneNumberFormatting,
-  convertDateToString,
+  convertDateToISO,
   LoaderFoButton,
 } from "../../src/utils/main.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
@@ -36,7 +36,6 @@ export default function ContactForm() {
   const [childBirthDate, setChildBirthDate] = useState("")
   const [numberOfChildren, setNumberOfChildren] = useState(0)
   const [isLoading, setLoading] = useState(false)
-  const [isChildBirth, setIsChildBirth] = useState(false)
 
   const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
   const contactHours = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
@@ -93,7 +92,7 @@ export default function ContactForm() {
     let dateAsString = null
     if (stringIsNotNullNorEmpty(childBirthDate)) {
       const date = new Date(childBirthDate)
-      dateAsString = convertDateToString(date, "-")
+      dateAsString = convertDateToISO(date)
     }
     return dateAsString
   }
@@ -117,31 +116,21 @@ export default function ContactForm() {
     })
   }
 
-  const formatDate = (dateToFormat) => {
-      const date = new Date(dateToFormat)
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${year}-${month}-${day}`
-  }
-  
   const sendContactMamanBluesRequest = async (inputs) => {
     if (!canSend) return
 
     const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
     const email = inputs.inputEmail.value
-    if (childBirthDate) {
-      setIsChildBirth(true)
-    }
+
     await sendContactMamanBluesQuery({
       variables: {
         prenom: inputs.inputName.value,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: isChildBirth ? formatDate(new Date(childBirthDate)) : getChildBirthDateInString(),
+        naissanceDernierEnfant: getChildBirthDateInString(),
         typeDeContact: contactType,
         departementCode: dptCode,
         departementLibelle: dptLibelle,
-        datePriseContact: formatDate(new Date()),
+        datePriseContact: convertDateToISO(new Date()),
         personneAccompagnee: "nouveau",
         commentaire: "",
         widgetEpdsSource: websiteSource,
