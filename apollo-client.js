@@ -18,6 +18,7 @@ export const EPDS_CONTACT_INFORMATION = gql`
     $naissanceDernierEnfant: String
     $moyen: String
     $horaires: String
+    $score_question_dix: Int
   ) {
     epdsContact(
       email: $email
@@ -27,6 +28,7 @@ export const EPDS_CONTACT_INFORMATION = gql`
       naissance_dernier_enfant: $naissanceDernierEnfant
       moyen: $moyen
       horaires: $horaires
+      score_question_dix: $score_question_dix
     )
   }
 `
