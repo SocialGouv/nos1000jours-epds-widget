@@ -36,6 +36,7 @@ export default function ContactForm() {
   const [childBirthDate, setChildBirthDate] = useState("")
   const [numberOfChildren, setNumberOfChildren] = useState(0)
   const [isLoading, setLoading] = useState(false)
+  const [isChildBirth, setIsChildBirth] = useState(false)
 
   const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
   const contactHours = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
@@ -88,10 +89,10 @@ export default function ContactForm() {
     )
   }, [isEmailValid, isPhoneValid, numberOfChildren, childBirthDate])
 
-  const getChildBirthDateInString = (dateToConvert) => {
+  const getChildBirthDateInString = () => {
     let dateAsString = null
-    if (stringIsNotNullNorEmpty(dateToConvert)) {
-      const date = new Date(dateToConvert)
+    if (stringIsNotNullNorEmpty(childBirthDate)) {
+      const date = new Date(childBirthDate)
       dateAsString = convertDateToString(date, "-")
     }
     return dateAsString
@@ -109,29 +110,38 @@ export default function ContactForm() {
         email: inputs.inputEmail.value,
         telephone: phoneNumber,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: getChildBirthDateInString(childBirthDate),
+        naissanceDernierEnfant: getChildBirthDateInString(),
         moyen: contactType,
         horaires: contactHours,
       },
     })
   }
 
+  const formatDate = (dateToFormat) => {
+      const date = new Date(dateToFormat)
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${year}-${month}-${day}`
+  }
+  
   const sendContactMamanBluesRequest = async (inputs) => {
     if (!canSend) return
 
     const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
     const email = inputs.inputEmail.value
-    const datePriseContact = new Date()
-
+    if (childBirthDate) {
+      setIsChildBirth(true)
+    }
     await sendContactMamanBluesQuery({
       variables: {
         prenom: inputs.inputName.value,
         nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: getChildBirthDateInString(childBirthDate),
+        naissanceDernierEnfant: isChildBirth ? formatDate(new Date(childBirthDate)) : getChildBirthDateInString(),
         typeDeContact: contactType,
         departementCode: dptCode,
         departementLibelle: dptLibelle,
-        datePriseContact: getChildBirthDateInString(datePriseContact),
+        datePriseContact: formatDate(new Date()),
         personneAccompagnee: "nouveau",
         commentaire: "",
         widgetEpdsSource: websiteSource,

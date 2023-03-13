@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { ContentLayout } from "../../src/components/Layout"
-import { } from "@dataesr/react-dsfr"
+import {} from "@dataesr/react-dsfr"
 import {
-  Badge,
   ButtonGroup,
   Col,
   Row,
@@ -109,7 +108,6 @@ export default function ToBeContacted() {
       onChange={(e) => setItemValueType(e.currentTarget.value)}
     >
       <Row className="card-center-img">
-        {type.badge}
         <img
           alt=""
           src={itemValueType === type.id ? type.iconSelected : type.icon}
@@ -221,7 +219,8 @@ export default function ToBeContacted() {
       {isSmsSelected ? (
         <>
           <div className="margin-bottom-8">
-            Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au vendredi)
+            Quelles sont vos disponibilités pour être contacté(e) ? (du lundi au
+            vendredi)
           </div>
           {buttonGroupHours()}
         </>
@@ -252,12 +251,7 @@ const defaultContactTypes = {
       iconSelected: "../img/contact/chat-selected.svg",
       id: RequestContact.type.chat,
       isChecked: false,
-      text: `Par chat`,
-      badge: (
-        <Badge pill bg="primary">
-          MAINTENANT DISPONIBLE
-        </Badge>
-      ),
+      text: `Chat`,
     },
   ],
   byAvailabilities: [
@@ -266,14 +260,14 @@ const defaultContactTypes = {
       iconSelected: "../img/contact/sms-selected.svg",
       id: RequestContact.type.sms,
       isChecked: false,
-      text: "Par SMS",
+      text: "SMS",
     },
     {
       icon: "../img/contact/email-contact.svg",
       iconSelected: "../img/contact/email-contact-selected.svg",
       id: RequestContact.type.email,
       isChecked: false,
-      text: "Par email",
+      text: "Email",
     },
   ],
 }
