@@ -1,3 +1,10 @@
+## [1.53.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.53.1...v1.53.2) (2023-03-13)
+
+
+### Bug Fixes
+
+* tracker ressource au moment de valider + contact ne renvoie plus object object + bug sur les dates de prise de rdv ([#137](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/137)) ([868baa1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/868baa1516dbc9f7e21da898ea59e2fc9cc948bc))
+
 ## [1.53.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.53.0...v1.53.1) (2023-03-10)
 
 
