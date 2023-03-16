@@ -14,26 +14,6 @@ export const GiveAccessToResources = () => {
   const openModal = () => setShow(true)
   const closeModal = () => setShow(false)
 
-  //TODO Pensez a remettre l'ABTesting pour les ressources
-  // const shouldSendEmail = () =>
-  //   test === AbTestingUtils.TEST.A || test === AbTestingUtils.TEST.B
-
-  const componentForRedirection = () => {
-    return (
-      <Button
-        className="fr-btn--secondary"
-        onClick={() => {
-          openUrl(RESOURCES_URL)
-          AbTestingUtils.trackerForAbTesting(
-            "Afficher les ressources disponibles"
-          )
-        }}
-      >
-        Afficher les ressources disponibles
-      </Button>
-    )
-  }
-
   const [sendResourcesQuery] = useMutation(DEMANDE_RESSOURCES, {
     client: client,
     onCompleted: () => {

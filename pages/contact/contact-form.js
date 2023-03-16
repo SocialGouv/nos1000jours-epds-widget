@@ -336,10 +336,9 @@ export default function ContactForm() {
         )
       }
       {contactType === RequestContact.type.rendezvous && (
-        //TODO CHANGER LE LIEN CALENDLY POUR : https://calendly.com/rdv-nos1000jours/30min
         <>
           <InlineWidget
-            url="https://calendly.com/test1000jfabnum/30min"
+            url="https://calendly.com/rdv-nos1000jours/30min"
           />
           <Col className="be-contacted-bottom-buttons">
             <button className="fr-btn fr-btn--secondary" onClick={cancel}>
