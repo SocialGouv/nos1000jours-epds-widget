@@ -14,11 +14,30 @@ export const sendTrackerContactConfirmed = (contactType) => {
     TrackerUtils.CATEG.contact,
     TrackerUtils.NAME.contact_confirm_sent
   )
-  TrackerUtils.track(
+  if (contactType) {
+    TrackerUtils.track(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.ACTION.contact_confirm_sent,
+      trackerContactName(contactType)
+    )
+  }
+}
+
+/**
+ * @param {RequestContact.type} contactType
+ */
+export const sendTrackerContactType = (contactType) => {
+  TrackerUtils.genericTracker(
     TrackerUtils.CATEG.contact,
-    TrackerUtils.ACTION.contact_confirm_sent,
-    trackerContactName(contactType)
+    TrackerUtils.NAME.contact_type
   )
+  if (contactType) {
+    TrackerUtils.track(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.ACTION.contact_type,
+      contactType
+    )
+  }
 }
 
 const trackerContactName = (contactType) => {
@@ -29,6 +48,8 @@ const trackerContactName = (contactType) => {
       return TrackerUtils.CONTACT_SENT.sms
     case RequestContact.type.chat:
       return TrackerUtils.CONTACT_SENT.chat
+    case RequestContact.type.rendezvous:
+      return TrackerUtils.CONTACT_SENT.rendezvous
   }
 }
 
@@ -38,9 +59,8 @@ const trackerContactName = (contactType) => {
  * @param {*} sendContactQuery Query SAVE_DEMANDE_DE_CONTACT
  */
 export const saveContactRequest = async (contactType, sendContactQuery) => {
-  const epdsTestID = await StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
-  const source = await StorageUtils.getInLocalStorage(STORAGE_SOURCE)
-
+  const epdsTestID = StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
+  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   await sendContactQuery({
     variables: {
       reponsesEpds: epdsTestID,

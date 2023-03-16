@@ -7,7 +7,6 @@ import { LocaleButton } from "./LocaleButton"
  * @returns Header
  */
 export function WidgetHeader({ title, locale }) {
-
   return (
     <div className="widget-header">
       <Row>

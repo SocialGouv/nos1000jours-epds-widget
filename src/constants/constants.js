@@ -33,6 +33,7 @@ export const RequestContact = {
     sms: "sms",
     email: "email",
     chat: "chat",
+    rendezvous: "rendezvous",
   },
   hours: {
     morning: "matin",

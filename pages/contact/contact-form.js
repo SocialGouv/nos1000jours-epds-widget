@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react"
 import { Col } from "react-bootstrap"
 import { ContentLayout } from "../../src/components/Layout"
+import { useCalendlyEventListener, InlineWidget } from "react-calendly"
 import { } from "@dataesr/react-dsfr"
+
 import {
   PATTERN_EMAIL,
   RequestContact,
@@ -26,6 +28,8 @@ import { useRouter } from "next/router"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { Form } from "../../src/constants/specificLabels"
 import * as ContactUtils from "../../src/utils/contact.utils"
+import * as TrackerUtils from "../../src/utils/tracker.utils"
+import * as AbTestingUtils from "../../src/utils/ab-testing/ab-testing.utils"
 
 export default function ContactForm() {
   const router = useRouter()
@@ -36,6 +40,7 @@ export default function ContactForm() {
   const [childBirthDate, setChildBirthDate] = useState("")
   const [numberOfChildren, setNumberOfChildren] = useState(0)
   const [isLoading, setLoading] = useState(false)
+  const [isCalendlyValide, setCalendlyValide] = useState(false)
 
   const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
   const contactHours = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
@@ -49,7 +54,6 @@ export default function ContactForm() {
   const [sendEmailContactQuery] = useMutation(EPDS_CONTACT_INFORMATION, {
     client: client,
     onCompleted: () => {
-      ContactUtils.sendTrackerContactConfirmed(contactType)
       ContactUtils.saveContactRequest(contactType, sendContactQuery)
 
       setLoading(false)
@@ -156,6 +160,42 @@ export default function ContactForm() {
     })
   }
 
+  const trackerContactName = (typeContact) => {
+    switch (typeContact) {
+      case RequestContact.type.email:
+        return TrackerUtils.CONTACT_SENT.mail
+      case RequestContact.type.sms:
+        return TrackerUtils.CONTACT_SENT.sms
+      case RequestContact.type.chat:
+        return TrackerUtils.CONTACT_SENT.chat
+      case RequestContact.type.rendezvous:
+        return TrackerUtils.CONTACT_SENT.rendezvous
+    }
+  }
+
+  const sendTrackerContactType = (typeContact) => {
+    TrackerUtils.genericTracker(
+      TrackerUtils.CATEG.contact,
+      TrackerUtils.NAME.contact_confirm_sent
+    )
+    if (typeContact) {
+      TrackerUtils.track(
+        TrackerUtils.CATEG.contact,
+        TrackerUtils.ACTION.contact_confirm_sent,
+        trackerContactName(typeContact)
+      )
+      AbTestingUtils.trackerForAbTesting(trackerContactName(typeContact))
+    }
+  }
+
+  useCalendlyEventListener({
+    onEventScheduled: (_e) => {
+      sendTrackerContactType(contactType)
+      setCalendlyValide(true)
+    },
+  })
+
+
   const emailInput = (isRequired) => (
     <div
       className={`form-group fr-input-group ${isEmailValid ? "fr-input-group--valid" : ""
@@ -204,6 +244,10 @@ export default function ContactForm() {
     </div>
   )
 
+  if (isCalendlyValide) {
+    goToConfirmation()
+  }
+
   const setOrderPhoneAndEmailInputs = () => {
     if (contactType == RequestContact.type.email) {
       return (
@@ -221,7 +265,6 @@ export default function ContactForm() {
         </>
       )
     }
-
     return null
   }
 
@@ -256,8 +299,8 @@ export default function ContactForm() {
   return (
     <ContentLayout>
       <WidgetHeader title="être contacté(e)" locale={localeSelected} />
-
-      <form className="contact-form" onSubmit={sendForm}>
+      {contactType !== RequestContact.type.rendezvous && (
+        <form className="contact-form" onSubmit={sendForm}>
         <div className={`form-group fr-input-group`}>
           <label htmlFor="inputName">Votre prénom :</label>
           <input
@@ -266,14 +309,14 @@ export default function ContactForm() {
             id="inputName"
             name="inputName"
             placeholder={Form.placeholder.name}
-          />
+            />
         </div>
 
         {setOrderPhoneAndEmailInputs()}
         <ChildCounter />
         {numberOfChildren > 0 ? (
           <DatePickerLastChild onChange={(date) => setChildBirthDate(date)} />
-        ) : null}
+          ) : null}
 
         <Col className="be-contacted-bottom-buttons">
           <button className="fr-btn fr-btn--secondary" onClick={cancel}>
@@ -283,12 +326,27 @@ export default function ContactForm() {
             className="fr-btn"
             type="submit"
             disabled={!canSend || isLoading}
-          >
+            onClick={()=>sendTrackerContactType(contactType)}
+            >
             Valider
             {isLoading ? <LoaderFoButton /> : null}
           </button>
         </Col>
       </form>
+        )
+      }
+      {contactType === RequestContact.type.rendezvous && (
+        <>
+          <InlineWidget
+            url="https://calendly.com/rdv-nos1000jours/30min"
+          />
+          <Col className="be-contacted-bottom-buttons">
+            <button className="fr-btn fr-btn--secondary" onClick={cancel}>
+              Annuler
+            </button>
+          </Col>
+        </>
+      )}
     </ContentLayout>
   )
 }

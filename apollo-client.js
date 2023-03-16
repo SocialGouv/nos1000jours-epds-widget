@@ -119,7 +119,7 @@ export const UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES = gql`
 
 /**
  * Enregistre la demande de contact dans la collection "Demande de contacts"
- * ENUM_DEMANDEDECONTACT_TYPE_DE_CONTACT { sms, email, chat }
+ * ENUM_DEMANDEDECONTACT_TYPE_DE_CONTACT { sms, email, chat, rendezvous }
  */
 export const SAVE_DEMANDE_DE_CONTACT = gql`
   mutation (

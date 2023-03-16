@@ -7,24 +7,21 @@ export const TEST = {
   A: "A",
   B: "B",
   C: "C",
-  D: "D",
 }
 
 /**
- * Génère aléatoirement A, B ou C
- * @returns A, B ou C
+ * Génère aléatoirement A, B, C ou D
+ * @returns A, B, C ou D
  */
 export const generateRandomTest = () => {
   // expected output: 0, 1, 2 or 3
-  switch (MainUtils.getRandomInt(4)) {
+  switch (MainUtils.getRandomInt(3)) {
     case 0:
       return TEST.A
     case 1:
       return TEST.B
     case 2:
       return TEST.C
-    case 3:
-      return TEST.D
   }
 }
 

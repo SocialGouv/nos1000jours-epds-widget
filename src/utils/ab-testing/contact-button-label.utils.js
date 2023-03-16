@@ -9,8 +9,6 @@ export const getContactButtonLabelByTest = () => {
       return "Je veux être accompagné(e)"
     case TEST.C:
       return "Parler à Élise"
-    case TEST.D:
-      return "Obtenir de l'aide"
     case TEST.A:
     default:
       return "être contacté(e)"

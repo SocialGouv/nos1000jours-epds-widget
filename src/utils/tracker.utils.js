@@ -25,6 +25,7 @@ export const NAME = {
   start: "Commencer",
   end: "Terminer",
   contact_confirm_sent: "Confirmation d'envoi de la demande de contact",
+  contact_type: "Choix du type de prise de contact",
 }
 
 export const CONTACT_SENT = {
@@ -32,6 +33,7 @@ export const CONTACT_SENT = {
   no_chat: "chat_non_disponible",
   mail: "confirmation_mail",
   sms: "confirmation_sms",
+  rendezvous: "confirmation_envoi_rendez-vous",
 }
 
 export const track = (categ, action, name) => {

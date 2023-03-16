@@ -7,7 +7,7 @@ import {
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
 } from "../../src/constants/constants"
-import { } from "@dataesr/react-dsfr"
+import {} from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import * as StorageUtils from "../../src/utils/storage.utils"
 
@@ -46,9 +46,12 @@ export default function ContactConfirmed() {
           <b>Votre demande de contact a bien été prise en compte.</b>
         </p>
         <p>
-          {contactType == RequestContact.type.email
-            ? "Vous devriez recevoir un email d’Elise dans les 48h. Pensez bien à vérifier dans vos spams."
-            : "Vous devriez recevoir un SMS d’Elise dans les 48h en fonction des disponibilités sélectionnées."}
+          {contactType === RequestContact.type.email &&
+            "Vous devriez recevoir un email d’Elise dans les 48h. Pensez bien à vérifier dans vos spams."}
+          {contactType === RequestContact.type.sms &&
+            "Vous devriez recevoir un SMS d’Elise dans les 48h en fonction des disponibilités sélectionnées."}
+          {contactType === RequestContact.type.rendezvous &&
+            "Vous serez contacté sur le numéro de téléphone que vous avez communiqué."}
         </p>
 
         {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
