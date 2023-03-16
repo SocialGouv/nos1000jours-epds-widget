@@ -4,7 +4,7 @@ import { Modal } from "react-bootstrap"
 import { client, DEMANDE_RESSOURCES } from "../../../../apollo-client"
 import { useMutation } from "@apollo/client"
 import { LoaderFoButton } from "../../../utils/main.utils"
-import * as AbTestingUtils from "../../../src/utils/ab-testing/ab-testing.utils"
+import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
 export const GiveAccessToResources = () => {
   const [show, setShow] = useState(false)
   const [isLoading, setLoading] = useState(false)
