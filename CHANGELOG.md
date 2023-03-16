@@ -1,3 +1,10 @@
+# [1.54.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.53.2...v1.54.0) (2023-03-16)
+
+
+### Features
+
+* ab testing contact elise ([#134](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/134)) ([7fa4709](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/7fa470916d72d5404fb0fc67ee1b04c67f442375))
+
 ## [1.53.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.53.1...v1.53.2) (2023-03-13)
 
 
