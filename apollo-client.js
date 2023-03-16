@@ -31,6 +31,14 @@ export const EPDS_CONTACT_INFORMATION = gql`
   }
 `
 
+export const GET_ACTIVATION_CHAT_STATUS = gql`
+  query activationChat {
+    activationChat {
+      activation_chat
+    }
+  }
+`
+
 export const GET_TEMOIGNAGES_CHIFFRES = gql`
   query temoignages {
     temoignages {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import {} from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import { Crisp } from "crisp-sdk-web"
-import { useMutation } from "@apollo/client"
+import { useMutation, useLazyQuery } from "@apollo/client"
 import {
   ButtonGroup,
   Col,
@@ -27,7 +27,11 @@ import {
   readSourceInUrl,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
-import { client, SAVE_DEMANDE_DE_CONTACT } from "../../apollo-client"
+import {
+  client,
+  SAVE_DEMANDE_DE_CONTACT,
+  GET_ACTIVATION_CHAT_STATUS,
+} from "../../apollo-client"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
@@ -53,6 +57,16 @@ export default function ToBeContacted() {
 
   const [websiteSource, setWebsiteSource] = useState(false)
   const [isChatEnabled, setChatEnabled] = useState()
+  const [getActivationChatStatus] = useLazyQuery(GET_ACTIVATION_CHAT_STATUS, {
+    client: client,
+    onCompleted: (data) => {
+      const isChatActivated = data.activationChat.activation_chat
+      if (isChatActivated) setChatEnabled(isChatActivated)
+    },
+    onError: (err) => {
+      console.warn(err)
+    },
+  })
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -81,6 +95,10 @@ export default function ToBeContacted() {
   })
 
   const initChat = () => {
+    const chatActivated = async () => {
+      await getActivationChatStatus()
+    }
+    chatActivated()
     if (chatNameUsed === CHAT_TYPE.crisp) {
       Crisp.configure(CRISP_CHAT_ID)
       Crisp.chat.hide()
