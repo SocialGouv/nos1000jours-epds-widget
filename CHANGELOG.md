@@ -1,3 +1,10 @@
+# [1.55.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.54.0...v1.55.0) (2023-03-16)
+
+
+### Features
+
+* ajout de l'activation du chat grace au BO ([#139](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/139)) ([f5abeb6](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/f5abeb6f61aba13ebf6a59018f3d93d68d733e19))
+
 # [1.54.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.53.2...v1.54.0) (2023-03-16)
 
 
