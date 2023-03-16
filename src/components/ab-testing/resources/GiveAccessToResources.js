@@ -29,6 +29,9 @@ export const GiveAccessToResources = () => {
   const sendMail = async () => {
     setLoading(false)
     setLoading(true)
+    AbTestingUtils.trackerForAbTesting(
+      "Je souhaite recevoir les ressources par mail - Envoie du mail"
+    )
     await sendResourcesQuery({
       variables: {
         email: mailValue,
