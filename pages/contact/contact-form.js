@@ -107,14 +107,14 @@ export default function ContactForm() {
     setLoading(true)
     await sendEmailContactQuery({
       variables: {
-        prenom: name,
         email: inputs.inputEmail.value,
-        telephone: phoneNumber,
-        nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: getChildBirthDateInString(),
-        moyen: contactType,
         horaires: contactHours,
-        score_question_dix: scoreQuestionDix,
+        moyen: contactType,
+        naissanceDernierEnfant: getChildBirthDateInString(),
+        nombreEnfants: numberOfChildren,
+        prenom: name,
+        scoreQuestionDix: scoreQuestionDix,
+        telephone: phoneNumber,
       },
     })
   }
