@@ -147,6 +147,7 @@ export default function EpdsSurvey() {
   useEffect(() => {
     const saveEpdsResults = async () => {
       if (sendScore) {
+        localStorage.setItem("scoreQuestionDix", resultsBoard[9].points)
         const score = resultsBoard
           .map((data) => data.points)
           .reduce((a, b) => a + b, 0)
@@ -156,7 +157,6 @@ export default function EpdsSurvey() {
             compteur: 1,
             genre: EpdsGender.inconnu.strapiLibelle,
             reponseNum1: resultsBoard[0].points,
-            reponseNum10: resultsBoard[9].points,
             reponseNum2: resultsBoard[1].points,
             reponseNum3: resultsBoard[2].points,
             reponseNum4: resultsBoard[3].points,
@@ -165,6 +165,7 @@ export default function EpdsSurvey() {
             reponseNum7: resultsBoard[6].points,
             reponseNum8: resultsBoard[7].points,
             reponseNum9: resultsBoard[8].points,
+            reponseNum10: resultsBoard[9].points,
             score: score,
             langue: localeSelected.id,
             source: EPDS_SOURCE,

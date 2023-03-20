@@ -60,8 +60,9 @@ export function EpdsQuestion({
             </div>
           </legend>
           <div
-            className={`fr-fieldset__content epds-response ${isRTL ? "input-revert" : ""
-              }`}
+            className={`fr-fieldset__content epds-response ${
+              isRTL ? "input-revert" : ""
+            }`}
             onChange={handleChange}
           >
             {itemRadio(radio1Id, question.reponse_1_libelle)}

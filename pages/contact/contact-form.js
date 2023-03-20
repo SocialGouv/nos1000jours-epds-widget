@@ -106,16 +106,19 @@ export default function ContactForm() {
 
     const name = `${inputs.inputName.value} [${websiteSource}]`
     const phoneNumber = phoneNumberFormatting(inputs.inputPhone.value)
+    const scoreQuestionDix = localStorage.getItem("scoreQuestionDix")
+
     setLoading(true)
     await sendEmailContactQuery({
       variables: {
-        prenom: name,
         email: inputs.inputEmail.value,
-        telephone: phoneNumber,
-        nombreEnfants: numberOfChildren,
-        naissanceDernierEnfant: getChildBirthDateInString(),
-        moyen: contactType,
         horaires: contactHours,
+        moyen: contactType,
+        naissanceDernierEnfant: getChildBirthDateInString(),
+        nombreEnfants: numberOfChildren,
+        prenom: name,
+        scoreQuestionDix: scoreQuestionDix,
+        telephone: phoneNumber,
       },
     })
   }

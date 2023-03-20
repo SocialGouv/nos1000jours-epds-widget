@@ -12,6 +12,7 @@ export const STORAGE_SCORE = "score"
 export const STORAGE_SCORE_LEVEL_MACARON = "scoreLevelForMacaron"
 export const STORAGE_SCORE_LEVEL_MOOD = "scoreLevelForMood"
 export const STORAGE_SCORE_LEVEL_TEXTS = "scoreLevelForTexts"
+export const STORAGE_SCORE_QUESTION_DIX = "scoreQuestionDix"
 export const STORAGE_RESULTS_BOARD = "resultsBoard"
 export const STORAGE_RESULTS_ID = "resultsBoardId"
 
