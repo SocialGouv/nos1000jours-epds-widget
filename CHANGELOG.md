@@ -1,3 +1,10 @@
+## [1.55.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.55.0...v1.55.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* chat desactiver après refresh de la page ([#140](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/140)) ([5685a9a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/5685a9abbe4b0805ef4c80b9b0635a3f40967819))
+
 # [1.55.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.54.0...v1.55.0) (2023-03-16)
 
 
