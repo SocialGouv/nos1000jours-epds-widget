@@ -1,7 +1,4 @@
-import {
-  STORAGE_SOURCE,
-  STORAGE_TEST_ABC,
-} from "../../../src/constants/constants"
+import { STORAGE_TEST_ABC } from "../../../src/constants/constants"
 import * as AbTestingUtils from "../../../src/utils/ab-testing/ab-testing.utils"
 import * as TrackerUtils from "../../../src/utils/tracker.utils"
 
