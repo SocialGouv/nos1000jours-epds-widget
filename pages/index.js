@@ -20,21 +20,16 @@ import {
   GET_LOCALES,
 } from "@socialgouv/nos1000jours-lib"
 import { LocaleButton } from "../src/components/LocaleButton"
-import { CarouselCustom } from "../src/components/CarouselCustom"
 import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
 
 export default function Home() {
   const router = useRouter()
-  const MAX_CAROUSEL_ITEMS = 6
 
   const [source, setSource] = useState()
   const [localeSelected, setLocaleSelected] = useState()
   const [labelsTranslated, setLabelsTranslated] = useState()
-
-  const [temoignages, setTemoignages] = useState()
-  const [chiffresChoc, setChiffresChoc] = useState()
 
   useEffect(() => {
     const paramSource = readSourceInUrl()
@@ -44,11 +39,6 @@ export default function Home() {
       await getLocalesInDatabase()
     }
     localesQuery()
-
-    const temoignagesQuery = async () => {
-      await getTemoignagesAndChiffresInDatabase()
-    }
-    temoignagesQuery()
   }, [])
 
   useEffect(() => {
@@ -103,27 +93,6 @@ export default function Home() {
     }
   )
 
-  const [getTemoignagesAndChiffresInDatabase] = useLazyQuery(
-    GET_TEMOIGNAGES_CHIFFRES,
-    {
-      client: client,
-      onCompleted: (data) => {
-        const chiffresInData = data.temoignages.filter(
-          (item) => item.chiffre_choc
-        )
-        setChiffresChoc(chiffresInData.slice(0, MAX_CAROUSEL_ITEMS))
-
-        const temoignagesInData = data.temoignages.filter(
-          (item) => !item.chiffre_choc
-        )
-        setTemoignages(temoignagesInData.slice(0, MAX_CAROUSEL_ITEMS))
-      },
-      onError: (err) => {
-        console.warn(err)
-      },
-    }
-  )
-
   const [getLocalesInDatabase] = useLazyQuery(gql(GET_LOCALES), {
     client: client,
     onCompleted: (data) => {
@@ -136,23 +105,6 @@ export default function Home() {
       console.warn(err)
     },
   })
-
-  const CarouselsTemoignagesEtChiffres = () => (
-    <>
-      {temoignages?.length > 0 && (
-        <>
-          <div className="accueil-title-carousel">Témoignages : </div>
-          <CarouselCustom data={temoignages} />
-        </>
-      )}
-      {chiffresChoc?.length > 0 && (
-        <>
-          <div className="accueil-title-carousel">En chiffres :</div>
-          <CarouselCustom data={chiffresChoc} />
-        </>
-      )}
-    </>
-  )
 
   return (
     <div className="container">
@@ -186,7 +138,6 @@ export default function Home() {
         >
           {getStartButtonText(labelsTranslated)}
         </button>
-        <CarouselsTemoignagesEtChiffres />
         <LocaleButton
           locale={localeSelected}
           setLocaleSelected={setLocaleSelected}
