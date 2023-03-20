@@ -74,7 +74,6 @@ export default function Home() {
       TrackerUtils.EVENT_CLICK,
       `Commencer le test - ${source}`
     )
-    DemographicDataUtils.trackerForDemographie("Home - Commencer")
 
     localStorage.setItem(STORAGE_SOURCE, source)
     localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())

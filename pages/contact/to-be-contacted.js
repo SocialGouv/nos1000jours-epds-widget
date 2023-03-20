@@ -100,7 +100,9 @@ export default function ToBeContacted() {
 
   const openWhatsapp = async () => {
     ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
-    ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
+    ContactUtils.sendTrackerContactConfirmed(
+      `${RequestContact.type.chat} - ${websiteSource}`
+    )
     window.open(URL_CHAT_WHATSAPP, "_blank")
   }
 
@@ -129,7 +131,7 @@ export default function ToBeContacted() {
     TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       TrackerUtils.ACTION.contact_type,
-      itemValueType
+      `${itemValueType} - ${websiteSource}`
     )
     AbTestingUtils.trackerForAbTesting(itemValueType)
 
@@ -163,8 +165,11 @@ export default function ToBeContacted() {
     const { loading, error, data } = useQuery(GET_ACTIVATION_CHAT_STATUS, {
       client: client,
     })
-    if (!loading && !error && data.activationChat)
-      setChatActive(data.activationChat.activation_chat)
+
+    if (loading) return <></>
+    if (error) return <p>Error</p>
+    const isChatActive = data.activationChat.activation_chat
+
     return (
       <>
         {isChatEnabled && isChatActive && (
