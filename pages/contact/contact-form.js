@@ -172,7 +172,7 @@ export default function ContactForm() {
       TrackerUtils.track(
         TrackerUtils.CATEG.contact,
         TrackerUtils.ACTION.contact_confirm_sent,
-        ContactUtils.trackerContactName(typeContact)
+        `${ContactUtils.trackerContactName(typeContact)} - ${websiteSource}`
       )
       AbTestingUtils.trackerForAbTesting(ContactUtils.trackerContactName(typeContact))
     }
@@ -180,7 +180,7 @@ export default function ContactForm() {
 
   useCalendlyEventListener({
     onEventScheduled: (_e) => {
-      sendTrackerContactType(`${contactType} - ${websiteSource}`)
+      sendTrackerContactType(contactType)
       setCalendlyValide(true)
     },
   })
@@ -316,7 +316,7 @@ export default function ContactForm() {
             className="fr-btn"
             type="submit"
             disabled={!canSend || isLoading}
-            onClick={()=>sendTrackerContactType(`${contactType} - ${websiteSource}`)}
+            onClick={()=>sendTrackerContactType(contactType)}
             >
             Valider
             {isLoading ? <LoaderFoButton /> : null}

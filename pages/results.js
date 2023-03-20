@@ -9,6 +9,7 @@ import {
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
+  STORAGE_SOURCE,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
@@ -43,7 +44,7 @@ export default function Results() {
   const scoreLevelForMacaron = parseInt(
     StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
-
+  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const DescriptionAndConclusion = () => (
     <Row>
       <div className="margin-bottom-8">
@@ -110,7 +111,7 @@ export default function Results() {
   useEffect(() => {
     if (levelMacaronText(scoreLevelForMood)) {
       AbTestingUtils.trackerForAbTesting(
-        `Macaron Elise - ${levelMacaronText(scoreLevelForMood)}`
+        `Macaron Elise - ${levelMacaronText(scoreLevelForMood)} - ${source}`
       )
     }
   }, [])
