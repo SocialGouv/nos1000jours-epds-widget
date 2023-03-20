@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import {} from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import { Crisp } from "crisp-sdk-web"
-import { useMutation, useLazyQuery } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import {
   ButtonGroup,
   Col,
@@ -57,16 +57,7 @@ export default function ToBeContacted() {
 
   const [websiteSource, setWebsiteSource] = useState(false)
   const [isChatEnabled, setChatEnabled] = useState()
-  const [getActivationChatStatus] = useLazyQuery(GET_ACTIVATION_CHAT_STATUS, {
-    client: client,
-    onCompleted: (data) => {
-      const isChatActivated = data.activationChat.activation_chat
-      if (isChatActivated) setChatEnabled(isChatActivated)
-    },
-    onError: (err) => {
-      console.warn(err)
-    },
-  })
+  const [isChatActive, setChatActive] = useState()
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -95,10 +86,6 @@ export default function ToBeContacted() {
   })
 
   const initChat = () => {
-    const chatActivated = async () => {
-      await getActivationChatStatus()
-    }
-    chatActivated()
     if (chatNameUsed === CHAT_TYPE.crisp) {
       Crisp.configure(CRISP_CHAT_ID)
       Crisp.chat.hide()
@@ -173,9 +160,14 @@ export default function ToBeContacted() {
   )
 
   const ChatComponent = () => {
+    const { loading, error, data } = useQuery(GET_ACTIVATION_CHAT_STATUS, {
+      client: client,
+    })
+    if (!loading && !error && data.activationChat)
+      setChatActive(data.activationChat.activation_chat)
     return (
       <>
-        {isChatEnabled && (
+        {isChatEnabled && isChatActive && (
           <>
             Maintenant par :
             <Row>
