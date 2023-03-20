@@ -1,3 +1,10 @@
+# [1.56.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.55.1...v1.56.0) (2023-03-20)
+
+
+### Features
+
+* changer le mail destiner a elise lors de la prise de contact ([#138](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/138)) ([6c68d00](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/6c68d0078338cdb49e18d5121c38843531027bfc))
+
 ## [1.55.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.55.0...v1.55.1) (2023-03-20)
 
 
