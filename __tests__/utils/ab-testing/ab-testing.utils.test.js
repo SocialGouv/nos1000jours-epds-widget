@@ -29,13 +29,12 @@ describe("Utils", () => {
 
     test("Should return tracker with CATEG.test, course name and label", () => {
       localStorage.setItem(STORAGE_TEST_ABC, "A")
-      localStorage.setItem(STORAGE_SOURCE, "1000-premiers-jours")
 
       AbTestingUtils.trackerForAbTesting("my label")
       expect(trackerSpy).toHaveBeenCalledWith(
         TrackerUtils.CATEG.test,
         `${TrackerUtils.ACTION.parcours}A`,
-        "my label - 1000-premiers-jours"
+        "my label"
       )
     })
   })
