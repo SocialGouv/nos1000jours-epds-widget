@@ -33,7 +33,7 @@ export default function BeforeSurvey() {
 
   const goToEpdsSurvey = async () => {
     DemographicDataUtils.trackerForDemographie(
-      "Informations avant EPDS - Commencer le questionnaire"
+      `Informations avant EPDS - Commencer le questionnaire - ${source}`
     )
 
     router.push({
@@ -41,17 +41,17 @@ export default function BeforeSurvey() {
     })
   }
 
+  const goToNextPage = async () => {
+    source === "1000-premiers-jours"
+      ? await goToEpdsSurvey()
+      : await goToDemographicSurvey()
+  }
+
   const goToDemographicSurvey = async () => {
-    if (source === "1000-premiers-jours") {
-      router.push({
-        pathname: "/survey/epds-survey",
-      })
-    } else {
-      DemographicDataUtils.trackerForDemographie(
-        `Informations avant EPDS - ${demographicData?.buttonLabelInBeforeSurvey}`
-      )
-      DemographicDataUtils.goToDemographicSurvey(router)
-    }
+    DemographicDataUtils.trackerForDemographie(
+      `Informations avant EPDS - ${demographicData?.buttonLabelInBeforeSurvey} - ${source}`
+    )
+    DemographicDataUtils.goToDemographicSurvey(router)
   }
 
   const [getResultatsCountInDatabase] = useLazyQuery(GET_RESUTLATS_COUNT, {
@@ -111,14 +111,7 @@ export default function BeforeSurvey() {
         </div>
 
         <div className="button-start-survey">
-          <button
-            className="fr-btn fr-btn--lg"
-            onClick={
-              demographicData?.buttonLabelInBeforeSurvey
-                ? goToDemographicSurvey
-                : goToEpdsSurvey
-            }
-          >
+          <button className="fr-btn fr-btn--lg" onClick={goToNextPage}>
             {source === "1000-premiers-jours"
               ? "Commencer le questionnaire"
               : "Suivant"}

@@ -40,8 +40,8 @@ export const sendTrackerContactType = (contactType) => {
   }
 }
 
-const trackerContactName = (contactType) => {
-  switch (contactType) {
+export const trackerContactName = (typeContact) => {
+  switch (typeContact) {
     case RequestContact.type.email:
       return TrackerUtils.CONTACT_SENT.mail
     case RequestContact.type.sms:
