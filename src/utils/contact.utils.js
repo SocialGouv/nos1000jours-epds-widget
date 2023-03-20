@@ -80,7 +80,8 @@ export const isMamanBluesAvailableHours = () => {
   // Days
   if (date.getDay() == 0 || date.getDay() == 6) return false
   // Hours
-  else if (date.getHours() >= 9 && date.getHours() < 17) return true
+  else if (date.getHours() >= 9 && date.getHours() < 12) return true
+  else if (date.getHours() >= 14 && date.getHours() < 17) return true
   else if (date.getHours() == 17 && date.getMinutes() <= 30) return true
   else return false
 }
