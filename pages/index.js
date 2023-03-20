@@ -22,7 +22,6 @@ import {
 import { LocaleButton } from "../src/components/LocaleButton"
 import { CarouselCustom } from "../src/components/CarouselCustom"
 import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
-import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
 
 export default function Home() {

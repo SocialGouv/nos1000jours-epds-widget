@@ -57,7 +57,6 @@ export default function ToBeContacted() {
 
   const [websiteSource, setWebsiteSource] = useState(false)
   const [isChatEnabled, setChatEnabled] = useState()
-  const [isChatActive, setChatActive] = useState()
 
   useEffect(() => {
     const source = readSourceInUrl()
