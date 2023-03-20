@@ -60,7 +60,7 @@ a {
   }
 
   [target=_blank]:after {
-    content: none;
+    content: none !important;
   }
 }
 
