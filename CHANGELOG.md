@@ -1,3 +1,9 @@
+# [1.57.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.56.0...v1.57.0) (2023-03-21)
+
+
+### Features
+
+* enlever csp pour la source 1000-premiers-jours ([#141](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/141)) ([00ba18a](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/00ba18ab2b8798c7052fdd5dc005a757468b5a0e))
 
 # [1.56.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.55.1...v1.56.0) (2023-03-20)
 
