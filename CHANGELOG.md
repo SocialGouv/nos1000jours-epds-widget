@@ -1,3 +1,10 @@
+## [1.57.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.1...v1.57.2) (2023-03-21)
+
+
+### Bug Fixes
+
+* enlever le carré a coter de l'image 1000jours ([#143](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/143)) ([afb750c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/afb750cdfa917e77c4a706a520b96baa05a9e588))
+
 ## [1.57.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.0...v1.57.1) (2023-03-21)
 
 
