@@ -1,3 +1,10 @@
+## [1.57.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.0...v1.57.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* changer l'horaire du chat pour la pause déjeuner ([#142](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/142)) ([b86903f](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/b86903ffcc640de44e67f31ab9918aa2efdebdc9))
+
 # [1.57.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.56.0...v1.57.0) (2023-03-21)
 
 
