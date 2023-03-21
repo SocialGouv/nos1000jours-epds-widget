@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { client, GET_RESUTLATS_COUNT } from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
+import { STORAGE_SOURCE } from "../../src/constants/constants"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
 
@@ -21,6 +22,7 @@ export default function BeforeSurvey() {
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const demographicData = DemographicDataUtils.getDemographicBeforeEpds()
+  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
 
   useEffect(() => {
     const resultatsCountQuery = async () => {
@@ -31,7 +33,7 @@ export default function BeforeSurvey() {
 
   const goToEpdsSurvey = async () => {
     DemographicDataUtils.trackerForDemographie(
-      "Informations avant EPDS - Commencer le questionnaire"
+      `Informations avant EPDS - Commencer le questionnaire - ${source}`
     )
 
     router.push({
@@ -39,9 +41,15 @@ export default function BeforeSurvey() {
     })
   }
 
+  const goToNextPage = async () => {
+    source === "1000-premiers-jours"
+      ? await goToEpdsSurvey()
+      : await goToDemographicSurvey()
+  }
+
   const goToDemographicSurvey = async () => {
     DemographicDataUtils.trackerForDemographie(
-      `Informations avant EPDS - ${demographicData?.buttonLabelInBeforeSurvey}`
+      `Informations avant EPDS - ${demographicData?.buttonLabelInBeforeSurvey} - ${source}`
     )
     DemographicDataUtils.goToDemographicSurvey(router)
   }
@@ -69,7 +77,8 @@ export default function BeforeSurvey() {
           <li className="item-information">
             <img src={IMG_PRO} alt="" />
             <div>
-              Ce questionnaire est utilisé par les <b>professionnels de santé.</b>
+              Ce questionnaire est utilisé par les{" "}
+              <b>professionnels de santé.</b>
             </div>
           </li>
 
@@ -77,8 +86,8 @@ export default function BeforeSurvey() {
             <img src={IMG_PARENTS} alt="" />
             <div>
               Depuis son lancement en juillet 2021, les parents ont complété
-              <b> {totalResultsCount.toLocaleString()} questionnaires </b>sur leur
-              état émotionnel.
+              <b> {totalResultsCount.toLocaleString()} questionnaires </b>sur
+              leur état émotionnel.
             </div>
           </li>
 
@@ -102,16 +111,10 @@ export default function BeforeSurvey() {
         </div>
 
         <div className="button-start-survey">
-          <button
-            className="fr-btn fr-btn--lg"
-            onClick={
-              demographicData?.buttonLabelInBeforeSurvey
-                ? goToDemographicSurvey
-                : goToEpdsSurvey
-            }
-          >
-            {demographicData?.buttonLabelInBeforeSurvey ??
-              "Commencer le questionnaire"}
+          <button className="fr-btn fr-btn--lg" onClick={goToNextPage}>
+            {source === "1000-premiers-jours"
+              ? "Commencer le questionnaire"
+              : "Suivant"}
           </button>
         </div>
       </div>

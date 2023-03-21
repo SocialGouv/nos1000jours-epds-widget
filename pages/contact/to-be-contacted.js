@@ -57,7 +57,6 @@ export default function ToBeContacted() {
 
   const [websiteSource, setWebsiteSource] = useState(false)
   const [isChatEnabled, setChatEnabled] = useState()
-  const [isChatActive, setChatActive] = useState()
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -122,6 +121,7 @@ export default function ToBeContacted() {
   }
 
   const onValidate = async (_event) => {
+    const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
     TrackerUtils.genericTracker(
       TrackerUtils.CATEG.contact,
       TrackerUtils.NAME.contact_type
@@ -129,7 +129,7 @@ export default function ToBeContacted() {
     TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       TrackerUtils.ACTION.contact_type,
-      itemValueType
+      `${itemValueType} - ${source}`
     )
     AbTestingUtils.trackerForAbTesting(itemValueType)
 
@@ -163,8 +163,11 @@ export default function ToBeContacted() {
     const { loading, error, data } = useQuery(GET_ACTIVATION_CHAT_STATUS, {
       client: client,
     })
-    if (!loading && !error && data.activationChat)
-      setChatActive(data.activationChat.activation_chat)
+
+    if (loading) return <></>
+    if (error) return <p>Error</p>
+    const isChatActive = data.activationChat.activation_chat
+
     return (
       <>
         {isChatEnabled && isChatActive && (

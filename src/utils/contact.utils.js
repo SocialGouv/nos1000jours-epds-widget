@@ -10,6 +10,7 @@ import {
  * @param {RequestContact.type} contactType
  */
 export const sendTrackerContactConfirmed = (contactType) => {
+  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   TrackerUtils.genericTracker(
     TrackerUtils.CATEG.contact,
     TrackerUtils.NAME.contact_confirm_sent
@@ -18,7 +19,7 @@ export const sendTrackerContactConfirmed = (contactType) => {
     TrackerUtils.track(
       TrackerUtils.CATEG.contact,
       TrackerUtils.ACTION.contact_confirm_sent,
-      trackerContactName(contactType)
+      `${trackerContactName(contactType)} - ${source}`
     )
   }
 }
@@ -40,8 +41,8 @@ export const sendTrackerContactType = (contactType) => {
   }
 }
 
-const trackerContactName = (contactType) => {
-  switch (contactType) {
+export const trackerContactName = (typeContact) => {
+  switch (typeContact) {
     case RequestContact.type.email:
       return TrackerUtils.CONTACT_SENT.mail
     case RequestContact.type.sms:

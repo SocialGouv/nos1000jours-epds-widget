@@ -1,11 +1,12 @@
-import { RequestContact } from "../../src/constants/constants"
+import { RequestContact, STORAGE_SOURCE } from "../../src/constants/constants"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 
 describe("Contact Utils", () => {
   describe("sendTrackerContactConfirmed", () => {
     let trackerSpy
-
+    localStorage.setItem(STORAGE_SOURCE, "1000-premiers-jours")
+    const source = localStorage.getItem(STORAGE_SOURCE)
     beforeEach(() => {
       trackerSpy = jest.spyOn(TrackerUtils, "track")
     })
@@ -19,7 +20,7 @@ describe("Contact Utils", () => {
       expect(trackerSpy).toHaveBeenCalledWith(
         TrackerUtils.CATEG.contact,
         TrackerUtils.ACTION.contact_confirm_sent,
-        TrackerUtils.CONTACT_SENT.mail
+        `${TrackerUtils.CONTACT_SENT.mail} - ${source}`
       )
     })
 
@@ -28,7 +29,7 @@ describe("Contact Utils", () => {
       expect(trackerSpy).toHaveBeenCalledWith(
         TrackerUtils.CATEG.contact,
         TrackerUtils.ACTION.contact_confirm_sent,
-        TrackerUtils.CONTACT_SENT.sms
+        `${TrackerUtils.CONTACT_SENT.sms} - ${source}`
       )
     })
 
@@ -38,7 +39,7 @@ describe("Contact Utils", () => {
       expect(trackerSpy).toHaveBeenCalledWith(
         TrackerUtils.CATEG.contact,
         TrackerUtils.ACTION.contact_confirm_sent,
-        TrackerUtils.CONTACT_SENT.chat
+        `${TrackerUtils.CONTACT_SENT.chat} - ${source}`
       )
     })
   })

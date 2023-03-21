@@ -163,19 +163,6 @@ export default function ContactForm() {
     })
   }
 
-  const trackerContactName = (typeContact) => {
-    switch (typeContact) {
-      case RequestContact.type.email:
-        return TrackerUtils.CONTACT_SENT.mail
-      case RequestContact.type.sms:
-        return TrackerUtils.CONTACT_SENT.sms
-      case RequestContact.type.chat:
-        return TrackerUtils.CONTACT_SENT.chat
-      case RequestContact.type.rendezvous:
-        return TrackerUtils.CONTACT_SENT.rendezvous
-    }
-  }
-
   const sendTrackerContactType = (typeContact) => {
     TrackerUtils.genericTracker(
       TrackerUtils.CATEG.contact,
@@ -185,9 +172,9 @@ export default function ContactForm() {
       TrackerUtils.track(
         TrackerUtils.CATEG.contact,
         TrackerUtils.ACTION.contact_confirm_sent,
-        trackerContactName(typeContact)
+        `${ContactUtils.trackerContactName(typeContact)} - ${websiteSource}`
       )
-      AbTestingUtils.trackerForAbTesting(trackerContactName(typeContact))
+      AbTestingUtils.trackerForAbTesting(ContactUtils.trackerContactName(typeContact))
     }
   }
 

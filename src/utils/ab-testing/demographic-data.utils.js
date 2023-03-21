@@ -98,7 +98,9 @@ export const availableRelativesValues = [
 export const convertArraySituationsToString = (situations) => {
   let situationsString = ""
   situations.forEach((element) => {
-    situationsString += `${situationsString.length > 0 ? " / " : ""}${element.text}`
+    situationsString += `${situationsString.length > 0 ? " / " : ""}${
+      element.text
+    }`
   })
 
   return situationsString
