@@ -1,3 +1,10 @@
+## [1.57.3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.2...v1.57.3) (2023-03-21)
+
+
+### Bug Fixes
+
+* remove carroussel temoignages et chiffres ([#144](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/144)) ([8fbb332](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/8fbb33232ecabcf1aeac02591f2c09c99d35910a))
+
 ## [1.57.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.1...v1.57.2) (2023-03-21)
 
 
