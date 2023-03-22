@@ -186,7 +186,8 @@ export default function EpdsSurvey() {
   const onNextQuestion = () => {
     ref.current.next()
     setActualIndex(actualIndex + 1)
-    if (actualIndex + 1 === 1) {
+    if (actualIndex === 1) {
+      console.log("coucou")
       TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.start_survey)
     }
   }
