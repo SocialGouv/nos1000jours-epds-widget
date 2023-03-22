@@ -97,6 +97,12 @@ export default function EpdsSurvey() {
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
       localStorage.setItem(STORAGE_RESULTS_ID, data.createReponsesEpdsWidget.id)
+      if (
+        TrackerUtils.seuilScore(totalScore) &&
+        isBackFromConfirmed === "false"
+      ) {
+        TrackerUtils.trackerForResults(TrackerUtils.seuilScore(totalScore))
+      }
 
       updateDemographicData(
         updateEpdsIdInInfosQuery,
@@ -116,12 +122,6 @@ export default function EpdsSurvey() {
   )
 
   const goToResults = async (event) => {
-    if (
-      TrackerUtils.seuilScore(scoreValue) &&
-      isBackFromConfirmed === "false"
-    ) {
-      TrackerUtils.trackerForResults(TrackerUtils.seuilScore(scoreValue))
-    }
     router.push({
       pathname: "/results",
     })
