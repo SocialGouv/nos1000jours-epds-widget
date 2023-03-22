@@ -28,7 +28,7 @@ jobs:
           NEXT_PUBLIC_PASTEK_CHAT_ID=1
           NEXT_PUBLIC_TEST_NUMBER_ENABLED=false
           NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES=https://1000jours-blues.fabrique.social.gouv.fr/ressources
-          NEXT_PUBLIC_CALENDLY_LINK="https://calendly.com/rdv-nos1000jours/30min"
+          NEXT_PUBLIC_CALENDLY_LINK=https://calendly.com/rdv-nos1000jours/30min
 
   deploy:
     name: Deploy application
