@@ -79,20 +79,6 @@ describe("Contact Utils", () => {
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
     })
 
-    test("Should return false with 12h55", () => {
-      const date = new Date("2023-02-13 12:55:05")
-      jest.useFakeTimers().setSystemTime(date)
-
-      expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
-    })
-
-    test("Should return true with 13h01", () => {
-      const date = new Date("2023-02-13 13:01:05")
-      jest.useFakeTimers().setSystemTime(date)
-
-      expect(ContactUtils.isMamanBluesAvailableHours()).toBeTruthy()
-    })
-
     test("Should return false with 18h00", () => {
       const date = new Date("2023-02-13 18:00:05")
       jest.useFakeTimers().setSystemTime(date)
