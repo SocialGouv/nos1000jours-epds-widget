@@ -7,6 +7,7 @@ import {
   STORAGE_LOCALE,
   STORAGE_SOURCE,
   STORAGE_TEST_ABC,
+  STORAGE_IS_BACK_RESULTS,
 } from "../src/constants/constants"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
@@ -29,7 +30,6 @@ export default function Home() {
   const [source, setSource] = useState()
   const [localeSelected, setLocaleSelected] = useState()
   const [labelsTranslated, setLabelsTranslated] = useState()
-
   useEffect(() => {
     const paramSource = readSourceInUrl()
     setSource(paramSource)
@@ -43,6 +43,7 @@ export default function Home() {
   useEffect(() => {
     if (localeSelected) {
       localStorage.setItem(STORAGE_LOCALE, JSON.stringify(localeSelected))
+      localStorage.setItem(STORAGE_IS_BACK_RESULTS, false)
 
       const translationQuery = async () => {
         await getLabelsTranslationsQuery({
