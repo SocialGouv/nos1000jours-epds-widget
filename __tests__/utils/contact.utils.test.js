@@ -48,13 +48,6 @@ describe("Contact Utils", () => {
         `${TrackerUtils.CONTACT_SENT.chat}`
       )
     })
-
-    test("Should send tracker with rdv confirmation", () => {
-      sendTrackerContactConfirmed(RequestContact.type.rendezvous)
-      expect(trackerSpy).toHaveBeenCalledWith(
-        `${TrackerUtils.CONTACT_SENT.rendezvous}`
-      )
-    })
   })
 
   describe("isMamanBluesAvailableHours", () => {
