@@ -6,9 +6,11 @@ import * as TrackerUtils from "../../src/utils/tracker.utils"
  * @param {RequestContact.type} contactType
  * @param {*} label
  */
-const sendTrackerContactConfirmed = (contactType, label) => {
-  if (contactType) {
-    TrackerUtils.trackerForContact(`${label} ${contactType}`)
+const sendTrackerContactConfirmed = (contactType) => {
+  if (contactType === "chat") {
+    TrackerUtils.trackerForContact(`Ouverture ${contactType}`)
+  } else {
+    TrackerUtils.trackerForContact(`Confirmation ${contactType}`)
   }
 }
 
@@ -26,21 +28,21 @@ describe("Contact Utils", () => {
 
     test("Should send tracker with email confirmation", () => {
       TrackerUtils.trackerForContact()
-      sendTrackerContactConfirmed(RequestContact.type.email, "Confirmation")
+      sendTrackerContactConfirmed(RequestContact.type.email)
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.mail}`
       )
     })
 
     test("Should send tracker with sms confirmation", () => {
-      sendTrackerContactConfirmed(RequestContact.type.sms, "Confirmation")
+      sendTrackerContactConfirmed(RequestContact.type.sms)
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.sms}`
       )
     })
 
     test("Should send tracker with chat opening", () => {
-      sendTrackerContactConfirmed(RequestContact.type.chat, "Ouverture")
+      sendTrackerContactConfirmed(RequestContact.type.chat)
       expect(trackerSpy).toHaveBeenCalled()
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.chat}`
@@ -48,10 +50,7 @@ describe("Contact Utils", () => {
     })
 
     test("Should send tracker with rdv confirmation", () => {
-      sendTrackerContactConfirmed(
-        RequestContact.type.rendezvous,
-        "Confirmation"
-      )
+      sendTrackerContactConfirmed(RequestContact.type.rendezvous)
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.rendezvous}`
       )
