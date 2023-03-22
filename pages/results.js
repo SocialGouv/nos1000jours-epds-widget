@@ -97,7 +97,7 @@ export default function Results() {
   }
 
   useEffect(() => {
-    if (seuilScore()) {
+    if (seuilScore() && window.location.pathname === "/results") {
       TrackerUtils.trackerForResults(seuilScore())
     }
   }, [])
