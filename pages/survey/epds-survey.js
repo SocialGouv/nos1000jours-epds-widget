@@ -116,6 +116,12 @@ export default function EpdsSurvey() {
   )
 
   const goToResults = async (event) => {
+    if (
+      TrackerUtils.seuilScore(scoreValue) &&
+      isBackFromConfirmed === "false"
+    ) {
+      TrackerUtils.trackerForResults(TrackerUtils.seuilScore(scoreValue))
+    }
     router.push({
       pathname: "/results",
     })
@@ -230,14 +236,6 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
-              if (
-                TrackerUtils.seuilScore(scoreValue) &&
-                isBackFromConfirmed === "false"
-              ) {
-                TrackerUtils.trackerForResults(
-                  TrackerUtils.seuilScore(scoreValue)
-                )
-              }
               TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.end_survey)
             }}
             disabled={!isEnabledNextButton || isLoading}

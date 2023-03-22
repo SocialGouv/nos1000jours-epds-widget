@@ -19,9 +19,6 @@ export default function ContactConfirmed() {
 
   const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
   const score = StorageUtils.getInLocalStorage(STORAGE_SCORE)
-  const isBackFromConfirmed = StorageUtils.getInLocalStorage(
-    STORAGE_IS_BACK_RESULTS
-  )
   const websiteSource = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
