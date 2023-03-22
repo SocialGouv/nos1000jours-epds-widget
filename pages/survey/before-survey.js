@@ -22,7 +22,6 @@ export default function BeforeSurvey() {
   )
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
-  const demographicData = DemographicDataUtils.getDemographicBeforeEpds()
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
 
   useEffect(() => {

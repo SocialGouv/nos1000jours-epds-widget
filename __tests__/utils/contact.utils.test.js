@@ -6,7 +6,6 @@ describe("Contact Utils", () => {
   describe("sendTrackerContactConfirmed", () => {
     let trackerSpy
     localStorage.setItem(STORAGE_SOURCE, "1000-premiers-jours")
-    const source = localStorage.getItem(STORAGE_SOURCE)
     beforeEach(() => {
       trackerSpy = jest.spyOn(TrackerUtils, "trackerForContact")
     })

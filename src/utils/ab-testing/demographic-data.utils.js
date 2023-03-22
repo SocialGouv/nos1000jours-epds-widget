@@ -1,6 +1,5 @@
 import { STORAGE_TEST_ABC, STORAGE_RESULTS_ID } from "../../constants/constants"
 import { TEST } from "./ab-testing.utils"
-import * as TrackerUtils from "../tracker.utils"
 import * as StorageUtils from "../storage.utils"
 
 export const genderValues = [

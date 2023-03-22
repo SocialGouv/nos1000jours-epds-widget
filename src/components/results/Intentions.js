@@ -8,7 +8,7 @@ import * as PdfUtils from "../../utils/pdf.utils"
  * @param {number} moodLevel
  * @returns Bloc des intentions
  */
-export const Intentions = ({ moodLevel }) => {
+export const Intentions = () => {
   const router = useRouter()
 
   const [radioValue, setRadioValue] = useState()

@@ -44,7 +44,6 @@ export default function Results() {
   const scoreLevelForMacaron = parseInt(
     StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
-  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const DescriptionAndConclusion = () => (
     <Row>
       <div className="margin-bottom-8">
@@ -119,7 +118,7 @@ export default function Results() {
       <GiveAccessToResources />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
       scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
-        <Intentions moodLevel={scoreLevelForMood} />
+        <Intentions />
       ) : null}
 
       {randomForParentsFeedback == 0 ? <GiveOpinion /> : <RecruitParents />}
