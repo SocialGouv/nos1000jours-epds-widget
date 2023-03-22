@@ -40,7 +40,7 @@ export default function ContactConfirmed() {
   const goToResults = () => {
     localStorage.setItem(STORAGE_IS_BACK_RESULTS, true)
 
-    if (TrackerUtils.seuilScore(score) && isBackFromConfirmed === "true") {
+    if (TrackerUtils.seuilScore(score)) {
       TrackerUtils.trackerForResults(
         `${TrackerUtils.seuilScore(score)} (retour a mon résultat)`
       )

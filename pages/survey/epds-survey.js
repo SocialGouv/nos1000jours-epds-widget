@@ -116,7 +116,6 @@ export default function EpdsSurvey() {
   )
 
   const goToResults = async (event) => {
-    localStorage.setItem(STORAGE_IS_BACK_RESULTS, false)
     router.push({
       pathname: "/results",
     })
