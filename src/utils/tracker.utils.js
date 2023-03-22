@@ -42,11 +42,12 @@ export const CONTACT_SENT = {
 
 export const seuilScore = (scoreValue) => {
   let seuil
-  if (scoreValue < 9) {
+  if (scoreValue !== null && scoreValue < 9) {
+    console.log("seuil: ", seuil, "score: ", scoreValue)
     seuil = "score < 9"
-  } else if (scoreValue >= 9 && scoreValue < 11) {
+  } else if (scoreValue !== null && scoreValue >= 9 && scoreValue < 11) {
     seuil = "9 >= score < 11"
-  } else if (scoreValue >= 11) {
+  } else if (scoreValue !== null && scoreValue >= 11) {
     seuil = "score >= 11"
   }
   return seuil
