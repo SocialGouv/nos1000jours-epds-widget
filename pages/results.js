@@ -60,7 +60,7 @@ export default function Results() {
       }
       return seuil
     }
-    if (seuilScore() && !isBackFromConfirmed) {
+    if (seuilScore() && isBackFromConfirmed === "false") {
       TrackerUtils.trackerForResults(seuilScore())
     }
   }, [isBackFromConfirmed, scoreValue])
