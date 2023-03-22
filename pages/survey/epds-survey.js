@@ -187,7 +187,6 @@ export default function EpdsSurvey() {
     ref.current.next()
     setActualIndex(actualIndex + 1)
     if (actualIndex === 1) {
-      console.log("coucou")
       TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.start_survey)
     }
   }
