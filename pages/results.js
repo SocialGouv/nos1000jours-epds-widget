@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Row } from "react-bootstrap"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"

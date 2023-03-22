@@ -7,15 +7,21 @@ import {
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
   STORAGE_IS_BACK_RESULTS,
+  STORAGE_SCORE,
 } from "../../src/constants/constants"
 import {} from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import * as StorageUtils from "../../src/utils/storage.utils"
+import * as TrackerUtils from "../../src/utils/tracker.utils"
 
 export default function ContactConfirmed() {
   const router = useRouter()
 
   const contactType = StorageUtils.getInLocalStorage(STORAGE_CONTACT_TYPE)
+  const score = StorageUtils.getInLocalStorage(STORAGE_SCORE)
+  const isBackFromConfirmed = StorageUtils.getInLocalStorage(
+    STORAGE_IS_BACK_RESULTS
+  )
   const websiteSource = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
@@ -33,6 +39,12 @@ export default function ContactConfirmed() {
 
   const goToResults = () => {
     localStorage.setItem(STORAGE_IS_BACK_RESULTS, true)
+
+    if (TrackerUtils.seuilScore(score) && isBackFromConfirmed === "true") {
+      TrackerUtils.trackerForResults(
+        `${TrackerUtils.seuilScore(score)} (retour a mon résultat)`
+      )
+    }
     router.push({
       pathname: "/results",
     })

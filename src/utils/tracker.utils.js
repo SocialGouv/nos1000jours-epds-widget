@@ -40,6 +40,18 @@ export const CONTACT_SENT = {
   rendezvous: "Confirmation rendezvous",
 }
 
+export const seuilScore = (scoreValue) => {
+  let seuil
+  if (scoreValue < 9) {
+    seuil = "score < 9"
+  } else if (scoreValue >= 9 && scoreValue < 11) {
+    seuil = "9 >= score < 11"
+  } else if (scoreValue >= 11) {
+    seuil = "score >= 11"
+  }
+  return seuil
+}
+
 const tracker = (categ, action, name) => {
   if (process.env.NEXT_PUBLIC_MATOMO_ENABLED === "true")
     push(["trackEvent", categ, action, name])

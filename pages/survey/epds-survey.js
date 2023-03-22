@@ -52,6 +52,10 @@ export default function EpdsSurvey() {
   const [isLoading, setLoading] = useState(false)
 
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+  const isBackFromConfirmed = StorageUtils.getInLocalStorage(
+    STORAGE_IS_BACK_RESULTS
+  )
+  const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
 
   const [getEpdsSurveyQuery] = useLazyQuery(
     gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
@@ -227,6 +231,14 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
+              if (
+                TrackerUtils.seuilScore(scoreValue) &&
+                isBackFromConfirmed === "false"
+              ) {
+                TrackerUtils.trackerForResults(
+                  TrackerUtils.seuilScore(scoreValue)
+                )
+              }
               TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.end_survey)
             }}
             disabled={!isEnabledNextButton || isLoading}
