@@ -27,26 +27,19 @@ describe("Contact Utils", () => {
     })
 
     test("Should send tracker with email confirmation", () => {
-      TrackerUtils.trackerForContact()
       sendTrackerContactConfirmed(RequestContact.type.email)
-      expect(trackerSpy).toHaveBeenCalledWith(
-        `${TrackerUtils.CONTACT_SENT.mail}`
-      )
+      expect(trackerSpy).toHaveBeenCalledWith("Confirmation email")
     })
 
     test("Should send tracker with sms confirmation", () => {
       sendTrackerContactConfirmed(RequestContact.type.sms)
-      expect(trackerSpy).toHaveBeenCalledWith(
-        `${TrackerUtils.CONTACT_SENT.sms}`
-      )
+      expect(trackerSpy).toHaveBeenCalledWith(`Confirmation sms`)
     })
 
     test("Should send tracker with chat opening", () => {
       sendTrackerContactConfirmed(RequestContact.type.chat)
       expect(trackerSpy).toHaveBeenCalled()
-      expect(trackerSpy).toHaveBeenCalledWith(
-        `${TrackerUtils.CONTACT_SENT.chat}`
-      )
+      expect(trackerSpy).toHaveBeenCalledWith("Ouverture chat")
     })
   })
 
