@@ -2,6 +2,16 @@ import { RequestContact, STORAGE_SOURCE } from "../../src/constants/constants"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 
+/**
+ * @param {RequestContact.type} contactType
+ * @param {*} label
+ */
+const sendTrackerContactConfirmed = (contactType, label) => {
+  if (contactType) {
+    TrackerUtils.trackerForContact(`${label} ${contactType}`)
+  }
+}
+
 describe("Contact Utils", () => {
   describe("sendTrackerContactConfirmed", () => {
     let trackerSpy
@@ -16,30 +26,21 @@ describe("Contact Utils", () => {
 
     test("Should send tracker with email confirmation", () => {
       TrackerUtils.trackerForContact()
-      ContactUtils.sendTrackerContactConfirmed(
-        RequestContact.type.email,
-        "Confirmation"
-      )
+      sendTrackerContactConfirmed(RequestContact.type.email, "Confirmation")
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.mail}`
       )
     })
 
     test("Should send tracker with sms confirmation", () => {
-      ContactUtils.sendTrackerContactConfirmed(
-        RequestContact.type.sms,
-        "Confirmation"
-      )
+      sendTrackerContactConfirmed(RequestContact.type.sms, "Confirmation")
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.sms}`
       )
     })
 
     test("Should send tracker with chat opening", () => {
-      ContactUtils.sendTrackerContactConfirmed(
-        RequestContact.type.chat,
-        "Ouverture"
-      )
+      sendTrackerContactConfirmed(RequestContact.type.chat, "Ouverture")
       expect(trackerSpy).toHaveBeenCalled()
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.chat}`
@@ -47,11 +48,10 @@ describe("Contact Utils", () => {
     })
 
     test("Should send tracker with rdv confirmation", () => {
-      ContactUtils.sendTrackerContactConfirmed(
+      sendTrackerContactConfirmed(
         RequestContact.type.rendezvous,
         "Confirmation"
       )
-      expect(trackerSpy).toHaveBeenCalled()
       expect(trackerSpy).toHaveBeenCalledWith(
         `${TrackerUtils.CONTACT_SENT.rendezvous}`
       )

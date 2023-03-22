@@ -6,17 +6,6 @@ import {
   STORAGE_SOURCE,
 } from "../constants/constants"
 
-/**
- * @param {RequestContact.type} contactType
- * @param {*} label
-
- */
-export const sendTrackerContactConfirmed = (contactType, label) => {
-  if (contactType) {
-    TrackerUtils.trackerForContact(`${label} ${contactType}`)
-  }
-}
-
 export const trackerContactName = (typeContact) => {
   switch (typeContact) {
     case RequestContact.type.email:
