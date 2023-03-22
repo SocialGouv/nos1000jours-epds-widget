@@ -9,7 +9,6 @@ import {
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
-  STORAGE_IS_BACK_RESULTS,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
@@ -44,26 +43,6 @@ export default function Results() {
   const scoreLevelForMacaron = parseInt(
     StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
-  const isBackFromConfirmed = StorageUtils.getInLocalStorage(
-    STORAGE_IS_BACK_RESULTS
-  )
-
-  useEffect(() => {
-    const seuilScore = () => {
-      let seuil
-      if (scoreValue < 9) {
-        seuil = "score < 9"
-      } else if (scoreValue >= 9 && scoreValue < 11) {
-        seuil = "9 >= score < 11"
-      } else if (scoreValue >= 11) {
-        seuil = "score >= 11"
-      }
-      return seuil
-    }
-    if (seuilScore() && isBackFromConfirmed === "false") {
-      TrackerUtils.trackerForResults(seuilScore())
-    }
-  }, [isBackFromConfirmed, scoreValue])
 
   const DescriptionAndConclusion = () => (
     <Row>
