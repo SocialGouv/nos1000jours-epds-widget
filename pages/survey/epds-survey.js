@@ -18,6 +18,7 @@ import {
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
+  STORAGE_IS_BACK_RESULTS,
 } from "../../src/constants/constants"
 import { Accordion, Spinner } from "react-bootstrap"
 import {
@@ -111,6 +112,7 @@ export default function EpdsSurvey() {
   )
 
   const goToResults = async (event) => {
+    localStorage.setItem(STORAGE_IS_BACK_RESULTS, false)
     router.push({
       pathname: "/results",
     })

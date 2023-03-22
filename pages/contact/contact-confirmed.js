@@ -6,6 +6,7 @@ import {
   RequestContact,
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
+  STORAGE_IS_BACK_RESULTS,
 } from "../../src/constants/constants"
 import {} from "@dataesr/react-dsfr"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
@@ -31,6 +32,7 @@ export default function ContactConfirmed() {
   )
 
   const goToResults = () => {
+    localStorage.setItem(STORAGE_IS_BACK_RESULTS, true)
     router.push({
       pathname: "/results",
     })

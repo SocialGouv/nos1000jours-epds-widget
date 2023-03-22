@@ -84,24 +84,6 @@ export default function Results() {
     )
   }
 
-  const seuilScore = () => {
-    let seuil
-    if (scoreValue < 9) {
-      seuil = "score < 9"
-    } else if (scoreValue >= 9 && scoreValue < 11) {
-      seuil = "9 >= score < 11"
-    } else if (scoreValue >= 11) {
-      seuil = "score >= 11"
-    }
-    return seuil
-  }
-
-  useEffect(() => {
-    if (seuilScore() && window.location.pathname === "/results") {
-      TrackerUtils.trackerForResults(seuilScore())
-    }
-  }, [])
-
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
