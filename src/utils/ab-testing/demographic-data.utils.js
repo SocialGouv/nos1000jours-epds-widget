@@ -143,11 +143,3 @@ export const goToDemographicSurvey = async (router, epdsTestID) => {
 
   router.push({ pathname: "/ab-testing/demographic-data-survey" })
 }
-
-export const trackerForDemographie = (label) => {
-  TrackerUtils.track(
-    TrackerUtils.CATEG.demography,
-    TrackerUtils.EVENT_CLICK,
-    label
-  )
-}

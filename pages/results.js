@@ -23,7 +23,7 @@ import { Intentions } from "../src/components/results/Intentions"
 import { DownloadApp } from "../src/components/results/DownloadApp"
 import { RecruitParents } from "../src/components/results/RecruitParents"
 import { GiveAccessToResources } from "../src/components/ab-testing/resources/GiveAccessToResources"
-import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
+
 export default function Results() {
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
   const OPINION_GOUV_URL =
@@ -71,13 +71,9 @@ export default function Results() {
             target="_blank"
             rel="noreferrer"
             href={OPINION_GOUV_URL}
-            onClick={() =>
-              TrackerUtils.track(
-                TrackerUtils.CATEG.results,
-                TrackerUtils.EVENT_CLICK,
-                "Je donne mon avis"
-              )
-            }
+            onClick={() => {
+              TrackerUtils.trackerForIntentions(TrackerUtils.ACTION.opinion)
+            }}
           >
             <img
               className="participate-btn"
@@ -90,29 +86,21 @@ export default function Results() {
     )
   }
 
-  const levelMacaronText = (scoreLevel) => {
-    let colorsByLevel
-    switch (scoreLevel) {
-      case 1:
-        colorsByLevel = "good-mood"
-        break
-      case 2:
-        colorsByLevel = "moderatelygood-mood"
-        break
-      case 3:
-        colorsByLevel = "bad-mood"
-        break
-      default:
-        break
+  const seuilScore = () => {
+    let seuil
+    if (scoreValue < 9) {
+      seuil = "score < 9"
+    } else if (scoreValue >= 9 && scoreValue < 11) {
+      seuil = "9 >= score < 11"
+    } else if (scoreValue >= 11) {
+      seuil = "score >= 11"
     }
-    return colorsByLevel
+    return seuil
   }
 
   useEffect(() => {
-    if (levelMacaronText(scoreLevelForMood)) {
-      AbTestingUtils.trackerForAbTesting(
-        `Macaron Elise - ${levelMacaronText(scoreLevelForMood)} - ${source}`
-      )
+    if (seuilScore()) {
+      TrackerUtils.trackerForResults(seuilScore())
     }
   }, [])
 

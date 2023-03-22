@@ -7,6 +7,7 @@ import { WidgetHeader } from "../../src/components/WidgetHeader"
 import { STORAGE_SOURCE } from "../../src/constants/constants"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
+import * as TrackerUtils from "../../src/utils/tracker.utils"
 
 export default function BeforeSurvey() {
   const router = useRouter()
@@ -32,25 +33,22 @@ export default function BeforeSurvey() {
   }, [])
 
   const goToEpdsSurvey = async () => {
-    DemographicDataUtils.trackerForDemographie(
-      `Informations avant EPDS - Commencer le questionnaire - ${source}`
-    )
-
     router.push({
       pathname: "/survey/epds-survey",
     })
   }
 
   const goToNextPage = async () => {
+    TrackerUtils.track(
+      TrackerUtils.CATEG.introduction,
+      TrackerUtils.ACTION.end_intro
+    )
     source === "1000-premiers-jours"
       ? await goToEpdsSurvey()
       : await goToDemographicSurvey()
   }
 
   const goToDemographicSurvey = async () => {
-    DemographicDataUtils.trackerForDemographie(
-      `Informations avant EPDS - ${demographicData?.buttonLabelInBeforeSurvey} - ${source}`
-    )
     DemographicDataUtils.goToDemographicSurvey(router)
   }
 

@@ -164,16 +164,10 @@ export default function ContactForm() {
   }
 
   const sendTrackerContactType = (typeContact) => {
-    TrackerUtils.genericTracker(
-      TrackerUtils.CATEG.contact,
-      TrackerUtils.NAME.contact_confirm_sent
-    )
     if (typeContact) {
-      TrackerUtils.track(
-        TrackerUtils.CATEG.contact,
-        TrackerUtils.ACTION.contact_confirm_sent,
-        `${ContactUtils.trackerContactName(typeContact)} - ${websiteSource}`
-      )
+      TrackerUtils.trackerForContact(TrackerUtils.ACTION.confirmation)
+      TrackerUtils.trackerForContact(ContactUtils.trackerContactName(typeContact))
+      AbTestingUtils.trackerForAbTesting(TrackerUtils.ACTION.confirmation)
       AbTestingUtils.trackerForAbTesting(ContactUtils.trackerContactName(typeContact))
     }
   }

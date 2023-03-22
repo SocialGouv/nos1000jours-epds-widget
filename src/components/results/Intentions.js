@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { ButtonGroup, ToggleButton } from "react-bootstrap"
-import { trackerForIntentions } from "../../utils/ab-testing/measuring-intentions.utils"
+import * as TrackerUtils from "../../utils/tracker.utils"
 import * as PdfUtils from "../../utils/pdf.utils"
 
 /**
@@ -26,21 +26,17 @@ export const Intentions = ({ moodLevel }) => {
   const DISPLAY_IMAGE_FOR_RESPONSE_ID = 1
 
   useEffect(() => {
-    openContact()
-  }, [openContact, radioValue])
-
-  const openContact = () => {
     const itemToElise = questionAboutScore.responses.find(
       (item) => item.id == DISPLAY_IMAGE_FOR_RESPONSE_ID
     )
     if (itemToElise.name === radioValue)
       router.push({ pathname: "/contact/to-be-contacted" })
-  }
+  }, [radioValue])
 
   const onToggleButon = (value) => {
     setRadioValue(value)
     setItemSelected(true)
-    trackerForIntentions(moodLevel, value)
+    TrackerUtils.trackerForIntentions(value)
   }
 
   const questionBlock = (question) => {
@@ -88,7 +84,7 @@ export const Intentions = ({ moodLevel }) => {
 
   const downloadEpdsResponses = () => {
     PdfUtils.generateEpdsResultsPdf()
-    trackerForIntentions(moodLevel, "Télécharger mes réponses")
+    TrackerUtils.trackerForIntentions(TrackerUtils.ACTION.download)
   }
 
   return (

@@ -1,51 +1,69 @@
 import { push } from "@socialgouv/matomo-next"
-
+import * as StorageUtils from "../utils/storage.utils"
+import { STORAGE_SOURCE } from "../constants/constants"
 export const EVENT_CLICK = "Click"
 
 export const CATEG = {
-  contact: "Contact",
   home: "Home",
-  survey: "Questionnaire",
-  test: "Test",
-  intentions: "Intentions",
+  introduction: "Introduction",
   demography: "Démographie",
-  recruit: "Recrutement",
-  results: "Résultats",
+  survey: "Questionnaire",
+  results: "Résultat",
+  intentions: "Intentions",
+  contact: "Contact",
+  test: "Test",
 }
 
-export const ACTION_GENERIQUE = "Générique"
 export const ACTION = {
-  contact_confirm_sent: "Confirmation d'envoi de la demande de contact",
-  contact_type: "Choix du type de prise de contact",
-  parcours: "Parcours",
-  generic: ACTION_GENERIQUE,
-}
+  start: "Démarrer",
+  end_intro: "Terminer l’introduction",
+  end_demo: "Terminer le formulaire démographique",
+  start_survey: "Commencer le questionnaire",
+  end_survey: "Terminer le questionnaire",
+  be_contacted: "Demander à être contacté",
+  ressource: "Recevoir les ressources par mail",
+  ressource_mail: "Confirmer recevoir les ressources par mail",
 
-export const NAME = {
-  start: "Commencer",
-  end: "Terminer",
-  contact_confirm_sent: "Confirmation d'envoi de la demande de contact",
-  contact_type: "Choix du type de prise de contact",
+  download: "Télécharger mes réponses",
+
+  opinion: "Donner son avis",
+  recruit: "Faire un entretien utilisateur",
+
+  confirmation: "Confirmation effectuée",
 }
 
 export const CONTACT_SENT = {
-  chat: "ouverture_chat",
-  no_chat: "chat_non_disponible",
-  mail: "confirmation_mail",
-  sms: "confirmation_sms",
-  rendezvous: "confirmation_envoi_rendez-vous",
+  chat: "Ouverture chat",
+  no_chat: "Chat non disponible",
+  mail: "Confirmation email",
+  sms: "Confirmation sms",
+  rendezvous: "Confirmation rendezvous",
 }
 
-export const track = (categ, action, name) => {
+const tracker = (categ, action, name) => {
   if (process.env.NEXT_PUBLIC_MATOMO_ENABLED === "true")
     push(["trackEvent", categ, action, name])
 }
 
-/**
- * Tracker générique (action "generique") pour pouvoir utiliser faciliter les stats sans information précise (test, source)
- * @param {CATEG} categ
- * @param {*} name
- */
-export const genericTracker = (categ, name) => {
-  track(categ, ACTION.generic, name)
+export const track = (categ, action) => {
+  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+  if (source) {
+    tracker(categ, action, source)
+  }
+}
+
+export const trackerForSurvey = (action) => {
+  track(CATEG.survey, action)
+}
+
+export const trackerForResults = (action) => {
+  track(CATEG.results, action)
+}
+
+export const trackerForIntentions = (action) => {
+  track(CATEG.intentions, action)
+}
+
+export const trackerForContact = (action) => {
+  track(CATEG.contact, action)
 }

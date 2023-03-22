@@ -4,14 +4,17 @@ import { Modal } from "react-bootstrap"
 import { client, DEMANDE_RESSOURCES } from "../../../../apollo-client"
 import { useMutation } from "@apollo/client"
 import { LoaderFoButton } from "../../../utils/main.utils"
-import * as AbTestingUtils from "../../../utils/ab-testing/ab-testing.utils"
+import * as TrackerUtils from "../../../utils/tracker.utils"
 export const GiveAccessToResources = () => {
   const [show, setShow] = useState(false)
   const [isLoading, setLoading] = useState(false)
   const [mailValue, setMailValue] = useState()
 
   const handleChange = (event) => setMailValue(event.target.value)
-  const openModal = () => setShow(true)
+  const openModal = () => {
+    setShow(true)
+    TrackerUtils.trackerForIntentions(TrackerUtils.ACTION.ressource)
+  }
   const closeModal = () => setShow(false)
 
   const [sendResourcesQuery] = useMutation(DEMANDE_RESSOURCES, {
@@ -29,9 +32,7 @@ export const GiveAccessToResources = () => {
   const sendMail = async () => {
     setLoading(false)
     setLoading(true)
-    AbTestingUtils.trackerForAbTesting(
-      "Je souhaite recevoir les ressources par mail - Envoie du mail"
-    )
+    TrackerUtils.trackerForIntentions(TrackerUtils.ACTION.ressource_mail)
     await sendResourcesQuery({
       variables: {
         email: mailValue,

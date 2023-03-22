@@ -1,11 +1,9 @@
 import { STORAGE_TEST_VERS_QUI_SE_TOURNER } from "../../constants/constants"
-import { getColorIconAndTextByMood } from "../main.utils"
 import {
   SCORE_LEVEL_BAD,
   SCORE_LEVEL_GOOD,
   SCORE_LEVEL_MEDIUM,
 } from "../score-level.utils"
-import * as TrackerUtils from "../tracker.utils"
 import { TEST } from "./ab-testing.utils"
 
 export const contacterAToutMoment =
@@ -140,11 +138,6 @@ export const estProcheDeLaRealiteCommentaireByScoreLevel = (scoreLevel) => {
     case SCORE_LEVEL_BAD:
       return estProcheDeLaRealite.commentaires.lvl3
   }
-}
-
-export const trackerForIntentions = (scoreLevel, label) => {
-  const moodLevel = getColorIconAndTextByMood(scoreLevel).moodText
-  TrackerUtils.track(TrackerUtils.CATEG.intentions, moodLevel, label)
 }
 
 export const saveIsIntentionVersQuiSeTourner = (label) => {

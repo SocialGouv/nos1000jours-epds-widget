@@ -99,7 +99,6 @@ export default function ToBeContacted() {
 
   const openWhatsapp = async () => {
     ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
-    ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
     window.open(URL_CHAT_WHATSAPP, "_blank")
   }
 
@@ -121,17 +120,12 @@ export default function ToBeContacted() {
   }
 
   const onValidate = async (_event) => {
-    const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
-    TrackerUtils.genericTracker(
-      TrackerUtils.CATEG.contact,
-      TrackerUtils.NAME.contact_type
-    )
-    TrackerUtils.track(
-      TrackerUtils.CATEG.contact,
-      TrackerUtils.ACTION.contact_type,
-      `${itemValueType} - ${source}`
-    )
-    AbTestingUtils.trackerForAbTesting(itemValueType)
+    if (itemValueType) {
+      TrackerUtils.trackerForContact(`Choix effectué`)
+      TrackerUtils.trackerForContact(`Choix ${itemValueType}`)
+      AbTestingUtils.trackerForAbTesting(`Choix effectué`)
+      AbTestingUtils.trackerForAbTesting(`Choix ${itemValueType}`)
+    }
 
     if (itemValueType == RequestContact.type.chat) activateChat()
     else goToContactForm()

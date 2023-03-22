@@ -5,13 +5,9 @@ import * as MainUtils from "../../utils/main.utils"
 export function RecruitParents() {
   const INDIVIDUAL_URL = "https://calendly.com/1000-jours-blues/30min"
 
-  const onClickParticipate = (url, label) => {
+  const onClickParticipate = (url) => {
     MainUtils.openUrl(url)
-    TrackerUtils.track(
-      TrackerUtils.CATEG.recruit,
-      TrackerUtils.EVENT_CLICK,
-      label
-    )
+    TrackerUtils.trackerForIntentions(TrackerUtils.ACTION.recruit)
   }
 
   return (
@@ -24,9 +20,7 @@ export function RecruitParents() {
 
         <Button
           className="participate-btn"
-          onClick={() =>
-            onClickParticipate(INDIVIDUAL_URL, "Choisir mon créneau")
-          }
+          onClick={() => onClickParticipate(INDIVIDUAL_URL)}
         >
           Choisir mon créneau
         </Button>

@@ -24,15 +24,11 @@ describe("Utils", () => {
       trackerSpy = jest.spyOn(TrackerUtils, "track")
     })
 
-    test("Should return tracker with CATEG.test, course name and label", () => {
+    test("Should return tracker with label", () => {
       localStorage.setItem(STORAGE_TEST_ABC, "A")
 
       AbTestingUtils.trackerForAbTesting("my label")
-      expect(trackerSpy).toHaveBeenCalledWith(
-        TrackerUtils.CATEG.test,
-        `${TrackerUtils.ACTION.parcours}A`,
-        "my label"
-      )
+      expect(trackerSpy).toHaveBeenCalledWith("Test_A", "my label")
     })
   })
 })

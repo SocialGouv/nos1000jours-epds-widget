@@ -2,9 +2,8 @@ import React from "react"
 import { Row } from "react-bootstrap"
 import {} from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
-import { STORAGE_SOURCE } from "../../constants/constants"
 import * as TrackerUtils from "../../utils/tracker.utils"
-import * as StorageUtils from "../../utils/storage.utils"
+import * as AbTestingUtils from "../../utils/ab-testing/ab-testing.utils"
 
 export const buttonLabel = "Je veux être accompagné.e"
 
@@ -27,13 +26,8 @@ export function ContactMamanBlues({ scoreLevel }) {
   }
 
   const goToBeContacted = async (event) => {
-    const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
-    TrackerUtils.track(
-      TrackerUtils.CATEG.contact,
-      `Macaron d'Elise ${TrackerUtils.EVENT_CLICK}`,
-      `${buttonLabel} - ${source}`
-    )
-
+    TrackerUtils.trackerForResults(TrackerUtils.ACTION.be_contacted)
+    AbTestingUtils.trackerForAbTesting(TrackerUtils.ACTION.be_contacted)
     router.push({
       pathname: "/contact/to-be-contacted",
     })

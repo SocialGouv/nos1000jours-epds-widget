@@ -186,6 +186,9 @@ export default function EpdsSurvey() {
   const onNextQuestion = () => {
     ref.current.next()
     setActualIndex(actualIndex + 1)
+    if (actualIndex + 1 === 1) {
+      TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.start_survey)
+    }
   }
 
   const PreviousAndNextButton = ({ showPrevious, showNext }) => {
@@ -222,16 +225,7 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
-
-              TrackerUtils.genericTracker(
-                TrackerUtils.CATEG.survey,
-                TrackerUtils.NAME.end
-              )
-              TrackerUtils.track(
-                TrackerUtils.CATEG.survey,
-                TrackerUtils.EVENT_CLICK,
-                `Terminer - ${source}`
-              )
+              TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.end_survey)
             }}
             disabled={!isEnabledNextButton || isLoading}
           >
