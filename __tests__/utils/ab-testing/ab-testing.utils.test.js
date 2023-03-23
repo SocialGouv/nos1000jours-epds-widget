@@ -24,11 +24,23 @@ describe("Utils", () => {
       trackerSpy = jest.spyOn(TrackerUtils, "track")
     })
 
-    test("Should return tracker with label", () => {
+    test("Should return tracker with test A for test A", () => {
       localStorage.setItem(STORAGE_TEST_ABC, "A")
 
-      AbTestingUtils.trackerForAbTesting("my label")
-      expect(trackerSpy).toHaveBeenCalledWith("Test_A", "my label")
+      AbTestingUtils.trackerForAbTesting("test A")
+      expect(trackerSpy).toHaveBeenCalledWith("Test_A", "test A")
+    })
+    test("Should return tracker with B test for test B", () => {
+      localStorage.setItem(STORAGE_TEST_ABC, "B")
+
+      AbTestingUtils.trackerForAbTesting("B test")
+      expect(trackerSpy).toHaveBeenCalledWith("Test_B", "B test")
+    })
+    test("Should return tracker with C super test for test C", () => {
+      localStorage.setItem(STORAGE_TEST_ABC, "C")
+
+      AbTestingUtils.trackerForAbTesting("C super test")
+      expect(trackerSpy).toHaveBeenCalledWith("Test_C", "C super test")
     })
   })
 })

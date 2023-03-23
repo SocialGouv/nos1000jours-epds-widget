@@ -11,6 +11,14 @@ describe("Demande de contact", () => {
       expect(result).toEqual(true)
     })
 
+    test("Sélection du type RDV => choix valide", () => {
+      const result = isValidButtonEnabled(
+        RequestContact.type.rendezvous,
+        undefined
+      )
+      expect(result).toEqual(true)
+    })
+
     test("Sélection du type Email => choix valide", () => {
       const result = isValidButtonEnabled(RequestContact.type.email, undefined)
       expect(result).toEqual(true)
@@ -146,7 +154,9 @@ describe("Demande de contact", () => {
         },
       ]
 
-      expect(convertHoursListInString(contactHours)).toEqual(" matin après-midi")
+      expect(convertHoursListInString(contactHours)).toEqual(
+        " matin après-midi"
+      )
     })
   })
 })
