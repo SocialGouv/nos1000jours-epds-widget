@@ -6,6 +6,10 @@ import {
   STORAGE_SOURCE,
 } from "../constants/constants"
 
+/**
+ * Return la confirmation du mode de contact selectionner
+ * @param {RequestContact.type} typeContact
+ */
 export const trackerContactName = (typeContact) => {
   switch (typeContact) {
     case RequestContact.type.email:

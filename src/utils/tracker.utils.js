@@ -1,7 +1,6 @@
 import { push } from "@socialgouv/matomo-next"
 import * as StorageUtils from "../utils/storage.utils"
 import { STORAGE_SOURCE } from "../constants/constants"
-export const EVENT_CLICK = "Click"
 
 export const CATEG = {
   home: "Home",

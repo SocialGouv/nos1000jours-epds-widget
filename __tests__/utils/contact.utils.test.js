@@ -15,6 +15,24 @@ const sendTrackerContactConfirmed = (contactType) => {
 }
 
 describe("Contact Utils", () => {
+  describe("trackerContactName", () => {
+    test("Should return confirmation mail if email type is selected", () => {
+      expect(ContactUtils.trackerContactName("email")).toEqual(
+        "Confirmation email"
+      )
+    })
+    test("Should return confirmation mail if chat type is selected", () => {
+      expect(ContactUtils.trackerContactName("chat")).toEqual("Ouverture chat")
+    })
+    test("Should return confirmation mail if rendezvous type is selected", () => {
+      expect(ContactUtils.trackerContactName("rendezvous")).toEqual(
+        "Confirmation rendezvous"
+      )
+    })
+    test("Should return confirmation mail if sms type is selected", () => {
+      expect(ContactUtils.trackerContactName("sms")).toEqual("Confirmation sms")
+    })
+  })
   describe("sendTrackerContactConfirmed", () => {
     let trackerSpy
     localStorage.setItem(STORAGE_SOURCE, "1000-premiers-jours")
@@ -58,8 +76,15 @@ describe("Contact Utils", () => {
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeTruthy()
     })
 
-    test("Should return true with 10h", () => {
-      const date = new Date("2023-02-13 10:50:05")
+    test("Should return false with 12h00", () => {
+      const date = new Date("2023-02-13 12:00:05")
+      jest.useFakeTimers().setSystemTime(date)
+
+      expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
+    })
+
+    test("Should return true with 13h00", () => {
+      const date = new Date("2023-02-13 13:00:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeTruthy()
@@ -74,13 +99,6 @@ describe("Contact Utils", () => {
 
     test("Should return false with 17h55", () => {
       const date = new Date("2023-02-13 17:55:05")
-      jest.useFakeTimers().setSystemTime(date)
-
-      expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
-    })
-
-    test("Should return false with 18h00", () => {
-      const date = new Date("2023-02-13 18:00:05")
       jest.useFakeTimers().setSystemTime(date)
 
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
