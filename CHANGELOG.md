@@ -1,3 +1,10 @@
+# [1.58.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.3...v1.58.0) (2023-03-23)
+
+
+### Features
+
+* refacto des tags sur matomo ([#145](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/145)) ([a08e6d0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/a08e6d0685c1c074b510dc74f450fe57ea0504b7))
+
 ## [1.57.3](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.2...v1.57.3) (2023-03-21)
 
 
