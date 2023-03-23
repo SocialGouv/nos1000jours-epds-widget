@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Row } from "react-bootstrap"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"
@@ -9,7 +9,6 @@ import {
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
-  STORAGE_SOURCE,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
@@ -23,7 +22,7 @@ import { Intentions } from "../src/components/results/Intentions"
 import { DownloadApp } from "../src/components/results/DownloadApp"
 import { RecruitParents } from "../src/components/results/RecruitParents"
 import { GiveAccessToResources } from "../src/components/ab-testing/resources/GiveAccessToResources"
-import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
+
 export default function Results() {
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
   const OPINION_GOUV_URL =
@@ -44,7 +43,7 @@ export default function Results() {
   const scoreLevelForMacaron = parseInt(
     StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
-  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+
   const DescriptionAndConclusion = () => (
     <Row>
       <div className="margin-bottom-8">
@@ -71,13 +70,9 @@ export default function Results() {
             target="_blank"
             rel="noreferrer"
             href={OPINION_GOUV_URL}
-            onClick={() =>
-              TrackerUtils.track(
-                TrackerUtils.CATEG.results,
-                TrackerUtils.EVENT_CLICK,
-                "Je donne mon avis"
-              )
-            }
+            onClick={() => {
+              TrackerUtils.trackerForIntentions(TrackerUtils.ACTION.opinion)
+            }}
           >
             <img
               className="participate-btn"
@@ -89,32 +84,6 @@ export default function Results() {
       </div>
     )
   }
-
-  const levelMacaronText = (scoreLevel) => {
-    let colorsByLevel
-    switch (scoreLevel) {
-      case 1:
-        colorsByLevel = "good-mood"
-        break
-      case 2:
-        colorsByLevel = "moderatelygood-mood"
-        break
-      case 3:
-        colorsByLevel = "bad-mood"
-        break
-      default:
-        break
-    }
-    return colorsByLevel
-  }
-
-  useEffect(() => {
-    if (levelMacaronText(scoreLevelForMood)) {
-      AbTestingUtils.trackerForAbTesting(
-        `Macaron Elise - ${levelMacaronText(scoreLevelForMood)} - ${source}`
-      )
-    }
-  }, [])
 
   return (
     <ContentLayout>
@@ -131,7 +100,7 @@ export default function Results() {
       <GiveAccessToResources />
       {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
       scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
-        <Intentions moodLevel={scoreLevelForMood} />
+        <Intentions />
       ) : null}
 
       {randomForParentsFeedback == 0 ? <GiveOpinion /> : <RecruitParents />}

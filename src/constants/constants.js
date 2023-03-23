@@ -15,11 +15,12 @@ export const STORAGE_SCORE_LEVEL_TEXTS = "scoreLevelForTexts"
 export const STORAGE_SCORE_QUESTION_DIX = "scoreQuestionDix"
 export const STORAGE_RESULTS_BOARD = "resultsBoard"
 export const STORAGE_RESULTS_ID = "resultsBoardId"
-
+export const STORAGE_IS_BACK_RESULTS = "isBackFromConfirmed"
 export const STORAGE_CONTACT_TYPE = "contactType"
 export const STORAGE_CONTACT_HOURS = "contactHours"
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL
+export const CALENDLY_LINK = process.env.NEXT_PUBLIC_CALENDLY_LINK
 export const EPDS_SOURCE = "SitePartenaire"
 export const DEFAULT_LOCAL = "FR"
 export const OPEN_CONTACT_FROM_EMAIL = "fromEmail"

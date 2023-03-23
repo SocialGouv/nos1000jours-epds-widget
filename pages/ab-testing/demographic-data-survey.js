@@ -23,6 +23,7 @@ import {
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
 import * as StorageUtils from "../../src/utils/storage.utils"
+import * as TrackerUtils from "../../src/utils/tracker.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import { JobSelector } from "../../src/components/JobSelector"
 import { DepartmentCodeSelector } from "../../src/components/DepartmentCodeSelector"
@@ -205,12 +206,9 @@ export default function DemographicDataSurvey() {
         cspLibelle: jobValue.libelle,
       },
     })
-
-    const trackerLabel = demographicData?.isAfterEpds
-      ? demographicData?.buttonLabelInInfoDemographicSurvey
-      : "Envoyer"
-    DemographicDataUtils.trackerForDemographie(
-      `Questionnaire démographique - ${trackerLabel}`
+    TrackerUtils.track(
+      TrackerUtils.CATEG.demography,
+      TrackerUtils.ACTION.end_demo
     )
   }
 

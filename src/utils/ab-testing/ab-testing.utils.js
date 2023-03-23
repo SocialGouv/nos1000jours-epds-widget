@@ -10,8 +10,8 @@ export const TEST = {
 }
 
 /**
- * Génère aléatoirement A, B, C ou D
- * @returns A, B, C ou D
+ * Génère aléatoirement A, B, C
+ * @returns A, B, C
  */
 export const generateRandomTest = () => {
   // expected output: 0, 1, 2 or 3
@@ -25,13 +25,9 @@ export const generateRandomTest = () => {
   }
 }
 
-export const trackerForAbTesting = (label) => {
+export const trackerForAbTesting = (action) => {
   const id = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
   if (id) {
-    TrackerUtils.track(
-      TrackerUtils.CATEG.test,
-      `${TrackerUtils.ACTION.parcours}${id}`,
-      label
-    )
+    TrackerUtils.track(`${TrackerUtils.CATEG.test}_${id}`, action)
   }
 }

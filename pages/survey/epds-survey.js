@@ -18,6 +18,7 @@ import {
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
+  STORAGE_IS_BACK_RESULTS,
 } from "../../src/constants/constants"
 import { Accordion, Spinner } from "react-bootstrap"
 import {
@@ -51,6 +52,10 @@ export default function EpdsSurvey() {
   const [isLoading, setLoading] = useState(false)
 
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
+  const isBackFromConfirmed = StorageUtils.getInLocalStorage(
+    STORAGE_IS_BACK_RESULTS
+  )
+  const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
 
   const [getEpdsSurveyQuery] = useLazyQuery(
     gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
@@ -92,6 +97,12 @@ export default function EpdsSurvey() {
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
       localStorage.setItem(STORAGE_RESULTS_ID, data.createReponsesEpdsWidget.id)
+      if (
+        TrackerUtils.seuilScore(totalScore) &&
+        isBackFromConfirmed === "false"
+      ) {
+        TrackerUtils.trackerForResults(TrackerUtils.seuilScore(totalScore))
+      }
 
       updateDemographicData(
         updateEpdsIdInInfosQuery,
@@ -186,6 +197,9 @@ export default function EpdsSurvey() {
   const onNextQuestion = () => {
     ref.current.next()
     setActualIndex(actualIndex + 1)
+    if (actualIndex === 1) {
+      TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.start_survey)
+    }
   }
 
   const PreviousAndNextButton = ({ showPrevious, showNext }) => {
@@ -222,16 +236,7 @@ export default function EpdsSurvey() {
             onClick={() => {
               setSendScore(true)
               setLoading(true)
-
-              TrackerUtils.genericTracker(
-                TrackerUtils.CATEG.survey,
-                TrackerUtils.NAME.end
-              )
-              TrackerUtils.track(
-                TrackerUtils.CATEG.survey,
-                TrackerUtils.EVENT_CLICK,
-                `Terminer - ${source}`
-              )
+              TrackerUtils.trackerForSurvey(TrackerUtils.ACTION.end_survey)
             }}
             disabled={!isEnabledNextButton || isLoading}
           >

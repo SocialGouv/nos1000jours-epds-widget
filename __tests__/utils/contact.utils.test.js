@@ -2,13 +2,24 @@ import { RequestContact, STORAGE_SOURCE } from "../../src/constants/constants"
 import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 
+/**
+ * @param {RequestContact.type} contactType
+ * @param {*} label
+ */
+const sendTrackerContactConfirmed = (contactType) => {
+  if (contactType === "chat") {
+    TrackerUtils.trackerForContact(`Ouverture ${contactType}`)
+  } else {
+    TrackerUtils.trackerForContact(`Confirmation ${contactType}`)
+  }
+}
+
 describe("Contact Utils", () => {
   describe("sendTrackerContactConfirmed", () => {
     let trackerSpy
     localStorage.setItem(STORAGE_SOURCE, "1000-premiers-jours")
-    const source = localStorage.getItem(STORAGE_SOURCE)
     beforeEach(() => {
-      trackerSpy = jest.spyOn(TrackerUtils, "track")
+      trackerSpy = jest.spyOn(TrackerUtils, "trackerForContact")
     })
 
     afterEach(() => {
@@ -16,31 +27,19 @@ describe("Contact Utils", () => {
     })
 
     test("Should send tracker with email confirmation", () => {
-      ContactUtils.sendTrackerContactConfirmed(RequestContact.type.email)
-      expect(trackerSpy).toHaveBeenCalledWith(
-        TrackerUtils.CATEG.contact,
-        TrackerUtils.ACTION.contact_confirm_sent,
-        `${TrackerUtils.CONTACT_SENT.mail} - ${source}`
-      )
+      sendTrackerContactConfirmed(RequestContact.type.email)
+      expect(trackerSpy).toHaveBeenCalledWith("Confirmation email")
     })
 
     test("Should send tracker with sms confirmation", () => {
-      ContactUtils.sendTrackerContactConfirmed(RequestContact.type.sms)
-      expect(trackerSpy).toHaveBeenCalledWith(
-        TrackerUtils.CATEG.contact,
-        TrackerUtils.ACTION.contact_confirm_sent,
-        `${TrackerUtils.CONTACT_SENT.sms} - ${source}`
-      )
+      sendTrackerContactConfirmed(RequestContact.type.sms)
+      expect(trackerSpy).toHaveBeenCalledWith(`Confirmation sms`)
     })
 
     test("Should send tracker with chat opening", () => {
-      ContactUtils.sendTrackerContactConfirmed(RequestContact.type.chat)
+      sendTrackerContactConfirmed(RequestContact.type.chat)
       expect(trackerSpy).toHaveBeenCalled()
-      expect(trackerSpy).toHaveBeenCalledWith(
-        TrackerUtils.CATEG.contact,
-        TrackerUtils.ACTION.contact_confirm_sent,
-        `${TrackerUtils.CONTACT_SENT.chat} - ${source}`
-      )
+      expect(trackerSpy).toHaveBeenCalledWith("Ouverture chat")
     })
   })
 

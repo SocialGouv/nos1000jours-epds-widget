@@ -1,6 +1,5 @@
 import { STORAGE_TEST_ABC, STORAGE_RESULTS_ID } from "../../constants/constants"
 import { TEST } from "./ab-testing.utils"
-import * as TrackerUtils from "../tracker.utils"
 import * as StorageUtils from "../storage.utils"
 
 export const genderValues = [
@@ -142,12 +141,4 @@ export const goToDemographicSurvey = async (router, epdsTestID) => {
   if (epdsTestID) localStorage.setItem(STORAGE_RESULTS_ID, epdsTestID)
 
   router.push({ pathname: "/ab-testing/demographic-data-survey" })
-}
-
-export const trackerForDemographie = (label) => {
-  TrackerUtils.track(
-    TrackerUtils.CATEG.demography,
-    TrackerUtils.EVENT_CLICK,
-    label
-  )
 }

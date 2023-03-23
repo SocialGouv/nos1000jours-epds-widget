@@ -7,10 +7,11 @@ import {
   STORAGE_LOCALE,
   STORAGE_SOURCE,
   STORAGE_TEST_ABC,
+  STORAGE_IS_BACK_RESULTS,
 } from "../src/constants/constants"
 import { useRouter } from "next/router"
 import { gql, useLazyQuery } from "@apollo/client"
-import { client, GET_TEMOIGNAGES_CHIFFRES } from "../apollo-client"
+import { client } from "../apollo-client"
 import {
   convertArrayLabelsToObject,
   readSourceInUrl,
@@ -29,7 +30,6 @@ export default function Home() {
   const [source, setSource] = useState()
   const [localeSelected, setLocaleSelected] = useState()
   const [labelsTranslated, setLabelsTranslated] = useState()
-
   useEffect(() => {
     const paramSource = readSourceInUrl()
     setSource(paramSource)
@@ -43,6 +43,7 @@ export default function Home() {
   useEffect(() => {
     if (localeSelected) {
       localStorage.setItem(STORAGE_LOCALE, JSON.stringify(localeSelected))
+      localStorage.setItem(STORAGE_IS_BACK_RESULTS, false)
 
       const translationQuery = async () => {
         await getLabelsTranslationsQuery({
@@ -54,17 +55,8 @@ export default function Home() {
   }, [localeSelected])
 
   const startSurvey = () => {
-    TrackerUtils.genericTracker(
-      TrackerUtils.CATEG.home,
-      TrackerUtils.NAME.start
-    )
-    TrackerUtils.track(
-      TrackerUtils.CATEG.home,
-      TrackerUtils.EVENT_CLICK,
-      `Commencer le test - ${source}`
-    )
-
     localStorage.setItem(STORAGE_SOURCE, source)
+    TrackerUtils.track(TrackerUtils.CATEG.home, TrackerUtils.ACTION.start)
     localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
     goToBeforeSurvey()
   }

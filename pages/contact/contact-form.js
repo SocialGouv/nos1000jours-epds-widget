@@ -13,6 +13,7 @@ import {
   STORAGE_SOURCE,
   STORAGE_TEST_DEMOGRAPHIC_DPT_CODE,
   STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE,
+  CALENDLY_LINK
 } from "../../src/constants/constants"
 import {
   stringIsNotNullNorEmpty,
@@ -164,16 +165,10 @@ export default function ContactForm() {
   }
 
   const sendTrackerContactType = (typeContact) => {
-    TrackerUtils.genericTracker(
-      TrackerUtils.CATEG.contact,
-      TrackerUtils.NAME.contact_confirm_sent
-    )
     if (typeContact) {
-      TrackerUtils.track(
-        TrackerUtils.CATEG.contact,
-        TrackerUtils.ACTION.contact_confirm_sent,
-        `${ContactUtils.trackerContactName(typeContact)} - ${websiteSource}`
-      )
+      TrackerUtils.trackerForContact(TrackerUtils.ACTION.confirmation)
+      TrackerUtils.trackerForContact(ContactUtils.trackerContactName(typeContact))
+      AbTestingUtils.trackerForAbTesting(TrackerUtils.ACTION.confirmation)
       AbTestingUtils.trackerForAbTesting(ContactUtils.trackerContactName(typeContact))
     }
   }
@@ -328,7 +323,7 @@ export default function ContactForm() {
       {contactType === RequestContact.type.rendezvous && (
         <>
           <InlineWidget
-            url="https://calendly.com/rdv-nos1000jours/30min"
+            url={CALENDLY_LINK}
           />
           <Col className="be-contacted-bottom-buttons">
             <button className="fr-btn fr-btn--secondary" onClick={cancel}>
