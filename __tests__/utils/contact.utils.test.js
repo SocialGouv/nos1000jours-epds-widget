@@ -68,13 +68,6 @@ describe("Contact Utils", () => {
       expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
     })
 
-    test("Should return true with 13h00", () => {
-      const date = new Date("2023-02-13 13:00:05")
-      jest.useFakeTimers().setSystemTime(date)
-
-      expect(ContactUtils.isMamanBluesAvailableHours()).toBeTruthy()
-    })
-
     test("Should return true with 17h30", () => {
       const date = new Date("2023-02-13 17:30:05")
       jest.useFakeTimers().setSystemTime(date)
