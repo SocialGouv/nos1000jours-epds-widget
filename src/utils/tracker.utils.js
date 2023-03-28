@@ -1,7 +1,6 @@
 import { push } from "@socialgouv/matomo-next"
 import * as StorageUtils from "../utils/storage.utils"
 import { STORAGE_SOURCE } from "../constants/constants"
-export const EVENT_CLICK = "Click"
 
 export const CATEG = {
   home: "Home",
@@ -23,7 +22,7 @@ export const ACTION = {
   be_contacted: "Demander à être contacté",
   ressource: "Recevoir les ressources par mail",
   ressource_mail: "Confirmer recevoir les ressources par mail",
-
+  abandon: "Abandon de la prise de contact",
   download: "Télécharger mes réponses",
 
   opinion: "Donner son avis",

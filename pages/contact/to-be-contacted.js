@@ -75,6 +75,7 @@ export default function ToBeContacted() {
   }, [itemValueType])
 
   const cancel = () => {
+    TrackerUtils.trackerForResults(TrackerUtils.ACTION.abandon)
     router.back()
   }
   const [sendContactQuery] = useMutation(SAVE_DEMANDE_DE_CONTACT, {
