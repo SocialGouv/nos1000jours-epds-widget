@@ -7,15 +7,15 @@ import {
 import { TEST } from "./ab-testing.utils"
 
 export const contacterAToutMoment =
-  "Sachez qu’à tout moment vous pouvez contacter Elise."
+  "Sachez que vous pouvez nous contacter à tout moment."
 
 const elisePeutVousAider =
-  "Même si vous n’avez pas la sensation de traverser une difficulté maternelle, sachez qu’à tout moment vous pouvez contacter Elise. Pour rappel, la dépression post-partum touche 100 000 femmes et 75 000 hommes chaque année en France. Elle tue une femme par mois."
+  "Même si vous n’avez pas la sensation de traverser une difficulté maternelle, sachez que vous pouvez nous contacter à tout moment. Pour rappel, la dépression post-partum touche 100 000 femmes et 75 000 hommes chaque année en France. Elle tue une femme par mois."
 export const seRapprocheDeLaRealite =
   "Précisez nous ce qui se rapprocherait le plus de ce que vous vivez"
 const aucune = "Autre. Je précise"
 export const nePasSavoir =
-  "Ne pas savoir est tout à fait normal. Elise peut vous écouter et vous aider à comprendre ce que vous ressentez."
+  "Ne pas savoir est tout à fait normal. Nous sommes à votre écoute pour vous aider à comprendre ce que vous ressentez."
 const versQuiSeTourner = "Je ne sais pas vers qui me tourner"
 
 export const demandeDeDetails = {
@@ -32,7 +32,7 @@ export const demandeDeDetails = {
       },
     ],
     commentaires: {
-      mal: "Nous vous conseillons de vous entretenir avec Elise. Elle saura vous apporter conseil.",
+      mal: "Nous vous conseillons de vous entretenir avec une membre de notre équipe. Elle saura vous apporter conseil.",
       autre: "Expliquez-nous pourquoi vous êtes venu.es passer le test.",
     },
   },
@@ -108,7 +108,7 @@ export const estProcheDeLaRealite = {
   ],
   commentaires: {
     lvl1: {
-      oui: "Vous allez bien, n'hésitez pas à revenir plus tard et vous questionner régulièrement. Sachez qu'Elise peut répondre à vos questions si vous en avez besoin.",
+      oui: "Vous allez bien, n'hésitez pas à revenir plus tard et vous questionner régulièrement. Sachez que nous pouvons répondre à vos questions si vous en avez besoin.",
       peutetre: nePasSavoir,
       non: demandeDeDetails.lvl1,
     },

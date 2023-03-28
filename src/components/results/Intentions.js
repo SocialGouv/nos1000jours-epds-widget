@@ -17,7 +17,7 @@ export const Intentions = () => {
   const questionAboutScore = {
     question: "À qui allez-vous parler de votre score ?",
     responses: [
-      { name: "À Élise, présidente de l'association Maman Blues", id: 1 },
+      { name: "À Wanda, membre de l'équipe 1000 jours blues", id: 1 },
       { name: "Mon entourage", id: 2 },
       { name: "Mon professionnel de santé", id: 3 },
       { name: "Je le garde pour moi", id: 4 },
@@ -59,7 +59,7 @@ export const Intentions = () => {
               disabled={itemSelected}
             >
               {radio.name}
-              {radio.id == 1 && <img alt="" src="../img/portrait-elise.jpg" />}
+              {radio.id == 1 && <img alt="" src="../img/portrait.png" />}
             </ToggleButton>
           ))}
         </ButtonGroup>

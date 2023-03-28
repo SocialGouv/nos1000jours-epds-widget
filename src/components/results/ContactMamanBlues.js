@@ -37,14 +37,11 @@ export function ContactMamanBlues({ scoreLevel }) {
     <div className="contact-mamanblues">
       <Row className={`contact-content ${colorsByLevel}`}>
         <div className="content-img-descr">
-          <img
-            alt="Portrait d'Elise : présidente de l'association Maman Blues"
-            src="../img/portrait-elise.jpg"
-          />
+          <img alt="Logo portrait" src="../img/portrait.png" />
           <div className="mamanblues-description">
             <b>Trouvez un accompagnement personnalisé près de chez vous </b>
             auprès de professionnels sensibilisés aux difficultés maternelles en
-            échangeant avec Elise, présidente de l’association Maman Blues
+            échangeant avec une membre de notre équipe.
           </div>
         </div>
         <button className="fr-btn" onClick={goToBeContacted}>
