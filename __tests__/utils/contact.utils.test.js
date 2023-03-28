@@ -29,6 +29,9 @@ describe("Contact Utils", () => {
         "Confirmation rendezvous"
       )
     })
+    test("Should return confirmation mail if sms type is selected", () => {
+      expect(ContactUtils.trackerContactName("sms")).toEqual("Confirmation sms")
+    })
   })
   describe("sendTrackerContactConfirmed", () => {
     let trackerSpy
@@ -59,6 +62,13 @@ describe("Contact Utils", () => {
   })
 
   describe("isMamanBluesAvailableHours", () => {
+    test("Should return false with 8h", () => {
+      const date = new Date("2023-02-13 08:50:05")
+      jest.useFakeTimers().setSystemTime(date)
+
+      expect(ContactUtils.isMamanBluesAvailableHours()).toBeFalsy()
+    })
+
     test("Should return true with 9h", () => {
       const date = new Date("2023-02-13 09:50:05")
       jest.useFakeTimers().setSystemTime(date)
