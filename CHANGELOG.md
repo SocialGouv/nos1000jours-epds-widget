@@ -1,3 +1,10 @@
+# [1.59.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.58.0...v1.59.0) (2023-03-28)
+
+
+### Features
+
+* ajout du tracker pour l'annulation de la prise de contact ([#147](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/147)) ([227b36d](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/227b36d06e2a0587039d932a00d896ce9c2d46bd))
+
 # [1.58.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.57.3...v1.58.0) (2023-03-23)
 
 
