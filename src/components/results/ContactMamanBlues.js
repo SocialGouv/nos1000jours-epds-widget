@@ -41,7 +41,7 @@ export function ContactMamanBlues({ scoreLevel }) {
           <div className="mamanblues-description">
             <b>Trouvez un accompagnement personnalisé près de chez vous </b>
             auprès de professionnels sensibilisés aux difficultés maternelles en
-            échangeant avec une membre de notre équipe.
+            échangeant avec un membre de notre équipe.
           </div>
         </div>
         <button className="fr-btn" onClick={goToBeContacted}>

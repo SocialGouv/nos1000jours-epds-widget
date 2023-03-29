@@ -17,7 +17,7 @@ export const Intentions = () => {
   const questionAboutScore = {
     question: "À qui allez-vous parler de votre score ?",
     responses: [
-      { name: "À Wanda, membre de l'équipe 1000 jours blues", id: 1 },
+      { name: "À un membre de l'équipe 1000 jours blues", id: 1 },
       { name: "Mon entourage", id: 2 },
       { name: "Mon professionnel de santé", id: 3 },
       { name: "Je le garde pour moi", id: 4 },

@@ -102,7 +102,7 @@ export default function BeforeSurvey() {
           <img alt="" src="../img/portrait.png" />
           <div className="mamanblues-description">
             En fonction du résultat à la fin du questionnaire,{" "}
-            <b>vous pourrez contacter une membre de notre équipe.</b> C’est elle
+            <b>vous pourrez contacter un membre de notre équipe.</b> C’est elle
             qui vous <b>orientera en toute bienveillance.</b>
           </div>
         </div>
