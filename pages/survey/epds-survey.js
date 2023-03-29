@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import {
   client,
   UPDATE_REPONSES_EPDS_ID_IN_INFORMATION_DEMOGRAPHIQUES,
+  EPDS_ADD_SURVEY_RESULTS,
 } from "../../apollo-client"
 import { ContentLayout } from "../../src/components/Layout"
 import { SurveyCarousel } from "../../src/components/survey/SurveyCarousel"
@@ -19,6 +20,9 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
   STORAGE_IS_BACK_RESULTS,
+  STORAGE_START_SURVEY,
+  STORAGE_END_SURVEY,
+  STORAGE_TOTAL_SURVEY,
 } from "../../src/constants/constants"
 import { Accordion, Spinner } from "react-bootstrap"
 import {
@@ -28,10 +32,7 @@ import {
 } from "../../src/utils/score-level.utils"
 import { Labels } from "../../src/constants/specificLabels"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
-import {
-  EPDS_SAVE_RESPONSES_FOR_WIDGET,
-  EPDS_SURVEY_TRANSLATION_BY_LOCALE,
-} from "@socialgouv/nos1000jours-lib"
+import { EPDS_SURVEY_TRANSLATION_BY_LOCALE } from "@socialgouv/nos1000jours-lib"
 import { updateDemographicData } from "../ab-testing/demographic-data-survey"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
@@ -73,7 +74,7 @@ export default function EpdsSurvey() {
     }
   )
 
-  const [saveResponseQuery] = useMutation(gql(EPDS_SAVE_RESPONSES_FOR_WIDGET), {
+  const [saveResponseQuery] = useMutation(EPDS_ADD_SURVEY_RESULTS, {
     client: client,
     onError: (err) => {
       console.warn(err)
@@ -121,13 +122,18 @@ export default function EpdsSurvey() {
     }
   )
 
-  const goToResults = async (event) => {
+  const goToResults = async () => {
+    const lastTime = new Date()
+    localStorage.setItem(STORAGE_END_SURVEY, lastTime)
+
     router.push({
       pathname: "/results",
     })
   }
 
   useEffect(() => {
+    const firstTime = new Date()
+    localStorage.setItem(STORAGE_START_SURVEY, firstTime)
     setLocaleSelected(StorageUtils.getLocaleInLocalStorage())
   }, [])
 
@@ -162,7 +168,8 @@ export default function EpdsSurvey() {
         const score = resultsBoard
           .map((data) => data.points)
           .reduce((a, b) => a + b, 0)
-
+        const totalTime = localStorage.getItem(STORAGE_TOTAL_SURVEY)
+        console.log(totalTime)
         await saveResponseQuery({
           variables: {
             compteur: 1,
@@ -177,6 +184,7 @@ export default function EpdsSurvey() {
             reponseNum8: resultsBoard[7].points,
             reponseNum9: resultsBoard[8].points,
             reponseNum10: resultsBoard[9].points,
+            tempsSurvey: totalTime,
             score: score,
             langue: localeSelected.id,
             source: EPDS_SOURCE,
