@@ -1,3 +1,10 @@
+## [1.59.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.59.0...v1.59.1) (2023-03-30)
+
+
+### Bug Fixes
+
+* workflow pour la review -> changer le lien du backoffice (developement au lieu de preprod) ([#150](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/150)) ([911a4ad](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/911a4adacae89648c0ec46fbef94d8a38b3d9338))
+
 # [1.59.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.58.0...v1.59.0) (2023-03-28)
 
 
