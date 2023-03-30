@@ -20,9 +20,6 @@ import {
   STORAGE_SCORE_LEVEL_TEXTS,
   STORAGE_SOURCE,
   STORAGE_IS_BACK_RESULTS,
-  STORAGE_START_SURVEY,
-  STORAGE_END_SURVEY,
-  STORAGE_TOTAL_SURVEY,
 } from "../../src/constants/constants"
 import { Accordion, Spinner } from "react-bootstrap"
 import {
@@ -36,6 +33,7 @@ import { EPDS_SURVEY_TRANSLATION_BY_LOCALE } from "@socialgouv/nos1000jours-lib"
 import { updateDemographicData } from "../ab-testing/demographic-data-survey"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
+import * as ResultsUtils from "../../src/utils/result.utils"
 
 export default function EpdsSurvey() {
   const router = useRouter()
@@ -51,12 +49,11 @@ export default function EpdsSurvey() {
   const [isEnabledNextButton, setEnabledNextButton] = useState(false)
   const [sendScore, setSendScore] = useState(false)
   const [isLoading, setLoading] = useState(false)
-
+  const [startSurveyTime, setStartSurveyTime] = useState()
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const isBackFromConfirmed = StorageUtils.getInLocalStorage(
     STORAGE_IS_BACK_RESULTS
   )
-  const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
 
   const [getEpdsSurveyQuery] = useLazyQuery(
     gql(EPDS_SURVEY_TRANSLATION_BY_LOCALE),
@@ -97,6 +94,7 @@ export default function EpdsSurvey() {
         STORAGE_SCORE_LEVEL_MACARON,
         scoreLevelForMacaron(totalScore, resultsBoard[9].points)
       )
+
       localStorage.setItem(STORAGE_RESULTS_ID, data.createReponsesEpdsWidget.id)
       if (
         TrackerUtils.seuilScore(totalScore) &&
@@ -123,17 +121,13 @@ export default function EpdsSurvey() {
   )
 
   const goToResults = async () => {
-    const lastTime = new Date()
-    localStorage.setItem(STORAGE_END_SURVEY, lastTime)
-
     router.push({
       pathname: "/results",
     })
   }
 
   useEffect(() => {
-    const firstTime = new Date()
-    localStorage.setItem(STORAGE_START_SURVEY, firstTime)
+    setStartSurveyTime(new Date())
     setLocaleSelected(StorageUtils.getLocaleInLocalStorage())
   }, [])
 
@@ -168,8 +162,15 @@ export default function EpdsSurvey() {
         const score = resultsBoard
           .map((data) => data.points)
           .reduce((a, b) => a + b, 0)
-        const totalTime = localStorage.getItem(STORAGE_TOTAL_SURVEY)
-        console.log(totalTime)
+        const endSurveyTime = new Date()
+        let totalTime = ""
+        if (startSurveyTime && endSurveyTime) {
+          totalTime = ResultsUtils.getTotalTimeInSurvey(
+            startSurveyTime,
+            endSurveyTime
+          )
+        }
+
         await saveResponseQuery({
           variables: {
             compteur: 1,

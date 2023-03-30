@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Row } from "react-bootstrap"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"
@@ -9,9 +9,6 @@ import {
   STORAGE_SCORE_LEVEL_MACARON,
   STORAGE_SCORE_LEVEL_MOOD,
   STORAGE_SCORE_LEVEL_TEXTS,
-  STORAGE_START_SURVEY,
-  STORAGE_END_SURVEY,
-  STORAGE_TOTAL_SURVEY,
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
@@ -21,7 +18,6 @@ import {
 } from "../src/utils/score-level.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
 import * as MainUtils from "../src/utils/main.utils"
-import * as ResultsUtils from "../src/utils/result.utils"
 import { Intentions } from "../src/components/results/Intentions"
 import { DownloadApp } from "../src/components/results/DownloadApp"
 import { RecruitParents } from "../src/components/results/RecruitParents"
@@ -47,13 +43,6 @@ export default function Results() {
   const scoreLevelForMacaron = parseInt(
     StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
   )
-  const startSurvey = StorageUtils.getInLocalStorage(STORAGE_START_SURVEY)
-  const endSurvey = StorageUtils.getInLocalStorage(STORAGE_END_SURVEY)
-  const totalTime = ResultsUtils.getTotalTimeInSurvey(startSurvey, endSurvey)
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_TOTAL_SURVEY, totalTime)
-  }, [totalTime])
 
   const DescriptionAndConclusion = () => (
     <Row>
