@@ -100,11 +100,11 @@ export default function BeforeSurvey() {
         </ul>
 
         <div className="contact-maman-blues">
-          <img alt="" src="../img/portrait-elise.jpg" />
+          <img alt="" src="../img/portrait.png" />
           <div className="mamanblues-description">
             En fonction du résultat à la fin du questionnaire,{" "}
-            <b>vous pourrez contacter Elise de l’association Maman Blues.</b>{" "}
-            C’est elle qui vous <b>orientera en toute bienveillance.</b>
+            <b>vous pourrez contacter un membre de notre équipe.</b> C’est elle
+            qui vous <b>orientera en toute bienveillance.</b>
           </div>
         </div>
 
