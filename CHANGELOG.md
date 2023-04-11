@@ -1,3 +1,10 @@
+# [1.61.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.60.0...v1.61.0) (2023-04-11)
+
+
+### Features
+
+* enlever toute mention d'élise sur le widget ([#148](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/148)) ([1605371](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/1605371084458667387b3b075ea6792f5bb81133))
+
 # [1.60.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.59.1...v1.60.0) (2023-04-11)
 
 
