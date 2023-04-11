@@ -12,25 +12,12 @@ import {
 } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
-import {
-  SCORE_LEVEL_BAD,
-  SCORE_LEVEL_MEDIUM,
-} from "../src/utils/score-level.utils"
-import * as TrackerUtils from "../src/utils/tracker.utils"
-import * as MainUtils from "../src/utils/main.utils"
-import { Intentions } from "../src/components/results/Intentions"
 import { DownloadApp } from "../src/components/results/DownloadApp"
-import { RecruitParents } from "../src/components/results/RecruitParents"
 import { GiveAccessToResources } from "../src/components/ab-testing/resources/GiveAccessToResources"
+import { LineProgressBar } from "@frogress/line"
 
 export default function Results() {
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
-  const OPINION_GOUV_URL =
-    "https://jedonnemonavis.numerique.gouv.fr/Demarches/3483?&view-mode=formulaire-avis&nd_source=button&key=9a76fb7d40d8cf4bb6036779de4d92c9"
-  const OPINION_GOUV_IMG =
-    "https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg"
-
-  const randomForParentsFeedback = MainUtils.getRandomInt(2)
 
   const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
@@ -57,38 +44,15 @@ export default function Results() {
       </div>
     </Row>
   )
-
-  const GiveOpinion = () => {
-    return (
-      <div className="give-opinion">
-        <div className="content">
-          <div>
-            Aidez-nous à améliorer cette démarche ! Donnez-nous votre avis, cela
-            ne prend que 2 minutes.
-          </div>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href={OPINION_GOUV_URL}
-            onClick={() => {
-              TrackerUtils.trackerForIntentions(TrackerUtils.ACTION.opinion)
-            }}
-          >
-            <img
-              className="participate-btn"
-              src={OPINION_GOUV_IMG}
-              alt="Je donne mon avis"
-            />
-          </a>
-        </div>
-      </div>
-    )
-  }
+  const scorePercentage = ((parseInt(scoreValue) / 30) * 100).toFixed(2)
 
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      <ResultsMood scoreLevel={scoreLevelForMood} />
+      {/* <ResultsMood scoreLevel={scoreLevelForMood} /> */}
+      {parseInt(scoreValue) >= 11 && (
+        <LineProgressBar percent={scorePercentage} rounded={36} height={36} />
+      )}
 
       {scoreValue < SCORE_TO_SHOW_CONTACT_BLOC ? (
         <DownloadApp />
@@ -98,12 +62,6 @@ export default function Results() {
 
       <DescriptionAndConclusion />
       <GiveAccessToResources />
-      {scoreLevelForMacaron == SCORE_LEVEL_MEDIUM ||
-      scoreLevelForMacaron == SCORE_LEVEL_BAD ? (
-        <Intentions />
-      ) : null}
-
-      {randomForParentsFeedback == 0 ? <GiveOpinion /> : <RecruitParents />}
     </ContentLayout>
   )
 }

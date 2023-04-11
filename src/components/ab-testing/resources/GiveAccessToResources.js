@@ -44,7 +44,7 @@ export const GiveAccessToResources = () => {
     return (
       <div>
         <Button
-          className="fr-btn--secondary"
+          className="fr-btn--secondary button-ressource"
           onClick={() => {
             openModal()
           }}
