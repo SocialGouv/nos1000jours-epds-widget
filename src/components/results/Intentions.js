@@ -59,7 +59,11 @@ export const Intentions = () => {
               disabled={itemSelected}
             >
               {radio.name}
-              {radio.id == 1 && <img alt="" src="../img/portrait.png" />}
+              {radio.id == 1 && (
+                <div className="portrait">
+                  <img alt="" src="../img/portrait.png" />
+                </div>
+              )}
             </ToggleButton>
           ))}
         </ButtonGroup>
