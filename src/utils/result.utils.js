@@ -32,3 +32,16 @@ export const convertResultsInStorageToContentTable = (resultsBoard) => {
     }
   })
 }
+
+export const getTotalTimeInSurvey = (startSurvey, endSurvey) => {
+  const totalSeconds = Math.floor(
+    (new Date(endSurvey).getTime() - new Date(startSurvey).getTime()) / 1000
+  )
+  if (totalSeconds < 60) {
+    return `00:00:${totalSeconds}`
+  } else {
+    const convertToMinutes = Math.floor(totalSeconds / 60)
+    const leftSeconds = totalSeconds % 60
+    return `00:${convertToMinutes}:${leftSeconds}`
+  }
+}

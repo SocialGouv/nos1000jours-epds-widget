@@ -13,6 +13,7 @@ export default function BeforeSurvey() {
   const router = useRouter()
 
   const IMG_PRO = "../img/icone-pro-sante.svg"
+
   const IMG_PARENTS = "../img/icone-parent.svg"
   const IMG_ACCOMPAGNEMENT = "../img/icone-accompagnement.svg"
 
