@@ -38,10 +38,10 @@ export const getTotalTimeInSurvey = (startSurvey, endSurvey) => {
     (new Date(endSurvey).getTime() - new Date(startSurvey).getTime()) / 1000
   )
   if (totalSeconds < 60) {
-    return `${totalSeconds} secondes`
+    return `00:00:${totalSeconds}`
   } else {
     const convertToMinutes = Math.floor(totalSeconds / 60)
     const leftSeconds = totalSeconds % 60
-    return `${convertToMinutes} minutes ${leftSeconds} secondes`
+    return `00:${convertToMinutes}:${leftSeconds}`
   }
 }
