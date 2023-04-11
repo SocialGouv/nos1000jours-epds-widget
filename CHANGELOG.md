@@ -1,3 +1,10 @@
+# [1.60.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.59.1...v1.60.0) (2023-04-11)
+
+
+### Features
+
+* ajout du temps passer sur le questionnaire + mutation de sauvegarde des reponses ([#149](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/149)) ([ac88957](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/ac889574fec698fdec8b0126e50f81320e91acc3))
+
 ## [1.59.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.59.0...v1.59.1) (2023-03-30)
 
 
