@@ -56,7 +56,7 @@ export default function ToBeContacted() {
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   const [websiteSource, setWebsiteSource] = useState(false)
-  const [isChatEnabled, setChatEnabled] = useState()
+  const [actualDate, setActualDate] = useState(new Date())
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -64,6 +64,7 @@ export default function ToBeContacted() {
       localStorage.setItem(STORAGE_SOURCE, source)
       setWebsiteSource(source)
     }
+    setActualDate(new Date())
     initChat()
   }, [])
 
@@ -89,7 +90,6 @@ export default function ToBeContacted() {
     if (chatNameUsed === CHAT_TYPE.crisp) {
       Crisp.configure(CRISP_CHAT_ID)
       Crisp.chat.hide()
-      setChatEnabled(ContactUtils.isMamanBluesAvailableHours())
     }
   }
 
@@ -162,7 +162,23 @@ export default function ToBeContacted() {
     if (loading) return <></>
     if (error) return <p>Error</p>
     const isChatActive = data.activationChat.activation_chat
-
+    let isChatEnabled
+    const chatMorningFrom = data.activationChat.matin_de
+    const chatMorningTo = data.activationChat.matin_a
+    const chatAfternoonFrom = data.activationChat.apres_midi_de
+    const chatAfternoonTo = data.activationChat.apres_midi_a
+    if (isChatActive) {
+      if (
+        (actualDate.toLocaleTimeString() >= chatMorningFrom.split(".")[0] &&
+          actualDate.toLocaleTimeString() <= chatMorningTo.split(".")[0]) ||
+        (actualDate.toLocaleTimeString() >= chatAfternoonFrom.split(".")[0] &&
+          actualDate.toLocaleTimeString() <= chatAfternoonTo.split(".")[0])
+      ) {
+        isChatEnabled = true
+      } else {
+        isChatEnabled = false
+      }
+    }
     return (
       <>
         {isChatEnabled && isChatActive && (
