@@ -49,9 +49,24 @@ export default function Results() {
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      {/* <ResultsMood scoreLevel={scoreLevelForMood} /> */}
-      {parseInt(scoreValue) >= 11 && (
-        <LineProgressBar percent={scorePercentage} rounded={36} height={36} />
+      {parseInt(scoreValue) > SCORE_TO_SHOW_CONTACT_BLOC && (
+        <div className="margin-bottom-8">
+          <LineProgressBar
+            percent={scorePercentage}
+            rounded={36}
+            height={36}
+            progressColor="linear-gradient(to right, #d45100, #eb4f00, #cd8002)"
+          />
+          <b>Comprendre mon score</b>
+          <br />
+          Explication du résultat: Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          <br />
+          Verbatisme, vous avez l'impression ... Vous n'avez plus envie ... Vous
+          vous sentez... Vous avez peur de ... Prenez contact avec ...
+        </div>
       )}
 
       {scoreValue < SCORE_TO_SHOW_CONTACT_BLOC ? (
