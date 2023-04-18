@@ -43,9 +43,18 @@ export default function BeforeSurvey() {
       TrackerUtils.CATEG.introduction,
       TrackerUtils.ACTION.end_intro
     )
-    source === "1000-premiers-jours"
-      ? await goToEpdsSurvey()
-      : await goToDemographicSurvey()
+    switch (source) {
+      case "maman-blues":
+      case "site-parents":
+      case "mpedia":
+      case "1000-premiers-jours":
+        await goToEpdsSurvey()
+        break
+
+      default:
+        await goToDemographicSurvey()
+        break
+    }
   }
 
   const goToDemographicSurvey = async () => {
@@ -110,7 +119,10 @@ export default function BeforeSurvey() {
 
         <div className="button-start-survey">
           <button className="fr-btn fr-btn--lg" onClick={goToNextPage}>
-            {source === "1000-premiers-jours"
+            {source === "maman-blues" ||
+            source === "1000-premiers-jours" ||
+            source === "site-parents" ||
+            source === "mpedia"
               ? "Commencer le questionnaire"
               : "Suivant"}
           </button>
