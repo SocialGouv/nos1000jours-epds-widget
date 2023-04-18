@@ -1,3 +1,10 @@
+# [1.62.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.61.1...v1.62.0) (2023-04-18)
+
+
+### Features
+
+* synchro du chat manuel avec les horaires depuis le back office ([#151](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/151)) ([c5912d8](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c5912d885983db9c8dab8c2b326b380d45d7c037))
+
 ## [1.61.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.61.0...v1.61.1) (2023-04-18)
 
 
