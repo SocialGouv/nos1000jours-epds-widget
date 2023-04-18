@@ -1,3 +1,10 @@
+## [1.61.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.61.0...v1.61.1) (2023-04-18)
+
+
+### Bug Fixes
+
+* enlever le csp pour les source maman blues, mpedia, site parents ([#153](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/153)) ([11c39bc](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/11c39bcc1973c79bbe792e1377392e30704f3e77))
+
 # [1.61.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.60.0...v1.61.0) (2023-04-11)
 
 
