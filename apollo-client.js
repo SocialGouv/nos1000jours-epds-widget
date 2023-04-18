@@ -82,6 +82,10 @@ export const GET_ACTIVATION_CHAT_STATUS = gql`
   query activationChat {
     activationChat {
       activation_chat
+      matin_de
+      matin_a
+      apres_midi_de
+      apres_midi_a
     }
   }
 `
