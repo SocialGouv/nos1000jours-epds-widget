@@ -1,5 +1,8 @@
-module.exports = {
+const withTM = require("next-transpile-modules")(["@codegouvfr/react-dsfr"])
+
+module.exports = withTM({
   reactStrictMode: true,
+  swcMinify: true,
   i18n: {
     locales: ["fr-FR"],
     defaultLocale: "fr-FR",
@@ -21,4 +24,5 @@ module.exports = {
 
     return config
   },
-}
+  transpilePackages: ["@codegouvfr/react-dsfr"],
+})

@@ -12,6 +12,43 @@
   color: var(--primaryRedDark);
 }
 
+.center-button {
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.button-be-better {
+  min-width: 40%;
+  border-color: transparent;
+  border-radius: $xl;
+  text-transform: uppercase;
+  justify-content: center;
+  margin-top: $xxxxxxs;
+  margin-bottom: $xxxxxs;
+}
+
+
+.score-progressbar {
+  .progress {
+    background-color: var(--bleuFrance935);
+    margin-top: $sm;
+    margin-bottom: $xxxs;
+    height: 30px;
+    border-radius: 20px;
+  }
+
+  .progress-bar {
+    background-color: var(--bleuFranceSun);
+  }
+
+  .progress-number {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
 .contact-mamanblues {
   margin-block: $sm;
 

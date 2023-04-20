@@ -1,5 +1,6 @@
 export const Labels = {
-  titleDPP: "Et si c'était la dépression post-partum ?",
+  titleDPP:
+    "Votre résultat au questionnaire d'auto-évalutation de santé mentale",
   surveyExplanations:
     "Veuillez cocher la réponse qui vous semble décrire le mieux comment vous vous êtes senti(e) au cours des 7 derniers jours et pas seulement aujourd’hui.",
   mood: {

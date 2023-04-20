@@ -120,3 +120,27 @@
 .card-center-img {
   justify-content: center;
 }
+
+.card-text {
+  color: var(--bleuFranceSun);
+  h3 {
+    color: var(--bleuFranceSun);
+  }
+}
+
+.card-space {
+  margin-bottom: 2em;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5%;
+  padding-top: 5%;
+}
+
+.fr-tile--horizontal .fr-tile__img {
+  width: 5rem !important;
+  height: 5rem !important;
+}

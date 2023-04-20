@@ -1,82 +1,64 @@
 import React from "react"
-import { Row } from "react-bootstrap"
 import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"
-import { ContactMamanBlues } from "../src/components/results/ContactMamanBlues"
-import { ResultsMood } from "../src/components/results/ResultsMood"
-import {
-  STORAGE_SCORE,
-  STORAGE_SCORE_LEVEL_MACARON,
-  STORAGE_SCORE_LEVEL_MOOD,
-  STORAGE_SCORE_LEVEL_TEXTS,
-} from "../src/constants/constants"
+import { STORAGE_SCORE } from "../src/constants/constants"
 import { EpdsResultsComments, Labels } from "../src/constants/specificLabels"
 import * as StorageUtils from "../src/utils/storage.utils"
 import { DownloadApp } from "../src/components/results/DownloadApp"
-import { GiveAccessToResources } from "../src/components/ab-testing/resources/GiveAccessToResources"
-import { LineProgressBar } from "@frogress/line"
+import { ScoreProgressBar } from "../src/components/contact/ScoreProgressBar"
+import { Button } from "@codegouvfr/react-dsfr/Button"
+import { useRouter } from "next/router"
 
 export default function Results() {
+  const router = useRouter()
   const SCORE_TO_SHOW_CONTACT_BLOC = 9
 
   const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
-  const scoreLevelForMood = parseInt(
-    StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MOOD)
-  )
-  const scoreLevelForTexts = parseInt(
-    StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_TEXTS)
-  )
-  const scoreLevelForMacaron = parseInt(
-    StorageUtils.getInLocalStorage(STORAGE_SCORE_LEVEL_MACARON)
-  )
-
-  const DescriptionAndConclusion = () => (
-    <Row>
-      <div className="margin-bottom-8">
-        <b>Oser en parler, c’est déjà prendre soin de soi et de son enfant !</b>
-      </div>
-      <div className="margin-bottom-8">
-        {descriptionByScoreLevel(scoreLevelForTexts)}
-      </div>
-      <div className="margin-bottom-8">
-        <b>{conclusionByScoreLevel(scoreLevelForTexts)}</b>
-      </div>
-    </Row>
-  )
   const scorePercentage = ((parseInt(scoreValue) / 30) * 100).toFixed(2)
+
+  const goToDecideBeBetter = () => {
+    router.push({
+      pathname: "/contact/be-better",
+    })
+  }
 
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      {parseInt(scoreValue) > SCORE_TO_SHOW_CONTACT_BLOC && (
-        <div className="margin-bottom-8">
-          <LineProgressBar
-            percent={scorePercentage}
-            rounded={36}
-            height={36}
-            progressColor="linear-gradient(to right, #d45100, #eb4f00, #cd8002)"
-          />
-          <b>Comprendre mon score</b>
-          <br />
-          Explication du résultat: Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          <br />
-          Verbatisme, vous avez l'impression ... Vous n'avez plus envie ... Vous
-          vous sentez... Vous avez peur de ... Prenez contact avec ...
-        </div>
+      {parseInt(scoreValue) >= SCORE_TO_SHOW_CONTACT_BLOC && (
+        <>
+          <div className="margin-bottom-8">
+            <ScoreProgressBar indexNow={scorePercentage} />
+            <br />
+            <b>Comprendre mon score</b>
+            <br />
+            Explication du résultat: Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            <br />
+            Verbatisme, vous avez l'impression ... Vous n'avez plus envie ...
+            Vous vous sentez... Vous avez peur de ... Prenez contact avec ...
+          </div>
+
+          <div className="center-button">
+            <Button
+              className="button-be-better"
+              colors={["#6363db"]}
+              onClick={() => goToDecideBeBetter()}
+            >
+              Je souhaite aller mieux
+            </Button>
+          </div>
+        </>
       )}
 
-      {scoreValue < SCORE_TO_SHOW_CONTACT_BLOC ? (
-        <DownloadApp />
-      ) : (
-        <ContactMamanBlues scoreLevel={scoreLevelForMacaron} />
-      )}
+      {scoreValue < SCORE_TO_SHOW_CONTACT_BLOC && <DownloadApp />}
 
-      <DescriptionAndConclusion />
-      <GiveAccessToResources />
+      {/* <DescriptionAndConclusion /> */}
+      {/* <GiveAccessToResources /> */}
     </ContentLayout>
   )
 }

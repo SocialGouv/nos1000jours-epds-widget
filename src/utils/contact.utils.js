@@ -55,3 +55,23 @@ export const isMamanBluesAvailableHours = () => {
   else if (date.getHours() == 17 && date.getMinutes() <= 30) return true
   else return false
 }
+
+const cleanValue = (value) =>
+  value.replace(/é/g, "e").replace(/ç/g, "c").trim().toLowerCase()
+
+export const matchFilter = (value, filter) =>
+  value && cleanValue(value).includes(cleanValue(filter))
+
+export const matchName = (psychologist, filter) => {
+  const searchedNames = filter.split(" ")
+  const psychologistNames = [
+    psychologist.nom,
+    ...psychologist.prenom.split(" "),
+  ]
+
+  return searchedNames.every((searchedName) =>
+    psychologistNames.some((psychologistName) =>
+      matchFilter(psychologistName, searchedName)
+    )
+  )
+}
