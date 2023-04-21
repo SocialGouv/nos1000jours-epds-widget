@@ -12,6 +12,31 @@
   color: var(--primaryRedDark);
 }
 
+.background-color-h6 {
+  background-color: var(--bleuFrance935);
+  padding-bottom: 3%;
+}
+
+.text-color {
+  color: #000091 !important
+}
+
+.remove-box-shadow {
+  box-shadow: none !important
+}
+
+.height-tile {
+  min-height: 13rem;
+}
+
+.padding-top-h5 {
+  padding-top: 1rem;
+}
+
+.size-font {
+  font-size: 1rem !important
+}
+
 .center-button {
   display: flex;
   justify-content: center;

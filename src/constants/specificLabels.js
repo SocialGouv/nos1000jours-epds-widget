@@ -1,6 +1,5 @@
 export const Labels = {
-  titleDPP:
-    "Votre résultat au questionnaire d'auto-évalutation de santé mentale",
+  titleDPP: "Mon résultat",
   surveyExplanations:
     "Veuillez cocher la réponse qui vous semble décrire le mieux comment vous vous êtes senti(e) au cours des 7 derniers jours et pas seulement aujourd’hui.",
   mood: {
