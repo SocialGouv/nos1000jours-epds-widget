@@ -21,7 +21,7 @@ const geoStatusEnum = {
   GRANTED: 1,
 }
 
-export default function DemographicDataSurvey() {
+export default function ProList() {
   const router = useRouter()
   const query = router.query
   const searchParams = new URLSearchParams(query)

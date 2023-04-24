@@ -1,7 +1,6 @@
 import { ContentLayout } from "../src/components/Layout"
 import { WidgetHeader } from "../src/components/WidgetHeader"
-import { MediaVideo } from "@dataesr/react-dsfr"
-import { Icon } from "@dataesr/react-dsfr"
+import { Icon, MediaVideo } from "@dataesr/react-dsfr"
 import * as StorageUtils from "../src/utils/storage.utils"
 
 const Callout = ({ title, description, theme }) => {
@@ -42,7 +41,7 @@ export default function ArticleDpp() {
         />
       </MediaVideo>
       <h5 className="text-color">Qu’est-ce que le baby-blues ?</h5>
-      <p className="container-list">
+      <p>
         Quelques jours après l’accouchement, la majorité des mamans traverse une
         période de déprime qu’on appelle " baby blues ".{" "}
         <span className="text-bold">
@@ -52,6 +51,8 @@ export default function ArticleDpp() {
         <br />
         <br />
         La maman peut alors :
+      </p>
+      <div className="container-list">
         <ul>
           <li>
             se mettre à pleurer "pour un rien", avoir des crises de larmes,
@@ -62,6 +63,8 @@ export default function ArticleDpp() {
           <li>se sentir dépassée par les événements,</li>
           <li>perdre ses repères, sa confiance en elle.</li>
         </ul>
+      </div>
+      <p>
         Le baby blues peut durer quelques heures ou quelques jours. En général,
         les symptômes disparaissent tous seuls. Pour autant, le conjoint ou
         l’entourage peuvent apporter soutien et réconfort.{" "}
@@ -88,7 +91,7 @@ export default function ArticleDpp() {
         />
       </div>
       <h5 className="text-color">Qu’est-ce que la dépression post-partum ?</h5>
-      <p className="container-list">
+      <p>
         <span className="text-bold">
           {" "}
           La dépression post-partum est une maladie
@@ -96,6 +99,8 @@ export default function ArticleDpp() {
         qui peut apparaître pendant les semaines et les mois suivant
         l’accouchement. Elle se manifeste en général progressivement avec un ou
         plusieurs symptômes comme :
+      </p>
+      <div className="container-list">
         <ul>
           <li>Une sensation de manque d’énergie.</li>
           <li>Des difficultés à s’occuper de son bébé.</li>
@@ -111,6 +116,8 @@ export default function ArticleDpp() {
           </li>
           <li>Un changement d’appétit.</li>
         </ul>
+      </div>
+      <p>
         La dépression post-partum, qu’on appelle aussi dépression{" "}
         <span className="text-bold">post-natale</span> ou périnatale, peut durer
         des mois, et parfois même se prolonger au-delà d’un an.
@@ -139,6 +146,8 @@ export default function ArticleDpp() {
         C’est une période de changements qui peut être bouleversante pour les
         papas aussi. Les symptômes de la dépression post-partum chez les pères
         peuvent être :
+      </p>
+      <div className="container-list">
         <ul>
           <li>Des doutes.</li>
           <li>De la perte de confiance en soi.</li>
@@ -147,7 +156,7 @@ export default function ArticleDpp() {
           <li>La peur d’être jugé.</li>
           <li>Un sentiment de ne pas trouver sa place.</li>
         </ul>
-      </p>
+      </div>
       <Callout
         title="ON EN PARLE"
         description="La dépression post-partum chez les pères peut s’accompagner d’anxiété, de consommation de drogues/d’alcool, de troubles du sommeil, de conflits conjugaux…"
@@ -163,6 +172,8 @@ export default function ArticleDpp() {
         </span>{" "}
         Alors si on reconnaît un ou plusieurs symptômes, mieux vaut en parler
         rapidement à un professionnel de santé. On peut se tourner vers :
+      </p>
+      <div className="container-list">
         <ul>
           <li>sa sage-femme,</li>
           <li>son médecin traitant,</li>
@@ -172,6 +183,8 @@ export default function ArticleDpp() {
             voire l’hôpital dans une consultation de pédopsychiatrie périnatale.
           </li>
         </ul>
+      </div>
+      <p>
         On pourra recevoir une aide, du soutien, des soins. Un traitement sera
         probablement nécessaire. Plus la dépression du post-partum est soignée
         tôt, plus les conséquences pourront être évitées. On peut aussi avoir

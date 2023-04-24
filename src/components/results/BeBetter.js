@@ -1,5 +1,4 @@
 import React from "react"
-import * as StorageUtils from "../../utils/storage.utils"
 import { AlertTile } from "./AlertTile"
 import { ContactTile } from "./ContactTile"
 
@@ -18,7 +17,8 @@ export function BeBetter({ score }) {
         <br />
         <br />
         <span className="text-bold">
-          Je veux être aidé.e dans ma démarche :
+          Je veux être aidé.e dans ma démarche en toute anonymat et
+          confidentialité des échanges :
         </span>
       </p>
       {score > 11 && (
