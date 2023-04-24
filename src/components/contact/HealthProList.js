@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
-import { Button } from "@codegouvfr/react-dsfr/Button"
 import { Icon, Pagination } from "@dataesr/react-dsfr"
 import { Spinner } from "react-bootstrap"
+
 export function HealthProList({
   proList,
   page,
@@ -78,17 +78,19 @@ export function HealthProList({
               </div>
               <div className="horizontalSeparator" />
               <div className="contactInfo">
-                <div
+                {psychologist.profession && (
+                  <span>{psychologist.profession}</span>
+                )}
+                <div className="bigSeparator" />
+                <button
+                  className="fr-btn"
                   onClick={() => {
                     window.location.href = `tel:${psychologist.telephone1}`
                   }}
                 >
-                  <Icon name="ri-phone-fill" size="2x" />
-                </div>
-                <div className="bigSeparator" />
-                <Button onClick={() => console.log("coucou")}>
-                  Plus d&lsquo;infos
-                </Button>
+                  <Icon name="ri-phone-fill" size="xl" />
+                  Appeler
+                </button>
               </div>
             </div>
           ))}

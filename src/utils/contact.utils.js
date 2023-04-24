@@ -61,17 +61,3 @@ const cleanValue = (value) =>
 
 export const matchFilter = (value, filter) =>
   value && cleanValue(value).includes(cleanValue(filter))
-
-export const matchName = (psychologist, filter) => {
-  const searchedNames = filter.split(" ")
-  const psychologistNames = [
-    psychologist.nom,
-    ...psychologist.prenom.split(" "),
-  ]
-
-  return searchedNames.every((searchedName) =>
-    psychologistNames.some((psychologistName) =>
-      matchFilter(psychologistName, searchedName)
-    )
-  )
-}

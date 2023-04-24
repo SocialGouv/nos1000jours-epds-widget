@@ -1,15 +1,12 @@
 import React from "react"
-import * as StorageUtils from "../../utils/storage.utils"
 import { Tile } from "@codegouvfr/react-dsfr/Tile"
 
-export function BeBetter() {
-  const localeSelected = StorageUtils.getLocaleInLocalStorage()
-
+export function ContactTile() {
   return (
     <>
       <Tile
         className="card-text card-space"
-        desc="Avec une infirmière psychiatrique, en journée et week-end"
+        desc="Je choisis un créneau qui me convient avec Wanda et ensemble nous trouvons une aide adaptée à ma situation."
         enlargeLink
         horizontal
         imageUrl="/img/image-wanda.png"
@@ -17,18 +14,19 @@ export function BeBetter() {
         linkProps={{
           href: "/contact/to-be-contacted",
         }}
-        title="J'ai besoin d'aide immédiatement"
+        title="Je veux être accompagné.e"
       />
       <Tile
         className="card-text card-bottom"
         enlargeLink
         horizontal
+        desc="Spécialisés dans la dépression post-partum, ces professionnels peuvent m'aider."
         imageUrl="/img/icone-calendrier.png"
         imageAlt=""
         linkProps={{
-          href: "/contact/demo-form-contact",
+          href: "/contact/pro-list",
         }}
-        title="Trouver un professionel de santé spécialisé en dépression post-partum proche de chez vous"
+        title="Je prends rendez-vous avec un professionnel de santé."
       />
     </>
   )

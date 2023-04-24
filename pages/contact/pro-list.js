@@ -10,7 +10,7 @@ import { GET_INFORMATION_PRO_SANTE, client } from "../../apollo-client"
 import { useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { Spinner, Col } from "react-bootstrap"
-import { TextInput, Select, Button, Alert } from "@dataesr/react-dsfr"
+import { TextInput, Button, Alert } from "@dataesr/react-dsfr"
 
 const AROUND_ME = "Autour de moi"
 
@@ -28,9 +28,7 @@ export default function DemographicDataSurvey() {
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
 
   const [page, setPage] = useState(0)
-  const [nameFilter, setNameFilter] = useState("")
   const [addressFilter, setAddressFilter] = useState("")
-  const [budget, setBudget] = useState("")
   const [coords, setCoords] = useState()
   const [pagination, setPagination] = useState(true)
   const [geoStatus, setGeoStatus] = useState(geoStatusEnum.UNKNOWN)
@@ -92,10 +90,6 @@ export default function DemographicDataSurvey() {
   useEffect(() => {
     if (data) {
       const matchingFiltersPsychologists = annuaire.filter((psychologist) => {
-        if (nameFilter && !ContactUtils.matchName(psychologist, nameFilter)) {
-          return false
-        }
-
         if (addressFilter === AROUND_ME) {
           return true
         }
@@ -146,7 +140,7 @@ export default function DemographicDataSurvey() {
         setFilteredPsychologists(matchingFiltersPsychologists)
       }
     }
-  }, [nameFilter, data, addressFilter, coords])
+  }, [data, addressFilter, coords])
 
   if (loading) return <Spinner animation="border" />
   if (error) return <p>Error</p>
@@ -159,39 +153,14 @@ export default function DemographicDataSurvey() {
         title="Trouver un professionel de santé"
         locale={localeSelected}
       />
-      <TextInput
-        value={nameFilter}
-        onChange={(e) => setNameFilter(e.target.value)}
-        placeholder="Rechercher par nom"
-      />
+      <h5>
+        Spécialisés dans la périnatalité et la dépression post-partum, ces
+        professionnels peuvent m'aider.
+      </h5>
       <TextInput
         value={addressFilter}
         onChange={(e) => setAddressFilter(e.target.value)}
         placeholder="Rechercher par ville ou département"
-      />
-      <Select
-        onChange={(event) => setBudget(event.target.value)}
-        options={[
-          {
-            value: "",
-            label: "Budget",
-            disabled: true,
-            hidden: true,
-          },
-          {
-            value: "budget-ok",
-            label: "Je peux me permettre de payer une consultation",
-          },
-          {
-            value: "no-budget",
-            label: "Je ne suis pas en mesure de payer une consultation",
-          },
-          {
-            value: "no-info",
-            label: "Pas d'information",
-          },
-        ]}
-        selected={budget}
       />
       <Button
         className="fr-btn--secondary around-me-button"

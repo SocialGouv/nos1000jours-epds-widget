@@ -62,3 +62,21 @@ export const EpdsGender = {
     strapiLibelle: "Inconnu",
   },
 }
+
+export const moderateTestimonyList = [
+  "« Témoigange 1 » (Mme X, Y ans)",
+  "« Témoigange 2 » (Mme X, Y ans)",
+  "« Témoigange 3 » (Mme X, Y ans)",
+]
+
+export const highTestimonyList = [
+  "« Témoigange 4 » (Mme X, Y ans)",
+  "« Témoigange 5 » (Mme X, Y ans)",
+  "« Témoigange 6 » (Mme X, Y ans)",
+]
+
+export const veryHighTestimonyList = [
+  "« Témoigange 7 » (Mme X, Y ans)",
+  "« Témoigange 8 » (Mme X, Y ans)",
+  "« Témoigange 9 » (Mme X, Y ans)",
+]
