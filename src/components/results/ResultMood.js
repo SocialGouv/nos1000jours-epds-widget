@@ -10,7 +10,7 @@ export function ResultMood({ scoreText, testimonyList }) {
           marginBottom: "5%",
         }}
       >
-        <div className="fr-tile__body text-color">
+        <div className="fr-tile__body text-color text-margin">
           <h4 className="fr-tile__title text-color">
             Mon score au questionnaire
           </h4>

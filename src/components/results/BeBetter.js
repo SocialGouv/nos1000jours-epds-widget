@@ -2,11 +2,8 @@ import React from "react"
 import * as StorageUtils from "../../utils/storage.utils"
 import { AlertTile } from "./AlertTile"
 import { ContactTile } from "./ContactTile"
-import { Tile } from "@codegouvfr/react-dsfr/Tile"
 
 export function BeBetter({ score }) {
-  const localeSelected = StorageUtils.getLocaleInLocalStorage()
-
   return (
     <>
       <h5 className="padding-top-h5">Je ne suis pas seul.e</h5>
@@ -19,7 +16,10 @@ export function BeBetter({ score }) {
         . C'est une maladie qu'il est facile de guérir tant que l'on sait la
         détecter. Parler de ma situation m'aidera à m'en sortir.
         <br />
-        Je veux être aidé.e dans ma démarche :
+        <br />
+        <span className="text-bold">
+          Je veux être aidé.e dans ma démarche :
+        </span>
       </p>
       {score > 11 && (
         <>

@@ -1,0 +1,21 @@
+@import "sizes.scss";
+
+.text-bold {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.my-font {
+  font-family: Marianne,arial,sans-serif !important;
+}
+
+.container-list {
+  ul {
+    padding-left: 2rem;
+  }
+}
+
+.logo-with-title {
+  display: flex;
+}

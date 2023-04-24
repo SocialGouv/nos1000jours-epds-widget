@@ -26,7 +26,12 @@
 }
 
 .text-alert-color {
-  color: #c61010 !important
+  color: #c61010 !important;
+  font-weight: bold;
+}
+
+.text-margin {
+  margin: 0.5rem !important;
 }
 
 .image-score {
