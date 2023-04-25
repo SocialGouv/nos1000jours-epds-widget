@@ -149,3 +149,23 @@
   width: 5rem !important;
   height: 5rem !important;
 }
+
+@media screen and (max-width: 991px) {
+  .logo-appel-margin {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .logo-appel-margin {
+    margin-top: 1rem;
+  }
+
+}
+
+@media screen and (min-width: 500px) {
+  .logo-appel-margin {
+    margin-top: 0rem;
+  }
+
+}

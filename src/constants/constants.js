@@ -64,19 +64,19 @@ export const EpdsGender = {
 }
 
 export const moderateTestimonyList = [
-  "« Témoigange 1 » (Mme X, Y ans)",
-  "« Témoigange 2 » (Mme X, Y ans)",
-  "« Témoigange 3 » (Mme X, Y ans)",
+  "« J’ai peur de ne pas bien faire les choses, de ne pas être à la hauteur. » (Héléne, 32 ans)",
+  "« J’accumule beaucoup de fatigue. » (Ludivine, 30 ans)",
+  "« Je ne sais pas vraiment ce qu’il se passe. » (Ali, 28 ans)",
 ]
 
 export const highTestimonyList = [
-  "« Témoigange 4 » (Mme X, Y ans)",
-  "« Témoigange 5 » (Mme X, Y ans)",
-  "« Témoigange 6 » (Mme X, Y ans)",
+  "« J’ai du mal à dormir. » (David, 29 ans)",
+  "« Je me sens très seule. » (Véronique, 26 ans)",
+  "« Je n’arrive pas à contrôler mes émotions. Je pleure souvent et/ou m’énerve très facilement. » (Sarah, 33 ans)",
 ]
 
 export const veryHighTestimonyList = [
-  "« Témoigange 7 » (Mme X, Y ans)",
-  "« Témoigange 8 » (Mme X, Y ans)",
-  "« Témoigange 9 » (Mme X, Y ans)",
+  "« Je me sens très mal. » (Aurélie, 28 ans)",
+  "« J'ai l'impression de ne plus sentir d'émotions. » (Pierre, 33 ans)",
+  "« J’ai peur qu’il arrive quelque chose à mon enfant. » (Clara, 27 ans)",
 ]

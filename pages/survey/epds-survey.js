@@ -283,7 +283,7 @@ export default function EpdsSurvey() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
+      <WidgetHeader title={Labels.titleSurvey} locale={localeSelected} />
 
       <Consigne />
       <div className="epds-survey">

@@ -142,7 +142,12 @@ export default function ProList() {
     }
   }, [data, addressFilter, coords])
 
-  if (loading) return <Spinner animation="border" />
+  if (loading)
+    return (
+      <div className="loader-spinner">
+        <Spinner animation="border" />
+      </div>
+    )
   if (error) return <p>Error</p>
 
   const annuaire = data.annuaire1000JBlues

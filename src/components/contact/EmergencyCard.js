@@ -2,7 +2,12 @@ import React from "react"
 import { Icon } from "@dataesr/react-dsfr"
 import { Col } from "react-bootstrap"
 
-export function EmergencyCard({ emergencyText, emergencyPhone, schedule }) {
+export function EmergencyCard({
+  emergencyText,
+  emergencyPhone,
+  schedule,
+  isSOS,
+}) {
   return (
     <div className="demographic-data">
       <Col className="be-contacted-bottom-buttons">
@@ -14,17 +19,21 @@ export function EmergencyCard({ emergencyText, emergencyPhone, schedule }) {
                 <span>{emergencyText.toUpperCase()}</span>
               </div>
             </div>
-            {schedule && (
-              <div
-                style={{
-                  display: "flex",
-                  marginTop: "2rem",
-                }}
-              >
+            {schedule && !isSOS && (
+              <div className="logo-appel-margin">
                 <Icon name="ri-time-line" size="xl" />
-                <p>{schedule}</p>
+                <span>{schedule}</span>
               </div>
             )}
+            {isSOS && (
+              <div className="logo-appel-margin">
+                <Icon name="ri-time-line" size="xl" />
+                <span>En semaine de 10h à 13h et de 14h à 20h</span>
+                <br />
+                <span>Le samedi de 10h à 13h</span>
+              </div>
+            )}
+
             <div className="horizontalSeparator" />
             <button
               className="fr-btn"

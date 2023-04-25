@@ -1,5 +1,6 @@
 export const Labels = {
   titleDPP: "Mon résultat",
+  titleSurvey: "Comment ça va cette semaine ?",
   surveyExplanations:
     "Veuillez cocher la réponse qui vous semble décrire le mieux comment vous vous êtes senti(e) au cours des 7 derniers jours et pas seulement aujourd’hui.",
   mood: {

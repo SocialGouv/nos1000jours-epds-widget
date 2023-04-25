@@ -11,15 +11,15 @@ export default function ContactUrgence() {
       <WidgetHeader title="Numéro d'urgence" locale={localeSelected} />
 
       <EmergencyCard
-        emergencyText="Numéro national de prévention du suicide"
-        emergencyPhone={3114}
+        emergencyText="Allô, Parents en crise"
+        emergencyPhone={"0805382300"}
+        isSOS={true}
       />
       <EmergencyCard
-        emergencyText="Allô, Parents en crise"
-        emergencyPhone={parseInt("0805382300")}
-        schedule={
-          "Du lundi au vendredi de 10h à 13h et de 14h à 20h. Le samedi de 10h à 13h"
-        }
+        emergencyText="Numéro national de prévention du suicide."
+        emergencyPhone={3114}
+        schedule="Disponible 24/7"
+        isSOS={false}
       />
     </ContentLayout>
   )
