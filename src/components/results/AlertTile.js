@@ -16,7 +16,7 @@ export function AlertTile({ isArticle }) {
           display: "contents",
         }}
         onClick={() => {
-          if (isArticle) trackerForResults(ACTION.emergency)
+          if (!isArticle) trackerForResults(ACTION.emergency)
           else trackerForArticle(ACTION.emergency)
         }}
       >
