@@ -1,4 +1,5 @@
 import React from "react"
+import { trackerForResults, ACTION } from "../../utils/tracker.utils"
 import { AlertTile } from "./AlertTile"
 import { ContactTile } from "./ContactTile"
 
@@ -10,7 +11,14 @@ export function BeBetter({ score, linkActive }) {
         Chaque situation est différente et pourtant il existe une seule même
         maladie,{" "}
         {linkActive && (
-          <a className="text-color" target="_blank" href="/article-dpp">
+          <a
+            className="text-color"
+            target="_blank"
+            href="/article-dpp"
+            onClick={() => {
+              trackerForResults(ACTION.article)
+            }}
+          >
             la dépression post-partum
           </a>
         )}
@@ -26,15 +34,15 @@ export function BeBetter({ score, linkActive }) {
       </p>
       {score > 11 && (
         <>
-          <AlertTile />
-          <ContactTile />
+          <AlertTile isArticle={linkActive} />
+          <ContactTile isArticle={linkActive} />
         </>
       )}
 
       {score <= 11 && (
         <>
-          <ContactTile />
-          <AlertTile />
+          <ContactTile isArticle={linkActive} />
+          <AlertTile isArticle={linkActive} />
         </>
       )}
     </>

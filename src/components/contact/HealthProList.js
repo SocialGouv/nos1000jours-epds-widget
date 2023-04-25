@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { Icon, Pagination } from "@dataesr/react-dsfr"
 import { Spinner } from "react-bootstrap"
+import { ACTION, trackerForProfessional } from "../../utils/tracker.utils"
 
 export function HealthProList({
   proList,
@@ -85,6 +86,7 @@ export function HealthProList({
                 <button
                   className="fr-btn"
                   onClick={() => {
+                    trackerForProfessional(ACTION.call_pro)
                     window.location.href = `tel:${psychologist.telephone1}`
                   }}
                 >

@@ -1,12 +1,14 @@
 import React from "react"
 import { Icon } from "@dataesr/react-dsfr"
 import { Col } from "react-bootstrap"
+import { ACTION, trackerForEmergency } from "../../utils/tracker.utils"
 
 export function EmergencyCard({
   emergencyText,
   emergencyPhone,
   schedule,
   isSOS,
+  action,
 }) {
   return (
     <div className="demographic-data">
@@ -39,6 +41,7 @@ export function EmergencyCard({
               className="fr-btn"
               onClick={() => {
                 window.location.href = `tel:${emergencyPhone}`
+                trackerForEmergency(action)
               }}
             >
               <Icon name="ri-phone-fill" size="xl" />

@@ -1,6 +1,7 @@
 import React from "react"
+import { ACTION, trackerForResults } from "../../utils/tracker.utils"
 
-export function AlertTile() {
+export function AlertTile({ isArticle }) {
   return (
     <div
       className="fr-tile fr-tile--horizontal"
@@ -13,6 +14,10 @@ export function AlertTile() {
         href="/contact/contact-urgence"
         style={{
           display: "contents",
+        }}
+        onClick={() => {
+          if (isArticle) trackerForResults(ACTION.emergency)
+          else trackerForArticle(ACTION.emergency)
         }}
       >
         <div className="fr-tile__body">

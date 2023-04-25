@@ -11,6 +11,7 @@ import { useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { Spinner, Col } from "react-bootstrap"
 import { TextInput, Button, Alert } from "@dataesr/react-dsfr"
+import { ACTION, trackerForProfessional } from "../../src/utils/tracker.utils"
 
 const AROUND_ME = "Autour de moi"
 
@@ -170,7 +171,10 @@ export default function ProList() {
       <Button
         className="fr-btn--secondary around-me-button"
         icon="ri-compass-3-line"
-        onClick={() => setAddressFilter(AROUND_ME)}
+        onClick={() => {
+          setAddressFilter(AROUND_ME)
+          trackerForProfessional(ACTION.around_me)
+        }}
       >
         Autour de moi
       </Button>

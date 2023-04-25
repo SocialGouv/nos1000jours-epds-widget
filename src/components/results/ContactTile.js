@@ -1,7 +1,12 @@
 import React from "react"
 import { Tile } from "@codegouvfr/react-dsfr/Tile"
+import {
+  ACTION,
+  trackerForArticle,
+  trackerForResults,
+} from "../../utils/tracker.utils"
 
-export function ContactTile() {
+export function ContactTile({ isArticle }) {
   return (
     <>
       <Tile
@@ -13,6 +18,10 @@ export function ContactTile() {
         imageAlt=""
         linkProps={{
           href: "/contact/to-be-contacted",
+          onClick: () => {
+            if (isArticle) trackerForResults(ACTION.be_contacted)
+            else trackerForArticle(ACTION.be_contacted)
+          },
         }}
         title="Je veux être accompagné.e"
       />
@@ -25,6 +34,10 @@ export function ContactTile() {
         imageAlt=""
         linkProps={{
           href: "/contact/pro-list",
+          onClick: () => {
+            if (isArticle) trackerForResults(ACTION.find_pro)
+            else trackerForArticle(ACTION.find_pro)
+          },
         }}
         title="Je prends rendez-vous avec un professionnel de santé."
       />
