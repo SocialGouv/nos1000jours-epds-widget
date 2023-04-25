@@ -1,22 +1,26 @@
 import { ContentLayout } from "../src/components/Layout"
 import { WidgetHeader } from "../src/components/WidgetHeader"
+import { BeBetter } from "../src/components/results/BeBetter"
+import { STORAGE_SCORE } from "../src/constants/constants"
 import { Icon, MediaVideo } from "@dataesr/react-dsfr"
 import * as StorageUtils from "../src/utils/storage.utils"
 
 const Callout = ({ title, description, theme }) => {
   return (
     <div className={`fr-callout ${theme}`}>
-      <div className="logo-with-title">
+      <div className="logo-with-title ">
         <Icon className="userIcon" name="ri-information-line" size="xl" />
-        <h6>{title}</h6>
+        <h6 className="my-font">{title}</h6>
       </div>
-      <p className="fr-callout__text">{description}</p>
+      <p className="fr-callout__text my-font">{description}</p>
     </div>
   )
 }
 
 export default function ArticleDpp() {
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
+  const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
+  const score = parseInt(scoreValue)
 
   return (
     <ContentLayout>
@@ -31,7 +35,7 @@ export default function ArticleDpp() {
         anxiété, culpabilité… Il est important de mieux connaitre le baby blues
         et la dépression post-partum, pour savoir comment réagir.
       </p>
-      <MediaVideo onTranscriptionClick={function noRefCheck() {}}>
+      <MediaVideo size="sm" onTranscriptionClick={function noRefCheck() {}}>
         <iframe
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           className="fr-responsive-vid__player"
@@ -208,13 +212,7 @@ export default function ArticleDpp() {
         dépression post-partum, le parent va mieux, et ainsi a moins de
         difficultés à prendre soin de son enfant.
       </p>
-      <h5 className="text-color">Je ne suis pas seul.e</h5>
-      <p>
-        Chaque situation est différente et pourtant il existe une seule même
-        maladie, la dépression post-partum. C'est une maladie qu'il est facile
-        de guérir tant que l'on sait la détecter. Parler de ma situation
-        m'aidera à m'en sortir.
-      </p>
+      <BeBetter score={score} linkActive={false} />
     </ContentLayout>
   )
 }

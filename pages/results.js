@@ -37,7 +37,7 @@ export default function Results() {
           testimonyList={veryHighTestimonyList}
         />
       )}
-      <BeBetter score={score} />
+      <BeBetter score={score} linkActive={true} />
     </ContentLayout>
   )
 }

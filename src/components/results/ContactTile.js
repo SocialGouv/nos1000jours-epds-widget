@@ -6,7 +6,7 @@ export function ContactTile() {
     <>
       <Tile
         className="card-text card-space"
-        desc="Je choisis un créneau qui me convient avec Wanda et ensemble nous trouvons une aide adaptée à ma situation."
+        desc="Je choisis un créneau qui me convient avec Wanda infirmière spécialisée en périnatalité et ensemble nous trouvons une aide adaptée à ma situation."
         enlargeLink
         horizontal
         imageUrl="/img/image-wanda.png"

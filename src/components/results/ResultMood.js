@@ -11,14 +11,11 @@ export function ResultMood({ scoreText, testimonyList }) {
         }}
       >
         <div className="fr-tile__body text-color text-margin">
-          <h4 className="fr-tile__title text-color">
-            Mon score au questionnaire
-          </h4>
-          <p className="fr-tile__desc">{`Votre score est ${scoreText}`}</p>
+          <p className="fr-tile__desc text-bold">{`Mon score est ${scoreText}`}</p>
         </div>
         <div className="fr-tile__img image-score">
           <img
-            src="/img/icone-score-epds.svg"
+            src="/img/icone-score.svg"
             className="fr-responsive-img"
             alt="icone-score"
           />
