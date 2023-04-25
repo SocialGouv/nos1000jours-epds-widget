@@ -18,7 +18,7 @@ export function ContactTile({ isArticle }) {
         imageAlt=""
         linkProps={{
           href: "/contact/to-be-contacted",
-          onClick: () => {
+          onClick: function noRefCheck() {
             if (isArticle) trackerForResults(ACTION.be_contacted)
             else trackerForArticle(ACTION.be_contacted)
           },
@@ -34,7 +34,7 @@ export function ContactTile({ isArticle }) {
         imageAlt=""
         linkProps={{
           href: "/contact/pro-list",
-          onClick: () => {
+          onClick: function noRefCheck() {
             if (isArticle) trackerForResults(ACTION.find_pro)
             else trackerForArticle(ACTION.find_pro)
           },
