@@ -65,10 +65,10 @@ export default function ProList() {
   const getGeolocation = (state) => {
     if (state === "granted") {
       setGeoLoading(false)
-      navigator.geolocation.getCurrentPosition(success)
+      window.onload = navigator.geolocation.getCurrentPosition(success)
     } else if (state === "prompt") {
       setGeoLoading(false)
-      navigator.geolocation.getCurrentPosition(success, errors)
+      window.onload = navigator.geolocation.getCurrentPosition(success, errors)
     } else if (state === "denied") {
       setGeoStatus(geoStatusEnum.DENIED)
       setGeoLoading(true)
