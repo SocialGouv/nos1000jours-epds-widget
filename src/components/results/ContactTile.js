@@ -4,7 +4,9 @@ import {
   trackerForArticle,
   trackerForResults,
 } from "../../utils/tracker.utils"
+import { client, GET_ACTIVATION_TILE_STATUS } from "../../../apollo-client"
 import { Icon } from "@dataesr/react-dsfr"
+import { useQuery } from "@apollo/client"
 
 const Tile = ({ title, desc, imageUrl, link, isBeContacted, isArticle }) => {
   return (
@@ -41,16 +43,26 @@ const Tile = ({ title, desc, imageUrl, link, isBeContacted, isArticle }) => {
 }
 
 export function ContactTile({ isArticle }) {
+  const { loading, error, data } = useQuery(GET_ACTIVATION_TILE_STATUS, {
+    client: client,
+  })
+
+  if (loading) return <></>
+  if (error) return <p>Error</p>
+  const isTileContactActive = data.activationTile.activation_tile
+
   return (
     <>
-      <Tile
-        title="Je veux être accompagné.e"
-        desc="Je choisis un créneau qui me convient avec Wanda, infirmière spécialisée en périnatalité, et ensemble nous trouvons une aide adaptée à ma situation."
-        imageUrl="/img/image-wanda.png"
-        link="/contact/to-be-contacted"
-        isBeContacted={true}
-        isArticle={isArticle}
-      />
+      {isTileContactActive && (
+        <Tile
+          title="Je veux être accompagné.e"
+          desc="Je choisis un créneau qui me convient avec Wanda, infirmière spécialisée en périnatalité, et ensemble nous trouvons une aide adaptée à ma situation."
+          imageUrl="/img/image-wanda.png"
+          link="/contact/to-be-contacted"
+          isBeContacted={true}
+          isArticle={isArticle}
+        />
+      )}
       <Tile
         title="Je prends rendez-vous avec un professionnel de santé."
         desc="Spécialisés dans la dépression post-partum, ces professionnels peuvent m'aider."

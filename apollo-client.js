@@ -31,6 +31,14 @@ export const GET_INFORMATION_PRO_SANTE = gql`
   }
 `
 
+export const GET_ACTIVATION_TILE_STATUS = gql`
+  query activationTile {
+    activationTile {
+      activation_tile
+    }
+  }
+`
+
 export const EPDS_ADD_SURVEY_RESULTS = gql`
   mutation (
     $genre: ENUM_REPONSESEPDS_GENRE!
