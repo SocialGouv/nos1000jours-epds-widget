@@ -16,7 +16,7 @@ export function AlertTile({ isArticle }) {
       }}
     >
       <a
-        href="/contact/to-be-contacted"
+        href="/contact/contact-urgence"
         style={{
           display: "contents",
         }}
