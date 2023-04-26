@@ -1,13 +1,14 @@
 import React from "react"
 import { ACTION, trackerForResults } from "../../utils/tracker.utils"
+import { Icon } from "@dataesr/react-dsfr"
 
 export function AlertTile({ isArticle }) {
   return (
     <div
-      className="fr-tile fr-tile--horizontal"
+      className="fr-tile fr-enlarge-link fr-tile--horizontal fr-tile--vertical-md"
       style={{
         backgroundColor: "#e6e6e6",
-        marginBottom: "5%",
+        marginBottom: "2rem",
       }}
     >
       <a
@@ -16,7 +17,7 @@ export function AlertTile({ isArticle }) {
           display: "contents",
         }}
         onClick={() => {
-          if (!isArticle) trackerForResults(ACTION.emergency)
+          if (isArticle) trackerForResults(ACTION.emergency)
           else trackerForArticle(ACTION.emergency)
         }}
       >
@@ -28,6 +29,14 @@ export function AlertTile({ isArticle }) {
               j'ai besoin d'assistance immédiatement.
             </span>
           </p>
+        </div>
+        <div
+          className="icone-arrow"
+          style={{
+            marginBottom: "1.5rem",
+          }}
+        >
+          <Icon className="selected" name="ri-arrow-right-line" size="2x" />
         </div>
       </a>
     </div>

@@ -150,22 +150,109 @@
   height: 5rem !important;
 }
 
-@media screen and (max-width: 991px) {
+.arrow-flex {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 700px) {
   .logo-appel-margin {
     margin-top: 1rem;
   }
+  .tile-image {
+    margin: 2rem !important
+  }
+  .tile-text-title {
+    text-align: start;
+    margin: 1rem 0rem 1rem 0rem !important
+  }
+  .tile-text-desc {
+    text-align: start;
+    margin-bottom: 1rem !important
+  }
+
+  .tile .selected {
+    flex-direction: row;
+    align-self: center;
+    margin-bottom: 1rem;
+  }
+  .fr-tile--vertical-md {
+    align-items: normal;
+    flex-direction: row !important;
+    width: 100%;    
+  }
+  .icone-arrow {
+    display: flex !important;
+    min-width: 8rem;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }  
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 430px) {
   .logo-appel-margin {
     margin-top: 1rem;
   }
-
+  .tile-image {
+    margin: 6.5rem 1.5rem 1.5rem 1.5rem !important
+  }
+  .tile-text-title {
+    text-align: start;
+    margin: 1.5rem 0rem 0rem 0rem !important
+  }
+  .tile-text-desc {
+    text-align: start;
+    margin: 0rem 1rem 1.5rem 0rem !important
+  }
+  .tile .selected {
+    align-self: flex-end;
+    margin-bottom: 1rem;
+  }
+  .fr-tile--vertical-md {
+    align-items: normal !important;
+    flex-direction: row !important;
+    width: 100% !important;
+  }
+  .icone-arrow:last-of-type {
+    margin-top: auto;
+    margin-left: auto;
+    margin-bottom: 2rem;
+  }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 431px) {
   .logo-appel-margin {
     margin-top: 0rem;
   }
+  .tile-image {
+    margin: 2.5rem 1.5rem 1.5rem 1.5rem !important
+  }
+  .tile-text-title {
+    text-align: start;
+    margin-top: 2rem !important
+  }
+  .tile-text-desc {
+    text-align: start;
+    margin-bottom: 2rem !important
+  }
+  .tile .selected {
+    display: flex !important;
+    align-self: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+  .fr-tile--vertical-md {
+    align-items: normal;
+    flex-direction: row !important;
+    width: 100%;    
+  }
 
+}
+
+.icone-arrow:last-of-type {
+  margin-top: auto;
+  margin-left: auto;
 }

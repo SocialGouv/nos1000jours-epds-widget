@@ -1,45 +1,63 @@
 import React from "react"
-import { Tile } from "@codegouvfr/react-dsfr/Tile"
 import {
   ACTION,
   trackerForArticle,
   trackerForResults,
 } from "../../utils/tracker.utils"
+import { Icon } from "@dataesr/react-dsfr"
+
+const Tile = ({ title, desc, imageUrl, link, isBeContacted, isArticle }) => {
+  return (
+    <div className="fr-tile fr-enlarge-link fr-tile--horizontal fr-tile--vertical-md card-text card-space">
+      <div className="fr-tile__img tile-image">
+        <img src={imageUrl} className="fr-responsive-img" alt="" />
+      </div>
+      <div>
+        <h4 className="fr-tile__title">
+          <a
+            className="fr-tile__link card-text tile-text-title"
+            href={link}
+            onClick={() => {
+              if (isBeContacted) {
+                if (isArticle) trackerForResults(ACTION.be_contacted)
+                else trackerForArticle(ACTION.be_contacted)
+              }
+              if (!isBeContacted) {
+                if (isArticle) trackerForResults(ACTION.find_pro)
+                else trackerForArticle(ACTION.find_pro)
+              }
+            }}
+          >
+            {title}
+          </a>
+        </h4>
+        <p className="fr-tile__desc tile-text-desc">{desc}</p>
+      </div>
+      <div className="icone-arrow">
+        <Icon className="selected" name="ri-arrow-right-line" size="2x" />
+      </div>
+    </div>
+  )
+}
 
 export function ContactTile({ isArticle }) {
   return (
     <>
       <Tile
-        className="card-text card-space"
-        desc="Je choisis un créneau qui me convient avec Wanda, infirmière spécialisée en périnatalité, et ensemble nous trouvons une aide adaptée à ma situation."
-        enlargeLink
-        horizontal
-        imageUrl="/img/image-wanda.png"
-        imageAlt=""
-        linkProps={{
-          href: "/contact/to-be-contacted",
-          onClick: function noRefCheck() {
-            if (isArticle) trackerForResults(ACTION.be_contacted)
-            else trackerForArticle(ACTION.be_contacted)
-          },
-        }}
         title="Je veux être accompagné.e"
+        desc="Je choisis un créneau qui me convient avec Wanda, infirmière spécialisée en périnatalité, et ensemble nous trouvons une aide adaptée à ma situation."
+        imageUrl="/img/image-wanda.png"
+        link="/contact/to-be-contacted"
+        isBeContacted={true}
+        isArticle={isArticle}
       />
       <Tile
-        className="card-text card-bottom"
-        enlargeLink
-        horizontal
+        title="Je prends rendez-vous avec un professionnel de santé."
         desc="Spécialisés dans la dépression post-partum, ces professionnels peuvent m'aider."
         imageUrl="/img/icone-calendrier.png"
-        imageAlt=""
-        linkProps={{
-          href: "/contact/pro-list",
-          onClick: function noRefCheck() {
-            if (isArticle) trackerForResults(ACTION.find_pro)
-            else trackerForArticle(ACTION.find_pro)
-          },
-        }}
-        title="Je prends rendez-vous avec un professionnel de santé."
+        link="/contact/pro-list"
+        isBeContacted={false}
+        isArticle={isArticle}
       />
     </>
   )
