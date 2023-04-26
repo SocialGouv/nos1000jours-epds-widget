@@ -7,24 +7,10 @@ import * as TrackerUtils from "../../src/utils/tracker.utils"
  * @param {*} label
  */
 const sendTrackerContactConfirmed = (contactType) => {
-  if (contactType === "chat") {
-    TrackerUtils.trackerForContact(`Ouverture ${contactType}`)
-  } else {
-    TrackerUtils.trackerForContact(`Confirmation ${contactType}`)
-  }
+  TrackerUtils.trackerForContact(`Confirmation ${contactType}`)
 }
 
 describe("Contact Utils", () => {
-  describe("trackerContactName", () => {
-    test("Should return confirmation mail if email type is selected", () => {
-      expect(ContactUtils.trackerContactName("email")).toEqual(
-        "Confirmation email"
-      )
-    })
-    test("Should return confirmation mail if chat type is selected", () => {
-      expect(ContactUtils.trackerContactName("chat")).toEqual("Ouverture chat")
-    })
-  })
   describe("sendTrackerContactConfirmed", () => {
     let trackerSpy
     localStorage.setItem(STORAGE_SOURCE, "1000-premiers-jours")
@@ -36,20 +22,9 @@ describe("Contact Utils", () => {
       jest.restoreAllMocks()
     })
 
-    test("Should send tracker with email confirmation", () => {
-      sendTrackerContactConfirmed(RequestContact.type.email)
-      expect(trackerSpy).toHaveBeenCalledWith("Confirmation email")
-    })
-
     test("Should send tracker with sms confirmation", () => {
       sendTrackerContactConfirmed(RequestContact.type.sms)
       expect(trackerSpy).toHaveBeenCalledWith(`Confirmation sms`)
-    })
-
-    test("Should send tracker with chat opening", () => {
-      sendTrackerContactConfirmed(RequestContact.type.chat)
-      expect(trackerSpy).toHaveBeenCalled()
-      expect(trackerSpy).toHaveBeenCalledWith("Ouverture chat")
     })
   })
 

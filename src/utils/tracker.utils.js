@@ -42,9 +42,6 @@ export const ACTION = {
 }
 
 export const CONTACT_SENT = {
-  chat: "Ouverture chat",
-  no_chat: "Chat non disponible",
-  mail: "Confirmation email",
   sms: "Confirmation sms",
   rendezvous: "Confirmation rendezvous",
 }

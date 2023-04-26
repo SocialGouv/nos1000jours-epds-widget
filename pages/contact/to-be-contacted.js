@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import {} from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
-import { Crisp } from "crisp-sdk-web"
-import { useMutation, useQuery } from "@apollo/client"
 import {
   ButtonGroup,
   Col,
@@ -13,50 +11,30 @@ import {
 
 import { ContentLayout } from "../../src/components/Layout"
 import {
-  CRISP_CHAT_ID,
   OPEN_CONTACT_FROM_EMAIL,
   RequestContact,
   STORAGE_CONTACT_HOURS,
   STORAGE_CONTACT_TYPE,
   STORAGE_SOURCE,
-  STORAGE_TEST_ABC,
-  URL_CHAT_WHATSAPP,
 } from "../../src/constants/constants"
 import { WidgetHeader } from "../../src/components/WidgetHeader"
 import {
   readSourceInUrl,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
-import {
-  client,
-  SAVE_DEMANDE_DE_CONTACT,
-  GET_ACTIVATION_CHAT_STATUS,
-} from "../../apollo-client"
 import * as StorageUtils from "../../src/utils/storage.utils"
-import * as ContactUtils from "../../src/utils/contact.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
-import * as AbTestingUtils from "../../src/utils/ab-testing/ab-testing.utils"
-
-const CHAT_TYPE = {
-  whatsapp: "Whats App",
-  crisp: "Crisp",
-}
-
-// A modifier lorsque l'on veut modifier le chat utilisé (crisp, whats app)
-const chatNameUsed = CHAT_TYPE.crisp
 
 export default function ToBeContacted() {
   const router = useRouter()
 
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
-  const test = StorageUtils.getInLocalStorage(STORAGE_TEST_ABC)
 
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
 
   const [websiteSource, setWebsiteSource] = useState(false)
-  const [actualDate, setActualDate] = useState(new Date())
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -64,48 +42,15 @@ export default function ToBeContacted() {
       localStorage.setItem(STORAGE_SOURCE, source)
       setWebsiteSource(source)
     }
-    setActualDate(new Date())
-    initChat()
   }, [])
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
-
-    if (itemValueType == RequestContact.type.email)
-      setContactHours(defaultContactHours)
   }, [itemValueType])
 
   const cancel = () => {
-    TrackerUtils.trackerForResults(TrackerUtils.ACTION.abandon)
+    TrackerUtils.trackerForContact(TrackerUtils.ACTION.abandon)
     router.back()
-  }
-  const [sendContactQuery] = useMutation(SAVE_DEMANDE_DE_CONTACT, {
-    client: client,
-    onError: (err) => {
-      console.error(err)
-    },
-  })
-
-  const initChat = () => {
-    if (chatNameUsed === CHAT_TYPE.crisp) {
-      Crisp.configure(CRISP_CHAT_ID)
-      Crisp.chat.hide()
-    }
-  }
-
-  const activateChat = () => {
-    if (chatNameUsed === CHAT_TYPE.whatsapp) openWhatsapp()
-    if (chatNameUsed === CHAT_TYPE.crisp) openCrisp()
-  }
-
-  const openWhatsapp = async () => {
-    ContactUtils.saveContactRequest(RequestContact.type.chat, sendContactQuery)
-    window.open(URL_CHAT_WHATSAPP, "_blank")
-  }
-
-  const openCrisp = () => {
-    Crisp.chat.show()
-    Crisp.chat.open()
   }
 
   const goToContactForm = () => {
@@ -124,12 +69,8 @@ export default function ToBeContacted() {
     if (itemValueType) {
       TrackerUtils.trackerForContact(`Choix effectué`)
       TrackerUtils.trackerForContact(`Choix ${itemValueType}`)
-      AbTestingUtils.trackerForAbTesting(`Choix effectué`)
-      AbTestingUtils.trackerForAbTesting(`Choix ${itemValueType}`)
     }
-
-    if (itemValueType == RequestContact.type.chat) activateChat()
-    else goToContactForm()
+    goToContactForm()
   }
 
   const CustomToggleButton = (type) => (
@@ -154,49 +95,7 @@ export default function ToBeContacted() {
     </ToggleButton>
   )
 
-  const ChatComponent = () => {
-    const { loading, error, data } = useQuery(GET_ACTIVATION_CHAT_STATUS, {
-      client: client,
-    })
-
-    if (loading) return <></>
-    if (error) return <p>Error</p>
-    const isChatActive = data.activationChat.activation_chat
-    let isChatEnabled
-    const chatMorningFrom = data.activationChat.matin_de
-    const chatMorningTo = data.activationChat.matin_a
-    const chatAfternoonFrom = data.activationChat.apres_midi_de
-    const chatAfternoonTo = data.activationChat.apres_midi_a
-    if (isChatActive) {
-      if (
-        (actualDate.toLocaleTimeString() >= chatMorningFrom.split(".")[0] &&
-          actualDate.toLocaleTimeString() <= chatMorningTo.split(".")[0]) ||
-        (actualDate.toLocaleTimeString() >= chatAfternoonFrom.split(".")[0] &&
-          actualDate.toLocaleTimeString() <= chatAfternoonTo.split(".")[0])
-      ) {
-        isChatEnabled = true
-      } else {
-        isChatEnabled = false
-      }
-    }
-    return (
-      <>
-        {isChatEnabled && isChatActive && (
-          <>
-            Maintenant par :
-            <Row>
-              {defaultContactTypes.byNow.map((type) => (
-                <Col key={type.id}>{CustomToggleButton(type)}</Col>
-              ))}
-            </Row>
-            <br />
-          </>
-        )}
-      </>
-    )
-  }
-
-  const MailAndSmsComponent = () => (
+  const SmsComponent = () => (
     <fieldset>
       <Row>
         {defaultContactTypes.byAvailabilities.map((type) => (
@@ -220,27 +119,11 @@ export default function ToBeContacted() {
 
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
-      {test === "A" && (
-        <Col>
-          <ChatComponent />
-          <legend>Selon mes disponibilités, par :</legend>
-          <MailAndSmsComponent />
-        </Col>
-      )}
-      {test === "B" && (
-        <Col>
-          <legend>Selon mes disponibilités, par :</legend>
-          <CalendlyComponent />
-          <ChatComponent />
-        </Col>
-      )}
-      {test === "C" && (
-        <Col>
-          <legend>Selon mes disponibilités, par :</legend>
-          <CalendlyComponent />
-          <MailAndSmsComponent />
-        </Col>
-      )}
+      <Col>
+        <legend>Selon mes disponibilités, par :</legend>
+        <CalendlyComponent />
+        <SmsComponent />
+      </Col>
     </ButtonGroup>
   )
 
@@ -314,15 +197,6 @@ export default function ToBeContacted() {
 }
 
 const defaultContactTypes = {
-  byNow: [
-    {
-      icon: "../img/contact/chat.svg",
-      iconSelected: "../img/contact/chat-selected.svg",
-      id: RequestContact.type.chat,
-      isChecked: false,
-      text: `Chat`,
-    },
-  ],
   byAvailabilities: [
     {
       icon: "../img/contact/sms.svg",
@@ -330,13 +204,6 @@ const defaultContactTypes = {
       id: RequestContact.type.sms,
       isChecked: false,
       text: "SMS",
-    },
-    {
-      icon: "../img/contact/email-contact.svg",
-      iconSelected: "../img/contact/email-contact-selected.svg",
-      id: RequestContact.type.email,
-      isChecked: false,
-      text: "Email",
     },
   ],
   byAppointment: [
@@ -388,7 +255,7 @@ export const convertHoursListInString = (hours) =>
   )
 
 /**
- * @param {RequestContact.type} itemValueType Type du mode de contact sélectionné (Email/ SMS)
+ * @param {RequestContact.type} itemValueType Type du mode de contact sélectionné (RDV/ SMS)
  * @param {Array} contactHours Tableau des heures
  * @returns boolean de la validité des choix seléctionnés
  */
@@ -397,8 +264,6 @@ export const isValidButtonEnabled = (itemValueType, contactHours) => {
     contactHours?.find((item) => item.isChecked) != undefined
 
   return (
-    itemValueType == RequestContact.type.email ||
-    itemValueType == RequestContact.type.chat ||
     itemValueType == RequestContact.type.rendezvous ||
     (itemValueType == RequestContact.type.sms && isHoursSelected)
   )

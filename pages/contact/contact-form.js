@@ -168,8 +168,6 @@ export default function ContactForm() {
     if (typeContact) {
       TrackerUtils.trackerForContact(TrackerUtils.ACTION.confirmation)
       TrackerUtils.trackerForContact(ContactUtils.trackerContactName(typeContact))
-      AbTestingUtils.trackerForAbTesting(TrackerUtils.ACTION.confirmation)
-      AbTestingUtils.trackerForAbTesting(ContactUtils.trackerContactName(typeContact))
     }
   }
 

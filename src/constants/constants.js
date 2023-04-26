@@ -27,14 +27,9 @@ export const OPEN_CONTACT_FROM_EMAIL = "fromEmail"
 
 export const PATTERN_EMAIL = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}"
 
-export const URL_CHAT_WHATSAPP = "https://wa.me/message/ZMCTRIQWA7OKD1"
-export const CRISP_CHAT_ID = "d35734d1-93ce-4f6e-8f27-7c1557803b7e"
-
 export const RequestContact = {
   type: {
     sms: "sms",
-    email: "email",
-    chat: "chat",
     rendezvous: "rendezvous",
   },
   hours: {

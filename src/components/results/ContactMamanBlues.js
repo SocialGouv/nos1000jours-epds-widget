@@ -27,7 +27,6 @@ export function ContactMamanBlues({ scoreLevel }) {
 
   const goToBeContacted = async (event) => {
     TrackerUtils.trackerForResults(TrackerUtils.ACTION.be_contacted)
-    AbTestingUtils.trackerForAbTesting(TrackerUtils.ACTION.be_contacted)
     router.push({
       pathname: "/contact/to-be-contacted",
     })

@@ -1,7 +1,7 @@
 import React from "react"
 import { Icon } from "@dataesr/react-dsfr"
 import { Col } from "react-bootstrap"
-import { ACTION, trackerForEmergency } from "../../utils/tracker.utils"
+import { trackerForEmergency } from "../../utils/tracker.utils"
 
 export function EmergencyCard({
   emergencyText,

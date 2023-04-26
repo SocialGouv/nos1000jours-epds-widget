@@ -9,14 +9,14 @@ import { Icon } from "@dataesr/react-dsfr"
 export function AlertTile({ isArticle }) {
   return (
     <div
-      className="fr-tile fr-enlarge-link fr-tile--horizontal fr-tile--vertical-md"
+      className="fr-tile fr-tile--horizontal fr-tile--vertical-md"
       style={{
         backgroundColor: "#e6e6e6",
         marginBottom: "2rem",
       }}
     >
       <a
-        href="/contact/contact-urgence"
+        href="/contact/to-be-contacted"
         style={{
           display: "contents",
         }}

@@ -100,18 +100,6 @@ export const EPDS_CONTACT_INFORMATION = gql`
   }
 `
 
-export const GET_ACTIVATION_CHAT_STATUS = gql`
-  query activationChat {
-    activationChat {
-      activation_chat
-      matin_de
-      matin_a
-      apres_midi_de
-      apres_midi_a
-    }
-  }
-`
-
 export const GET_TEMOIGNAGES_CHIFFRES = gql`
   query temoignages {
     temoignages {
