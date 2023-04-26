@@ -12,8 +12,7 @@ export function BeBetter({ score, linkActive }) {
         maladie,{" "}
         {linkActive && (
           <a
-            className="text-color"
-            target="_blank"
+            className="text-color text-underline"
             href="/article-dpp"
             onClick={() => {
               trackerForResults(ACTION.article)

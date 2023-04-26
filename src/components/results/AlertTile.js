@@ -1,5 +1,9 @@
 import React from "react"
-import { ACTION, trackerForResults } from "../../utils/tracker.utils"
+import {
+  ACTION,
+  trackerForResults,
+  trackerForArticle,
+} from "../../utils/tracker.utils"
 import { Icon } from "@dataesr/react-dsfr"
 
 export function AlertTile({ isArticle }) {
