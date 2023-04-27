@@ -25,7 +25,7 @@ export function AlertTile({ isArticle }) {
           else trackerForArticle(ACTION.emergency)
         }}
       >
-        <div className="fr-tile__body">
+        <div className="fr-tile__body" style={{ alignItems: "start" }}>
           <h4 className="fr-tile__title">J'ai besoin d'aide en urgence</h4>
           <p className="fr-tile__desc text-black-color">
             Je suis en situation de crise et{" "}
