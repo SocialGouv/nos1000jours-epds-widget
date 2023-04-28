@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css"
 import "../styles/index.scss"
+import "remixicon/fonts/remixicon.css"
 import "@gouvfr/dsfr/dist/dsfr/dsfr.min.css"
 
 import { init } from "@socialgouv/matomo-next"

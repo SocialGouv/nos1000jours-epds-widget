@@ -11,6 +11,9 @@ export const CATEG = {
   intentions: "Intentions",
   contact: "Contact",
   test: "Test",
+  emergency: "Urgence",
+  find_pro: "Trouver un pro",
+  article: "Article",
 }
 
 export const ACTION = {
@@ -29,12 +32,16 @@ export const ACTION = {
   recruit: "Faire un entretien utilisateur",
 
   confirmation: "Confirmation effectuée",
+  emergency: "Urgence",
+  number_suicide: "Appeler 3114",
+  number_sos: "Appeler SOS",
+  find_pro: "Trouver un pro",
+  around_me: "Autour de moi",
+  call_pro: "Appeler un pro",
+  article: "Article",
 }
 
 export const CONTACT_SENT = {
-  chat: "Ouverture chat",
-  no_chat: "Chat non disponible",
-  mail: "Confirmation email",
   sms: "Confirmation sms",
   rendezvous: "Confirmation rendezvous",
 }
@@ -77,4 +84,16 @@ export const trackerForIntentions = (action) => {
 
 export const trackerForContact = (action) => {
   track(CATEG.contact, action)
+}
+
+export const trackerForEmergency = (action) => {
+  track(CATEG.emergency, action)
+}
+
+export const trackerForProfessional = (action) => {
+  track(CATEG.find_pro, action)
+}
+
+export const trackerForArticle = (action) => {
+  track(CATEG.article, action)
 }

@@ -9,6 +9,36 @@ export const client = new ApolloClient({
   link: new HttpLink({ uri: `${API_URL}/graphql?nocache`, fetch }),
 })
 
+export const GET_INFORMATION_PRO_SANTE = gql`
+  query annuaire1000JBlues {
+    annuaire1000JBlues {
+      type
+      prenom
+      nom
+      profession
+      telephone1
+      telephone2
+      adresse
+      ville
+      code_postal
+      region
+      departement
+      longitude
+      latitude
+      tarif
+      conventionne_securite_sociale
+    }
+  }
+`
+
+export const GET_ACTIVATION_TILE_STATUS = gql`
+  query activationTile {
+    activationTile {
+      activation_tile
+    }
+  }
+`
+
 export const EPDS_ADD_SURVEY_RESULTS = gql`
   mutation (
     $genre: ENUM_REPONSESEPDS_GENRE!
@@ -75,18 +105,6 @@ export const EPDS_CONTACT_INFORMATION = gql`
       horaires: $horaires
       score_question_dix: $scoreQuestionDix
     )
-  }
-`
-
-export const GET_ACTIVATION_CHAT_STATUS = gql`
-  query activationChat {
-    activationChat {
-      activation_chat
-      matin_de
-      matin_a
-      apres_midi_de
-      apres_midi_a
-    }
   }
 `
 

@@ -1,0 +1,120 @@
+.tables {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0 16px 0;
+}
+
+.pagination-size {
+  display: flex;
+  justify-content: center;
+  min-width: 24rem;
+
+}
+
+.around-me-button {
+  margin-left: 1rem;
+}
+
+.gap-filter {
+  margin-bottom: 6%;
+}
+
+.columnBox,
+.box {
+  width: 100%;
+  padding: 32px;
+  border: solid 1px #bfbcbc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 16px;
+}
+
+.userIcon {
+  color: #929292;
+}
+
+.name {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.contactInfo,
+.personnalInfo,
+.addressInfo {
+  display: flex;
+}
+
+.addressInfo {
+  flex-direction: column;
+  gap: 16px 0;
+}
+
+.contactInfo {
+  gap: 16px;
+  color: var(--bleuFranceSun);
+  align-items: center;
+}
+
+.horizontalSeparator {
+  border-top: solid 1px #bfbcbc;
+  width: 100%;
+  margin: 32px 0;
+}
+
+.bigSeparator,
+.optionalSeparator,
+.separator {
+  border-right: solid 1px #bfbcbc;
+}
+
+.optionalSeparator,
+.separator {
+  margin: 0 8px;
+}
+
+.optionalSeparator {
+  display: none;
+}
+
+.bigSeparator {
+  height: 56px;
+}
+
+.badge {
+  flex-shrink: 0;
+}
+
+@media (min-width: 769px) {
+  .box {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .horizontalSeparator {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .personnalInfo {
+    align-items: center;
+  }  
+
+  .addressInfo {
+    flex-direction: row;
+  }
+
+  .optionalSeparator {
+    display: block;
+  }
+}
+
+.loader-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}

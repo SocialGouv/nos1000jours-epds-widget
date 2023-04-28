@@ -27,14 +27,9 @@ export const OPEN_CONTACT_FROM_EMAIL = "fromEmail"
 
 export const PATTERN_EMAIL = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}"
 
-export const URL_CHAT_WHATSAPP = "https://wa.me/message/ZMCTRIQWA7OKD1"
-export const CRISP_CHAT_ID = "d35734d1-93ce-4f6e-8f27-7c1557803b7e"
-
 export const RequestContact = {
   type: {
     sms: "sms",
-    email: "email",
-    chat: "chat",
     rendezvous: "rendezvous",
   },
   hours: {
@@ -62,3 +57,21 @@ export const EpdsGender = {
     strapiLibelle: "Inconnu",
   },
 }
+
+export const moderateTestimonyList = [
+  "« J’ai peur de ne pas bien faire les choses, de ne pas être à la hauteur. » (Héléne, 32 ans)",
+  "« J’accumule beaucoup de fatigue. » (Ludivine, 30 ans)",
+  "« Je ne sais pas vraiment ce qu’il se passe. » (Ali, 28 ans)",
+]
+
+export const highTestimonyList = [
+  "« J’ai du mal à dormir. » (David, 29 ans)",
+  "« Je me sens très seule. » (Véronique, 26 ans)",
+  "« Je n’arrive pas à contrôler mes émotions. Je pleure souvent et/ou m’énerve très facilement. » (Sarah, 33 ans)",
+]
+
+export const veryHighTestimonyList = [
+  "« Je me sens très mal. » (Aurélie, 28 ans)",
+  "« J'ai l'impression de ne plus sentir d'émotions. » (Pierre, 33 ans)",
+  "« J’ai peur qu’il arrive quelque chose à mon enfant. » (Clara, 27 ans)",
+]

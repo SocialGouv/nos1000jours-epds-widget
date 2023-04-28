@@ -12,12 +12,8 @@ import {
  */
 export const trackerContactName = (typeContact) => {
   switch (typeContact) {
-    case RequestContact.type.email:
-      return TrackerUtils.CONTACT_SENT.mail
     case RequestContact.type.sms:
       return TrackerUtils.CONTACT_SENT.sms
-    case RequestContact.type.chat:
-      return TrackerUtils.CONTACT_SENT.chat
     case RequestContact.type.rendezvous:
       return TrackerUtils.CONTACT_SENT.rendezvous
   }
@@ -55,3 +51,9 @@ export const isMamanBluesAvailableHours = () => {
   else if (date.getHours() == 17 && date.getMinutes() <= 30) return true
   else return false
 }
+
+const cleanValue = (value) =>
+  value.replace(/é/g, "e").replace(/ç/g, "c").trim().toLowerCase()
+
+export const matchFilter = (value, filter) =>
+  value && cleanValue(value).includes(cleanValue(filter))

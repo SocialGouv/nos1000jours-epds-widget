@@ -3,7 +3,6 @@ import { Row } from "react-bootstrap"
 import {} from "@dataesr/react-dsfr"
 import { useRouter } from "next/router"
 import * as TrackerUtils from "../../utils/tracker.utils"
-import * as AbTestingUtils from "../../utils/ab-testing/ab-testing.utils"
 
 export const buttonLabel = "Je veux être accompagné.e"
 
@@ -27,7 +26,6 @@ export function ContactMamanBlues({ scoreLevel }) {
 
   const goToBeContacted = async (event) => {
     TrackerUtils.trackerForResults(TrackerUtils.ACTION.be_contacted)
-    AbTestingUtils.trackerForAbTesting(TrackerUtils.ACTION.be_contacted)
     router.push({
       pathname: "/contact/to-be-contacted",
     })

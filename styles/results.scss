@@ -12,6 +12,94 @@
   color: var(--primaryRedDark);
 }
 
+.background-color-h6 {
+  background-color: var(--bleuFrance935);
+  padding-bottom: 3%;
+}
+
+.horizontal-line-testimony {
+  padding: 0 0.5rem 0.5rem !important;
+}
+
+.text-color {
+  color: #000091 !important
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-alert-color {
+  color: #c61010 !important;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.text-margin {
+  margin: 0.5rem !important;
+}
+
+.image-score {
+  margin: 1.5rem 0 1.5rem 1rem !important
+}
+
+.text-black-color {
+  color: #000000 !important
+}
+
+.remove-box-shadow {
+  box-shadow: none !important
+}
+
+.height-tile {
+  min-height: 13rem;
+}
+
+.padding-top-h5 {
+  padding-top: 1rem;
+}
+
+.size-font {
+  font-size: 1rem !important
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.button-be-better {
+  min-width: 40%;
+  border-color: transparent;
+  border-radius: $xl;
+  text-transform: uppercase;
+  justify-content: center;
+  margin-top: $xxxxxxs;
+  margin-bottom: $xxxxxs;
+}
+
+
+.score-progressbar {
+  .progress {
+    background-color: var(--bleuFrance935);
+    margin-top: $sm;
+    margin-bottom: $xxxs;
+    height: 30px;
+    border-radius: 20px;
+  }
+
+  .progress-bar {
+    background-color: var(--bleuFranceSun);
+  }
+
+  .progress-number {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
 .contact-mamanblues {
   margin-block: $sm;
 
