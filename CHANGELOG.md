@@ -1,3 +1,10 @@
+# [1.63.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.62.0...v1.63.0) (2023-04-28)
+
+
+### Features
+
+* nouveau visuel de la page resultat avec progress bar et texte ([#152](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/152)) ([c86f0af](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/c86f0af28540c93af1e0003622a85c78936a0964)), closes [#153](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/153) [#151](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/151)
+
 # [1.62.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.61.1...v1.62.0) (2023-04-18)
 
 
