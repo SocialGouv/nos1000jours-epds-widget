@@ -12,16 +12,17 @@ export const client = new ApolloClient({
 export const GET_INFORMATION_PRO_SANTE = gql`
   query annuaire1000JBlues {
     annuaire1000JBlues {
-      type
       prenom
       nom
       profession
-      telephone1
-      telephone2
+      telephone
+      mail
+      site
       adresse
       ville
       code_postal
       region
+      departement_code
       departement
       longitude
       latitude

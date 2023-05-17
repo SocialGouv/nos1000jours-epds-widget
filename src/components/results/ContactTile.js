@@ -63,14 +63,14 @@ export function ContactTile({ isArticle }) {
           isArticle={isArticle}
         />
       )}
-      {/* <Tile
+      <Tile
         title="Je prends rendez-vous avec un professionnel de santé."
         desc="Spécialisés dans la dépression post-partum, ces professionnels peuvent m'aider."
         imageUrl="/img/icone-calendrier.png"
         link="/contact/pro-list"
         isBeContacted={false}
         isArticle={isArticle}
-      /> */}
+      />
     </>
   )
 }
