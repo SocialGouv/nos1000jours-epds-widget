@@ -22,8 +22,11 @@ import {
   readSourceInUrl,
   updateRadioButtonSelectedInList,
 } from "../../src/utils/main.utils"
+
+import { ContactForm } from "../../src/components/contact/ContactForm"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
+import * as ContactUtils from "../../src/utils/contact.utils"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -33,8 +36,10 @@ export default function ToBeContacted() {
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
-
+  const [isPhoneValid, setIsPhoneValide] = useState(false)
   const [websiteSource, setWebsiteSource] = useState(false)
+  const [canSend, setCanSend] = useState(false)
+  const horaire = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -45,6 +50,10 @@ export default function ToBeContacted() {
   }, [])
 
   useEffect(() => {
+    setCanSend(isValidForm(itemValueType, isPhoneValid))
+  }, [isPhoneValid])
+
+  useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
   }, [itemValueType])
 
@@ -53,7 +62,7 @@ export default function ToBeContacted() {
     router.back()
   }
 
-  const goToContactForm = () => {
+  const goToContactValidation = (path) => {
     localStorage.setItem(STORAGE_CONTACT_TYPE, itemValueType)
     localStorage.setItem(
       STORAGE_CONTACT_HOURS,
@@ -61,16 +70,35 @@ export default function ToBeContacted() {
     )
 
     router.push({
-      pathname: "/contact/contact-form",
+      pathname: path,
     })
   }
 
-  const onValidate = async (_event) => {
-    if (itemValueType) {
+  const onClickSelector = () => {
+    if (itemValueType === RequestContact.type.sms) {
       TrackerUtils.trackerForContact(`Choix effectué`)
       TrackerUtils.trackerForContact(`Choix ${itemValueType}`)
     }
-    goToContactForm()
+  }
+
+  const sendTrackerContactType = (typeContact) => {
+    if (typeContact) {
+      TrackerUtils.trackerForContact(TrackerUtils.ACTION.confirmation)
+      TrackerUtils.trackerForContact(
+        ContactUtils.trackerContactName(typeContact)
+      )
+    }
+  }
+
+  const onValidate = () => {
+    if (itemValueType === RequestContact.type.sms) {
+      sendTrackerContactType(itemValueType)
+      goToContactValidation("/contact/contact-confirmed")
+    } else if (itemValueType === RequestContact.type.rendezvous) {
+      TrackerUtils.trackerForContact(`Choix effectué`)
+      TrackerUtils.trackerForContact(`Choix ${itemValueType}`)
+      goToContactValidation("/contact/contact-form")
+    }
   }
 
   const CustomToggleButton = (type) => (
@@ -83,6 +111,7 @@ export default function ToBeContacted() {
       value={type.id}
       checked={itemValueType === type.id}
       onChange={(e) => setItemValueType(e.currentTarget.value)}
+      onClick={() => onClickSelector()}
     >
       <Row className="card-center-img">
         <img
@@ -120,7 +149,6 @@ export default function ToBeContacted() {
   const ButtonGroupType = () => (
     <ButtonGroup className="be-contacted-button-group">
       <Col>
-        <legend>Selon mes disponibilités, par :</legend>
         <CalendlyComponent />
         <SmsComponent />
       </Col>
@@ -174,12 +202,12 @@ export default function ToBeContacted() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title="être contacté(e)" locale={localeSelected} />
+      <WidgetHeader title="Je veux être accompagné.e" locale={localeSelected} />
       <PersonalizedTile
         title="Avec Wanda, infirmière spécialisée en périnatalité, et ensemble nous trouvons une aide adaptée à ma situation."
         imageUrl="/img/image-wanda.png"
       />
-      <p>Par quel moyen préférez-vous être contacté(e) ?</p>
+      <p>Je préfére être contacté.e par :</p>
       <ButtonGroupType />
 
       {isSmsSelected ? (
@@ -189,23 +217,33 @@ export default function ToBeContacted() {
             vendredi)
           </div>
           {buttonGroupHours()}
+          <ContactForm
+            contactType={itemValueType}
+            setPropsPhoneValid={setIsPhoneValide}
+            canSend={canSend}
+            contactHours={horaire}
+          />
         </>
       ) : null}
-
-      <Col className="be-contacted-bottom-buttons">
-        {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
-          <button className="fr-btn fr-btn--secondary" onClick={cancel}>
-            Annuler
+      {!isSmsSelected && (
+        <Col className="be-contacted-bottom-buttons">
+          {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
+            <button className="fr-btn fr-btn--secondary" onClick={cancel}>
+              Annuler
+            </button>
+          )}
+          <button
+            className="fr-btn"
+            type="submit"
+            disabled={
+              !isValidButtonEnabled(itemValueType, contactHours, canSend)
+            }
+            onClick={onValidate}
+          >
+            Valider
           </button>
-        )}
-        <button
-          className="fr-btn"
-          disabled={!isValidButtonEnabled(itemValueType, contactHours)}
-          onClick={onValidate}
-        >
-          Valider
-        </button>
-      </Col>
+        </Col>
+      )}
     </ContentLayout>
   )
 }
@@ -273,12 +311,19 @@ export const convertHoursListInString = (hours) =>
  * @param {Array} contactHours Tableau des heures
  * @returns boolean de la validité des choix seléctionnés
  */
-export const isValidButtonEnabled = (itemValueType, contactHours) => {
+export const isValidButtonEnabled = (itemValueType, contactHours, canSend) => {
   const isHoursSelected =
     contactHours?.find((item) => item.isChecked) != undefined
 
   return (
     itemValueType == RequestContact.type.rendezvous ||
-    (itemValueType == RequestContact.type.sms && isHoursSelected)
+    (itemValueType == RequestContact.type.sms && isHoursSelected && canSend)
   )
+}
+
+const isValidForm = (contactType, isPhoneValid) => {
+  if (contactType == RequestContact.type.sms) {
+    return isPhoneValid
+  }
+  return false
 }
