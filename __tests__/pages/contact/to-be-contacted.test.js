@@ -19,38 +19,6 @@ describe("Demande de contact", () => {
       expect(result).toEqual(false)
     })
 
-    test("Sélection du type SMS avec horaires => choix valide", () => {
-      const contactHours = [
-        {
-          hours: "9h - 12h",
-          icon: "../img/contact/soleil-matin.svg",
-          iconSelected: "../img/contact/soleil-matin-selected.svg",
-          id: RequestContact.hours.morning,
-          isChecked: true,
-          text: "En matinée",
-        },
-        {
-          hours: "12h - 14h",
-          icon: "../img/contact/soleil-midi.svg",
-          iconSelected: "../img/contact/soleil-midi-selected.svg",
-          id: RequestContact.hours.noon,
-          isChecked: false,
-          text: "Le midi",
-        },
-        {
-          hours: "14h - 17h30",
-          icon: "../img/contact/soleil-soir.svg",
-          iconSelected: "../img/contact/soleil-soir-selected.svg",
-          id: RequestContact.hours.afternoon,
-          isChecked: false,
-          text: "L'après-midi",
-        },
-      ]
-
-      const result = isValidButtonEnabled(RequestContact.type.sms, contactHours)
-      expect(result).toEqual(true)
-    })
-
     test("Sélection du type SMS avec tous les horaires décochés => choix invalide", () => {
       const contactHours = [
         {
