@@ -79,9 +79,7 @@ export function HealthProList({
               </div>
               <div className="horizontalSeparator" />
               <div className="contactInfo">
-                {psychologist.profession && (
-                  <span>{psychologist.profession}</span>
-                )}
+                <span>Psychologue</span>
                 <div className="bigSeparator" />
                 <button
                   className="fr-btn"

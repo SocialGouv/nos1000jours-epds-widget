@@ -49,7 +49,7 @@ export default function ContactConfirmed() {
 
   return (
     <ContentLayout>
-      <WidgetHeader title="être contacté(e)" locale={localeSelected} />
+      <WidgetHeader title="Je veux être accompagné.e" locale={localeSelected} />
       <div className="contact-confirmed">
         {confirmedImage(contactType)}
         <p className="contact-confirmed-title">Demande envoyée</p>

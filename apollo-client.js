@@ -12,16 +12,17 @@ export const client = new ApolloClient({
 export const GET_INFORMATION_PRO_SANTE = gql`
   query annuaire1000JBlues {
     annuaire1000JBlues {
-      type
       prenom
       nom
       profession
-      telephone1
-      telephone2
+      telephone
+      mail
+      site
       adresse
       ville
       code_postal
       region
+      departement_code
       departement
       longitude
       latitude
@@ -89,8 +90,6 @@ export const EPDS_CONTACT_INFORMATION = gql`
     $email: String
     $telephone: String
     $prenom: String
-    $nombreEnfants: Int
-    $naissanceDernierEnfant: String
     $moyen: String
     $horaires: String
     $scoreQuestionDix: String
@@ -99,8 +98,6 @@ export const EPDS_CONTACT_INFORMATION = gql`
       email: $email
       telephone: $telephone
       prenom: $prenom
-      nombre_enfants: $nombreEnfants
-      naissance_dernier_enfant: $naissanceDernierEnfant
       moyen: $moyen
       horaires: $horaires
       score_question_dix: $scoreQuestionDix
@@ -229,8 +226,6 @@ export const SAVE_DEMANDE_DE_CONTACT = gql`
 export const SAVE_CONTACT = gql`
   mutation (
     $prenom: String
-    $nombreEnfants: Int
-    $naissanceDernierEnfant: Date
     $departementCode: String
     $departementLibelle: String
     $datePriseContact: Date
@@ -245,8 +240,6 @@ export const SAVE_CONTACT = gql`
       input: {
         data: {
           prenom: $prenom
-          nombre_enfants: $nombreEnfants
-          date_naissance_dernier_enfant: $naissanceDernierEnfant
           departement_code: $departementCode
           departement_libelle: $departementLibelle
           date_prise_contact: $datePriseContact

@@ -122,9 +122,9 @@
 }
 
 .card-text {
-  color: var(--bleuFranceSun);
-  h3 {
-    color: var(--bleuFranceSun);
+  color: var(--bleuFranceSun) !important;
+  h4 {
+    color: var(--bleuFranceSun) !important;
   }
 }
 
@@ -135,6 +135,10 @@
 
 .card-bottom {
   margin-bottom: 2em !important;
+}
+
+.text-space {
+  margin-top: 1em;
 }
 
 .card-container {
@@ -190,6 +194,18 @@
     flex-wrap: wrap;
     margin-bottom: 2rem;
   }  
+  .padding-tile {
+    padding: 1rem !important;
+    display: flex !important;
+    flex-direction: row !important;
+    padding-left: 3rem !important;
+    justify-content: flex-start !important;
+  }
+  .padding-image {
+    margin: 1rem 2rem 1rem 0rem !important;
+    height: 6rem !important;
+    width: 6rem !important;
+  }
 }
 
 @media screen and (max-width: 430px) {
@@ -221,9 +237,18 @@
     margin-left: auto;
     margin-bottom: 2rem;
   }
+  .padding-tile {
+    padding: 1rem !important;
+  }
+  .padding-image {
+    margin-top: 1rem !important;
+    height: 6rem !important;
+    width: 6rem !important;
+  }
+
 }
 
-@media screen and (min-width: 431px) {
+@media screen and (min-width: 431px) and (max-width: 699px) {
   .logo-appel-margin {
     margin-top: 0rem;
   }
@@ -248,6 +273,16 @@
     align-items: normal;
     flex-direction: row !important;
     width: 100%;    
+  }
+  .padding-tile {
+    padding: 1rem !important;
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  .padding-image {
+    margin-top: 1rem !important;
+    height: 6rem !important;
+    width: 6rem !important;
   }
 
 }
