@@ -8,7 +8,14 @@ import { client, GET_ACTIVATION_TILE_STATUS } from "../../../apollo-client"
 import { Icon } from "@dataesr/react-dsfr"
 import { useQuery } from "@apollo/client"
 
-const Tile = ({ title, desc, imageUrl, link, isBeContacted, isArticle }) => {
+export const Tile = ({
+  title,
+  desc,
+  imageUrl,
+  link,
+  isBeContacted,
+  isArticle,
+}) => {
   return (
     <div className="fr-tile fr-enlarge-link fr-tile--horizontal fr-tile--vertical-md card-text card-space card-bottom">
       <div className="fr-tile__img tile-image">

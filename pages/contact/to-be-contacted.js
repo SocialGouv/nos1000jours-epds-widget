@@ -140,7 +140,7 @@ export default function ToBeContacted() {
           type="checkbox"
           name="checkbox-hours"
           value={type.id}
-          onChange={(e) =>
+          onChange={(_e) =>
             setContactHours(updateRadioButtonSelectedInList(contactHours, type))
           }
         >
@@ -157,14 +157,28 @@ export default function ToBeContacted() {
     </ToggleButtonGroup>
   )
 
+  const PersonalizedTile = ({ imageUrl, title }) => {
+    return (
+      <div className="fr-tile fr-enlarge-link card-space card-text ">
+        <div className="fr-tile__body padding-tile">
+          <div className="fr-tile__img tile-image padding-image">
+            <img src={imageUrl} className="fr-responsive-img" alt="" />
+          </div>
+          <div>
+            <h4 className="fr-tile__title">{title}</h4>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <ContentLayout>
       <WidgetHeader title="être contacté(e)" locale={localeSelected} />
-      <p>
-        Se rendre disponible en tant que parent n'est pas toujours simple. Nous
-        vous proposons de choisir le créneau et le type de prise de contact qui
-        vous conviennent.
-      </p>
+      <PersonalizedTile
+        title="Avec Wanda, infirmière spécialisée en périnatalité, et ensemble nous trouvons une aide adaptée à ma situation."
+        imageUrl="/img/image-wanda.png"
+      />
       <p>Par quel moyen préférez-vous être contacté(e) ?</p>
       <ButtonGroupType />
 

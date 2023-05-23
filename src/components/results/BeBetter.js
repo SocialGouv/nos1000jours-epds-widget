@@ -31,14 +31,14 @@ export function BeBetter({ score, linkActive }) {
           confidentialité des échanges :
         </span>
       </p>
-      {score > 11 && (
+      {score > 15 && (
         <>
           <AlertTile isArticle={linkActive} />
           <ContactTile isArticle={linkActive} />
         </>
       )}
 
-      {score <= 11 && (
+      {score <= 15 && (
         <>
           <ContactTile isArticle={linkActive} />
           <AlertTile isArticle={linkActive} />
