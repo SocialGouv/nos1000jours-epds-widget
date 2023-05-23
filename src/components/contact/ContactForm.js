@@ -82,8 +82,6 @@ export const ContactForm = ({
         email: "",
         horaires: contactHours,
         moyen: contactType,
-        // naissanceDernierEnfant: "",
-        nombreEnfants: 0,
         prenom: name,
         scoreQuestionDix: scoreQuestionDix,
         telephone: phoneNumber,
@@ -99,8 +97,6 @@ export const ContactForm = ({
     await sendContactMamanBluesQuery({
       variables: {
         prenom: inputs.inputName.value,
-        nombreEnfants: 1,
-        // naissanceDernierEnfant: "",
         typeDeContact: contactType,
         departementCode: dptCode,
         departementLibelle: dptLibelle,

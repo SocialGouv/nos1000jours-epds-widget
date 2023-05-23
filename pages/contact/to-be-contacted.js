@@ -110,8 +110,10 @@ export default function ToBeContacted() {
       name="radio-type"
       value={type.id}
       checked={itemValueType === type.id}
-      onChange={(e) => setItemValueType(e.currentTarget.value)}
-      onClick={() => onClickSelector()}
+      onChange={(e) => {
+        setItemValueType(e.currentTarget.value)
+        onClickSelector()
+      }}
     >
       <Row className="card-center-img">
         <img
