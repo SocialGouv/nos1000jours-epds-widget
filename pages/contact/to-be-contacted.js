@@ -75,10 +75,8 @@ export default function ToBeContacted() {
   }
 
   const onClickSelector = () => {
-    if (itemValueType === RequestContact.type.sms) {
-      TrackerUtils.trackerForContact(`Choix effectué`)
-      TrackerUtils.trackerForContact(`Choix ${itemValueType}`)
-    }
+    TrackerUtils.trackerForContact("Choix effectué")
+    TrackerUtils.trackerForContact("Choix sms")
   }
 
   const sendTrackerContactType = (typeContact) => {
@@ -95,8 +93,8 @@ export default function ToBeContacted() {
       sendTrackerContactType(itemValueType)
       goToContactValidation("/contact/contact-confirmed")
     } else if (itemValueType === RequestContact.type.rendezvous) {
-      TrackerUtils.trackerForContact(`Choix effectué`)
-      TrackerUtils.trackerForContact(`Choix ${itemValueType}`)
+      TrackerUtils.trackerForContact("Choix effectué")
+      TrackerUtils.trackerForContact("Choix rendezvous")
       goToContactValidation("/contact/contact-form")
     }
   }
