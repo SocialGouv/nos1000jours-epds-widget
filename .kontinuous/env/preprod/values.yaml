@@ -1,0 +1,6 @@
+jobs:
+  runs:
+    build-app:
+      with:
+        buildArgs:
+          NEXT_PUBLIC_API_URL: https://backoffice-1000jours-preprod.dev.fabrique.social.gouv.fr
