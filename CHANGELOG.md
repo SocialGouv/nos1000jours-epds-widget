@@ -1,3 +1,11 @@
+## [1.64.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.64.0...v1.64.1) (2023-05-30)
+
+
+### Bug Fixes
+
+* annuaire psy ([#154](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/154)) ([2782dae](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/2782dae3afb004f8df92593d8c14731fefb8ab7e))
+* annuaire search + ajout exemple search ([#156](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/156)) ([0d4556c](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/0d4556c78234ce03b4bf11db1ddd493febc05f40))
+
 # [1.64.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.63.0...v1.64.0) (2023-05-23)
 
 
