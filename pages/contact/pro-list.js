@@ -10,7 +10,7 @@ import { GET_INFORMATION_PRO_SANTE, client } from "../../apollo-client"
 import { useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { Spinner, Col } from "react-bootstrap"
-import { TextInput, Button, Alert, Text } from "@dataesr/react-dsfr"
+import { TextInput, Button, Alert } from "@dataesr/react-dsfr"
 import { ACTION, trackerForProfessional } from "../../src/utils/tracker.utils"
 
 const AROUND_ME = "Autour de moi"
