@@ -103,7 +103,10 @@ export default function ProList() {
         if (addressIsDepartment) {
           if (
             addressFilter &&
-            !ContactUtils.matchFilter(psychologist.code_postal, addressFilter)
+            !ContactUtils.matchFilter(
+              psychologist.departement_code.toString(),
+              addressFilter
+            )
           ) {
             return false
           }
@@ -168,6 +171,7 @@ export default function ProList() {
         onChange={(e) => setAddressFilter(e.target.value)}
         placeholder="Rechercher par ville ou département"
       />
+      <span className="exemple-search">Exemple : "Bordeaux" ou "33"</span>
       <Button
         className="fr-btn--secondary around-me-button"
         icon="ri-compass-3-line"
