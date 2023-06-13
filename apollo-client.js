@@ -55,7 +55,7 @@ export const EPDS_ADD_SURVEY_RESULTS = gql`
     $reponseNum8: Int!
     $reponseNum9: Int!
     $reponseNum10: Int!
-    $tempsSurvey: String!
+    $tempsSurvey: Int!
     $langue: ID
     $source: ENUM_REPONSESEPDS_SOURCE!
     $sourceWidgetNom: String!
