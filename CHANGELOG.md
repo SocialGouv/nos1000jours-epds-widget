@@ -1,3 +1,10 @@
+## [1.64.2](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.64.1...v1.64.2) (2023-06-14)
+
+
+### Bug Fixes
+
+* convert type temps_survey for reponses epds ([#158](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/158)) ([3335133](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/3335133d022e10c4fd88d252cb7f5bcc3f8a23d2))
+
 ## [1.64.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.64.0...v1.64.1) (2023-05-30)
 
 
