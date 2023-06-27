@@ -3,6 +3,7 @@ import { WidgetHeader } from "../src/components/WidgetHeader"
 import { ContentLayout } from "../src/components/Layout"
 import {
   STORAGE_SCORE,
+  STORAGE_SOURCE,
   moderateTestimonyList,
   highTestimonyList,
   veryHighTestimonyList,
@@ -15,6 +16,7 @@ import { BeBetter } from "../src/components/results/BeBetter"
 
 export default function Results() {
   const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
+  const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const localeSelected = StorageUtils.getLocaleInLocalStorage()
   const score = parseInt(scoreValue)
 
@@ -26,6 +28,7 @@ export default function Results() {
         <ResultMood
           scoreText="moyennement élevé"
           testimonyList={moderateTestimonyList}
+          source={source}
         />
       )}
       {score > 11 && score <= 15 && (
@@ -35,9 +38,10 @@ export default function Results() {
         <ResultMood
           scoreText="très élevé"
           testimonyList={veryHighTestimonyList}
+          source={source}
         />
       )}
-      <BeBetter score={score} linkActive={true} />
+      {source !== "doctolib" && <BeBetter score={score} linkActive={true} />}
     </ContentLayout>
   )
 }
