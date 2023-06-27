@@ -153,7 +153,21 @@ export const ContactForm = ({
       {isPhoneValid === false && (
         <InputError error="Le numéro de téléphone n'est pas au bon format" />
       )}
+
       {isRequired ? requiredField : null}
+      {source === null && (
+        <>
+          <p id="text-input-error-desc-error" className="fr-error-text">
+            Il semblerait que vous n'avez pas encore passez le questionnaire,
+            vous pouvez le passez&nbsp;
+            <div className="error-message">
+              <a href="https://nos1000jours-blues-epds-widget.fabrique.social.gouv.fr/survey/epds-survey">
+                ici.
+              </a>
+            </div>
+          </p>
+        </>
+      )}
     </div>
   )
 

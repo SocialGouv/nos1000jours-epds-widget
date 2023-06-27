@@ -40,6 +40,7 @@ export default function ToBeContacted() {
   const [websiteSource, setWebsiteSource] = useState(false)
   const [canSend, setCanSend] = useState(false)
   const horaire = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
+  const widgetSource = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
 
   useEffect(() => {
     const source = readSourceInUrl()
@@ -51,6 +52,7 @@ export default function ToBeContacted() {
 
   useEffect(() => {
     setCanSend(isValidForm(itemValueType, isPhoneValid))
+    if (!widgetSource) setCanSend(false)
   }, [isPhoneValid])
 
   useEffect(() => {
