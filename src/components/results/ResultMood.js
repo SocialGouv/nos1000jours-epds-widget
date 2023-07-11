@@ -1,8 +1,8 @@
 import React from "react"
 
-export function ResultMood({ scoreText, testimonyList, source }) {
+export function ResultMood({ scoreText, testimonyList }) {
   return (
-    <div>
+    <>
       <div
         className="fr-tile fr-tile--horizontal remove-box-shadow"
         style={{
@@ -21,20 +21,18 @@ export function ResultMood({ scoreText, testimonyList, source }) {
           />
         </div>
       </div>
-      {source !== "doctolib" && (
-        <div className="margin-bottom-8">
-          <h5>Ce que disent les parents ayant obtenu le même score que moi</h5>
-          <figure className="fr-quote height-tile horizontal-line-testimony">
-            <blockquote>
-              {testimonyList.map((testimony, index) => (
-                <p key={index} className="size-font">
-                  {testimony}
-                </p>
-              ))}
-            </blockquote>
-          </figure>
-        </div>
-      )}
-    </div>
+      <div className="margin-bottom-8">
+        <h5>Ce que disent les parents ayant obtenu le même score que moi</h5>
+        <figure className="fr-quote height-tile horizontal-line-testimony">
+          <blockquote>
+            {testimonyList.map((testimony, index) => (
+              <p key={index} className="size-font">
+                {testimony}
+              </p>
+            ))}
+          </blockquote>
+        </figure>
+      </div>
+    </>
   )
 }
