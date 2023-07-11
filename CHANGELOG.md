@@ -1,3 +1,10 @@
+## [1.65.1](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.65.0...v1.65.1) (2023-07-11)
+
+
+### Bug Fixes
+
+* remove doctolib bespoke screen ([#161](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/issues/161)) ([e15834b](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/commit/e15834b56cf37a50a636a377bbefff3f23a07d7d))
+
 # [1.65.0](https://github.com/SocialGouv/nos1000jours-blues-epds-widget/compare/v1.64.2...v1.65.0) (2023-06-27)
 
 
