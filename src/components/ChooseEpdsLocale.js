@@ -17,6 +17,7 @@ export function ChooseEpdsLocale({ show, setShow, setLocaleSelected }) {
   const [selected, setSelected] = useState()
 
   const getLocalesInDatabase = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const { loading, error, data } = useQuery(gql(GET_LOCALES), {
       client: client,
     })

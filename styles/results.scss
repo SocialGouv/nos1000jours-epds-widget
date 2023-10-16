@@ -183,6 +183,18 @@
   }
 }
 
+.result-good-mood {
+  color: var(--primaryBlue);
+  font-weight: bold;
+  margin-bottom: $xxxxs;
+  display: flex;
+  align-items: center;
+}
+.result-good-mood-description {
+  font-weight: bold;
+  margin-bottom: 2em;
+}
+
 .results-mood {
   display: flex;
   margin-bottom: $xxxxs;

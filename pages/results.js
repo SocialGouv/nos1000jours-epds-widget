@@ -12,6 +12,7 @@ import * as StorageUtils from "../src/utils/storage.utils"
 import { DownloadApp } from "../src/components/results/DownloadApp"
 import { ResultMood } from "../src/components/results/ResultMood"
 import { BeBetter } from "../src/components/results/BeBetter"
+import { Row } from "react-bootstrap"
 
 export default function Results() {
   const scoreValue = StorageUtils.getInLocalStorage(STORAGE_SCORE)
@@ -21,7 +22,18 @@ export default function Results() {
   return (
     <ContentLayout>
       <WidgetHeader title={Labels.titleDPP} locale={localeSelected} />
-      {scoreValue < 9 && <DownloadApp />}
+      {scoreValue < 9 && (
+        <>
+          <div className="result-good-mood">
+            <img alt="" src="img/icone-resultats-bien.svg" height={50} />
+            {Labels.mood.good}
+          </div>
+          <div className="result-good-mood-description">
+            Oser en parler, c’est déjà prendre soin de soi et de son enfant !
+          </div>
+          <DownloadApp />
+        </>
+      )}
       {score >= 9 && score <= 11 && (
         <ResultMood
           scoreText="moyennement élevé"
