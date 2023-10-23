@@ -1,7 +1,13 @@
 FROM node:16-alpine
 
+RUN chown -R 1000:1000 /home/node && \
+  chmod -R 755 /home/node && \
+  chown 1000:1000 /tmp && \
+  chmod 1777 /tmp
+
 WORKDIR /app
-COPY . .
+USER 1000
+COPY --chown=1000:1000 . .
 
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
@@ -30,7 +36,6 @@ ENV NEXT_PUBLIC_CALENDLY_LINK=$NEXT_PUBLIC_CALENDLY_LINK
 RUN yarn --production --frozen-lockfile --prefer-offline && yarn cache clean
 RUN yarn build
 
-USER 1000
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
