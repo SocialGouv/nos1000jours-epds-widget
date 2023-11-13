@@ -135,6 +135,8 @@ export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
     $age: ENUM_INFORMATIONSDEMOGRAPHIQUES_AGE
     $entourageDispo: ENUM_INFORMATIONSDEMOGRAPHIQUES_ENTOURAGE_DISPO
     $situation: String
+    $lastChildAge: Int
+    $moisGrossesse: Int
     $codePostal: String
     $ville: String
     $departement: String
@@ -151,6 +153,8 @@ export const SAVE_INFORMATION_DEMOGRAPHIQUES = gql`
           age: $age
           entourage_dispo: $entourageDispo
           situation: $situation
+          nb_mois_dernier_enfant: $lastChildAge
+          nb_mois_de_grossesse: $moisGrossesse
           code_postal: $codePostal
           ville: $ville
           departement: $departement

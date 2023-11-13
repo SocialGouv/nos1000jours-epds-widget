@@ -61,17 +61,27 @@ export const ageValues = [
 export const situationValues = [
   {
     id: "vousAttendez1Enfant",
-    text: "Vous attendez un enfant",
+    text: "J'attends un enfant",
+    isChecked: false,
+  },
+  {
+    id: "vousAvezEnfantDeMoinsDe1an",
+    text: "J'ai un enfant de moins d' 1 an",
     isChecked: false,
   },
   {
     id: "vousAvezEnfantDeMoinsDe2ans",
-    text: "Vous avez un enfant de moins de 2 ans",
+    text: "J'ai un enfant de moins de 2 ans",
     isChecked: false,
   },
   {
     id: "vousAvezDesEnfantsDePlusDe2ans",
-    text: "Vous avez un ou plusieurs enfants de plus de 2 ans",
+    text: "J'ai un ou plusieurs enfants de plus de 2 ans",
+    isChecked: false,
+  },
+  {
+    id: "vousAvezPerduUnEnfant",
+    text: "J'ai perdu un enfant",
     isChecked: false,
   },
 ]

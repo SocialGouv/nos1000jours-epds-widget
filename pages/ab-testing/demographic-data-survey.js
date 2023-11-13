@@ -27,6 +27,8 @@ import * as TrackerUtils from "../../src/utils/tracker.utils"
 import * as DemographicDataUtils from "../../src/utils/ab-testing/demographic-data.utils"
 import { JobSelector } from "../../src/components/JobSelector"
 import { DepartmentCodeSelector } from "../../src/components/DepartmentCodeSelector"
+import { LastChildAgeSelector } from "../../src/components/LastChildAgeSelector"
+import { MoisGrossesseSelector } from "../../src/components/MoisGrossesseSelector"
 
 export default function DemographicDataSurvey() {
   const router = useRouter()
@@ -42,6 +44,8 @@ export default function DemographicDataSurvey() {
   const [entourageItems, setEntourageItems] = useState(availableRelativesValues)
   const [residenceValue, setResidenceValue] = useState()
   const [jobValue, setJobValue] = useState()
+  const [lastChildAge, setLastChildAge] = useState()
+  const [moisGrossesse, setMoisGrossesse] = useState()
 
   const epdsTestID = StorageUtils.getInLocalStorage(STORAGE_RESULTS_ID)
   const demographicData = DemographicDataUtils.getDemographicBeforeEpds()
@@ -53,7 +57,9 @@ export default function DemographicDataSurvey() {
       jobValue,
       residenceValue,
       situationItems,
-      entourageItems
+      entourageItems,
+      lastChildAge,
+      moisGrossesse
     )
     setValidateButtonEnabled(isCompleted)
   }, [
@@ -63,6 +69,8 @@ export default function DemographicDataSurvey() {
     residenceValue,
     situationItems,
     entourageItems,
+    lastChildAge,
+    moisGrossesse,
   ])
 
   const RadioButtonGroup = ({ groupName, data, defaultData, setItems }) => (
@@ -184,6 +192,19 @@ export default function DemographicDataSurvey() {
     const situations = situationItems?.filter((item) => item.isChecked)
     const entourage = entourageItems?.find((item) => item.isChecked)
 
+    let lastChildAgeInt = null
+    let moisGrossesseInt = null
+    situationItems?.filter((item) => {
+      if (item.id === "vousAttendez1Enfant" && item.isChecked) {
+        moisGrossesseInt = parseInt(moisGrossesse)
+        moisGrossesseInt = isNaN(moisGrossesseInt) ? null : moisGrossesseInt
+      }
+      if (item.id === "vousAvezEnfantDeMoinsDe1an" && item.isChecked) {
+        lastChildAgeInt = parseInt(lastChildAge)
+        lastChildAgeInt = isNaN(lastChildAgeInt) ? null : lastChildAgeInt
+      }
+    })
+
     localStorage.setItem(STORAGE_TEST_DEMOGRAPHIC_DPT_CODE, residenceValue.code)
     localStorage.setItem(
       STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE,
@@ -197,6 +218,8 @@ export default function DemographicDataSurvey() {
         genre: gender.id,
         age: age.id,
         situation: convertArraySituationsToString(situations),
+        lastChildAge: lastChildAgeInt,
+        moisGrossesse: moisGrossesseInt,
         entourageDispo: entourage.id,
         departement: residenceValue.code,
         departementLibelle: residenceValue.nom,
@@ -253,11 +276,20 @@ export default function DemographicDataSurvey() {
         </div>
 
         <div>
-          <div className="bloc-name">Département de résidence :</div>
+          <div className="bloc-name">Votre département de résidence :</div>
           <DepartmentCodeSelector setSelectedDepartment={setResidenceValue} />
         </div>
 
         <SituationBloc />
+        <MoisGrossesseSelector
+          situations={situationItems}
+          setMoisGrossesse={setMoisGrossesse}
+        />
+        <LastChildAgeSelector
+          situations={situationItems}
+          setLastChildAge={setLastChildAge}
+        />
+
         <EntourageBloc />
 
         <i className="required-field">Tous les champs sont obligatoires</i>
@@ -282,23 +314,39 @@ export const checkIsFormCompleted = (
   jobData,
   residenceData,
   situationData,
-  entourageData
+  entourageData,
+  lastChildAge,
+  moisGrossesse
 ) => {
-  const isGenderCompeleted = genderData?.find((item) => item.isChecked)
-  const isAgeCompeleted = ageData?.find((item) => item.isChecked)
+  const isGenderCompeleted = !!genderData?.find((item) => item.isChecked)
+  const isAgeCompeleted = !!ageData?.find((item) => item.isChecked)
   const isJobSelected = jobData != undefined
   const isResidenceSelected = residenceData != undefined
-  const isSituationCompeleted = situationData?.find((item) => item.isChecked)
-  const isEntourageCompeleted = entourageData?.find((item) => item.isChecked)
+  const isSituationCompeleted = !!situationData?.find((item) => item.isChecked)
+  const isEntourageCompeleted = !!entourageData?.find((item) => item.isChecked)
+  const isLastChildAgeSelected = lastChildAge != undefined
+  const isMoisGrossesseSelected = moisGrossesse != undefined
 
-  return (
-    isGenderCompeleted &&
-    isAgeCompeleted &&
-    isJobSelected &&
-    isResidenceSelected &&
-    isSituationCompeleted &&
-    isEntourageCompeleted
-  )
+  const checkpoints = [
+    isGenderCompeleted,
+    isAgeCompeleted,
+    isJobSelected,
+    isResidenceSelected,
+    isSituationCompeleted,
+    isEntourageCompeleted,
+  ]
+
+  // Add optionnal checkpoints
+  situationData?.forEach((item) => {
+    if (item.id === "vousAvezEnfantDeMoinsDe1an" && item.isChecked)
+      checkpoints.push(isLastChildAgeSelected)
+    if (item.id === "vousAttendez1Enfant" && item.isChecked)
+      checkpoints.push(isMoisGrossesseSelected)
+  })
+
+  const isCompleted = checkpoints.every((v) => v === true)
+
+  return isCompleted
 }
 
 /**
