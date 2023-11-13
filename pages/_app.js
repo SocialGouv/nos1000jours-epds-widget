@@ -34,6 +34,8 @@ class MyApp extends App {
               content="1000 premiers jours"
               key="title"
             />
+            {/* <!-- Hotjar Tracking Code for 1000PJ --> */}
+            <script src="../js/hotjar.js" defer=""></script>
           </Head>
           <Component {...pageProps} />
         </ThemeProvider>
