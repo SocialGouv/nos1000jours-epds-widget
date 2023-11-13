@@ -11,7 +11,7 @@ export function MoisGrossesseSelector({ situations, setMoisGrossesse }) {
   return situation.length > 0 ? (
     <fieldset>
       <legend className="bloc-name">
-        À quel mois de grossesse êtes vous (vous ou le co-parent) ?
+        À quel mois de grossesse êtes-vous (vous ou le co-parent) ?
       </legend>
       <Form.Select
         className="fr-select"

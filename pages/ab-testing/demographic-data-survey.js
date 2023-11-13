@@ -73,23 +73,28 @@ export default function DemographicDataSurvey() {
     moisGrossesse,
   ])
 
-  const RadioButtonGroup = ({ groupName, data, defaultData, setItems }) => (
-    <ToggleButtonGroup type="radio" name={groupName}>
-      {data.map((item) => (
-        <ToggleButton
-          key={item.id}
-          className={`${item.isChecked ? "btn-checked" : ""}`}
-          id={`radio-${item.id}`}
-          value={item.value}
-          onChange={() =>
-            setItems(updateRadioButtonSelectedInList(defaultData, item))
-          }
-        >
-          {item.text}
-        </ToggleButton>
-      ))}
-    </ToggleButtonGroup>
-  )
+  const RadioButtonGroup = ({ groupName, data, defaultData, setItems }) => {
+    const situationStyle =
+      groupName === "radio-situation" ? { maxWidth: "410px" } : {}
+    return (
+      <ToggleButtonGroup type="radio" name={groupName}>
+        {data.map((item) => (
+          <ToggleButton
+            key={item.id}
+            style={situationStyle}
+            className={`${item.isChecked ? "btn-checked" : ""}`}
+            id={`radio-${item.id}`}
+            value={item.value}
+            onChange={() =>
+              setItems(updateRadioButtonSelectedInList(defaultData, item))
+            }
+          >
+            {item.text}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+    )
+  }
 
   const GenderBloc = () => {
     return (
