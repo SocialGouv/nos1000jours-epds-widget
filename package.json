@@ -33,7 +33,7 @@
     "react-router-dom": "^6.10.0",
     "remixicon": "^3.2.0",
     "sass": "^1.48.0",
-    "swr": "^1.3.0"
+    "swr": "^2.0.0"
   },
   "devDependencies": {
     "@socialgouv/eslint-config-react": "^1.101.0",
