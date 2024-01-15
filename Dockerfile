@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16-alpine AS node
 
 RUN chown -R 1000:1000 /home/node && \
   chmod -R 755 /home/node && \
@@ -10,6 +10,15 @@ RUN chown -R 1000:1000 /home/node && \
 WORKDIR /app
 USER 1000
 COPY --chown=1000:1000 . .
+
+FROM node AS build
+COPY yarn.lock .yarnrc.yml ./
+COPY .yarn .yarn
+
+ENV YARN_IGNORE_NODE=1
+RUN yarn fetch --immutable
+
+COPY . .
 
 ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
@@ -35,12 +44,15 @@ ENV NEXT_PUBLIC_LANDING_PAGE_BLUES_RESOURCES=$NEXT_PUBLIC_LANDING_PAGE_BLUES_RES
 ARG NEXT_PUBLIC_CALENDLY_LINK
 ENV NEXT_PUBLIC_CALENDLY_LINK=$NEXT_PUBLIC_CALENDLY_LINK
 
-RUN yarn --production --frozen-lockfile --prefer-offline && yarn cache clean
 RUN yarn build
+RUN yarn workspaces focus --production && yarn cache clean
 
+FROM node AS server
+COPY --from=build /app /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_TELEMETRY_DEBUG=0
 
+ENV YARN_IGNORE_NODE=1
 CMD ["yarn", "start"]

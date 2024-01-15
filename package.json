@@ -56,5 +56,6 @@
       "@socialgouv/eslint-config-react"
     ]
   },
-  "version": "1.65.1"
+  "version": "1.65.1",
+  "packageManager": "yarn@4.0.2"
 }

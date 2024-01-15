@@ -1,3 +1,5 @@
+.dockerignore
+Dockerfile
 .git
 .github
 .socialgouv
@@ -5,3 +7,6 @@
 .next
 .out
 **/node_modules
+.kontinuous
+.socialgouv.yaml
+.releaserc.yml
