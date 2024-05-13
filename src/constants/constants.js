@@ -27,7 +27,7 @@ export const OPEN_CONTACT_FROM_EMAIL = "fromEmail"
 
 export const PATTERN_EMAIL = "[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}"
 
-export const URL_CHAT_WHATSAPP = "https://wa.me/message/ZMCTRIQWA7OKD1"
+export const URL_CHAT_WHATSAPP = "https://wa.me/33635577037"
 
 export const RequestContact = {
   type: {
