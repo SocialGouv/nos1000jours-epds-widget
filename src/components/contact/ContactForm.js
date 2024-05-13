@@ -4,6 +4,7 @@ import {
   STORAGE_SOURCE,
   STORAGE_TEST_DEMOGRAPHIC_DPT_CODE,
   STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE,
+  URL_CHAT_WHATSAPP,
 } from "../../constants/constants"
 import { Form } from "../../constants/specificLabels"
 import { useMutation } from "@apollo/client"
@@ -159,7 +160,8 @@ export const ContactForm = ({
 
   return (
     <>
-      {contactType === RequestContact.type.sms && (
+      {(contactType === RequestContact.type.sms ||
+        contactType === RequestContact.type.whatsapp) && (
         <form className="contact-form" onSubmit={sendForm}>
           <div className={`form-group fr-input-group`}>
             <label htmlFor="inputName">Votre prénom :</label>
@@ -181,7 +183,12 @@ export const ContactForm = ({
               className="fr-btn"
               type="submit"
               disabled={!canSend}
-              onClick={() => sendTrackerContactType(contactType)}
+              onClick={() => {
+                sendTrackerContactType(contactType)
+                if (contactType === RequestContact.type.whatsapp) {
+                  window.open(URL_CHAT_WHATSAPP, "_blank")
+                }
+              }}
             >
               Valider
             </button>

@@ -43,6 +43,7 @@ export const ACTION = {
 
 export const CONTACT_SENT = {
   sms: "Confirmation sms",
+  whatsapp: "Confirmation whatsapp",
   rendezvous: "Confirmation rendezvous",
 }
 

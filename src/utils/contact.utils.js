@@ -14,6 +14,8 @@ export const trackerContactName = (typeContact) => {
   switch (typeContact) {
     case RequestContact.type.sms:
       return TrackerUtils.CONTACT_SENT.sms
+    case RequestContact.type.whatsapp:
+      return TrackerUtils.CONTACT_SENT.whatsapp
     case RequestContact.type.rendezvous:
       return TrackerUtils.CONTACT_SENT.rendezvous
   }
