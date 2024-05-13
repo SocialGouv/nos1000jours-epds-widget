@@ -36,6 +36,9 @@ export const GET_ACTIVATION_TILE_STATUS = gql`
   query activationTile {
     activationTile {
       activation_tile
+      rdv
+      sms
+      whatsapp
     }
   }
 `

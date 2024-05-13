@@ -27,6 +27,8 @@ import { ContactForm } from "../../src/components/contact/ContactForm"
 import * as StorageUtils from "../../src/utils/storage.utils"
 import * as TrackerUtils from "../../src/utils/tracker.utils"
 import * as ContactUtils from "../../src/utils/contact.utils"
+import { useQuery } from "@apollo/client"
+import { client, GET_ACTIVATION_TILE_STATUS } from "../../apollo-client"
 
 export default function ToBeContacted() {
   const router = useRouter()
@@ -36,6 +38,7 @@ export default function ToBeContacted() {
   const [contactHours, setContactHours] = useState(defaultContactHours)
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
+  const [isWhatsappSelected, setWhatsappSelected] = useState(false)
   const [isPhoneValid, setIsPhoneValide] = useState(false)
   const [websiteSource, setWebsiteSource] = useState(false)
   const [canSend, setCanSend] = useState(false)
@@ -55,6 +58,8 @@ export default function ToBeContacted() {
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
+    setWhatsappSelected(itemValueType == RequestContact.type.whatsapp)
+    console.log(itemValueType)
   }, [itemValueType])
 
   const cancel = () => {
@@ -74,9 +79,9 @@ export default function ToBeContacted() {
     })
   }
 
-  const onClickSelector = () => {
+  const onClickSelector = (type) => {
     TrackerUtils.trackerForContact("Choix effectué")
-    TrackerUtils.trackerForContact("Choix sms")
+    TrackerUtils.trackerForContact("Choix " + type.id)
   }
 
   const sendTrackerContactType = (typeContact) => {
@@ -90,6 +95,10 @@ export default function ToBeContacted() {
 
   const onValidate = () => {
     if (itemValueType === RequestContact.type.sms) {
+      sendTrackerContactType(itemValueType)
+      goToContactValidation("/contact/contact-confirmed")
+    }
+    if (itemValueType === RequestContact.type.whatsapp) {
       sendTrackerContactType(itemValueType)
       goToContactValidation("/contact/contact-confirmed")
     } else if (itemValueType === RequestContact.type.rendezvous) {
@@ -110,7 +119,7 @@ export default function ToBeContacted() {
       checked={itemValueType === type.id}
       onChange={(e) => {
         setItemValueType(e.currentTarget.value)
-        onClickSelector()
+        onClickSelector(type)
       }}
     >
       <Row className="card-center-img">
@@ -134,6 +143,16 @@ export default function ToBeContacted() {
     </fieldset>
   )
 
+  const WhatsappComponent = () => (
+    <fieldset>
+      <Row>
+        {defaultContactTypes.byWhatsapp.map((type) => (
+          <Col key={type.id}>{CustomToggleButton(type)}</Col>
+        ))}
+      </Row>
+    </fieldset>
+  )
+
   const CalendlyComponent = () => {
     return (
       <>
@@ -146,14 +165,28 @@ export default function ToBeContacted() {
     )
   }
 
-  const ButtonGroupType = () => (
-    <ButtonGroup className="be-contacted-button-group">
-      <Col>
-        <CalendlyComponent />
-        <SmsComponent />
-      </Col>
-    </ButtonGroup>
-  )
+  const ButtonGroupType = (params) => {
+    const _activationTile = params.activationTile
+    if (_activationTile) {
+      return (
+        <ButtonGroup className="be-contacted-button-group">
+          <Col>
+            {activationTile.rdv ? <CalendlyComponent /> : null}
+            {activationTile.sms ? <SmsComponent /> : null}
+            {activationTile.whatsapp ? <WhatsappComponent /> : null}
+          </Col>
+        </ButtonGroup>
+      )
+    }
+    return (
+      <ButtonGroup className="be-contacted-button-group">
+        <Col>
+          <CalendlyComponent />
+          <SmsComponent />
+        </Col>
+      </ButtonGroup>
+    )
+  }
 
   const buttonGroupHours = () => (
     <ToggleButtonGroup
@@ -200,6 +233,14 @@ export default function ToBeContacted() {
     )
   }
 
+  const { loading, error, data } = useQuery(GET_ACTIVATION_TILE_STATUS, {
+    client: client,
+  })
+
+  if (loading) return <></>
+  if (error) return <p>Error</p>
+  const activationTile = data.activationTile
+
   return (
     <ContentLayout>
       <WidgetHeader title="Je veux être accompagné.e" locale={localeSelected} />
@@ -208,7 +249,7 @@ export default function ToBeContacted() {
         imageUrl="/img/image-wanda.png"
       />
       <p>Je préfére être contacté.e par :</p>
-      <ButtonGroupType />
+      <ButtonGroupType activationTile={activationTile} />
 
       {isSmsSelected ? (
         <>
@@ -225,7 +266,17 @@ export default function ToBeContacted() {
           />
         </>
       ) : null}
-      {!isSmsSelected && (
+      {isWhatsappSelected ? (
+        <>
+          <ContactForm
+            contactType={itemValueType}
+            setPropsPhoneValid={setIsPhoneValide}
+            canSend={canSend}
+            contactHours={horaire}
+          />
+        </>
+      ) : null}
+      {!isSmsSelected && !isWhatsappSelected && (
         <Col className="be-contacted-bottom-buttons">
           {websiteSource !== OPEN_CONTACT_FROM_EMAIL && (
             <button className="fr-btn fr-btn--secondary" onClick={cancel}>
@@ -249,6 +300,15 @@ export default function ToBeContacted() {
 }
 
 const defaultContactTypes = {
+  byWhatsapp: [
+    {
+      icon: "../img/contact/chat.svg",
+      iconSelected: "../img/contact/chat-selected.svg",
+      id: RequestContact.type.whatsapp,
+      isChecked: false,
+      text: "Whatsapp",
+    },
+  ],
   byAvailabilities: [
     {
       icon: "../img/contact/sms.svg",
@@ -317,12 +377,16 @@ export const isValidButtonEnabled = (itemValueType, contactHours, canSend) => {
 
   return (
     itemValueType == RequestContact.type.rendezvous ||
-    (itemValueType == RequestContact.type.sms && isHoursSelected && canSend)
+    (itemValueType == RequestContact.type.sms && isHoursSelected && canSend) ||
+    (itemValueType == RequestContact.type.whatsapp && canSend)
   )
 }
 
 const isValidForm = (contactType, isPhoneValid) => {
-  if (contactType == RequestContact.type.sms) {
+  if (
+    contactType == RequestContact.type.sms ||
+    contactType == RequestContact.type.whatsapp
+  ) {
     return isPhoneValid
   }
   return false

@@ -61,6 +61,8 @@ export default function ContactConfirmed() {
             "Vous devriez recevoir un email de notre équipe dans les 48h. Pensez bien à vérifier dans vos spams."}
           {contactType === RequestContact.type.sms &&
             "Vous devriez recevoir un SMS de notre équipe dans les 48h en fonction des disponibilités sélectionnées."}
+          {contactType === RequestContact.type.whatsapp &&
+            "Vous devriez recevoir un message de notre équipe dans les 48h."}
           {contactType === RequestContact.type.rendezvous &&
             "Vous serez contacté sur le numéro de téléphone que vous avez communiqué."}
         </p>
