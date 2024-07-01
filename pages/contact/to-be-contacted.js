@@ -39,7 +39,8 @@ export default function ToBeContacted() {
   const [itemValueType, setItemValueType] = useState()
   const [isSmsSelected, setSmsSelected] = useState(false)
   const [isWhatsappSelected, setWhatsappSelected] = useState(false)
-  const [isPhoneValid, setIsPhoneValide] = useState(false)
+  const [isPhoneValid, setIsPhoneValid] = useState(false)
+  const [isPhoneConfirmValid, setIsPhoneConfirmValid] = useState(false)
   const [websiteSource, setWebsiteSource] = useState(false)
   const [canSend, setCanSend] = useState(false)
   const horaire = StorageUtils.getInLocalStorage(STORAGE_CONTACT_HOURS)
@@ -53,8 +54,8 @@ export default function ToBeContacted() {
   }, [])
 
   useEffect(() => {
-    setCanSend(isValidForm(itemValueType, isPhoneValid))
-  }, [isPhoneValid])
+    setCanSend(isValidForm(itemValueType, isPhoneValid && isPhoneConfirmValid))
+  }, [isPhoneValid, isPhoneConfirmValid])
 
   useEffect(() => {
     setSmsSelected(itemValueType == RequestContact.type.sms)
@@ -260,7 +261,8 @@ export default function ToBeContacted() {
           {buttonGroupHours()}
           <ContactForm
             contactType={itemValueType}
-            setPropsPhoneValid={setIsPhoneValide}
+            setPropsPhoneValid={setIsPhoneValid}
+            setPropsPhoneConfirmValid={setIsPhoneConfirmValid}
             canSend={canSend}
             contactHours={horaire}
           />
@@ -270,7 +272,8 @@ export default function ToBeContacted() {
         <>
           <ContactForm
             contactType={itemValueType}
-            setPropsPhoneValid={setIsPhoneValide}
+            setPropsPhoneValid={setIsPhoneValid}
+            setPropsPhoneConfirmValid={setIsPhoneConfirmValid}
             canSend={canSend}
             contactHours={horaire}
           />

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {
   RequestContact,
   STORAGE_SOURCE,
@@ -24,11 +24,16 @@ import { useRouter } from "next/router"
 export const ContactForm = ({
   contactType,
   setPropsPhoneValid,
+  setPropsPhoneConfirmValid,
   canSend,
   contactHours,
 }) => {
   const router = useRouter()
   const [isPhoneValid, setPhoneValid] = useState()
+  const [inputPhoneValue, setInputPhoneValue] = useState()
+  const [inputPhoneConfirmValue, setInputPhoneConfirmValue] = useState()
+  const [isPhoneConfirmValid, setPhoneConfirmValid] = useState()
+  const [isPhoneConfirmMatch, setPhoneConfirmMatch] = useState()
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const requiredField = <p className="required-field">{Form.required}</p>
   const dptCode = StorageUtils.getInLocalStorage(
@@ -40,6 +45,10 @@ export const ContactForm = ({
   const cancel = () => {
     router.back()
   }
+
+  useEffect(() => {
+    setPropsPhoneConfirmValid(isPhoneConfirmValid && isPhoneConfirmMatch)
+  }, [isPhoneConfirmValid, isPhoneConfirmMatch])
 
   const goToConfirmation = () => {
     router.push({
@@ -144,8 +153,10 @@ export const ContactForm = ({
         name="inputPhone"
         pattern="[0-9]{10}"
         onChange={(e) => {
+          setInputPhoneValue(e.target.value)
           setPhoneValid(e.target.validity.valid)
           setPropsPhoneValid(e.target.validity.valid)
+          setPhoneConfirmMatch(inputPhoneConfirmValue === e.target.value)
         }}
         placeholder="Écrivez ici le numéro pour vous contacter"
         required={isRequired}
@@ -153,6 +164,42 @@ export const ContactForm = ({
 
       {isPhoneValid === false && (
         <InputError error="Le numéro de téléphone n'est pas au bon format" />
+      )}
+      {isRequired ? requiredField : null}
+    </div>
+  )
+
+  const phoneConfirmInput = (isRequired) => (
+    <div
+      className={`form-group fr-input-group ${
+        isPhoneConfirmValid ? "fr-input-group--valid" : ""
+      }`}
+    >
+      <label htmlFor="inputPhoneConfirm">
+        Confirmez votre numéro de téléphone {isRequired ? "*" : null} :
+      </label>
+      <input
+        type="tel"
+        className={`form-control fr-input ${
+          isPhoneConfirmValid ? "custom-input-valid" : ""
+        }`}
+        id="inputPhoneConfirm"
+        name="inputPhoneConfirm"
+        pattern="[0-9]{10}"
+        onChange={(e) => {
+          setInputPhoneConfirmValue(e.target.value)
+          setPhoneConfirmValid(e.target.validity.valid)
+          setPhoneConfirmMatch(inputPhoneValue === e.target.value)
+        }}
+        placeholder="Confirmez ici le numéro pour vous contacter"
+        required={isRequired}
+      />
+
+      {isPhoneConfirmValid === false && (
+        <InputError error="Le numéro de téléphone n'est pas au bon format" />
+      )}
+      {isPhoneConfirmMatch === false && (
+        <InputError error="Le numéro ne correspond pas à celui renseigné précédemment" />
       )}
       {isRequired ? requiredField : null}
     </div>
@@ -175,6 +222,7 @@ export const ContactForm = ({
           </div>
 
           {phoneInput(true)}
+          {phoneConfirmInput(true)}
           <Col className="be-contacted-bottom-buttons">
             <button className="fr-btn fr-btn--secondary" onClick={cancel}>
               Annuler
