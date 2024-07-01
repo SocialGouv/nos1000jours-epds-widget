@@ -95,6 +95,7 @@ export const ContactForm = ({
         prenom: name,
         scoreQuestionDix: scoreQuestionDix,
         telephone: phoneNumber,
+        langue: StorageUtils.getLocaleInLocalStorage().libelle_francais,
       },
     })
   }
