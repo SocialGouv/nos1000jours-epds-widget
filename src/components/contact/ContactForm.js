@@ -36,8 +36,9 @@ export const ContactForm = ({
   const [inputPhoneConfirmValue, setInputPhoneConfirmValue] = useState()
   const [isPhoneConfirmValid, setPhoneConfirmValid] = useState()
   const [isPhoneConfirmMatch, setPhoneConfirmMatch] = useState()
-  const [showWhatsappRedirectMessage, setShowWhatsappRedirectMessage] = useState(false)
-  
+  const [showWhatsappRedirectMessage, setShowWhatsappRedirectMessage] =
+    useState(false)
+
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const requiredField = <p className="required-field">{Form.required}</p>
   const dptCode = StorageUtils.getInLocalStorage(
@@ -46,7 +47,9 @@ export const ContactForm = ({
   const dptLibelle = StorageUtils.getInLocalStorage(
     STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE
   )
-  const activationContact = JSON.parse(StorageUtils.getInLocalStorage(STORAGE_ACTIVATION_CONTACT))
+  const activationContact = JSON.parse(
+    StorageUtils.getInLocalStorage(STORAGE_ACTIVATION_CONTACT)
+  )
 
   const cancel = () => {
     router.back()
@@ -65,7 +68,10 @@ export const ContactForm = ({
     client: client,
     onCompleted: () => {
       ContactUtils.saveContactRequest(contactType, sendContactQuery)
-      if(contactType === RequestContact.type.whatsapp && activationContact?.whatsapp_redirect_message?.length > 0) {
+      if (
+        contactType === RequestContact.type.whatsapp &&
+        activationContact?.whatsapp_redirect_message?.length > 0
+      ) {
         setShowWhatsappRedirectMessage(true)
       } else {
         goToConfirmation()
@@ -217,7 +223,12 @@ export const ContactForm = ({
 
   return (
     <>
-      <Modal show={showWhatsappRedirectMessage} centered size="md" className="modal-info">
+      <Modal
+        show={showWhatsappRedirectMessage}
+        centered
+        size="md"
+        className="modal-info"
+      >
         <Modal.Header className="fr-modal__header header-choose-modal">
           <b>Information</b>
         </Modal.Header>
@@ -229,13 +240,16 @@ export const ContactForm = ({
         <Modal.Footer
           style={{ alignSelf: "center", borderTop: "none", margin: 20 }}
         >
-          <button className="fr-btn" onClick={() => {
-            setShowWhatsappRedirectMessage(false)
-            goToConfirmation()
-            setTimeout(() => {
-              window.open(URL_CHAT_WHATSAPP, "_blank")
-            }, 500)
-          }}>
+          <button
+            className="fr-btn"
+            onClick={() => {
+              setShowWhatsappRedirectMessage(false)
+              goToConfirmation()
+              setTimeout(() => {
+                window.open(URL_CHAT_WHATSAPP, "_blank")
+              }, 500)
+            }}
+          >
             Ok
           </button>
         </Modal.Footer>

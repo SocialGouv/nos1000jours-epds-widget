@@ -7,9 +7,7 @@ import {
 import { client, GET_ACTIVATION_TILE_STATUS } from "../../../apollo-client"
 import { Icon } from "@dataesr/react-dsfr"
 import { useQuery } from "@apollo/client"
-import {
-  STORAGE_ACTIVATION_CONTACT,
-} from "../../constants/constants"
+import { STORAGE_ACTIVATION_CONTACT } from "../../constants/constants"
 
 export const Tile = ({
   title,
@@ -60,7 +58,10 @@ export function ContactTile({ isArticle }) {
   if (loading) return <></>
   if (error) return <p>Error</p>
   const isTileContactActive = data.activationTile.activation_tile
-  localStorage.setItem(STORAGE_ACTIVATION_CONTACT, JSON.stringify(data.activationTile))
+  localStorage.setItem(
+    STORAGE_ACTIVATION_CONTACT,
+    JSON.stringify(data.activationTile)
+  )
 
   return (
     <>
