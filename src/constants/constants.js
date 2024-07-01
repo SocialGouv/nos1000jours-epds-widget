@@ -19,6 +19,8 @@ export const STORAGE_IS_BACK_RESULTS = "isBackFromConfirmed"
 export const STORAGE_CONTACT_TYPE = "contactType"
 export const STORAGE_CONTACT_HOURS = "contactHours"
 
+export const STORAGE_ACTIVATION_CONTACT = "activationContact"
+
 export const API_URL = process.env.NEXT_PUBLIC_API_URL
 export const CALENDLY_LINK = process.env.NEXT_PUBLIC_CALENDLY_LINK
 export const EPDS_SOURCE = "SitePartenaire"

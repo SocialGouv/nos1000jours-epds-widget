@@ -23,6 +23,7 @@ import {
 import { LocaleButton } from "../src/components/LocaleButton"
 import * as AbTestingUtils from "../src/utils/ab-testing/ab-testing.utils"
 import * as TrackerUtils from "../src/utils/tracker.utils"
+import * as DemographicDataUtils from "../src/utils/ab-testing/demographic-data.utils"
 
 export default function Home() {
   const router = useRouter()
@@ -58,13 +59,17 @@ export default function Home() {
     localStorage.setItem(STORAGE_SOURCE, source)
     TrackerUtils.track(TrackerUtils.CATEG.home, TrackerUtils.ACTION.start)
     localStorage.setItem(STORAGE_TEST_ABC, AbTestingUtils.generateRandomTest())
-    goToBeforeSurvey()
+    // goToBeforeSurvey()
+    goToDemographicSurvey()
   }
 
   const goToBeforeSurvey = async (event) => {
     router.push({
       pathname: "/survey/before-survey",
     })
+  }
+  const goToDemographicSurvey = async (event) => {
+    DemographicDataUtils.goToDemographicSurvey(router)
   }
 
   const [getLabelsTranslationsQuery] = useLazyQuery(

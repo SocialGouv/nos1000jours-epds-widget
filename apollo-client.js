@@ -39,6 +39,7 @@ export const GET_ACTIVATION_TILE_STATUS = gql`
       rdv
       sms
       whatsapp
+      whatsapp_redirect_message
     }
   }
 `
@@ -96,6 +97,7 @@ export const EPDS_CONTACT_INFORMATION = gql`
     $moyen: String
     $horaires: String
     $scoreQuestionDix: String
+    $langue: String
   ) {
     epdsContact(
       email: $email
@@ -104,6 +106,7 @@ export const EPDS_CONTACT_INFORMATION = gql`
       moyen: $moyen
       horaires: $horaires
       score_question_dix: $scoreQuestionDix
+      langue: $langue
     )
   }
 `
