@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react"
 import {
   RequestContact,
   STORAGE_SOURCE,
+  STORAGE_ACTIVATION_CONTACT,
   STORAGE_TEST_DEMOGRAPHIC_DPT_CODE,
   STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE,
   URL_CHAT_WHATSAPP,
 } from "../../constants/constants"
 import { Form } from "../../constants/specificLabels"
 import { useMutation } from "@apollo/client"
-import { Col } from "react-bootstrap"
+import { Alert, Col } from "react-bootstrap"
 import * as StorageUtils from "../../utils/storage.utils"
 import * as TrackerUtils from "../../utils/tracker.utils"
 import {
@@ -17,6 +18,7 @@ import {
   SAVE_CONTACT,
   SAVE_DEMANDE_DE_CONTACT,
 } from "../../../apollo-client"
+import { Modal } from "react-bootstrap"
 import * as ContactUtils from "../../utils/contact.utils"
 import { phoneNumberFormatting, convertDateToISO } from "../../utils/main.utils"
 import { useRouter } from "next/router"
@@ -34,6 +36,8 @@ export const ContactForm = ({
   const [inputPhoneConfirmValue, setInputPhoneConfirmValue] = useState()
   const [isPhoneConfirmValid, setPhoneConfirmValid] = useState()
   const [isPhoneConfirmMatch, setPhoneConfirmMatch] = useState()
+  const [showWhatsappRedirectMessage, setShowWhatsappRedirectMessage] = useState(false)
+  
   const source = StorageUtils.getInLocalStorage(STORAGE_SOURCE)
   const requiredField = <p className="required-field">{Form.required}</p>
   const dptCode = StorageUtils.getInLocalStorage(
@@ -42,6 +46,8 @@ export const ContactForm = ({
   const dptLibelle = StorageUtils.getInLocalStorage(
     STORAGE_TEST_DEMOGRAPHIC_DPT_LIBELLE
   )
+  const activationContact = JSON.parse(StorageUtils.getInLocalStorage(STORAGE_ACTIVATION_CONTACT))
+
   const cancel = () => {
     router.back()
   }
@@ -59,8 +65,11 @@ export const ContactForm = ({
     client: client,
     onCompleted: () => {
       ContactUtils.saveContactRequest(contactType, sendContactQuery)
-
-      goToConfirmation()
+      if(contactType === RequestContact.type.whatsapp && activationContact?.whatsapp_redirect_message?.length > 0) {
+        setShowWhatsappRedirectMessage(true)
+      } else {
+        goToConfirmation()
+      }
     },
     onError: (err) => {
       console.error(err)
@@ -208,6 +217,29 @@ export const ContactForm = ({
 
   return (
     <>
+      <Modal show={showWhatsappRedirectMessage} centered size="md" className="modal-info">
+        <Modal.Header className="fr-modal__header header-choose-modal">
+          <b>Information</b>
+        </Modal.Header>
+
+        <Modal.Body style={{ textAlign: "center" }}>
+          <div>{activationContact?.whatsapp_redirect_message} </div>
+        </Modal.Body>
+
+        <Modal.Footer
+          style={{ alignSelf: "center", borderTop: "none", margin: 20 }}
+        >
+          <button className="fr-btn" onClick={() => {
+            setShowWhatsappRedirectMessage(false)
+            goToConfirmation()
+            setTimeout(() => {
+              window.open(URL_CHAT_WHATSAPP, "_blank")
+            }, 500)
+          }}>
+            Ok
+          </button>
+        </Modal.Footer>
+      </Modal>
       {(contactType === RequestContact.type.sms ||
         contactType === RequestContact.type.whatsapp) && (
         <form className="contact-form" onSubmit={sendForm}>
@@ -234,9 +266,6 @@ export const ContactForm = ({
               disabled={!canSend}
               onClick={() => {
                 sendTrackerContactType(contactType)
-                if (contactType === RequestContact.type.whatsapp) {
-                  window.open(URL_CHAT_WHATSAPP, "_blank")
-                }
               }}
             >
               Valider

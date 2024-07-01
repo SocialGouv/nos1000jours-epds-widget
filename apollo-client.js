@@ -39,6 +39,7 @@ export const GET_ACTIVATION_TILE_STATUS = gql`
       rdv
       sms
       whatsapp
+      whatsapp_redirect_message
     }
   }
 `
