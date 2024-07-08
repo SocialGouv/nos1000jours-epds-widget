@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import parse from 'html-react-parser';
 import {
   RequestContact,
   STORAGE_SOURCE,
@@ -233,8 +234,8 @@ export const ContactForm = ({
           <b>Information</b>
         </Modal.Header>
 
-        <Modal.Body style={{ textAlign: "center" }}>
-          <div>{activationContact?.whatsapp_redirect_message} </div>
+        <Modal.Body>
+          <div>{parse(activationContact?.whatsapp_redirect_message ?? '')}</div>
         </Modal.Body>
 
         <Modal.Footer
